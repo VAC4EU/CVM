@@ -6,10 +6,3 @@ hospitalisation_secondary,ICD9,45342,1
 hospitalisation_secondary,ICD9,45119,1
 emergency_room_diagnosis,ICD9,45183,1
 emergency_room_diagnosis,ICD9,4510,1
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-hospitalisation_primary,ICD9,41519,1
->>>>>>> a2bd58d4164d12b33695c48ea45fe56349d60f07
->>>>>>> eec1baf2dd319eab6e1ee9a85ee00bdf35f92527

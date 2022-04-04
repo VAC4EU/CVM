@@ -2,8 +2,4 @@ A_sex_or_birth_date_missing,B_birth_date_absurd,C_no_observation_period,D_death_
 0,0,0,0,0,30
 1,1,1,0,0,104
 1,1,1,1,0,5930
-<<<<<<< HEAD
-1,1,1,1,1,2793
-=======
 1,1,1,1,1,2794
->>>>>>> eec1baf2dd319eab6e1ee9a85ee00bdf35f92527

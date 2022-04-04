@@ -5,7 +5,7 @@
 # authors: Anna Schultze, Svetlana Belitser; Ema Alsina, Sophie Bots, Ivonne Martens 
 
 # v 1.0.7 - 4 April 2022
-# Implemented support for SIDIAP (covid tests, and subpopulations)
+# Implemented support for SIDIAP (covid tests included in the covid definition, and subpopulations implemented)
 
 # v 1.0.6 - 25 March 2022
 # Fixed a bug in step 12_2 and scri tools

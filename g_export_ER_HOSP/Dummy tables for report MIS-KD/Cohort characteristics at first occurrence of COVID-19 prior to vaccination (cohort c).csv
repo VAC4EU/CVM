@@ -1,43 +1,43 @@
  ,Parameters,Test,perc_Test
 "","",N,%
-Study population,N,72,""
+Study population,N,73,""
 Person years of follow-up,PY,32,""
-Month of first diagnosis,2020-04,2,2.8
-Month of first diagnosis,2020-05,3,4.2
-Month of first diagnosis,2020-06,3,4.2
-Month of first diagnosis,2020-07,2,2.8
+Month of first diagnosis,2020-04,2,2.7
+Month of first diagnosis,2020-05,3,4.1
+Month of first diagnosis,2020-06,3,4.1
+Month of first diagnosis,2020-07,2,2.7
 Month of first diagnosis,2020-09,1,1.4
-Month of first diagnosis,2020-10,4,5.6
-Month of first diagnosis,2020-11,6,8.3
-Month of first diagnosis,2020-12,17,23.6
-Month of first diagnosis,2021-01,17,23.6
-Month of first diagnosis,2021-02,11,15.3
-Month of first diagnosis,2021-03,4,5.6
-Month of first diagnosis,2021-04,2,2.8
+Month of first diagnosis,2020-10,4,5.5
+Month of first diagnosis,2020-11,6,8.2
+Month of first diagnosis,2020-12,17,23.3
+Month of first diagnosis,2021-01,18,24.7
+Month of first diagnosis,2021-02,11,15.1
+Month of first diagnosis,2021-03,4,5.5
+Month of first diagnosis,2021-04,2,2.7
 Age in years,Min,10,""
 Age in years,P25,31,""
-Age in years,P50,46,""
+Age in years,P50,47,""
 Age in years,Mean,46,""
 Age in years,P75,59,""
 Age in years,Max,88,""
 Age in categories,0-4,0,0%
-Age in categories,5-11,2,2.8%
-Age in categories,12-17,4,5.6%
-Age in categories,18-24,5,6.9%
-Age in categories,25-29,5,6.9%
-Age in categories,30-39,11,15.3%
-Age in categories,40-49,12,16.7%
-Age in categories,50-59,15,20.8%
-Age in categories,60-69,9,12.5%
-Age in categories,70-79,5,6.9%
-Age in categories,80+,4,5.6%
+Age in categories,5-11,2,2.7%
+Age in categories,12-17,4,5.5%
+Age in categories,18-24,5,6.8%
+Age in categories,25-29,5,6.8%
+Age in categories,30-39,11,15.1%
+Age in categories,40-49,12,16.4%
+Age in categories,50-59,16,21.9%
+Age in categories,60-69,9,12.3%
+Age in categories,70-79,5,6.8%
+Age in categories,80+,4,5.5%
 Person years across age categories,0-4,2,6.2%
 Person years across age categories,5-11,3,9.4%
 Person years across age categories,12-17,2,6.2%
 Person years across age categories,18-24,5,15.6%
 Person years across age categories,25-29,5,15.6%
 Person years across age categories,30-39,1,3.1%
-Person years across age categories,40-49,7,21.9%
+Person years across age categories,40-49,8,25%
 Person years across age categories,50-59,4,12.5%
 Person years across age categories,60-69,1,3.1%
 Person years across age categories,70-79,1,3.1%

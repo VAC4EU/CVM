@@ -1,7 +1,7 @@
  ,Parameters,Test,perc_Test
 "","",N,%
-Study population,N,2578,""
-Person years of follow-up,PY,3561,""
+Study population,N,2579,""
+Person years of follow-up,PY,3562,""
 Age in years,Min,0,""
 Age in years,P25,29,""
 Age in years,P50,50,""
@@ -13,13 +13,13 @@ Age in categories,5-11,148,5.7%
 Age in categories,12-17,145,5.6%
 Age in categories,18-24,140,5.4%
 Age in categories,25-29,131,5.1%
-Age in categories,30-39,254,9.9%
+Age in categories,30-39,254,9.8%
 Age in categories,40-49,378,14.7%
-Age in categories,50-59,418,16.2%
+Age in categories,50-59,419,16.2%
 Age in categories,60-69,355,13.8%
 Age in categories,70-79,271,10.5%
 Age in categories,80+,252,9.8%
-Age in categories,60+,878,34.1%
+Age in categories,60+,878,34%
 Person years across age categories,0-4,114,3.2%
 Person years across age categories,5-11,211,5.9%
 Person years across age categories,12-17,190,5.3%
@@ -27,13 +27,13 @@ Person years across age categories,18-24,193,5.4%
 Person years across age categories,25-29,186,5.2%
 Person years across age categories,30-39,357,10%
 Person years across age categories,40-49,527,14.8%
-Person years across age categories,50-59,591,16.6%
+Person years across age categories,50-59,592,16.6%
 Person years across age categories,60-69,488,13.7%
 Person years across age categories,70-79,367,10.3%
 Person years across age categories,80+,337,9.5%
 Person years across age categories,60+,1192,33.5%
-Person years across sex,Male,1850,52%
-Person years across sex,Female,1711,48%
+Person years across sex,Male,1850,51.9%
+Person years across sex,Female,1712,48.1%
 At risk population at January 1-2020,Cardiovascular disease,711,27.6%
 At risk population at January 1-2020,Cancer,59,2.3%
 At risk population at January 1-2020,Chronic lung disease,132,5.1%

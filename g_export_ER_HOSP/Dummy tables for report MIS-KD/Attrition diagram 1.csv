@@ -1,11 +1,7 @@
  ,Italy_ARS
-Start population,8861
-A_sex_or_birth_date_missing,32
+Start population,8858
+A_sex_or_birth_date_missing,30
 C_no_observation_period,0
 D_death_before_study_entry,104
-<<<<<<< HEAD
 E_no_observation_period_including_study_start,5930
-=======
-E_no_observation_period_including_study_start,5932
->>>>>>> eec1baf2dd319eab6e1ee9a85ee00bdf35f92527
-end population,2793
+end population,2794

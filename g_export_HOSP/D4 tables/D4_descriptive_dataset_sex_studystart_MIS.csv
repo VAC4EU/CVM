@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 Datasource,Sex_female,Sex_male
-TEST,4018,3814
-=======
-Datasource,NA,Sex_female,Sex_male
-TEST,16,4018,3830
->>>>>>> eec1baf2dd319eab6e1ee9a85ee00bdf35f92527
+TEST,4018,3815

@@ -760,47 +760,47 @@ rm(list=nameoutput)
 
 
 
-IR_risk_fup <- fread(paste0(thisdirexp,"RES_IR_risk_fup_BC.csv"))
-IR_col <- colnames(IR_risk_fup)
-IR_risk_fup <- IR_risk_fup[, IR_col[str_detect(IR_col, "_broad")] := NULL]
-IR_risk_fup <- IR_risk_fup[ageband_at_study_entry == "all_birth_cohorts"][, ageband_at_study_entry := NULL]
-IR_risk_fup <- IR_risk_fup[sex == "both_sexes"][, sex := NULL]
-IR_risk_fup <- IR_risk_fup[week_fup == "fup_until_4" | week_fup == 0, ]
-IR_risk_fup <- IR_risk_fup[(Dose != "both_doses" & type_vax != "all_manufacturer") |
-                             (Dose == "both_doses" & type_vax == "all_manufacturer"), ]
-
-load(paste0(dirtemp,"list_outcomes_observed",suffix[[subpop]],".RData"))
-list_outcomes<-get(paste0("list_outcomes_observed", suffix[[subpop]]))
-rm(list=paste0("list_outcomes_observed",suffix[[subpop]]))
-
-list_risk <- list_outcomes[!str_detect(list_outcomes, "_b")]
-
-colA = paste0(list_risk, "_b")
-colB = paste0("IR_", list_risk)
-colC = paste0("lb_", list_risk)
-colD = paste0("ub_", list_risk)
-
-IR_risk_fup <- correct_col_type(IR_risk_fup)
-col_list <- paste0(c("Cases", "IR", "lb", "ub"), "-", vect_recode_manufacturer[thisdatasource])
-
-IR_risk_fup <- data.table::melt(IR_risk_fup, measure = list(colA, colB, colC, colD), variable.name = "Event",
-                                value.name = col_list, na.rm = F)
-vect_recode_AESI <- unlist(lapply(list_risk, function(x) strsplit(x, "_")[[1]][[1]]))
-names(vect_recode_AESI) <- c(as.character(seq_len(length(list_risk))))
-IR_risk_fup <- IR_risk_fup[ , Event := vect_recode_AESI[Event]]
-
-IR_risk_fup <- IR_risk_fup[c("0", "both_doses", "1", "2"), on = "Dose"]
-IR_risk_fup <- IR_risk_fup[c("0", "all_manufacturer", "Pfizer", "Moderna", "AstraZeneca", "J&J"), on = "type_vax"]
-setorder(IR_risk_fup, Event)
-IR_risk_fup <- IR_risk_fup[, Vaccination := paste(type_vax, "dose", Dose)]
-IR_risk_fup <- IR_risk_fup[Dose == 0, Vaccination := "Pre-vaccination"]
-IR_risk_fup <- IR_risk_fup[Dose == "both_doses", Vaccination := "Post-vaccination"]
-
-col_list <- c("Event", "Vaccination", col_list)
-IR_risk_fup <- IR_risk_fup[, ..col_list]
-
-nameoutput <- paste0("Table XX, Incidence rates of AESI by vaccine and datasource")
-assign(nameoutput, IR_risk_fup)
-fwrite(get(nameoutput), file = paste0(dummytables_october, nameoutput,".csv"))
-rm(list=nameoutput)
+# IR_risk_fup <- fread(paste0(thisdirexp,"RES_IR_risk_fup_BC.csv"))
+# IR_col <- colnames(IR_risk_fup)
+# IR_risk_fup <- IR_risk_fup[, IR_col[str_detect(IR_col, "_broad")] := NULL]
+# IR_risk_fup <- IR_risk_fup[ageband_at_study_entry == "all_birth_cohorts"][, ageband_at_study_entry := NULL]
+# IR_risk_fup <- IR_risk_fup[sex == "both_sexes"][, sex := NULL]
+# IR_risk_fup <- IR_risk_fup[week_fup == "fup_until_4" | week_fup == 0, ]
+# IR_risk_fup <- IR_risk_fup[(Dose != "both_doses" & type_vax != "all_manufacturer") |
+#                              (Dose == "both_doses" & type_vax == "all_manufacturer"), ]
+# 
+# load(paste0(dirtemp,"list_outcomes_observed",suffix[[subpop]],".RData"))
+# list_outcomes<-get(paste0("list_outcomes_observed", suffix[[subpop]]))
+# rm(list=paste0("list_outcomes_observed",suffix[[subpop]]))
+# 
+# list_risk <- list_outcomes[!str_detect(list_outcomes, "_b")]
+# 
+# colA = paste0(list_risk, "_b")
+# colB = paste0("IR_", list_risk)
+# colC = paste0("lb_", list_risk)
+# colD = paste0("ub_", list_risk)
+# 
+# IR_risk_fup <- correct_col_type(IR_risk_fup)
+# col_list <- paste0(c("Cases", "IR", "lb", "ub"), "-", vect_recode_manufacturer[thisdatasource])
+# 
+# IR_risk_fup <- data.table::melt(IR_risk_fup, measure = list(colA, colB, colC, colD), variable.name = "Event",
+#                                 value.name = col_list, na.rm = F)
+# vect_recode_AESI <- unlist(lapply(list_risk, function(x) strsplit(x, "_")[[1]][[1]]))
+# names(vect_recode_AESI) <- c(as.character(seq_len(length(list_risk))))
+# IR_risk_fup <- IR_risk_fup[ , Event := vect_recode_AESI[Event]]
+# 
+# IR_risk_fup <- IR_risk_fup[c("0", "both_doses", "1", "2"), on = "Dose"]
+# IR_risk_fup <- IR_risk_fup[c("0", "all_manufacturer", "Pfizer", "Moderna", "AstraZeneca", "J&J"), on = "type_vax"]
+# setorder(IR_risk_fup, Event)
+# IR_risk_fup <- IR_risk_fup[, Vaccination := paste(type_vax, "dose", Dose)]
+# IR_risk_fup <- IR_risk_fup[Dose == 0, Vaccination := "Pre-vaccination"]
+# IR_risk_fup <- IR_risk_fup[Dose == "both_doses", Vaccination := "Post-vaccination"]
+# 
+# col_list <- c("Event", "Vaccination", col_list)
+# IR_risk_fup <- IR_risk_fup[, ..col_list]
+# 
+# nameoutput <- paste0("Table XX, Incidence rates of AESI by vaccine and datasource")
+# assign(nameoutput, IR_risk_fup)
+# fwrite(get(nameoutput), file = paste0(dummytables_october, nameoutput,".csv"))
+# rm(list=nameoutput)
 }

@@ -1,7 +1,7 @@
  ,Parameters,Test,perc_Test
 "","",N,%
-Study population,N,7832,""
-Person years of follow-up,PY,11392,""
+Study population,N,7833,""
+Person years of follow-up,PY,11393,""
 Age in years,Min,0,""
 Age in years,P25,28,""
 Age in years,P50,48,""
@@ -15,7 +15,7 @@ Age in categories,18-24,464,5.9%
 Age in categories,25-29,391,5%
 Age in categories,30-39,808,10.3%
 Age in categories,40-49,1208,15.4%
-Age in categories,50-59,1270,16.2%
+Age in categories,50-59,1271,16.2%
 Age in categories,60-69,965,12.3%
 Age in categories,70-79,812,10.4%
 Age in categories,80+,726,9.3%
@@ -27,13 +27,13 @@ Person years across age categories,18-24,677,5.9%
 Person years across age categories,25-29,559,4.9%
 Person years across age categories,30-39,1176,10.3%
 Person years across age categories,40-49,1765,15.5%
-Person years across age categories,50-59,1871,16.4%
+Person years across age categories,50-59,1872,16.4%
 Person years across age categories,60-69,1422,12.5%
 Person years across age categories,70-79,1182,10.4%
 Person years across age categories,80+,1012,8.9%
-Person years across age categories,60+,3617,31.8%
+Person years across age categories,60+,3617,31.7%
 Person years across sex,Male,5853,51.4%
-Person years across sex,Female,5539,48.6%
+Person years across sex,Female,5540,48.6%
 At risk population at January 1-2020,Cardiovascular disease,2051,26.2%
 At risk population at January 1-2020,Cancer,170,2.2%
 At risk population at January 1-2020,Chronic lung disease,407,5.2%

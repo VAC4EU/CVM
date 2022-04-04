@@ -1,0 +1,247 @@
+
+
+DAP: TEST  Brands: 
+
+                             n cum_n percent cum_percent
+AstraZeneca & AstraZeneca  329   329    4.20        4.20
+AstraZeneca & NA           371   700    4.74        8.94
+AstraZeneca & Pfizer        13   713    0.17        9.10
+J&J & NA                   120   833    1.53       10.63
+J&J & Pfizer                 1   834    0.01       10.65
+Moderna & Moderna          198  1032    2.53       13.18
+Moderna & NA               225  1257    2.87       16.05
+NA & NA                   3797  5054   48.47       64.52
+Pfizer & AstraZeneca         2  5056    0.03       64.55
+Pfizer & NA               1589  6645   20.29       84.83
+Pfizer & Pfizer           1188  7833   15.17      100.00
+
+
+DAP: TEST  Brand: all
+
+                                                                                          label    n  percent
+1  total                                                                                        7833 100.0000
+2  sex not missing                                                                              4036  51.5256
+3  age not missing                                                                              4036  51.5256
+4  received at least one vaccine dose of any brand                                              4036  51.5256
+5  vaccine brand not missing                                                                    4036  51.5256
+6  at least one myopericarditis diagnosis ever                                                     6   0.0766
+7  at least one myopericarditis diagnosis in time period of interest (starts 1sep2020)             2   0.0255
+8  at least one myopericarditis diagnosis within study period (starts at control window)           2   0.0255
+9  at least one myopericarditis diagnosis between start control and end last 28-day risk window    2   0.0255
+10 excluding myopericarditis diagnoses occuring between 28-day risk window 1 and 2                 2   0.0255
+11 excluding myopericarditis diagnoses occuring during the buffer period (28 day risk windows)     1   0.0128
+12 at least one myopericarditis diagnosis between start control and end last 60-day risk window    2   0.0255
+13 excluding myopericarditis diagnoses occuring between 60-day risk window 1 and 2                 2   0.0255
+14 excluding myopericarditis diagnoses occuring during the buffer period (60 day risk windows)     1   0.0128
+
+
+DAP: TEST  Brands for included persons: 
+
+                     n cum_n percent cum_percent
+Pfizer & AstraZeneca 1     1      50          50
+Pfizer & NA          1     2      50         100
+
+
+DAP: TEST  Brand: all   "Interaction"-Table:
+
+                                                                                                                                                                     n cum_n percent cum_percent
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d  till_last_rw60d not_betw_rw1_rw2_60d    buffer    1     1    0.01        0.01
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d  till_last_rw60d not_betw_rw1_rw2_60d no_buffer    1     2    0.01        0.03
+   sex    age    vax1    vax1_type    myoperi before_sep2020 before_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d  till_last_rw60d not_betw_rw1_rw2_60d no_buffer    4     6    0.05        0.08
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d     betw_rw1_rw2_28d after_last_rw60d     betw_rw1_rw2_60d    buffer 1729  1735   22.07       22.15
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d after_last_rw60d not_betw_rw1_rw2_60d    buffer 2301  4036   29.38       51.53
+no_sex no_age no_vax1 no_vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d after_last_rw60d not_betw_rw1_rw2_60d    buffer 3797  7833   48.47      100.00
+
+
+DAP: TEST  Brand: all   "Interaction"-Table for riks windows of 28 days:
+
+                                                                                                                               n cum_n percent cum_percent
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d    buffer    1     1    0.01        0.01
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d no_buffer    1     2    0.01        0.03
+   sex    age    vax1    vax1_type    myoperi before_sep2020 before_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d no_buffer    4     6    0.05        0.08
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d     betw_rw1_rw2_28d    buffer 1729  1735   22.07       22.15
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d    buffer 2301  4036   29.38       51.53
+no_sex no_age no_vax1 no_vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d    buffer 3797  7833   48.47      100.00
+
+
+DAP: TEST  Brand: all   "Interaction"-Table for riks windows of 60 days:
+
+                                                                                                                               n cum_n percent cum_percent
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw60d not_betw_rw1_rw2_60d    buffer    1     1    0.01        0.01
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw60d not_betw_rw1_rw2_60d no_buffer    1     2    0.01        0.03
+   sex    age    vax1    vax1_type    myoperi before_sep2020 before_vax1-90  till_last_rw60d not_betw_rw1_rw2_60d no_buffer    4     6    0.05        0.08
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d     betw_rw1_rw2_60d    buffer 1729  1735   22.07       22.15
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d not_betw_rw1_rw2_60d    buffer 2301  4036   29.38       51.53
+no_sex no_age no_vax1 no_vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d not_betw_rw1_rw2_60d    buffer 3797  7833   48.47      100.00
+
+
+DAP: TEST  Brand: AstraZeneca
+
+                                                                                          label   n percent
+1  total                                                                                        713     100
+2  sex not missing                                                                              713     100
+3  age not missing                                                                              713     100
+4  received at least one vaccine dose of any brand                                              713     100
+5  vaccine brand not missing                                                                    713     100
+6  at least one myopericarditis diagnosis ever                                                    0       0
+7  at least one myopericarditis diagnosis in time period of interest (starts 1sep2020)            0       0
+8  at least one myopericarditis diagnosis within study period (starts at control window)          0       0
+9  at least one myopericarditis diagnosis between start control and end last 28-day risk window   0       0
+10 excluding myopericarditis diagnoses occuring between 28-day risk window 1 and 2                0       0
+11 excluding myopericarditis diagnoses occuring during the buffer period (28 day risk windows)    0       0
+12 at least one myopericarditis diagnosis between start control and end last 60-day risk window   0       0
+13 excluding myopericarditis diagnoses occuring between 60-day risk window 1 and 2                0       0
+14 excluding myopericarditis diagnoses occuring during the buffer period (60 day risk windows)    0       0
+
+
+DAP: TEST  Brand: AstraZeneca   "Interaction"-Table:
+
+                                                                                                                                                                    n cum_n percent cum_percent
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d     betw_rw1_rw2_28d after_last_rw60d     betw_rw1_rw2_60d    buffer 342   342   47.97       47.97
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d after_last_rw60d not_betw_rw1_rw2_60d    buffer 371   713   52.03      100.00
+
+
+DAP: TEST  Brand: AstraZeneca   "Interaction"-Table for riks windows of 28 days:
+
+                                                                                                                              n cum_n percent cum_percent
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d     betw_rw1_rw2_28d    buffer 342   342   47.97       47.97
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d    buffer 371   713   52.03      100.00
+
+
+DAP: TEST  Brand: AstraZeneca   "Interaction"-Table for riks windows of 60 days:
+
+                                                                                                                              n cum_n percent cum_percent
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d     betw_rw1_rw2_60d    buffer 342   342   47.97       47.97
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d not_betw_rw1_rw2_60d    buffer 371   713   52.03      100.00
+
+
+DAP: TEST  Brand: J&J
+
+                                                                                          label   n percent
+1  total                                                                                        121     100
+2  sex not missing                                                                              121     100
+3  age not missing                                                                              121     100
+4  received at least one vaccine dose of any brand                                              121     100
+5  vaccine brand not missing                                                                    121     100
+6  at least one myopericarditis diagnosis ever                                                    0       0
+7  at least one myopericarditis diagnosis in time period of interest (starts 1sep2020)            0       0
+8  at least one myopericarditis diagnosis within study period (starts at control window)          0       0
+9  at least one myopericarditis diagnosis between start control and end last 28-day risk window   0       0
+10 excluding myopericarditis diagnoses occuring between 28-day risk window 1 and 2                0       0
+11 excluding myopericarditis diagnoses occuring during the buffer period (28 day risk windows)    0       0
+12 at least one myopericarditis diagnosis between start control and end last 60-day risk window   0       0
+13 excluding myopericarditis diagnoses occuring between 60-day risk window 1 and 2                0       0
+14 excluding myopericarditis diagnoses occuring during the buffer period (60 day risk windows)    0       0
+
+
+DAP: TEST  Brand: J&J   "Interaction"-Table:
+
+                                                                                                                                                                    n cum_n percent cum_percent
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d     betw_rw1_rw2_28d after_last_rw60d     betw_rw1_rw2_60d    buffer   1     1    0.83        0.83
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d after_last_rw60d not_betw_rw1_rw2_60d    buffer 120   121   99.17      100.00
+
+
+DAP: TEST  Brand: J&J   "Interaction"-Table for riks windows of 28 days:
+
+                                                                                                                              n cum_n percent cum_percent
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d     betw_rw1_rw2_28d    buffer   1     1    0.83        0.83
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d    buffer 120   121   99.17      100.00
+
+
+DAP: TEST  Brand: J&J   "Interaction"-Table for riks windows of 60 days:
+
+                                                                                                                              n cum_n percent cum_percent
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d     betw_rw1_rw2_60d    buffer   1     1    0.83        0.83
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d not_betw_rw1_rw2_60d    buffer 120   121   99.17      100.00
+
+
+DAP: TEST  Brand: Moderna
+
+                                                                                          label   n percent
+1  total                                                                                        423 100.000
+2  sex not missing                                                                              423 100.000
+3  age not missing                                                                              423 100.000
+4  received at least one vaccine dose of any brand                                              423 100.000
+5  vaccine brand not missing                                                                    423 100.000
+6  at least one myopericarditis diagnosis ever                                                    2   0.473
+7  at least one myopericarditis diagnosis in time period of interest (starts 1sep2020)            0   0.000
+8  at least one myopericarditis diagnosis within study period (starts at control window)          0   0.000
+9  at least one myopericarditis diagnosis between start control and end last 28-day risk window   0   0.000
+10 excluding myopericarditis diagnoses occuring between 28-day risk window 1 and 2                0   0.000
+11 excluding myopericarditis diagnoses occuring during the buffer period (28 day risk windows)    0   0.000
+12 at least one myopericarditis diagnosis between start control and end last 60-day risk window   0   0.000
+13 excluding myopericarditis diagnoses occuring between 60-day risk window 1 and 2                0   0.000
+14 excluding myopericarditis diagnoses occuring during the buffer period (60 day risk windows)    0   0.000
+
+
+DAP: TEST  Brand: Moderna   "Interaction"-Table:
+
+                                                                                                                                                                    n cum_n percent cum_percent
+   sex    age    vax1    vax1_type    myoperi before_sep2020 before_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d  till_last_rw60d not_betw_rw1_rw2_60d no_buffer   2     2    0.47        0.47
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d     betw_rw1_rw2_28d after_last_rw60d     betw_rw1_rw2_60d    buffer 198   200   46.81       47.28
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d after_last_rw60d not_betw_rw1_rw2_60d    buffer 223   423   52.72      100.00
+
+
+DAP: TEST  Brand: Moderna   "Interaction"-Table for riks windows of 28 days:
+
+                                                                                                                              n cum_n percent cum_percent
+   sex    age    vax1    vax1_type    myoperi before_sep2020 before_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d no_buffer   2     2    0.47        0.47
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d     betw_rw1_rw2_28d    buffer 198   200   46.81       47.28
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d    buffer 223   423   52.72      100.00
+
+
+DAP: TEST  Brand: Moderna   "Interaction"-Table for riks windows of 60 days:
+
+                                                                                                                              n cum_n percent cum_percent
+   sex    age    vax1    vax1_type    myoperi before_sep2020 before_vax1-90  till_last_rw60d not_betw_rw1_rw2_60d no_buffer   2     2    0.47        0.47
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d     betw_rw1_rw2_60d    buffer 198   200   46.81       47.28
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d not_betw_rw1_rw2_60d    buffer 223   423   52.72      100.00
+
+
+DAP: TEST  Brand: Pfizer
+
+                                                                                          label    n percent
+1  total                                                                                        2779 100.000
+2  sex not missing                                                                              2779 100.000
+3  age not missing                                                                              2779 100.000
+4  received at least one vaccine dose of any brand                                              2779 100.000
+5  vaccine brand not missing                                                                    2779 100.000
+6  at least one myopericarditis diagnosis ever                                                     4   0.144
+7  at least one myopericarditis diagnosis in time period of interest (starts 1sep2020)             2   0.072
+8  at least one myopericarditis diagnosis within study period (starts at control window)           2   0.072
+9  at least one myopericarditis diagnosis between start control and end last 28-day risk window    2   0.072
+10 excluding myopericarditis diagnoses occuring between 28-day risk window 1 and 2                 2   0.072
+11 excluding myopericarditis diagnoses occuring during the buffer period (28 day risk windows)     1   0.036
+12 at least one myopericarditis diagnosis between start control and end last 60-day risk window    2   0.072
+13 excluding myopericarditis diagnoses occuring between 60-day risk window 1 and 2                 2   0.072
+14 excluding myopericarditis diagnoses occuring during the buffer period (60 day risk windows)     1   0.036
+
+
+DAP: TEST  Brand: Pfizer   "Interaction"-Table:
+
+                                                                                                                                                                     n cum_n percent cum_percent
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d  till_last_rw60d not_betw_rw1_rw2_60d    buffer    1     1    0.04        0.04
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d  till_last_rw60d not_betw_rw1_rw2_60d no_buffer    1     2    0.04        0.07
+   sex    age    vax1    vax1_type    myoperi before_sep2020 before_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d  till_last_rw60d not_betw_rw1_rw2_60d no_buffer    2     4    0.07        0.14
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d     betw_rw1_rw2_28d after_last_rw60d     betw_rw1_rw2_60d    buffer 1188  1192   42.75       42.89
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d after_last_rw60d not_betw_rw1_rw2_60d    buffer 1587  2779   57.11      100.00
+
+
+DAP: TEST  Brand: Pfizer   "Interaction"-Table for riks windows of 28 days:
+
+                                                                                                                               n cum_n percent cum_percent
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d    buffer    1     1    0.04        0.04
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d no_buffer    1     2    0.04        0.07
+   sex    age    vax1    vax1_type    myoperi before_sep2020 before_vax1-90  till_last_rw28d not_betw_rw1_rw2_28d no_buffer    2     4    0.07        0.14
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d     betw_rw1_rw2_28d    buffer 1188  1192   42.75       42.89
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw28d not_betw_rw1_rw2_28d    buffer 1587  2779   57.11      100.00
+
+
+DAP: TEST  Brand: Pfizer   "Interaction"-Table for riks windows of 60 days:
+
+                                                                                                                               n cum_n percent cum_percent
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw60d not_betw_rw1_rw2_60d    buffer    1     1    0.04        0.04
+   sex    age    vax1    vax1_type    myoperi   from_sep2020   from_vax1-90  till_last_rw60d not_betw_rw1_rw2_60d no_buffer    1     2    0.04        0.07
+   sex    age    vax1    vax1_type    myoperi before_sep2020 before_vax1-90  till_last_rw60d not_betw_rw1_rw2_60d no_buffer    2     4    0.07        0.14
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d     betw_rw1_rw2_60d    buffer 1188  1192   42.75       42.89
+   sex    age    vax1    vax1_type no_myoperi before_sep2020 before_vax1-90 after_last_rw60d not_betw_rw1_rw2_60d    buffer 1587  2779   57.11      100.00

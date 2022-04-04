@@ -1,0 +1,19 @@
+meaning_of_first_event,coding_system_of_code_first_event,code_first_event,count_n
+hospitalisation_primary,ICD9,41011,< 5
+hospitalisation_primary,ICD9,41071,< 5
+hospitalisation_primary,ICD9,44023,< 5
+hospitalisation_secondary,ICD9,4149,10
+hospitalisation_secondary,ICD9,4148,< 5
+hospitalisation_primary,ICD9,41090,< 5
+hospitalisation_primary,ICD9,41031,< 5
+exemption,ICD9,414,9
+hospitalisation_primary,ICD9,41001,< 5
+hospitalisation_secondary,ICD9,412,6
+hospitalisation_secondary,ICD9,41401,< 5
+hospitalisation_primary,ICD9,4131,< 5
+hospitalisation_secondary,ICD9,41010,< 5
+hospitalisation_primary,ICD9,4139,< 5
+hospitalisation_primary,ICD9,4111,< 5
+hospitalisation_secondary,ICD9,4408,< 5
+hospitalisation_secondary,ICD9,4139,< 5
+hospitalisation_primary,ICD9,41401,< 5

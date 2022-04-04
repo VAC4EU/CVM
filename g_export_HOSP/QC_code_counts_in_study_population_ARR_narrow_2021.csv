@@ -1,0 +1,14 @@
+meaning_of_first_event,coding_system_of_code_first_event,code_first_event,count_n
+hospitalisation_secondary,ICD9,4279,1
+hospitalisation_primary,ICD9,4260,3
+hospitalisation_primary,ICD9,42732,1
+hospitalisation_secondary,ICD9,42731,22
+exemption,ICD9,427,4
+hospitalisation_secondary,ICD9,42654,1
+hospitalisation_primary,ICD9,4271,2
+hospitalisation_secondary,ICD9,4264,1
+hospitalisation_secondary,ICD9,4275,2
+hospitalisation_secondary,ICD9,4260,1
+hospitalisation_secondary,ICD9,4271,1
+hospitalisation_primary,ICD9,42769,1
+hospitalisation_secondary,ICD9,42741,1

@@ -8,13 +8,6 @@ emergency_room_diagnosis,ICD9,45183,< 5
 hospitalisation_primary,ICD9,41041,< 5
 hospitalisation_primary,ICD9,41071,< 5
 emergency_room_diagnosis,ICD9,4510,< 5
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-emergency_room_diagnosis,ICD9,43491,< 5
->>>>>>> a2bd58d4164d12b33695c48ea45fe56349d60f07
->>>>>>> eec1baf2dd319eab6e1ee9a85ee00bdf35f92527
 hospitalisation_secondary,ICD9,412,< 5
 hospitalisation_primary,ICD9,43411,< 5
 emergency_room_diagnosis,ICD9,43491,< 5

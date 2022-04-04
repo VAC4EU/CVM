@@ -1,0 +1,125 @@
+
+
+DAP: TEST  included at day -90 and before last vaccine + 60 days  sex:
+
+$all
+  n cum_n percent cum_percent
+1 2     2     100         100
+
+$Pfizer
+  n cum_n percent cum_percent
+1 2     2     100         100
+
+
+
+DAP: TEST  included at day -90 and before last vaccine + 60 days  age:
+
+$summary
+       Min. 1st Qu. Median Mean 3rd Qu. Max. n_missing
+all      48   51.75   55.5 55.5   59.25   63         0
+Pfizer   48   51.75   55.5 55.5   59.25   63         0
+
+$quartile
+       0%   25%  50%   75% 100%
+all    48 51.75 55.5 59.25   63
+Pfizer 48 51.75 55.5 59.25   63
+
+$cat1
+$cat1$all
+         n cum_n percent cum_percent
+(-1,30]  0     0       0           0
+(30,120] 2     2     100         100
+
+$cat1$Pfizer
+         n cum_n percent cum_percent
+(-1,30]  0     0       0           0
+(30,120] 2     2     100         100
+
+
+$cat2
+$cat2$all
+         n cum_n percent cum_percent
+(-1,18]  0     0       0           0
+(18,24]  0     0       0           0
+(24,29]  0     0       0           0
+(29,39]  0     0       0           0
+(39,49]  1     1      50          50
+(49,55]  0     1       0          50
+(55,65]  1     2      50         100
+(65,80]  0     2       0         100
+(80,120] 0     2       0         100
+
+$cat2$Pfizer
+         n cum_n percent cum_percent
+(-1,18]  0     0       0           0
+(18,24]  0     0       0           0
+(24,29]  0     0       0           0
+(29,39]  0     0       0           0
+(39,49]  1     1      50          50
+(49,55]  0     1       0          50
+(55,65]  1     2      50         100
+(65,80]  0     2       0         100
+(80,120] 0     2       0         100
+
+
+
+
+DAP: TEST  included at day -90 and before last vaccine + 60 days  age per sex:
+
+$summary_per_sex
+         Min. 1st Qu. Median Mean 3rd Qu. Max. n_missing
+all_1      48   51.75   55.5 55.5   59.25   63         0
+Pfizer_1   48   51.75   55.5 55.5   59.25   63         0
+
+$quartile_per_sex
+         0%   25%  50%   75% 100%
+all_1    48 51.75 55.5 59.25   63
+Pfizer_1 48 51.75 55.5 59.25   63
+
+$cat1_per_sex
+$cat1_per_sex$all
+             n cum_n percent cum_percent
+1 & (30,120] 2     2     100         100
+
+$cat1_per_sex$Pfizer_1
+         n cum_n percent cum_percent
+(-1,30]  0     0       0           0
+(30,120] 2     2     100         100
+
+
+
+
+DAP: TEST  included at day -90 and before last vaccine + 60 days  vax1 and vax2:
+
+$brands
+                     n cum_n percent cum_percent
+Pfizer & AstraZeneca 1     1      50          50
+Pfizer & NA          1     2      50         100
+
+$days_between_cat_all
+           n cum_n percent cum_percent percent2 cum_percent2
+(-1,7]     0     0       0           0        0            0
+(7,14]     0     0       0           0        0            0
+(14,21]    0     0       0           0        0            0
+(21,28]    0     0       0           0        0            0
+(28,60]    1     1      50          50      100          100
+(60,90]    0     1       0          50        0          100
+(90,1e+04] 0     1       0          50        0          100
+<NA>       1     2      50         100       NA           NA
+
+$days_between_cat_Pfizer
+           n cum_n percent cum_percent percent2 cum_percent2
+(-1,7]     0     0       0           0        0            0
+(7,14]     0     0       0           0        0            0
+(14,21]    0     0       0           0        0            0
+(21,28]    0     0       0           0        0            0
+(28,60]    1     1      50          50      100          100
+(60,90]    0     1       0          50        0          100
+(90,1e+04] 0     1       0          50        0          100
+<NA>       1     2      50         100       NA           NA
+
+$days_between_summary
+       Min. 1st Qu. Median Mean 3rd Qu. Max. NA's
+all      35      35     35   35      35   35    1
+Pfizer   35      35     35   35      35   35    1
+

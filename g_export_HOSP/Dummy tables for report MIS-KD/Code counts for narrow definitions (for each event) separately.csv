@@ -1,0 +1,7 @@
+DAP,Event,Coding_system,Code,meaning_of_event,sum
+TEST,MYOCARD,ICD9,42099,hospitalisation_primary,1
+TEST,MYOCARD,ICD9,42090,hospitalisation_secondary,1
+TEST,MYOCARD,ICD9,42099,hospitalisation_secondary,1
+TEST,PERICARD,ICD9,42099,hospitalisation_primary,1
+TEST,PERICARD,ICD9,42090,hospitalisation_secondary,1
+TEST,PERICARD,ICD9,42099,hospitalisation_secondary,1

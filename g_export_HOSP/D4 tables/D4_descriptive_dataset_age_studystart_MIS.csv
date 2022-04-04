@@ -1,6 +1,2 @@
 Datasource,Followup,Age_P25,Age_P50,Age_p75,Age_mean,Age_min,Age_max
-<<<<<<< HEAD
-TEST,11392,29,49,66,48,1,102
-=======
-TEST,12418,33,53,63,49,1,102
->>>>>>> eec1baf2dd319eab6e1ee9a85ee00bdf35f92527
+TEST,11393,29,49,66,48,1,102
