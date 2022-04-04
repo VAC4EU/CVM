@@ -29,8 +29,8 @@ for (i in 1:length(files)) {
     
   }
   if (str_detect(files[i],"^MEDICAL_OB")) {
-    itemset_AVpair_our_study[["COVID_test"]][[files[i]]][["TEST"]] <- list(list("SIDIAP.Covid_tests","PCR"),list("SIDIAP.Covid_tests","ANTIGENS"))
-    itemset_AVpair_our_study[["COVID_test"]][[files[i]]][["SIDIAP"]] <- list(list("SIDIAP.Covid_tests","PCR"),list("SIDIAP.Covid_tests","ANTIGENS"))
+    itemset_AVpair_our_study[["COVID_test"]][[files[i]]][["TEST"]] <- list(list("COVID-Test","covid19_pcr_test"),list("COVID-Test","covid19_antigen_test"))
+    itemset_AVpair_our_study[["COVID_test"]][[files[i]]][["SIDIAP"]] <- list(list("COVID-Test","covid19_pcr_test"),list("COVID-Test","covid19_antigen_test"))
     
   }  
 }

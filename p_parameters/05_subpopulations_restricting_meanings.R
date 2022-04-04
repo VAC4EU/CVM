@@ -4,7 +4,7 @@
 
 # datasources_with_subpopulations lists the datasources where some meanings of events should be excluded during some observation periods, associated with some op_meanings
 
-datasources_with_subpopulations <- c("BIFAP", "TEST")
+datasources_with_subpopulations <- c("BIFAP", "SIDIAP","TEST")
 
 
 this_datasource_has_subpopulations <- ifelse(thisdatasource %in% datasources_with_subpopulations,TRUE,FALSE) 
@@ -70,18 +70,18 @@ exclude_meaning_of_event[["BIFAP"]][["PC_COVID"]]<-c("hopitalisation_diagnosis_u
 hospitalisation_secondary")
 exclude_meaning_of_event[["BIFAP"]][["PC_HOSP"]]<-c()
 
-# # SIDIAP
-# subpopulations[["SIDIAP"]] = c("PC","PC_HOSP")
-# op_meaning_sets[["SIDIAP"]] <- c("meaningsPC","meaningsHOSP")
-# 
-# op_meanings_list_per_set[["SIDIAP"]][["meaningsPC"]] <- c("enlisted_with_GP") 
-# op_meanings_list_per_set[["SIDIAP"]][["meaningsHOSP"]] <- c("observed_in_hospital") 
-# 
-# op_meaning_sets_in_subpopulations[["SIDIAP"]][["PC"]] <- c("meaningsPC")
-# op_meaning_sets_in_subpopulations[["SIDIAP"]][["PC_HOSP"]] <- c("meaningsPC","meaningsHOSP")
-# 
-# exclude_meaning_of_event[["SIDIAP"]][["PC"]]<-c("hospitalisation_primary", "hospitalisation_secondary","hospitalisation_secondar")
-# exclude_meaning_of_event[["SIDIAP"]][["PC_HOSP"]]<-c()
+# SIDIAP
+subpopulations[["SIDIAP"]] = c("PC","PC_HOSP")
+op_meaning_sets[["SIDIAP"]] <- c("meaningsPC","meaningsHOSP")
+
+op_meanings_list_per_set[["SIDIAP"]][["meaningsPC"]] <- c("enlisted_with_GP")
+op_meanings_list_per_set[["SIDIAP"]][["meaningsHOSP"]] <- c("observed_in_hospital")
+
+op_meaning_sets_in_subpopulations[["SIDIAP"]][["PC"]] <- c("meaningsPC")
+op_meaning_sets_in_subpopulations[["SIDIAP"]][["PC_HOSP"]] <- c("meaningsPC","meaningsHOSP")
+
+exclude_meaning_of_event[["SIDIAP"]][["PC"]]<-c("hospitalisation_primary", "hospitalisation_secondary","hospitalisation_secondar")
+exclude_meaning_of_event[["SIDIAP"]][["PC_HOSP"]]<-c()
 
 # # PHARMO
 # subpopulations[["PHARMO"]] = c("PC","HOSP","PC_HOSP")

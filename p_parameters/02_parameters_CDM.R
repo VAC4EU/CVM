@@ -370,4 +370,15 @@ if (length(ConcePTION_CDM_EAV_tables)!=0 ){
   }
 }
 
+# fix for SIDIAP: itemsets in MEDICAL_OBSERVATIONS must be retrieved from (mo_origin,mo_meaning) instead of being retrieved from (mo_table,mo_column)
+
+if (thisdatasource == "SIDIAP" | thisdatasource == "TEST") {
+  temp_SIDIAP<-unlist(ConcePTION_CDM_EAV_tables_retrieve)
+  
+  temp_SIDIAP<-str_replace(temp_SIDIAP,"mo_source_column","mo_meaning")
+  temp_SIDIAP<-str_replace(temp_SIDIAP,"mo_source_table","mo_origin")
+  
+  ConcePTION_CDM_EAV_tables_retrieve<-relist(temp_SIDIAP, ConcePTION_CDM_EAV_tables_retrieve)
+}
+
 rm(temp,temp1)
