@@ -29,13 +29,12 @@
 
 if(!any(ls()=="thisdir"))   thisdir   <- getwd()
 if(!any(ls()=="dirtemp"))   dirtemp   <- paste0(thisdir,"/g_intermediate/")
+if(!any(ls()=="diroutput")) diroutput <- paste0(thisdir,"/g_output/")
 
 # ensure required folders are created  
 dir.create(file.path(paste0(dirtemp, "scri")),           showWarnings = FALSE, recursive = TRUE)
-dir.create(file.path(paste0(dirtemp, "models")),         showWarnings = FALSE, recursive = TRUE)																								
 dir.create(file.path(paste0(thisdir,"/log_files/scri")), showWarnings = FALSE, recursive = TRUE)
-dir.create(file.path(paste0(diroutput, "scri")),         showWarnings = FALSE, recursive = TRUE)
-
+dir.create(file.path(paste0(dirtemp, "models")),         showWarnings = FALSE, recursive = TRUE)
 
 for (subpop in subpopulations_non_empty) {
   
@@ -46,7 +45,7 @@ for (subpop in subpopulations_non_empty) {
   dir.create(sdr0, showWarnings = FALSE, recursive = TRUE)
   
   # SCCS output_directory for models 
-  sdr_models0 <- paste0(dirtemp, "models/", "scri/")
+  sdr_models0 <- paste0(dirtemp, "models/", "scri/") 																							 
   dir.create(sdr_models0, showWarnings = FALSE, recursive = TRUE)
   
   
@@ -110,6 +109,8 @@ for (subpop in subpopulations_non_empty) {
   # which part to run:
   lmain <- T
   ldist <- T
+  
+  onlyPfizer <- F
   
   
   paral_vars <- c("lab_pre", "vax1_end_before_vax2")
@@ -406,16 +407,17 @@ for (subpop in subpopulations_non_empty) {
   #    define order of coefficient labels:
   #
   
+  
   lab_orders <- list(  
     c("F", "M" ),
     c("sex0","sex:0","sexF","sex:F", "sex1", "sex:1" , "sexM", "sex:M" ),
     paste0("age",c("(-1,30]","(30,40]","(30,50]","(30,60]","(30,Inf]",">=30",">30","(40,50]","(50,60]","(50,65]","(50,Inf]",">=50",">50",">=60","(60,Inf]", ">65" )),
     #c("(-1,30]","(30,40]","(30,50]","(30,60]","(30,Inf]",">=30",">30","(40,50]","(50,60]","(50,65]","(50,Inf]",">=50",">50",">=60","(60,Inf]", ">65" ),
     c("d1:","d2:","d3:" ),
-    c("Pfi", "Mod", "Ast",  "JJ","J&J" ),
-    c("Pfizer", "Moderna", "AstraZeneca", "JJ","J&J" ),
-    #c("Pfi","no_Pf","no Pf", "Mod","no_Mo","no Mo", "Ast","no_AZ","no AZ",  "JJ","J&J","no_JJ","no_J&","no JJ","no_J&" ),
-    #c("Pfizer","no_Pfizer","no Pfizer", "Moderna","no_Moderna","no Moderna", "AstraZeneca","no_AZ", "no AZ", "JJ","J&J", "no_JJ","no_J&J", "no JJ","no J&J" ),
+    #c("Pfi", "Mod", "Ast",  "JJ","J&J" ),
+    #c("Pfizer", "Moderna", "AstraZeneca", "JJ","J&J" ),
+    c("Pfi","no_Pf","no Pf", "Mod","no_Mo","no Mo", "Ast","no_AZ","no AZ",  "JJ","J&J","no_JJ","no_J&","no JJ","no_J&" ),
+    c("Pfizer","no_Pfizer","no Pfizer", "Moderna","no_Moderna","no Moderna", "AstraZeneca","no_AZ", "no AZ", "JJ","J&J", "no_JJ","no_J&J", "no JJ","no J&J" ),
     c("pre-","buf", "dose 1","dose 2", "dose 3" ),
     c("buf", "dose 1 pre-", paste0( rep(paste0("dose ",1:3),each=10), rep(c("pre-"," pre-","<"," <","("," (","["," [",">"," >"),3) ) ),
     c("[-90;-30],[-29;-1],[0;0]","[1;7]","[1;14]","[1;28]","[8;14]","[15;28]",">28","[29;60]",">60","[61;180]", ">180"),
@@ -428,15 +430,15 @@ for (subpop in subpopulations_non_empty) {
   
   # during testing: may use only one vector to adjust for calendar time, for example, time_seq[5]:
   # time_seq <- time_seq[5]
-  
-  
-  
+
+  # colors:
   col_list <- c("red", "green3", "orange",  "deepskyblue", "magenta2", "gray", "cyan2","chocolate1" ) 
   
   
-  
-  #ae_events <- c("myocarditis","pericarditis","myopericarditis")
+  # outcome variables:
   ae_events <- c("myocarditis","pericarditis")
+  #ae_events <- c("myocarditis","pericarditis","myopericarditis")
+  
   
   # create covid selection variables: no_covid_before_myocard_30d, no_covid_before_pericar_30d, no_covid_before_myoperi_30d, ...
   for(iae in ae_events){ 
@@ -477,7 +479,7 @@ for (subpop in subpopulations_non_empty) {
   
   
   
-  if(F){   # run analysis only for minimal one of the doses is Pfizer
+  if(onlyPfizer){   # run analysis only if at least one of the doses is Pfizer
     scri_input0 <- scri_input0[ scri_input0$type_vax1=="Pfizer" | is.na(scri_input0$type_vax2) | (!is.na(scri_input0$type_vax2) & scri_input0$type_vax2=="Pfizer"),]
     scri_input0$type_vax1[!is.na(scri_input0$type_vax1) & scri_input0$type_vax1!="Pfizer"] <- "no_Pfizer"
     scri_input0$type_vax2[!is.na(scri_input0$type_vax2) & scri_input0$type_vax2!="Pfizer"] <- "no_Pfizer"
@@ -489,7 +491,7 @@ for (subpop in subpopulations_non_empty) {
   
   
   
-  for(icovid in c( "all_data", "no_covid_before_event_plus30d", "no_covid_before_event_30d", "no_covid_start_control_rw" )[2] ){
+  for(icovid in c( "all_data", "no_covid_before_event_plus30d", "no_covid_start_control_rw" ) ){
   #for(icovid in c( "all_data", "no_covid_before_event_plus30d", "no_covid_before_event_30d", "no_covid_start_control_rw" ) ){
       
     if( length(grep("covid",tolower(icovid)))>0 & all(tolower(names(scri_input0)) != c("covid19_date")) ) next 
@@ -690,7 +692,7 @@ for (subpop in subpopulations_non_empty) {
       models_list <- list()
       report_list <- list()
       
-      for(iae in ae_events[1]){
+      for(iae in ae_events){
         
         cat("\n",paste(iae, format(Sys.time()),"\n\n"))
         cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
