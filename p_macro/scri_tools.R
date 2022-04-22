@@ -23,17 +23,20 @@
 scri_sv <- function(formula,    
                     event_time, event,
                     id,
-                    rws,                   # list of risk/control windows definitions
+                    rws,                          # list of risk/control windows definitions
                     time_seq, split_seq_name = "cal_time_cat", time_seq_ref="most events", 
-                    time_dep = NA,              # list of risk/control windows definitions
-                    combine_vars = c(),          # list of parameters to create new one variable from two other variables
+                    time_dep = NA,                # list of risk/control windows definitions
+                    combine_vars = c(),           # list of parameters to create new one variable from two other variables
                     start_obs, end_obs,
-                    data,
+                    data, cond_var = "",
                     nvax = 2,
                     lab_orders = NA,
                     ref=1,
+                    rw_observed_percentage=100,   # 100% - the whole interval must be observed; 0% - even one day is enough to include this 'id' in the current risk window
+                    censored_vars=c(),            # The rule 'rw_observed_percentage' does not work for variables 'censored_vars'. 
+                                                  #  (for example, "death_days" ==> 'id' is included in the corresponding risk window till death date.)
+                    event_in_rw=T,                # if event in rw ==> this rw should not be deleted even if not completely observed
                     delete_coef_no_events = T,
-                    rw_observed_percentage,
                     lprint    = T, test = F,
                     save_data = F
                     ){
@@ -55,7 +58,7 @@ scri_sv <- function(formula,
   if(missing(event)      & any(rowSums(tb)==0))  event      <- dimnames(tb)[[1]][rowSums(tb)==0]
   if(missing(event_time) & any(rowSums(tb)==0))  event_time <- dimnames(tb)[[1]][rowSums(tb)==0]
 
-  
+ 
   ###########################################################################
   ################# create_rws (v3)  ###############
   data_rws  <- create_rws(
@@ -65,8 +68,19 @@ scri_sv <- function(formula,
     id = id,
     lab_orders = lab_orders,
     data =data,
-    ref="pre-"    #  ref=5 OR ref= "pre-exposure [-90;-30]"  or a part of a ref.category name
+    ref="pre-",   #  ref=5 OR ref= "pre-exposure [-90;-30]"  or a part of a ref.category name
+    rw_observed_percentage = rw_observed_percentage,   
+    censored_vars = censored_vars,           
+    event_in_rw = event_in_rw               
   ) 
+
+  if(cond_var!="") {
+    tmp <- levels(data_rws[,"lab"])
+    data_rws[,"lab"] <- as.character(data_rws[,"lab"])
+    data_rws[ !data_rws[,cond_var], "lab"] <- "only_for_time_adj"
+    #data_rws[,"lab"] <- factor(data_rws[,"lab"],levels=c(tmp,"only_for_time_adj"))
+    data_rws[,"lab"] <- factor_ref(  data_rws[,"lab"], lab=c(tmp,"only_for_time_adj"),  ref="pre-")  
+  }  
   data_rws <- refresh_event_variable( "rw_start", "rw_end", event, event_time, data_rws)
 
 
@@ -286,15 +300,26 @@ scri_sv <- function(formula,
   data_rws <- refresh_event_variable( "rw_start", "rw_end", event, event_time, data_rws)
   
   data_rws$interval <- data_rws$rw_end - data_rws$rw_start + 1
-  
+  data_rws <- data_rws[data_rws$interval>0,]
   
   # delete id's without events in the windows:
-  id_no_events <- as.numeric(names((tb<-tapply(data_rws[,event],data_rws[,id], sum))[tb==0]))
+  id_no_events <- names((tb<-tapply(data_rws[,event],data_rws[,id], sum))[tb==0])
   sum(data_rws[,event]); length(unique(data_rws[,id])); nrow(data_rws)
-  data_rws <- data_rws[ !(data_rws[,id] %in% id_no_events),  ]
+  data_rws <- data_rws[ !(as.character(data_rws[,id]) %in% id_no_events),  ]
   sum(data_rws[,event]); length(unique(data_rws[,id])); nrow(data_rws)
   
   
+#  # delete id's without events in the windows:
+#  id_no_events <- as.numeric(names((tb<-tapply(data_rws[,event],data_rws[,id], sum))[tb==0]))
+#  sum(data_rws[,event]); length(unique(data_rws[,id])); nrow(data_rws)
+#  data_rws <- data_rws[ !(data_rws[,id] %in% id_no_events),  ]
+#  sum(data_rws[,event]); length(unique(data_rws[,id])); nrow(data_rws)
+  
+  
+  
+  
+  
+    
   if(nrow(data_rws)==0) return(  list( res_tab = NULL, 
                                        model   = NULL,
                                        call    = list( match.call())  ))
@@ -370,9 +395,10 @@ scri_sv <- function(formula,
           if(nrow(table1(data_rws[  data_rws[,event]==1 ,var_names]))<=8)
             print( table1(data_rws[  data_rws[,event]==1 ,var_names]) ) 
           print(cbind.data.frame(var_names, nrow=nrow(table1(data_rws[  data_rws[,event]==1 ,var_names])) ))
-          if(any(names(data_rws)=="cal_time_cat"))
-            print(cbind.data.frame(var_names[var_names!="cal_time_cat"], nrow=nrow(table1(data_rws[  data_rws[,event]==1 ,var_names[var_names!="cal_time_cat"]])) ))
-
+          if(any(names(data_rws)==split_seq_name))   #"cal_time_cat"))
+            print(cbind.data.frame(var_names[var_names!=split_seq_name], nrow=nrow(table1(data_rws[  data_rws[,event]==1 ,var_names[var_names!=split_seq_name]])) ))
+            #print(cbind.data.frame(var_names[var_names!="cal_time_cat"], nrow=nrow(table1(data_rws[  data_rws[,event]==1 ,var_names[var_names!="cal_time_cat"]])) ))
+          
           if(!missing(time_seq) )
                warning("Error in Poisson regression. \ntime_seq=",median(diff(time_seq),na.rm=T),"; Formula: ", deparse(Poisson_formula))
           else warning("Error in Poisson regression. \nno time_seq; Formula: ", deparse(Poisson_formula))
@@ -461,7 +487,7 @@ scri_sv <- function(formula,
         for(ivar in var_names)
           print( c( ivar, dimnames(contrasts(data_rws[,ivar]))[[1]][ !( dimnames(contrasts(data_rws[,ivar]))[[1]] %in% dimnames(contrasts(data_rws[,ivar]))[[2]] )  ] ))
       }
-      
+  
       Poisson_formula <- as.formula(paste(event,"~", 
                                           paste( var_names,  collapse=" + "), "+", 
                                           "strata(",id,")", "+", "offset(log(interval))")) 
@@ -475,9 +501,10 @@ scri_sv <- function(formula,
           if(nrow(table1(data_rws[  data_rws[,event]==1 ,var_names]))<=8)
             print( table1(data_rws[  data_rws[,event]==1 ,var_names]) ) 
           print(cbind.data.frame(var_names, nrow=nrow(table1(data_rws[  data_rws[,event]==1 ,var_names])) ))
-          if(any(names(data_rws)=="cal_time_cat"))
-            print(cbind.data.frame(var_names[var_names!="cal_time_cat"], nrow=nrow(table1(data_rws[  data_rws[,event]==1 ,var_names[var_names!="cal_time_cat"]])) ))
-
+          if(any(names(data_rws)==split_seq_name))   #"cal_time_cat"))
+            print(cbind.data.frame(var_names[var_names!=split_seq_name], nrow=nrow(table1(data_rws[  data_rws[,event]==1 ,var_names[var_names!=split_seq_name]])) ))
+            #print(cbind.data.frame(var_names[var_names!="cal_time_cat"], nrow=nrow(table1(data_rws[  data_rws[,event]==1 ,var_names[var_names!="cal_time_cat"]])) ))
+          
           if(!missing(time_seq))
                warning("Error in Poisson regression. \ntime_seq=",median(diff(time_seq),na.rm=T),"; Formula: ", deparse(Poisson_formula))
           else warning("Error in Poisson regression. \nno time_seq; Formula: ", deparse(Poisson_formula))
@@ -499,7 +526,7 @@ scri_sv <- function(formula,
                call    = list( match.call()) 
   )
   if(save_data) ret <- c( ret, data_rws=list(data_rws) )
-  
+ 
   
   ret
   
@@ -540,7 +567,11 @@ create_rws <- function( rws,                          # list of risk/control win
                         data,                         # dataset
                         lab_orders,
                         ref=1,                        # reference category for new variable: number OR [the beginning of ] category name OR "most events"
-                        event_name="event"            # used if ref=="most events" to define reference category with most events
+                        event_name="event",           # used if ref=="most events" to define reference category with most events
+                        rw_observed_percentage=100,   # 100% - the whole interval must be observed; 0% - even one day is enough to include this 'id' in the current risk window
+                        censored_vars=c(),            # The rule 'rw_observed_percentage' does not work for variables 'censored_vars'. 
+                                                      #  (for example, "death_days" ==> 'id' is included in the corresponding risk window till death date.)
+                        event_in_rw=T                 # if event in rw ==> this rw shouldnot be deleted even if not completely observed
 ){ 
   
     # create and calculate variable from formula from list 'rws' and dataset 'data': 'lab' (or another name), 'rw_start' and 'rw_end':
@@ -572,12 +603,24 @@ create_rws <- function( rws,                          # list of risk/control win
         if(any(ls()=="data_tmp")) rm(data_tmp)
         
         if(i<length(x$cuts)){
-          if(!is.null(tend)) 
+          
+          if(!is.null(tend)) {
                rw_enddd <- pmin(tend,t0 + x$cuts[i+1]-1,na.rm=T)
-          else rw_enddd <-           t0 + x$cuts[i+1]-1
-
-          if(is.null(tend)) cond <- rep(T,nrow(data))
-          else              cond <- (t0+x$cuts[i]) <= tend  # start must be < the end of these intervals 'tend'
+               cond <- (t0+x$cuts[i]) <= tend  # start must be < the end of these intervals 'tend'
+               if(rw_observed_percentage>0){
+                 cond <- cond &   ( 100 -  100 * ( (t0 + x$cuts[i+1]-1) - rw_enddd ) / ( x$cuts[i+1] - x$cuts[i] ) >= rw_observed_percentage )  
+    
+                if(event_in_rw) cond <- cond | ( data[,event]==1 &  t0+x$cuts[i] <= data[,event_time] & data[,event_time] <= t0+x$cuts[i+1]-1  ) 
+                                  
+                 if(length(censored_vars)>0) 
+                   for(icensor in censored_vars)
+                     cond <- cond | ( !is.na(data[,icensor]) & rw_enddd == tend & tend == data[,icensor] & (t0+x$cuts[i]) <= tend )
+               }
+          }     
+          else {
+            rw_enddd <- t0 + x$cuts[i+1]-1
+            cond <- rep(T,nrow(data))
+          }  
           cond[is.na(cond)] <- F
       
           if( any(cond)) 
@@ -591,8 +634,9 @@ create_rws <- function( rws,                          # list of risk/control win
             next
           else {
             if(!is.null(tend)) {
-              cond <- (t0+x$cuts[i]) <= tend
+              cond <- (t0+x$cuts[i]) <= tend  # start must be < the end of these intervals 'tend'
               cond[is.na(cond)] <- F
+
               if( any(cond) )     #if( any(names(x)=="tend"))
                 data_tmp <- cbind.data.frame( data,
                                               rw_start = t0 + x$cuts[i],
@@ -1140,8 +1184,11 @@ combine_vars_func <- function(var1, var2, sep=" & ",
     if(length(ref_cat1)>0) ref_cat1 <- grep( ref_cat1, var_levels, value=T, fixed=T)
     if(length(ref_cat2)>0) ref_cat2 <- grep( ref_cat2, var_levels, value=T, fixed=T)
     
-    if(length(ref_cat)==0 & length(ref_cat1)>0 & length(ref_cat2)>0)
-      ref_cat <- var_levels[ var_levels %in% ref_cat1 & var_levels %in% ref_cat2 ]
+    if(length(ref_cat)==0){
+      if(length(ref_cat1)>0  & length(ref_cat2) >0) ref_cat <- var_levels[ var_levels %in% ref_cat1 & var_levels %in% ref_cat2 ]
+      if(length(ref_cat1)>0  & length(ref_cat2)==0) ref_cat <- var_levels[ var_levels %in% ref_cat1                            ]
+      if(length(ref_cat1)==0 & length(ref_cat2) >0) ref_cat <- var_levels[                            var_levels %in% ref_cat2 ]
+    }  
       
     if(length(ref_cat)>1 & length(ref_cat1)>0){
       tmp <- c()
@@ -1547,14 +1594,18 @@ save_results <- function(name, report_list, models_list, sep="" ){
 #
 scri_strata <- function(strata_var = "all data", 
                         output_name, 
-                        formula_text, time_seq=c(), 
+                        formula_text, time_seq=c(), time_seq_ref="most events",
                         event_time, event, id,
                         rws ,
                         time_dep = NA,
                         combine_vars = c(),
                         start_obs, end_obs,
                         lab_orders = NA,
-                        data, 
+                        data, cond_var = "",
+                        rw_observed_percentage=100,   # 100% - the whole inteval must be observed; 0% - even one day is enough to include this 'id' in the current risk window
+                        censored_vars=c(),            # The rule 'rw_observed_percentage' does not work for varuables 'censored_vars'. 
+                                                      #  (for example, "death_days" ==> 'id' is included in the corresponding risk window till death date.)
+                        event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
                         image_plots = T, image_file_separate=F, image_strata, image_tit="", image_brand=F, 
                         nvax = 2,
                         delete_coef_no_events = T,
@@ -1564,6 +1615,8 @@ scri_strata <- function(strata_var = "all data",
                         extra_plots=F, width=14, ...
 ){   
 
+  if( length(time_seq)>1 & length(time_seq_ref)==1 ) time_seq_ref <- rep(time_seq_ref,length(time_seq))
+  
   if(!missing(strata_var)){
       if(is.factor(data[,strata_var[1]])) strata <- levels(       data[,strata_var[1] ])
       else                                strata <- unique(unlist(data[,strata_var    ]))  
@@ -1641,9 +1694,12 @@ scri_strata <- function(strata_var = "all data",
                          combine_vars = combine_vars,
                          start_obs  = start_obs, end_obs = end_obs,
                          lab_orders = lab_orders,
-                         data       = data[cond_stratum,], 
+                         data       = data[cond_stratum,], cond_var = cond_var,
                          nvax       = nvax,
                          delete_coef_no_events = delete_coef_no_events,
+                         rw_observed_percentage = rw_observed_percentage,   
+                         censored_vars = censored_vars,           
+                         event_in_rw = event_in_rw,               
                          lprint=lprint )#[[1]]
 
     #############################
@@ -1654,7 +1710,7 @@ scri_strata <- function(strata_var = "all data",
       
       library(parallel)
       
-      if(is.na(n_cores)) n_cores <- detectCores() - 1 
+      if(is.na(n_cores)) n_cores <- detectCores() - 2 
       n_cores <- min( length(time_seq), n_cores, na.rm=T )
       
       cl      <- makeCluster( n_cores )    # outfile = paste0(sdr,"log_parallel.txt")
@@ -1669,18 +1725,21 @@ scri_strata <- function(strata_var = "all data",
       
       res_paral <- parLapply(cl,
                              time_seq,  # list with different sets of intervals
-                             function(cur_time_seq) 
+                             function(i_time_seq) 
                                scri_sv(formula = formula(paste( formula_text, " +  cal_time_cat")),
                                        event_time = event_time, event = event, id=id,
                                        rws = rws, 
-                                       time_seq = cur_time_seq , 
-                                       time_dep   = time_dep,
+                                       time_seq = i_time_seq,  split_seq_name = "cal_time_cat", #time_seq_ref="most events",time_seq_ref=time_seq_ref[i_time_seq],
+                                       time_dep   = time_dep, 
                                        combine_vars = combine_vars,
                                        start_obs = start_obs, end_obs = end_obs,
                                        lab_orders = lab_orders,
-                                       data = data[cond_stratum,], 
+                                       data = data[cond_stratum,], cond_var = cond_var,
                                        nvax       = nvax,
                                        delete_coef_no_events = delete_coef_no_events,
+                                       rw_observed_percentage = rw_observed_percentage,   
+                                       censored_vars = censored_vars,           
+                                       event_in_rw = event_in_rw,               
                                        lprint=lprint    )
       )
       
@@ -1696,14 +1755,17 @@ scri_strata <- function(strata_var = "all data",
         res[[i]] <-  scri_sv(formula = formula(paste( formula_text, " +  cal_time_cat")),
                              event_time = event_time, event = event, id=id,
                              rws = rws, 
-                             time_seq = time_seq[[i-1]] , #split_seq_name = "cal_time_cat", time_seq_ref="most events", 
+                             time_seq = time_seq[[i-1]] , time_seq_ref=time_seq_ref[i-1], split_seq_name = "cal_time_cat", #time_seq_ref="most events", 
                              time_dep   = time_dep,
                              combine_vars = combine_vars,
                              start_obs = start_obs, end_obs = end_obs,
                              lab_orders = lab_orders,
-                             data = data[cond_stratum,], 
+                             data = data[cond_stratum,], cond_var = cond_var,
                              nvax       = nvax,
                              delete_coef_no_events = delete_coef_no_events,
+                             rw_observed_percentage = rw_observed_percentage,   
+                             censored_vars = censored_vars,           
+                             event_in_rw = event_in_rw,               
                              lprint=lprint    )#[[1]]
 
       }  
@@ -2174,6 +2236,15 @@ brand_images <- function(plot_data, ae_event, brand="", tit=""){
 
 ###############################
 ###############################
+
+
+
+
+
+
+
+
+
 
 
 
