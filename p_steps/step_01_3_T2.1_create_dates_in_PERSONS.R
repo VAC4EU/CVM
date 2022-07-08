@@ -78,9 +78,11 @@ D3_date_death <- D3_date_death[year_of_death == assumed_year_death & month_of_de
 D3_date_death <- D3_date_death[, c("op_end_date", "assumed_year_death", "assumed_month_death", "assumed_day_death") := NULL]
 D3_PERSONS <- rbind(D3_PERSONS[is.na(year_of_death) | (!is.na(day_of_death) & !is.na(month_of_death)),], D3_date_death)
 
-D3_PERSONS <- suppressWarnings(D3_PERSONS[,date_death:=lubridate::ymd(with(D3_PERSONS, paste(year_of_death, month_of_death, day_of_death,sep="-")))])
+D3_any_date_death <- D3_PERSONS[!is.na(year_of_death),]
+D3_any_date_death <-D3_any_date_death[, date_death:= paste(year_of_death, month_of_death, day_of_death, sep = "-")]
+D3_any_date_death <- D3_any_date_death[, date_death := lubridate::ymd(date_death)]
 
-
+D3_PERSONS <- rbind(D3_PERSONS[is.na(year_of_death),], D3_any_date_death, fill = T)
 
 D3_events_DEATH <- D3_PERSONS[!is.na(date_death),.(person_id,date_death)][,date:=date_death][,-"date_death"]
 

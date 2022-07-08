@@ -1,3 +1,8 @@
+#-----------------------------------------------
+# Aggregate persontime datasets for poisson
+
+# input: D3_vaxweeks, D3_Vaccin_cohort, D3_study_population, D4_doses_weeks, D3_study_population_cov_ALL, RES_IR_benefit_week_BC, RES_IR_benefit_fup_BC, RES_IR_benefit_week_RF, RES_IR_benefit_fup_RF, RES_IR_risk_week_BC, RES_IR_risk_fup_BC, RES_IR_risk_week_RF, RES_IR_risk_fup_RF
+# output: DOSES_BIRTHCOHORTS, Intermediate coverage, COVERAGE_BIRTHCOHORTS, DOSES_RISKFACTORS, COVERAGE_RISKFACTORS, BENEFIT_BIRTHCOHORTS_CALENDARTIME, BENEFIT_BIRTHCOHORTS_TIMESINCEVACCINATION, BENEFIT_RISKFACTORS_CALENDARTIME, BENEFIT_RISKFACTORS_TIMESINCEVACCINATION, RISK_BIRTHCOHORTS_CALENDARTIME, RISK_BIRTHCOHORTS_TIMESINCEVACCINATION, RISK_RISKFACTORS_CALENDARTIME, RISK_RISKFACTORS_TIMESINCEVACCINATION
 
 for (subpop in subpopulations_non_empty) {  
    print(subpop)
@@ -336,7 +341,7 @@ for (subpop in subpopulations_non_empty) {
    rm(BBT, IR_benefit_fup)
    
    
-   IR_benefit_week<-fread(paste0(thisdirexp,"RES_IR_benefit_week_RF.csv")) 
+   IR_benefit_week<-fread(paste0(thisdirexp,"RES_IR_benefit_week_RF.csv"))
    
    BRC <- IR_benefit_week[, Dose := as.character(Dose)]
    BRC <- BRC[Dose == 0, c("Dose", "type_vax") := list("no_dose", "none")]

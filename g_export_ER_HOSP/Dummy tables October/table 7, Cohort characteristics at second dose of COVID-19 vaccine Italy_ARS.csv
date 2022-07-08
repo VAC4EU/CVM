@@ -1,19 +1,19 @@
  ,Parameters,Pfizer,perc_Pfizer,Moderna,perc_Moderna,AstraZeneca,perc_AstraZeneca
 "","",N,%,N,%,N,%
-Study population,N,362,70%,71,13.7%,84,16.2%
-Person-years of follow-up after second dose,PY,64,83.1%,9,11.7%,4,5.2%
+Study population,N,382,70.9%,70,13%,87,16.1%
+Person-years of follow-up after second dose,PY,68,82.9%,9,11%,5,6.1%
 Month of second vaccination,"",1,"",2,"",5,""
-2021 January,N,16,4.4%,0,0%,0,0%
-2021 February,N,21,5.8%,3,4.2%,0,0%
-2021 March,N,35,9.7%,2,2.8%,0,0%
-2021 April,N,98,27.1%,22,31%,0,0%
-2021 May,N,142,39.2%,15,21.1%,26,31%
-2021 June,N,50,13.8%,29,40.8%,58,69%
-Age in years,Min,21,"",19,"",27,""
-Age in years,P25,65,"",50,"",54,""
-Age in years,P50,79,"",64,"",71,""
-Age in years,Mean,73,"",58,"",65,""
-Age in years,P75,84,"",70,"",76,""
+2021 January,N,17,4.5%,0,0%,0,0%
+2021 February,N,26,6.8%,4,5.7%,0,0%
+2021 March,N,37,9.7%,2,2.9%,0,0%
+2021 April,N,100,26.2%,21,30%,0,0%
+2021 May,N,147,38.5%,14,20%,32,36.8%
+2021 June,N,55,14.4%,29,41.4%,55,63.2%
+Age in years,Min,15,"",20,"",24,""
+Age in years,P25,63,"",51,"",50,""
+Age in years,P50,77,"",64,"",71,""
+Age in years,Mean,71,"",58,"",63,""
+Age in years,P75,84,"",69,"",76,""
 Age in years,Max,96,"",83,"",80,""
-Person years across sex,Female,39,60.9%,4,44.4%,3,60%
-Person years across sex,Male,25,39.1%,5,55.6%,2,40%
+Person years across sex,Female,41,60.3%,4,44.4%,3,60%
+Person years across sex,Male,27,39.7%,5,55.6%,2,40%

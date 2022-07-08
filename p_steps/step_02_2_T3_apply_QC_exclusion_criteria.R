@@ -1,3 +1,9 @@
+# -----------------------------------------------------------------------
+# Apply Quality Check criteria for vaccination records
+
+# input: D3_concepts_QC_criteria
+# output: Flowchart_QC_criteria, selected_doses
+
 load(paste0(dirtemp, "D3_concepts_QC_criteria.RData"))
 
 selected_doses<- CreateFlowChart(

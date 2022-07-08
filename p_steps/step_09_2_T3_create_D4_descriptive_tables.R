@@ -1,3 +1,10 @@
+#-----------------------------------------------
+# Create D4 descriptive tables
+
+# input: D3_Vaccin_cohort, D3_study_population, D3_study_population_cov_ALL, D3_Vaccin_cohort_cov_ALL
+# output: D4_descriptive_dataset_age_studystart, D4_descriptive_dataset_ageband_studystart, D4_descriptive_dataset_sex_studystart, D4_descriptive_dataset_covariate_studystart, D4_descriptive_dataset_covariate_vax, D4_followup_fromstudystart, D4_descriptive_dataset_age_vax1, D4_descriptive_dataset_age_vax2, D4_descriptive_dataset_ageband_vax, D4_descriptive_dataset_sex_vaccination, D4_followup_from_vax, Density_plot_distance_doses, Histogram_distance_doses, D4_distance_doses
+
+
 na_to_0 = function(DT) {
    for (i in names(DT))
       DT[is.na(get(i)), (i):=0]
@@ -107,7 +114,6 @@ for (subpop in subpopulations_non_empty) {
    assign(nameoutput, D4_descriptive_dataset_covariate_vax)
    fwrite(get(nameoutput), file = paste0(dirD4tables, nameoutput,".csv"))
    rm(list=nameoutput)
-   
    
    
    D4_followup_fromstudystart <- study_population[, .(person_id, sex, ageband_at_study_entry, study_entry_date, study_exit_date, fup_days)]

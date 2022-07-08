@@ -1,8 +1,8 @@
 #------------------------------------------------------------------
 # create age and other simple covariates at baseline
 
-# input: D3_Vaccin_cohort, D3_Vaccin_cohort_covariates
-# output: D4_Vaccin_cohort_cov.RData
+# input: D4_population_c_no_risk, D3_population_c_covariates
+# output: D4_population_c_cov
 
 print('create age and other simple covariates at date_vax_1')
 

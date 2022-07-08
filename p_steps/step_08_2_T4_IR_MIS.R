@@ -1,7 +1,9 @@
+#-----------------------------------------------
+# Calculate IR for MIS/Myocard
 
-#countpersontime per year
+# input: D4_persontime_b, D4_persontime_monthly_b_BC, D4_persontime_c, D4_persontime_monthly_c_BC, D4_persontime_d, D4_persontime_monthly_d_BC
+# output: RES_IR_MIS_b, RES_IR_monthly_MIS_b, RES_IR_MIS_c, RES_IR_monthly_MIS_c, RES_IR_MIS_d, RES_IR_monthly_MIS_d
 
-#D4_persontime b----------------------------------------------
 for (subpop in subpopulations_non_empty) {  
   print(subpop)
   

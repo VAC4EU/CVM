@@ -1,0 +1,59 @@
+{smcl}
+{* 06aug2008}{...}
+{hline}
+help for {hi:cut_ageband}{right:(Rosa Gini)}
+{hline}
+
+{title:Generates a labelled variable containing age bands}
+
+{p 8 16 2}{cmd:cut_ageband} {it:varname}  [{cmd:if}
+{it:exp}] [{cmd:in} {it:range}]{cmd:,} 
+{cmdab:at:(}{it:numlist}{cmd:)}
+{cmdab:gen:erate:(}{it:newvar}{cmd:)}
+[ {cmdab:closed:end} {cmd:labvar(}{it:string}{cmd:)} {cmdab:lab:elname:(}{it:string}{cmd:)}]
+
+{title:Description}
+
+{p 4 4 6}
+{cmd:cut_ageband} generates a labelled variable containing age bands, starting from a numeric variable containing age and a {it:numlist} of cutting points. Labels are of the form (55-64) meaning people aged from 55 to 64. As a default the last interval is labeled with a +, that is, for example "65+". 
+
+
+{title:Options}
+
+{p 4 8 2}{cmd:at(}{it:numlist}{cmd:)} contains the {it:numlist} of cutting points and is expected to be ascending; this list is passed as is to the {cmd:at} suboption of the {cmd:egen, cut} command, hence is composed of the left-hand ends of the grouping intervals. In particular the last element of the list must be strictly greater than any number that has to be grouped.
+
+{p 4 8 2}{cmd:generate(}{it:newvar}{cmd:)} contains the name of the grouped variable to be generated.
+
+{p 4 8 2}{cmd:closedend} refers to the label of the last interval: if this option is not specified the last interval will be labeled with both left and right ends, this way: {it:(leftend-rightend)}; otherwise it will be labeled {it:leftend+}.
+
+{p 4 8 2}{cmd:labelname(}{it:newvar}{cmd:)} specifies a name for the value labels. The default is {it:newvar_label}, {it:newvar} being the name spcified in the {cmd:generate} option.
+
+{p 4 8 2}{cmd:labvar(}{it:newvar}{cmd:)} specifies a variable label for {it:newvar}.
+
+{title:Examples}
+
+{p 4 4 6}{cmd:. cut_ageband age, at(0(3)12) gen(ageband) closed }{break}
+{cmd:. label list}{break}
+{cmd:ageband_label:}{break}
+
+{p 8 8 6}  0 0-2{break}
+           3 3-5{break}
+           6 6-8{break}
+           9 9-11{break}
+
+
+
+{p 4 4 6}
+{cmd:. cut_ageband age, at(0,15,45,65,75,85,150) gen(ageband) labvar("Age Class")}{break}
+{cmd:. label list}{break}
+{cmd:ageband_label:}{break}
+
+{p 8 8 6}  0 0-14{break}
+          15 15-44{break}
+          45 45-64{break}
+          65 65-74{break}
+          75 75-84{break}
+          85 85+{break}
+
+
+

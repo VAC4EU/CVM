@@ -2,6 +2,9 @@
 ##########################  FlowChart description   ##########################
 ##############################################################################
 
+# input: Flowchart_doses
+# output: HTML_Flowchart_doses_description
+
 # library
 if (!require("rmarkdown")) install.packages("rmarkdown")
 library(rmarkdown )

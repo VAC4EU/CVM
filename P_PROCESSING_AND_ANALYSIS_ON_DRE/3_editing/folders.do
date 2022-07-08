@@ -1,0 +1,5 @@
+global dirinputARS "Z:/inbox/transfer-2021-11-25-11-34-pm/g_export/"
+global dirinputBIFAP_PC "Z:/inbox/transfer-2021-11-21-02-45-pm/g_export_PC/"
+global dirinputBIFAP_PC_HOSP "Z:/inbox/transfer-2021-11-21-02-47-pm/g_export_PC_HOSP/"
+global dirinputPHARMO "Z:\inbox\transfer-2021-11-24-07-40-pm\Results of 6.5_24112021\g_export/"
+global dirinputCPRD "Z:/inbox/transfer-2021-11-22-09-13-pm/"

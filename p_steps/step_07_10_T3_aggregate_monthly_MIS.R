@@ -1,3 +1,9 @@
+#-----------------------------------------------
+# Aggregate persontime datasets for MIS/Myocard
+
+# input: D4_persontime_monthly_b, D4_persontime_monthly_c, D4_persontime_monthly_d
+# output: D4_persontime_monthly_b_BC, D4_persontime_monthly_c_BC, D4_persontime_monthly_d_BC
+
 for (subpop in subpopulations_non_empty) {  
   print(subpop)
   

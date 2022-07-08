@@ -1,0 +1,42 @@
+\documentclass{article}
+% \usepackage[italian]{babel}
+% \usepackage[latin1]{inputenc}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{multirow}
+%\usepackage{enumitem}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[scaled]{helvet}
+\usepackage{isorot}
+\usepackage{longtable}
+\usepackage[format=hang,labelsep=period,font=bf,singlelinecheck=false]{caption}
+\usepackage{textcomp}
+\usepackage[margin=2cm,a4paper,centering]{geometry}
+
+%colors EMIF
+\definecolor{greenEMIF}{RGB}{107,171,61}
+\definecolor{blueEMIF}{RGB}{14,56,179}
+\definecolor{lightblueEMIF}{RGB}{122,142,193}
+
+\usepackage{tikz}
+% tikzlibraries
+\usetikzlibrary{shapes,arrows,fit,positioning}
+
+\newcommand{\dirfigdoc}{$dirfigdoc}
+\newcommand{\dirtabdoc}{$dirtabdoc}
+\newcommand{\dircaptdoc}{$dircaptdoc}
+
+% \renewcommand{\thetable}{\arabic{section}.\arabic{table}}  
+% \renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+
+
+\title{\includegraphics[width=6cm]{ECVM.jpg}}
+\author{${titolo_documento}}
+\begin{document}
+\thispagestyle{empty}
+$maketitle
+$tableofcontents
+$listoffigures
+$listoftables

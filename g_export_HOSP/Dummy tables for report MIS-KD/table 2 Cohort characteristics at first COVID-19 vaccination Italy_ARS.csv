@@ -1,48 +1,48 @@
  ,Parameters,Pfizer,perc_Pfizer,Moderna,perc_Moderna,AstraZeneca,perc_AstraZeneca,Janssen,perc_Janssen
 "","",N,%,N,%,N,%,N,%
-Study population,N,2483,68.2%,387,10.6%,664,18.2%,106,2.9%
-Person-years of follow-up,PY,376,63.8%,55,9.3%,148,25.1%,10,1.7%
+Study population,N,2762,68.7%,422,10.5%,713,17.7%,121,3%
+Person-years of follow-up,PY,417,64.3%,60,9.2%,161,24.8%,11,1.7%
 Month of first vaccination,"",1,"",1,"",2,"",4,""
-2021 January,N,112,4.5%,5,1.3%,0,0%,0,0%
-2021 February,N,107,4.3%,11,2.8%,81,12.2%,0,0%
-2021 March,N,233,9.4%,50,12.9%,167,25.2%,0,0%
-2021 April,N,503,20.3%,68,17.6%,207,31.2%,16,15.1%
-2021 May,N,598,24.1%,119,30.7%,192,28.9%,31,29.2%
-2021 June,N,930,37.5%,134,34.6%,17,2.6%,59,55.7%
-Age in years,Min,15,"",17,"",22,"",58,""
-Age in years,P25,49,"",38,"",55,"",60,""
-Age in years,P50,61,"",56,"",69,"",61,""
-Age in years,Mean,61,"",52,"",63,"",64,""
-Age in years,P75,79,"",64,"",74,"",67,""
+2021 January,N,134,4.9%,5,1.2%,0,0%,0,0%
+2021 February,N,117,4.2%,13,3.1%,88,12.3%,0,0%
+2021 March,N,250,9.1%,51,12.1%,180,25.2%,0,0%
+2021 April,N,543,19.7%,72,17.1%,217,30.4%,19,15.7%
+2021 May,N,660,23.9%,131,31%,210,29.5%,37,30.6%
+2021 June,N,1058,38.3%,150,35.5%,18,2.5%,65,53.7%
+Age in years,Min,15,"",17,"",22,"",55,""
+Age in years,P25,48,"",38,"",55,"",60,""
+Age in years,P50,60,"",56,"",68,"",61,""
+Age in years,Mean,60,"",51,"",63,"",64,""
+Age in years,P75,78,"",64,"",74,"",67,""
 Age in years,Max,99,"",83,"",79,"",78,""
-Age in categories,12-17,31,1.2%,1,0.3%,0,0%,0,0%
-Age in categories,18-24,92,3.7%,24,6.2%,4,0.6%,0,0%
-Age in categories,25-29,62,2.5%,12,3.1%,15,2.3%,0,0%
-Age in categories,30-39,170,6.8%,68,17.6%,28,4.2%,0,0%
-Age in categories,40-49,290,11.7%,60,15.5%,74,11.1%,0,0%
-Age in categories,50-59,549,22.1%,98,25.3%,86,13%,26,24.5%
-Age in categories,60-69,425,17.1%,66,17.1%,147,22.1%,60,56.6%
-Age in categories,70-79,269,10.8%,54,14%,310,46.7%,20,18.9%
-Age in categories,80+,595,24%,4,1%,0,0%,0,0%
-Person years across age categories,12-17,1,0.3%,0,0%,0,0%,0,0%
-Person years across age categories,18-24,6,1.6%,3,5.6%,1,0.7%,0,0%
-Person years across age categories,25-29,8,2.1%,1,1.9%,4,2.7%,0,0%
-Person years across age categories,30-39,19,5.1%,5,9.3%,8,5.4%,0,0%
-Person years across age categories,40-49,37,9.9%,6,11.1%,22,14.9%,0,0%
-Person years across age categories,50-59,61,16.3%,13,24.1%,22,14.9%,2,20%
-Person years across age categories,60-69,55,14.7%,13,24.1%,22,14.9%,5,50%
-Person years across age categories,70-79,41,10.9%,12,22.2%,69,46.6%,3,30%
-Person years across age categories,80+,147,39.2%,1,1.9%,0,0%,0,0%
-Person years across sex,Female,218,58.1%,25,45.5%,89,60.1%,5,50%
-Person years across sex,Male,157,41.9%,30,54.5%,59,39.9%,5,50%
-COVID-19 diagnosis/test in past year,"N, %",76,3.1%,6,1.6%,10,1.5%,3,2.8%
-At risk population at date of vaccination,Cardiovascular disease,771,31.1%,99,14.9%,151,39%,17,16%
-At risk population at date of vaccination,Cancer,106,4.3%,47,7.1%,17,4.4%,3,2.8%
-At risk population at date of vaccination,Chronic lung disease,213,8.6%,39,5.9%,64,16.5%,8,7.5%
-At risk population at date of vaccination,HIV,9,0.4%,7,1.1%,2,0.5%,0,0%
-At risk population at date of vaccination,Chronic kidney disease,34,1.4%,11,1.7%,1,0.3%,0,0%
-At risk population at date of vaccination,Diabetes,282,11.4%,45,6.8%,36,9.3%,4,3.8%
-At risk population at date of vaccination,Severe obesity,11,0.4%,5,0.8%,2,0.5%,0,0%
-At risk population at date of vaccination,Sickle cell disease,7,0.3%,3,0.5%,0,0%,0,0%
-At risk population at date of vaccination,Use of immunosuppressants,324,13%,60,9%,73,18.9%,15,14.2%
-At risk population at date of vaccination,Any risk factors,1128,45.4%,178,26.8%,255,65.9%,39,36.8%
+Age in categories,12-17,50,1.8%,1,0.2%,0,0%,0,0%
+Age in categories,18-24,119,4.3%,30,7.1%,6,0.8%,0,0%
+Age in categories,25-29,83,3%,14,3.3%,16,2.2%,0,0%
+Age in categories,30-39,200,7.2%,75,17.8%,33,4.6%,0,0%
+Age in categories,40-49,315,11.4%,64,15.2%,81,11.4%,0,0%
+Age in categories,50-59,597,21.6%,110,26.1%,90,12.6%,29,24%
+Age in categories,60-69,466,16.9%,68,16.1%,161,22.6%,69,57%
+Age in categories,70-79,295,10.7%,56,13.3%,326,45.7%,23,19%
+Age in categories,80+,637,23.1%,4,0.9%,0,0%,0,0%
+Person years across age categories,12-17,2,0.5%,0,0%,0,0%,0,0%
+Person years across age categories,18-24,9,2.2%,4,6.7%,2,1.2%,0,0%
+Person years across age categories,25-29,12,2.9%,2,3.3%,5,3.1%,0,0%
+Person years across age categories,30-39,22,5.3%,5,8.3%,10,6.2%,0,0%
+Person years across age categories,40-49,40,9.6%,7,11.7%,24,14.8%,0,0%
+Person years across age categories,50-59,67,16.1%,15,25%,24,14.8%,2,16.7%
+Person years across age categories,60-69,60,14.4%,13,21.7%,25,15.4%,6,50%
+Person years across age categories,70-79,46,11%,13,21.7%,72,44.4%,4,33.3%
+Person years across age categories,80+,159,38.1%,1,1.7%,0,0%,0,0%
+Person years across sex,Female,242,58%,27,45%,96,59.6%,6,50%
+Person years across sex,Male,175,42%,33,55%,65,40.4%,6,50%
+COVID-19 diagnosis/test in past year,"N, %",86,3.1%,7,1.7%,11,1.5%,3,2.5%
+At risk population at date of vaccination,Cardiovascular disease,1312,47.5%,169,40%,340,47.7%,47,38.8%
+At risk population at date of vaccination,Cancer,118,4.3%,47,11.1%,18,2.5%,3,2.5%
+At risk population at date of vaccination,Chronic lung disease,235,8.5%,41,9.7%,70,9.8%,9,7.4%
+At risk population at date of vaccination,HIV,11,0.4%,7,1.7%,2,0.3%,0,0%
+At risk population at date of vaccination,Chronic kidney disease,35,1.3%,11,2.6%,1,0.1%,0,0%
+At risk population at date of vaccination,Diabetes,300,10.9%,49,11.6%,37,5.2%,4,3.3%
+At risk population at date of vaccination,Severe obesity,11,0.4%,5,1.2%,2,0.3%,0,0%
+At risk population at date of vaccination,Sickle cell disease,7,0.3%,3,0.7%,0,0%,0,0%
+At risk population at date of vaccination,Use of immunosuppressants,357,12.9%,61,14.5%,84,11.8%,18,14.9%
+At risk population at date of vaccination,Any risk factors,1543,55.9%,219,51.9%,410,57.5%,63,52.1%

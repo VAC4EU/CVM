@@ -3,10 +3,10 @@
 setwd("..")
 setwd("..")
 dirbase<-getwd()
-dirinput <- paste0(dirbase,"/CDMInstances/PASS_COVIDvaccines2111/")
+# dirinput <- paste0(dirbase,"/CDMInstances/PASS_COVIDvaccines2111/")
 
 # dirinput <- paste0(thisdir,"/i_input/")
-# dirinput <- paste0(thisdir,"/i_input_subpop/")
+dirinput <- paste0(thisdir,"/i_input_subpop/")
 
 
 # set other directories
@@ -55,7 +55,7 @@ library(qpdf)
 source(paste0(dirmacro,"CreateConceptSetDatasets_v20.R"))
 #source(paste0(dirmacro,"RetrieveRecordsFromEAVDatasets.R"))
 # source(paste0(dirmacro,"CreateItemsetDatasets.R"))
-source(paste0(dirmacro,"CreateItemsetDatasets_v02.R"))
+source(paste0(dirmacro,"CreateItemsetDatasets.R"))
 source(paste0(dirmacro,"MergeFilterAndCollapse_v5.R"))
 source(paste0(dirmacro,"CreateSpells_v15.R"))
 source(paste0(dirmacro,"CreateFlowChart.R"))
@@ -63,7 +63,7 @@ source(paste0(dirmacro,"CreateFlowChart.R"))
 source(paste0(dirmacro,"CountPersonTimeV13.6.R"))
 source(paste0(dirmacro,"ApplyComponentStrategy_v13_2.R"))
 source(paste0(dirmacro,"CreateFigureComponentStrategy_v4.R"))
-source(paste0(dirmacro,"DRECountThresholdV3.R"))
+source(paste0(dirmacro,"DRECountThresholdV4.R"))
 source(paste0(dirmacro,"table1.R"))
 source(paste0(dirmacro,"scri_tools.R"))
 
@@ -192,6 +192,8 @@ correct_difftime <- function(t1, t2, t_period = "days") {
 }
 
 calc_precise_week <- function(time_diff) {
+  # TODO this is the correction in case a person exit the same date it enter
+  # time_diff <- fifelse(time_diff == 1, time_diff + 1, time_diff)
   weeks_frac <- time_length(time_diff - 1, "week")
   fifelse(weeks_frac%%1==0, weeks_frac, floor(weeks_frac) + 1)
 }

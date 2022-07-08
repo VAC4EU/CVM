@@ -1,3 +1,9 @@
+#---------------------------------------------------------------
+# Descriptive statistics on exclusion criteria
+
+# input: D3_selection_criteria, output_spells_category
+# output: pop_excluded, number_criteria_excluded, plots
+
 load(paste0(dirtemp,"D3_selection_criteria.RData"))
 
 base_pop <- D3_selection_criteria[sex_or_birth_date_missing == 0 & birth_date_absurd == 0 & 

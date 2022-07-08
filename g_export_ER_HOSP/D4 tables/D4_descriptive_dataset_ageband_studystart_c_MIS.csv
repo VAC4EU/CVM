@@ -1,2 +1,2 @@
-Datasource,AgeCat_18-24,AgeCat_25-29,AgeCat_30-39,AgeCat_40-49,AgeCat_5-11,AgeCat_50-59,AgeCat_60-69,AgeCat_70-79,AgeCat_80+,AgeCat_0-4,AgeCat_12-17
-TEST,4,2,10,12,1,13,8,5,5,0,0
+Datasource,AgeCat_12-17,AgeCat_18-24,AgeCat_25-29,AgeCat_30-39,AgeCat_40-49,AgeCat_5-11,AgeCat_50-59,AgeCat_60-69,AgeCat_70-79,AgeCat_80+,AgeCat_0-4
+TEST,4,5,5,11,12,2,15,9,5,4,0

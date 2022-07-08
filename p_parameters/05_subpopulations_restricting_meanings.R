@@ -4,7 +4,7 @@
 
 # datasources_with_subpopulations lists the datasources where some meanings of events should be excluded during some observation periods, associated with some op_meanings
 
-datasources_with_subpopulations <- c("TEST", "BIFAP")
+datasources_with_subpopulations <- c("BIFAP", "TEST")
 
 
 this_datasource_has_subpopulations <- ifelse(thisdatasource %in% datasources_with_subpopulations,TRUE,FALSE) 
@@ -56,8 +56,8 @@ subpopulations[["BIFAP"]] = c("PC","PC_HOSP")
 # # BIFAP
 # 
 op_meaning_sets[["BIFAP"]] <- c("meaningsPC","meaningsHOSP")
-op_meanings_list_per_set[["BIFAP"]][["meaningsPC"]] <- c("region2_PC","region3_PC","region7_PC","region14_PC")
-op_meanings_list_per_set[["BIFAP"]][["meaningsHOSP"]] <- c("region3_HOSP","region7_HOSP")
+op_meanings_list_per_set[["BIFAP"]][["meaningsPC"]] <- c("region2_PC","region3_PC","region7_PC","region13_PC","region14_PC")
+op_meanings_list_per_set[["BIFAP"]][["meaningsHOSP"]] <- c("region3_HOSP","region7_HOSP","region13_HOSP")
 op_meanings_list_per_set[["BIFAP"]][["meaningsCOVID"]] <- c("region2_COVID","region3_COVID","region7_COVID","region14_COVID")
 
 op_meaning_sets_in_subpopulations[["BIFAP"]][["PC"]] <- c("meaningsPC")

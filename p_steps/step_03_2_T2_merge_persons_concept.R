@@ -1,4 +1,8 @@
+# -----------------------------------------------------
+# Merge persons and concepts
 
+# input: output_spells_category, D3_selection_criteria, D3_concepts_QC_criteria
+# output: persons_doses
 
 #merge vaccine information to persons
  for (subpop in subpopulations_non_empty){

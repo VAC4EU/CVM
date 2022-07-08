@@ -1,5 +1,11 @@
-print("COUNT PERSON TIME by month for risks")
+# COUNT PERSON TIME PER COVID PER VACCINATED
+#-----------------------------------------------
+# To estimate the weekly incidence rates of risks in 2020 by data source for vaccinated cohort
 
+# input: D3_events_ALL_OUTCOMES, D3_vaxweeks_vaccin_cohort
+# output: D4_persontime_risk_month
+
+print("COUNT PERSON TIME by month for risks")
 
 D4_persontime_risk_month <- vector(mode = 'list')
 

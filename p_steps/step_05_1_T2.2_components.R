@@ -2,7 +2,7 @@
 # create events and components of OUTCOMES for narrow and broad
 
 # input: concept set datasets of outcomes (narrow and possible), D4_study_population
-# output: for each outcome OUTCOME, D3_components_OUTCOME.RData and D3_events_ OUTCOME_type.RData, for type = narrow, possible
+# output: for each outcome OUTCOME, D3_components_OUTCOME.RData and D3_events_OUTCOME_type.RData, for type = narrow, possible
 
 print('create events and create components of OUTCOMES for narrow and broad.')
 

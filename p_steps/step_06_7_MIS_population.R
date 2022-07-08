@@ -1,3 +1,8 @@
+# ----------------------------------
+# Calculate the cohort D3 datasets for MIS/myocard, For cohort c the dataset is temporary since it doesn't contains the risks at covid diagnosis.
+
+# input: D3_events_ALL_OUTCOMES, D3_outcomes_covid , D3_study_population
+# output: D3_study_variables_for_MIS, D4_population_b, D3_selection_criteria_c, D4_population_c_no_risk, D3_selection_criteria_d, D4_population_d
 
 persontime_benefit_week <- vector(mode = 'list')
 for (subpop in subpopulations_non_empty) {

@@ -1,3 +1,8 @@
+#-----------------------------------------------
+# Create the dataset D4_doses_weeks
+
+# input: D3_studyweeks
+# output: D4_doses_weeks
 
 for (subpop in subpopulations_non_empty) {  
   print(subpop)

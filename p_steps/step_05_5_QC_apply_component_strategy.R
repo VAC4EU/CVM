@@ -1,7 +1,7 @@
 #------------------------------------------------------------------
 # split outcomes in components
 
-# input: D4_study_population, D3_events_OUTCOME for each outcome, named OUTCOME
+# input: D4_study_population, CONCEPT, named OUTCOME
 # output: QC_all_components_OUTCOME.RData
 
 

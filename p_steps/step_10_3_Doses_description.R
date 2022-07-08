@@ -2,6 +2,9 @@
 ##########################    Doses description     ##########################
 ##############################################################################
 
+# input: DOSES_BIRTHCOHORTS
+# output: HTML_DOSES_BIRTHCOHORTS_description
+
 # library
 if (!require("rmarkdown")) install.packages("rmarkdown")
 library(rmarkdown )

@@ -2,4 +2,6 @@ meaning_of_first_event,coding_system_of_code_first_event,code_first_event,count_
 emergency_room_diagnosis,ICD9,43491,< 5
 hospitalisation_primary,ICD9,43401,< 5
 emergency_room_diagnosis,ICD9,4359,< 5
+hospitalisation_primary,ICD9,43411,< 5
+hospitalisation_secondary,ICD9,4359,< 5
 hospitalisation_primary,ICD9,43400,< 5

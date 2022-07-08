@@ -2,6 +2,9 @@
 ##########################    benefit description   ##########################
 ##############################################################################
 
+# input: BENEFIT_BIRTHCOHORTS_CALENDARTIME, BENEFIT_BIRTHCOHORTS_TIMESINCEVACCINATION
+# output: HTML_benefit_description
+
 # library
 if (!require("rmarkdown")) install.packages("rmarkdown")
 library(rmarkdown )

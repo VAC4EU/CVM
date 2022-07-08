@@ -1,8 +1,8 @@
 #-----------------------------------------------
 # set D3_events_ALL_OUTCOMES which contains the first outcome per person
-# input: D3_events_OUTCOME_narrow, D3_events_OUTCOME_possible, for all outcomes OUTCOME; conceptset datasets for CONTROL_events
-# output: D3_events_ALL_OUTCOMES, list_outcomes_observed.RData
 
+# input: D4_study_population, D3_events_OUTCOME_narrow, D3_events_OUTCOME_possible, for all outcomes OUTCOME; conceptset datasets for CONTROL_events, D3_eventsSecondary_SECCOMP
+# output: D3_events_ALL_OUTCOMES, list_outcomes_observed.RData
 
 print("CREATE EVENTS PER ALL OUTCOMES")
 

@@ -1,54 +1,55 @@
  ,Parameters,Test,perc_Test
 "","",N,%
-Study population,N,210,""
-Person years of follow-up,PY,83,""
-Month of first diagnosis,2020-04,2,1
-Month of first diagnosis,2020-05,6,2.9
-Month of first diagnosis,2020-06,4,1.9
-Month of first diagnosis,2020-07,2,1
-Month of first diagnosis,2020-09,4,1.9
-Month of first diagnosis,2020-10,5,2.4
-Month of first diagnosis,2020-11,19,9
-Month of first diagnosis,2020-12,51,24.3
-Month of first diagnosis,2021-01,53,25.2
-Month of first diagnosis,2021-02,37,17.6
-Month of first diagnosis,2021-03,20,9.5
-Month of first diagnosis,2021-04,5,2.4
-Month of first diagnosis,2021-05,2,1
-Age in years,Min,5,""
-Age in years,P25,31,""
-Age in years,P50,48,""
-Age in years,Mean,48,""
-Age in years,P75,61,""
+Study population,N,246,""
+Person years of follow-up,PY,102,""
+Month of first diagnosis,2020-04,3,1.2
+Month of first diagnosis,2020-05,6,2.4
+Month of first diagnosis,2020-06,6,2.4
+Month of first diagnosis,2020-07,2,0.8
+Month of first diagnosis,2020-09,4,1.6
+Month of first diagnosis,2020-10,7,2.8
+Month of first diagnosis,2020-11,24,9.8
+Month of first diagnosis,2020-12,59,24
+Month of first diagnosis,2021-01,61,24.8
+Month of first diagnosis,2021-02,44,17.9
+Month of first diagnosis,2021-03,21,8.5
+Month of first diagnosis,2021-04,7,2.8
+Month of first diagnosis,2021-05,2,0.8
+Age in years,Min,2,""
+Age in years,P25,27,""
+Age in years,P50,45,""
+Age in years,Mean,44,""
+Age in years,P75,60,""
 Age in years,Max,98,""
-Age in categories,0-4,0,0%
-Age in categories,5-11,4,1.9%
-Age in categories,12-17,12,5.7%
-Age in categories,18-24,19,9%
-Age in categories,25-29,9,4.3%
-Age in categories,30-39,30,14.3%
-Age in categories,40-49,33,15.7%
-Age in categories,50-59,44,21%
-Age in categories,60-69,28,13.3%
-Age in categories,70-79,11,5.2%
-Age in categories,80+,20,9.5%
-Person years across age categories,0-4,5,6%
-Person years across age categories,5-11,8,9.6%
-Person years across age categories,12-17,5,6%
-Person years across age categories,18-24,14,16.9%
-Person years across age categories,25-29,14,16.9%
-Person years across age categories,30-39,2,2.4%
-Person years across age categories,40-49,15,18.1%
-Person years across age categories,50-59,11,13.3%
-Person years across age categories,60-69,2,2.4%
-Person years across age categories,70-79,6,7.2%
-At risk population at first covid diagnosis,Cardiovascular disease,61,""
-At risk population at first covid diagnosis,Cancer,8,""
-At risk population at first covid diagnosis,Chronic lung disease,15,""
+Age in categories,0-4,2,0.8%
+Age in categories,5-11,12,4.9%
+Age in categories,12-17,18,7.3%
+Age in categories,18-24,23,9.3%
+Age in categories,25-29,15,6.1%
+Age in categories,30-39,33,13.4%
+Age in categories,40-49,33,13.4%
+Age in categories,50-59,47,19.1%
+Age in categories,60-69,31,12.6%
+Age in categories,70-79,11,4.5%
+Age in categories,80+,21,8.5%
+Person years across age categories,0-4,1,1%
+Person years across age categories,5-11,9,8.8%
+Person years across age categories,12-17,11,10.8%
+Person years across age categories,18-24,7,6.9%
+Person years across age categories,25-29,15,14.7%
+Person years across age categories,30-39,15,14.7%
+Person years across age categories,40-49,6,5.9%
+Person years across age categories,50-59,18,17.6%
+Person years across age categories,60-69,13,12.7%
+Person years across age categories,70-79,2,2%
+Person years across age categories,80+,6,5.9%
+At risk population at first covid diagnosis,Cardiovascular disease,65,""
+At risk population at first covid diagnosis,Cancer,9,""
+At risk population at first covid diagnosis,Chronic lung disease,20,""
 At risk population at first covid diagnosis,HIV,0,""
 At risk population at first covid diagnosis,Chronic kidney disease,1,""
 At risk population at first covid diagnosis,Diabetes,10,""
 At risk population at first covid diagnosis,Severe obesity,2,""
 At risk population at first covid diagnosis,Sickle cell disease,0,""
-At risk population at first covid diagnosis,Use of immunosuppressants,22,""
-At risk population at first covid diagnosis,Any risk factors,84,""
+At risk population at first covid diagnosis,Use of immunosuppressants,24,""
+At risk population at first covid diagnosis,Any risk factors,93,""

@@ -1,8 +1,8 @@
 # -----------------------------------------------------
-# CREATE EXCLUSION CRITERIA
+# CREATE EXCLUSION CRITERIA for persons/spells
 
-# input: D3_PERSONS, D3_output_spells_category, D3_output_spells_overlap
-# output: D3_selection_criteria.RData
+# input: D3_PERSONS, OBSERVATION_PERIODS, output_spells_category
+# output: D3_selection_criteria
 
 print('CREATE EXCLUSION CRITERIA')
 
@@ -18,15 +18,8 @@ for (i in 1:length(files)) {
   }
 }
 
-D3_PERSONS[!is.na(month_of_birth) & is.na(day_of_birth), day_of_birth := 15]
-
-D3_PERSONS$day_of_birth <- as.numeric(D3_PERSONS$day_of_birth)
-D3_PERSONS$month_of_birth <- as.numeric(D3_PERSONS$month_of_birth)
-D3_PERSONS[is.na(month_of_birth) & is.na(day_of_birth), c("month_of_birth", "day_of_birth") := list(7, 1)]
-
-#STANDARDIZE THE DATE FORMAT WITH  LUBRIDATE
-D3_PERSONS<-D3_PERSONS[, date_of_birth := lubridate::ymd(paste(year_of_birth, month_of_birth, day_of_birth, sep="-"))]
-D3_PERSONS<-suppressWarnings(D3_PERSONS[, date_of_death := lubridate::ymd(paste(year_of_death, month_of_death, day_of_death, sep="-"))])
+#CHANGE COLUMN NAMES
+setnames(D3_PERSONS, c("date_birth", "date_death"), c("date_of_birth", "date_of_death"))
 
 #CONVERT SEX to BINARY 0/1
 D3_PERSONS<-D3_PERSONS[, sex := fifelse(sex_at_instance_creation == "M", 1, 0)] #1:M 0:F

@@ -27,15 +27,18 @@ for (subpop in subpopulations_non_empty) {
   
   list_recurrent_outcomes <- list_outcomes[str_detect(list_outcomes, "^GENCONV_") | str_detect(list_outcomes, "^ANAPHYL_")]
   list_outcomes <- setdiff(list_outcomes, list_recurrent_outcomes)
-
+  
   for (ageband in Agebands_labels) {
-    nameoutput <- paste0("pop_age_", gsub("-", "_", ageband), suffix[[subpop]])
-    assign(nameoutput, study_population[ageband_at_study_entry == ageband, ])
-    save(nameoutput, file = paste0(dirtemp, nameoutput,".RData"),list=nameoutput)
-    rm(list=nameoutput)
+    for (current_sex in c(0, 1)) {
+      nameoutput <- paste0("pop_age_", gsub("-", "_", ageband), "_", current_sex, suffix[[subpop]])
+      assign(nameoutput, study_population[ageband_at_study_entry == ageband & sex == current_sex, ])
+      save(nameoutput, file = paste0(dirtemp, nameoutput,".RData"),list=nameoutput)
+      rm(list=nameoutput)
+    }
   }
   
-  df_events_ages <- paste0("pop_age_", gsub("-", "_", Agebands_labels))
+  df_events_ages <- c(paste0("pop_age_", gsub("-", "_", Agebands_labels), "_0"),
+                      paste0("pop_age_", gsub("-", "_", Agebands_labels), "_1"))
 
   for (events_df_sex in df_events_ages) {
     print(paste("Age", substring(events_df_sex, 9)))

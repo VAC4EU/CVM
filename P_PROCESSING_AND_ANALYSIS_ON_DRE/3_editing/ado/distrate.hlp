@@ -1,0 +1,132 @@
+{smcl}
+{* 29apr2006}{...}
+{.-}
+help for {cmd:distrate} 
+{.-}
+
+{title:Direct standardized rates with improved confidence interval}
+
+{p 4 10 4}
+{cmd:distrate}
+{it:deathvar} 
+{it:popvar}
+{cmdab:u:sing} {it:filename} 
+[{cmd:if} {it:exp}]
+[{cmd:in} {it:range}]
+, 	
+{cmdab:stand:strata}{cmd:(}{it:stratavars}{cmd:)}
+[{cmdab:by}{cmd:(}{it:varlist}{cmd:)}
+{cmd:popstand}{cmd:(}{it:varname}{cmd:)}
+{cmd:dobson}
+{cmdab:sa:ving(}{it:filename}[{cmd:,replace}]{cmd:)} ]
+{cmdab:li:st}{cmd:(}{it:varlist}{cmd:)}
+{cmdab:f:ormat:(%}{it:fmt}{cmd:)}
+{cmd:mult}{cmd:(}{it:#}{cmd:)}
+{cmdab:l:evel}{cmd:(}{it:#}{cmd:)}
+
+
+
+{title:Description}
+
+{p}{cmd:distrate} estimates directly standardized rates and confidence intervals based on the
+gamma distribution as proposed by Fay and Feuer. This method produces valid confidence intervals 
+even when the number of cases is very small. Optionally Dobson, Kuulasmaa, Eberle and Scherer
+confidence intervals are also displayed.{p_end}
+
+
+{p}Data must be in aggregate form, i.e. each record must contain the total number of deaths (or events)
+and population for each stratum as follows
+
+{center:{cmd:Age strata     death        pop}}
+{center:{hline 40}}
+{center: {cmd:   0-44        164       47346}}
+{center:{cmd:   45-54        143       83173}}
+{center:{cmd:   55-64        202      186108}}
+{center:{cmd:   65-74        208      322065}}
+{center:{cmd:     75+        283      362051}}
+{center:{hline 40}}
+
+
+
+{p}{cmdab:u:sing} {it:filename} specifies a file containing standard population weigths, typically stratified 
+by age and optionally by other variables. This file must be sorted by the variable specified in {cmd:standstrata()}{p_end}
+
+
+
+
+{title:Options}
+
+{p 0 4}{cmdab:stand:strata}{cmd:(}{it:stratavars}{cmd:)} specifies the variables defining strata across which 
+to average stratum-specific rates. These variables must be present in the study population and in the standard population
+file.{p_end}
+
+
+{p 0 4}{cmd:by}{cmd:(}{it:varlist}{cmd:)} produces direct standard rates for each group identified by equal values of the
+{cmd:by()} variables taking on integer or string values.{p_end}
+
+
+{p 0 4}{cmdab:popstand}{cmd:(}{it:varname}{cmd:)} specifies the variable in the using file that contains 
+the standard population weights. If not specified {cmd:dystrate} assumes that it is named as {it:popvar} in the
+study population.{p_end}
+
+
+{p 0 4}{cmd:dobson} also displays confidence intervals computed as proposed by Dobson, Kuulasmaa, Eberle and Scherer.{p_end}
+
+
+{p 0 4}{cmdab:list}{cmd:(}{it:varlist}{cmd:)} specifies the variables to be listed.{p_end}
+
+
+{p 0 4}{cmdab:f:ormat:(%}{it:fmt}{cmd:)} specifies the {help format} for variables containing the estimates.{p_end}
+
+
+{p 0 4}{cmdab:sa:ving}{cmd:(}{it:filename}[{it:,replace}]{cmd:)} allows to save the estimates in a file.{p_end}
+
+
+{p 0 4}{cmd:mult}{cmd:(}{it:#}{cmd:)} units to be used in reported results.{p_end}
+
+
+{p 0 4}{cmd:level}{cmd:(}{it:#}{cmd:)} specifies the confidence level, in percent, for the confidence 
+interval of the adjusted rate; see help {help level}.{p_end}
+
+
+
+
+{title:Example:}
+
+{p 12 20}{inp:use "C:\Data\SuffolkCounty.dta", clear}{p_end}
+{p 12 20}{inp:collapse (sum)  deaths pop,by(cindpov agegr)}{p_end}
+
+{p 12 20}{inp:distrate deaths pop using year2000st, stand(agegr) by(cindpov) mult(100000)}{p_end}
+
+
+{p}Further options
+
+{p 12 20}{inp:distrate deaths pop using year2000st, stand(agegr) by(cindpov) saving(DirectSuffolk,replace) format(%8.2f) mult(100000) level(90) list(rateadj ub_f lb_f se_F)}{p_end}
+
+
+
+{p}Downloading ancillary files in one of your {cmd:`"`c(adopath)'"'} directory you can run this example.{p_end}
+
+	  {it:({stata "distrate_example SuffolkCounty":click to run})}
+
+
+
+
+{title:Authors}
+
+{p} Enzo Coviello ({browse "mailto:enzo.coviello@tin.it":enzo.coviello@tin.it})
+
+
+{title:References}
+
+{p} Fay MP, Feuer EJ, Confidence intervals for directly standardized rates: a method based on the gamma distribution 
+{it:Statistics in Medicine} 1997; 16:791-801.
+
+{p}Public Health Disparities Geocoding Project Monograph.
+{browse "http://www.hsph.harvard.edu/thegeocodingproject/webpage/monograph/case%20example.htm":CASE EXAMPLE: Analysis of all cause mortality rates in Suffolk County, Massachusetts, 1989-1991, by CT poverty strata}
+
+
+
+{title:Also see}
+
+{p 0 19}On-line:  help for {help dstdize}

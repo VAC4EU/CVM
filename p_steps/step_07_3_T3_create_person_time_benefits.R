@@ -2,12 +2,10 @@
 #-----------------------------------------------
 #To estimate the weekly incidence rates of COVID-19 (overall and by severity level) in 2020 by data source
 
-# input: D3_vaxweeks_including_not_vaccinated, D3_algorithm_covid ,list_outcomes_observed_COVID
+# input: D3_vaxweeks_including_not_vaccinated, D3_outcomes_covid ,list_outcomes_observed_COVID
 # output: D4_persontime_benefit_week (exported to csv)
 
-
 print("COUNT PERSON TIME PER COVID by week benefits")
-
 
 persontime_benefit_week <- vector(mode = 'list')
 for (subpop in subpopulations_non_empty) {

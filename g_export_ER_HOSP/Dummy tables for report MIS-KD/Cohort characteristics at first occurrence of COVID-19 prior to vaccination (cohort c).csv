@@ -1,52 +1,53 @@
  ,Parameters,Test,perc_Test
 "","",N,%
-Study population,N,60,""
-Person years of follow-up,PY,25,""
-Month of first diagnosis,2020-04,2,3.3
-Month of first diagnosis,2020-05,3,5
-Month of first diagnosis,2020-06,2,3.3
-Month of first diagnosis,2020-07,2,3.3
-Month of first diagnosis,2020-09,1,1.7
-Month of first diagnosis,2020-10,2,3.3
-Month of first diagnosis,2020-11,5,8.3
-Month of first diagnosis,2020-12,11,18.3
-Month of first diagnosis,2021-01,14,23.3
-Month of first diagnosis,2021-02,11,18.3
-Month of first diagnosis,2021-03,4,6.7
-Month of first diagnosis,2021-04,3,5
+Study population,N,72,""
+Person years of follow-up,PY,32,""
+Month of first diagnosis,2020-04,2,2.8
+Month of first diagnosis,2020-05,3,4.2
+Month of first diagnosis,2020-06,3,4.2
+Month of first diagnosis,2020-07,2,2.8
+Month of first diagnosis,2020-09,1,1.4
+Month of first diagnosis,2020-10,4,5.6
+Month of first diagnosis,2020-11,6,8.3
+Month of first diagnosis,2020-12,17,23.6
+Month of first diagnosis,2021-01,17,23.6
+Month of first diagnosis,2021-02,11,15.3
+Month of first diagnosis,2021-03,4,5.6
+Month of first diagnosis,2021-04,2,2.8
 Age in years,Min,10,""
-Age in years,P25,37,""
-Age in years,P50,50,""
-Age in years,Mean,51,""
-Age in years,P75,62,""
+Age in years,P25,31,""
+Age in years,P50,46,""
+Age in years,Mean,46,""
+Age in years,P75,59,""
 Age in years,Max,88,""
 Age in categories,0-4,0,0%
-Age in categories,5-11,1,1.7%
-Age in categories,12-17,0,0%
-Age in categories,18-24,4,6.7%
-Age in categories,25-29,2,3.3%
-Age in categories,30-39,10,16.7%
-Age in categories,40-49,12,20%
-Age in categories,50-59,13,21.7%
-Age in categories,60-69,8,13.3%
-Age in categories,70-79,5,8.3%
-Age in categories,80+,5,8.3%
-Person years across age categories,0-4,2,8%
-Person years across age categories,5-11,1,4%
-Person years across age categories,12-17,5,20%
-Person years across age categories,18-24,5,20%
-Person years across age categories,25-29,1,4%
-Person years across age categories,30-39,6,24%
-Person years across age categories,40-49,3,12%
-Person years across age categories,50-59,1,4%
-Person years across age categories,60-69,1,4%
-At risk population at first covid diagnosis,Cardiovascular disease,20,""
-At risk population at first covid diagnosis,Cancer,3,""
-At risk population at first covid diagnosis,Chronic lung disease,6,""
+Age in categories,5-11,2,2.8%
+Age in categories,12-17,4,5.6%
+Age in categories,18-24,5,6.9%
+Age in categories,25-29,5,6.9%
+Age in categories,30-39,11,15.3%
+Age in categories,40-49,12,16.7%
+Age in categories,50-59,15,20.8%
+Age in categories,60-69,9,12.5%
+Age in categories,70-79,5,6.9%
+Age in categories,80+,4,5.6%
+Person years across age categories,0-4,2,6.2%
+Person years across age categories,5-11,3,9.4%
+Person years across age categories,12-17,2,6.2%
+Person years across age categories,18-24,5,15.6%
+Person years across age categories,25-29,5,15.6%
+Person years across age categories,30-39,1,3.1%
+Person years across age categories,40-49,7,21.9%
+Person years across age categories,50-59,4,12.5%
+Person years across age categories,60-69,1,3.1%
+Person years across age categories,70-79,1,3.1%
+At risk population at first covid diagnosis,Cardiovascular disease,19,""
+At risk population at first covid diagnosis,Cancer,4,""
+At risk population at first covid diagnosis,Chronic lung disease,7,""
 At risk population at first covid diagnosis,HIV,0,""
 At risk population at first covid diagnosis,Chronic kidney disease,0,""
 At risk population at first covid diagnosis,Diabetes,5,""
 At risk population at first covid diagnosis,Severe obesity,1,""
 At risk population at first covid diagnosis,Sickle cell disease,0,""
-At risk population at first covid diagnosis,Use of immunosuppressants,11,""
-At risk population at first covid diagnosis,Any risk factors,28,""
+At risk population at first covid diagnosis,Use of immunosuppressants,12,""
+At risk population at first covid diagnosis,Any risk factors,29,""

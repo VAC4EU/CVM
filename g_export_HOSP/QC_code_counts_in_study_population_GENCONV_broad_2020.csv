@@ -3,4 +3,5 @@ hospitalisation_secondary,ICD9,34580,1
 hospitalisation_secondary,ICD9,34510,1
 exemption,ICD9,345,2
 hospitalisation_secondary,ICD9,78039,1
+hospitalisation_primary,ICD9,34510,1
 hospitalisation_secondary,ICD9,34511,1

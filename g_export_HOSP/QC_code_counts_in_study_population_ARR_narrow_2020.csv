@@ -7,7 +7,7 @@ hospitalisation_secondary,ICD9,4260,1
 hospitalisation_primary,ICD9,42731,7
 hospitalisation_secondary,ICD9,42613,2
 hospitalisation_primary,ICD9,42781,4
-hospitalisation_primary,ICD9,4270,1
+hospitalisation_primary,ICD9,4270,2
 hospitalisation_secondary,ICD9,4263,1
 hospitalisation_primary,ICD9,42741,1
 exemption,ICD9,427,2

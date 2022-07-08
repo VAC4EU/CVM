@@ -1,7 +1,7 @@
 # SUMMARIZE ALGORITHMS FOR COVID SEVERITY
 #-----------------------------------------------
-# input: D3_components_covid_severity.RData, D4_study_population.RData
-# output: D3_algorithm_covid
+# input: D3_components_covid_severity, D4_study_population
+# output: D3_algorithm_covid, table_QC_covid_diagnosis, D3_outcomes_covid_multiple, D3_outcomes_covid
 
 print("SUMMARIZE ALGORITHMS FOR COVID SEVERITY")
 

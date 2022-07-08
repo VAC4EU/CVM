@@ -1,8 +1,8 @@
 #------------------------------------------------------------------
 # CREATE RISK FACTORS
-# input: D3_Vaccin_cohort, concept set datasets in DRUGS_conceptssets ("CV","COVCANCER","COVCOPD","COVHIV","COVCKD","COVDIAB","COVOBES","COVSICKLE","IMMUNOSUPPRESSANTS")
-# 
-# output: D3_Vaccin_cohort_DP.RData
+
+# input: D4_population_c_no_risk, concept set datasets in DRUGS_conceptssets ("CV","COVCANCER","COVCOPD","COVHIV","COVCKD","COVDIAB","COVOBES","COVSICKLE","IMMUNOSUPPRESSANTS")
+# output: D3_population_c_DP
 
 
 print('CREATE RISK FACTORS (drugs only) at date_vax_1')

@@ -1,11 +1,9 @@
-# personyear_&x.=Persontime_&x./365.25; 
-# personyear_&x.=Persontime_&x./365.25;
-# 
-# round(100000*calculated Events_&x./calculated PT_&x.,0.01) as IR_&x., 
-# round(calculated IR_&x.*exp(-1.96/SQRT(calculated Events_&x.)),0.01) as LL_&x., 
-# round(calculated IR_&x.*exp(+1.96/SQRT(calculated Events_&x.)),0.01) as UL_&x.
+#-----------------------------------------------
+# Calculate IR
 
-#birthcohort---------------
+# input: D4_persontime_benefit_week_BC, D4_persontime_benefit_year_BC, D4_persontime_risk_week_BC, D4_persontime_risk_year_BC, D4_persontime_benefit_week_RF, D4_persontime_benefit_year_RF, D4_persontime_risk_week_RF, D4_persontime_risk_year_RF, D4_persontime_risk_month_RFBC
+# output: RES_IR_benefit_week_BC, RES_IR_benefit_fup_BC, RES_IR_risk_week_BC, RES_IR_persontime_risk_fup_BC, RES_IR_risk_fup_BC, RES_IR_benefit_week_RF, RES_IR_benefit_fup_RF, RES_IR_risk_week_RF, RES_IR_risk_fup_RF, RES_IR_week
+
 #D4_persontime_benefit_week----------------------------------------------
 for (subpop in subpopulations_non_empty) {  
   print(subpop)

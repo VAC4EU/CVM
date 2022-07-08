@@ -1,5 +1,8 @@
 #------------------------------------------------------------------
-# CREATE RISK FACTORS
+# CREATE COVARIATES AT BASELINE
+
+# input: D4_study_population, CONCEPTS
+# output: D3_study_population_covariates
 
 print('CREATE RISK FACTORS (diagnosis only)')
 

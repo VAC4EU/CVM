@@ -1,3 +1,7 @@
+# Create D3 cohort datasets. They are temporary since they don't have risks at vaccination
+#-----------------------------------------------
+# input: D4_study_population, selected_doses, D3_study_population_cov_ALL
+# output: D3_study_population_no_risk, D3_Vaccin_cohort_no_risk
 
 for (subpop in subpopulations_non_empty) {
   print(subpop)

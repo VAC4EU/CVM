@@ -1,3 +1,10 @@
+# COUNT PERSON TIME PER COVID PER MIS/MYOCARD
+#-----------------------------------------------
+# To estimate the weekly incidence rates of risks in 2020 by data source for MIS/Myocard
+
+# input: D3_events_ALL_OUTCOMES, D4_population_b, D4_population_c, D4_population_d
+# output: D4_persontime_b, D4_persontime_monthly_b, D4_persontime_c, D4_persontime_monthly_c, D4_persontime_d, D4_persontime_monthly_d
+
 #COHORT B
 
 for (subpop in subpopulations_non_empty) {  
@@ -15,17 +22,17 @@ for (subpop in subpopulations_non_empty) {
   endyear<- substr(population_b[,max(study_exit_date_MIS_b)], 1, 4)
   end_persontime_studytime<-as.character(paste0(endyear,"1231"))
   
-  for (sex_filter in c(0, 1)) {
-    nameoutput <- paste0("sex_", sex_filter, suffix[[subpop]])
-    assign(nameoutput, population_b[sex == sex_filter, ])
+  for (ageband in Agebands_labels) {
+    nameoutput <- paste0("pop_age_", gsub("-", "_", ageband), suffix[[subpop]])
+    assign(nameoutput, population_b[ageband_at_1_jan_2021 == ageband, ])
     save(nameoutput, file = paste0(dirtemp, nameoutput,".RData"),list=nameoutput)
     rm(list=nameoutput)
   }
   
-  df_events_sex <- paste0("sex_", c(0, 1))
+  df_events_ages <- paste0("pop_age_", gsub("-", "_", Agebands_labels))
   
-  for (events_df_sex in df_events_sex) {
-    print(paste("Sex ", substring(events_df_sex, 5)))
+  for (events_df_sex in df_events_ages) {
+    print(paste("Age", substring(events_df_sex, 9)))
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     
     nameoutput <- paste0("Output_file",suffix[[subpop]])
@@ -55,7 +62,7 @@ for (subpop in subpopulations_non_empty) {
   }
   
   vect_df_persontime <- list()
-  for (events_df_sex in df_events_sex) {
+  for (events_df_sex in df_events_ages) {
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     vect_df_persontime <- append(vect_df_persontime, list(get(paste0("Output_file",suffix[[subpop]]) )))
   }
@@ -75,17 +82,17 @@ for (subpop in subpopulations_non_empty) {
   
   rm(list=nameoutput)
   
-  for (sex_filter in c(0, 1)) {
-    nameoutput <- paste0("sex_", sex_filter, suffix[[subpop]])
-    assign(nameoutput, population_b[sex == sex_filter, ])
+  for (ageband in Agebands_labels) {
+    nameoutput <- paste0("pop_age_", gsub("-", "_", ageband), suffix[[subpop]])
+    assign(nameoutput, population_b[ageband_at_1_jan_2021 == ageband, ])
     save(nameoutput, file = paste0(dirtemp, nameoutput,".RData"),list=nameoutput)
     rm(list=nameoutput)
   }
   
-  df_events_sex <- paste0("sex_", c(0, 1))
+  df_events_ages <- paste0("pop_age_", gsub("-", "_", Agebands_labels))
   
-  for (events_df_sex in df_events_sex) {
-    print(paste("Sex ", substring(events_df_sex, 5)))
+  for (events_df_sex in df_events_ages) {
+    print(paste("Age", substring(events_df_sex, 9)))
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     
     nameoutput <- paste0("Output_file",suffix[[subpop]])
@@ -115,7 +122,7 @@ for (subpop in subpopulations_non_empty) {
   }
   
   vect_df_persontime <- list()
-  for (events_df_sex in df_events_sex) {
+  for (events_df_sex in df_events_ages) {
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     vect_df_persontime <- append(vect_df_persontime, list(get(paste0("Output_file",suffix[[subpop]]) )))
   }
@@ -194,17 +201,17 @@ for (subpop in subpopulations_non_empty) {
   endyear<- substr(population_c[,max(study_exit_date_MIS_c)], 1, 4)
   end_persontime_studytime<-as.character(paste0(endyear,"1231"))
   
-  for (sex_filter in c(0, 1)) {
-    nameoutput <- paste0("sex_", sex_filter, suffix[[subpop]])
-    assign(nameoutput, population_c[sex == sex_filter, ])
+  for (ageband in Agebands_labels) {
+    nameoutput <- paste0("pop_age_", gsub("-", "_", ageband), suffix[[subpop]])
+    assign(nameoutput, population_c[ageband_at_1_jan_2021 == ageband, ])
     save(nameoutput, file = paste0(dirtemp, nameoutput,".RData"),list=nameoutput)
     rm(list=nameoutput)
   }
   
-  df_events_sex <- paste0("sex_", c(0, 1))
+  df_events_ages <- paste0("pop_age_", gsub("-", "_", Agebands_labels))
   
-  for (events_df_sex in df_events_sex) {
-    print(paste("Sex ", substring(events_df_sex, 5)))
+  for (events_df_sex in df_events_ages) {
+    print(paste("Age", substring(events_df_sex, 9)))
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     
     nameoutput <- paste0("Output_file",suffix[[subpop]])
@@ -234,7 +241,7 @@ for (subpop in subpopulations_non_empty) {
   }
   
   vect_df_persontime <- list()
-  for (events_df_sex in df_events_sex) {
+  for (events_df_sex in df_events_ages) {
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     vect_df_persontime <- append(vect_df_persontime, list(get(paste0("Output_file",suffix[[subpop]]) )))
   }
@@ -253,17 +260,17 @@ for (subpop in subpopulations_non_empty) {
   fwrite(get(nameoutput2),file=paste0(thisdirexp,nameoutput2,".csv"))
   rm(list=nameoutput)
   
-  for (sex_filter in c(0, 1)) {
-    nameoutput <- paste0("sex_", sex_filter, suffix[[subpop]])
-    assign(nameoutput, population_c[sex == sex_filter, ])
+  for (ageband in Agebands_labels) {
+    nameoutput <- paste0("pop_age_", gsub("-", "_", ageband), suffix[[subpop]])
+    assign(nameoutput, population_c[ageband_at_1_jan_2021 == ageband, ])
     save(nameoutput, file = paste0(dirtemp, nameoutput,".RData"),list=nameoutput)
     rm(list=nameoutput)
   }
   
-  df_events_sex <- paste0("sex_", c(0, 1))
+  df_events_ages <- paste0("pop_age_", gsub("-", "_", Agebands_labels))
   
-  for (events_df_sex in df_events_sex) {
-    print(paste("Sex ", substring(events_df_sex, 5)))
+  for (events_df_sex in df_events_ages) {
+    print(paste("Age", substring(events_df_sex, 9)))
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     
     nameoutput <- paste0("Output_file",suffix[[subpop]])
@@ -293,7 +300,7 @@ for (subpop in subpopulations_non_empty) {
   }
   
   vect_df_persontime <- list()
-  for (events_df_sex in df_events_sex) {
+  for (events_df_sex in df_events_ages) {
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     vect_df_persontime <- append(vect_df_persontime, list(get(paste0("Output_file",suffix[[subpop]]) )))
   }
@@ -371,17 +378,17 @@ for (subpop in subpopulations_non_empty) {
   endyear<- substr(population_d[,max(study_exit_date_MIS_d)], 1, 4)
   end_persontime_studytime<-as.character(paste0(endyear,"1231"))
   
-  for (sex_filter in c(0, 1)) {
-    nameoutput <- paste0("sex_", sex_filter, suffix[[subpop]])
-    assign(nameoutput, population_d[sex == sex_filter, ])
+  for (ageband in Agebands_labels) {
+    nameoutput <- paste0("pop_age_", gsub("-", "_", ageband), suffix[[subpop]])
+    assign(nameoutput, population_d[ageband_at_1_jan_2021 == ageband, ])
     save(nameoutput, file = paste0(dirtemp, nameoutput,".RData"),list=nameoutput)
     rm(list=nameoutput)
   }
   
-  df_events_sex <- paste0("sex_", c(0, 1))
+  df_events_ages <- paste0("pop_age_", gsub("-", "_", Agebands_labels))
   
-  for (events_df_sex in df_events_sex) {
-    print(paste("Sex ", substring(events_df_sex, 5)))
+  for (events_df_sex in df_events_ages) {
+    print(paste("Age", substring(events_df_sex, 9)))
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     
     nameoutput <- paste0("Output_file",suffix[[subpop]])
@@ -411,7 +418,7 @@ for (subpop in subpopulations_non_empty) {
   }
   
   vect_df_persontime <- list()
-  for (events_df_sex in df_events_sex) {
+  for (events_df_sex in df_events_ages) {
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     vect_df_persontime <- append(vect_df_persontime, list(get(paste0("Output_file",suffix[[subpop]]) )))
   }
@@ -430,17 +437,17 @@ for (subpop in subpopulations_non_empty) {
   fwrite(get(nameoutput2),file=paste0(thisdirexp,nameoutput2,".csv"))
   rm(list=nameoutput)
   
-  for (sex_filter in c(0, 1)) {
-    nameoutput <- paste0("sex_", sex_filter, suffix[[subpop]])
-    assign(nameoutput, population_d[sex == sex_filter, ])
+  for (ageband in Agebands_labels) {
+    nameoutput <- paste0("pop_age_", gsub("-", "_", ageband), suffix[[subpop]])
+    assign(nameoutput, population_d[ageband_at_1_jan_2021 == ageband, ])
     save(nameoutput, file = paste0(dirtemp, nameoutput,".RData"),list=nameoutput)
     rm(list=nameoutput)
   }
   
-  df_events_sex <- paste0("sex_", c(0, 1))
+  df_events_ages <- paste0("pop_age_", gsub("-", "_", Agebands_labels))
   
-  for (events_df_sex in df_events_sex) {
-    print(paste("Sex ", substring(events_df_sex, 5)))
+  for (events_df_sex in df_events_ages) {
+    print(paste("Age", substring(events_df_sex, 9)))
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     
     nameoutput <- paste0("Output_file",suffix[[subpop]])
@@ -470,7 +477,7 @@ for (subpop in subpopulations_non_empty) {
   }
   
   vect_df_persontime <- list()
-  for (events_df_sex in df_events_sex) {
+  for (events_df_sex in df_events_ages) {
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     vect_df_persontime <- append(vect_df_persontime, list(get(paste0("Output_file",suffix[[subpop]]) )))
   }

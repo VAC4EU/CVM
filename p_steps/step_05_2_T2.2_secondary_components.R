@@ -2,7 +2,7 @@
 # create secondary components 
 
 # input: concept set datasets involved in secondary components, D4_study_population
-# output: for each secondary component SECCOMPONENT, D3_eventsSecondary_ SECCOMP.RData
+# output: for each secondary component SECCOMPONENT, D3_eventsSecondary_SECCOMP.RData
 
 print('create secondary components SECCOMPONENTS.')
 

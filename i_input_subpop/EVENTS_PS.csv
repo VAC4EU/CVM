@@ -12207,3 +12207,5 @@ ECVM210908996,20200106,20200106,7089,ICD9,"","","","",emergency_room_diagnosis,P
 ECVM210908996,20200106,20200106,"","","","xxxx x x, x",yes,"",emergency_room_presentation,PS,PS_12206
 ECVM210908996,20200731,20200731,9219,ICD9,"","","","",emergency_room_diagnosis,PS,PS_12207
 ECVM210908996,20200731,20200731,"","","","xxxx x x, x",yes,"",emergency_room_presentation,PS,PS_12208
+ECVM210500494,20200210,20200210,"",Free_text,"",MYOCARD_narrow,"",emergency_room_diagnosis,"",PS,PS_605
+ECVM210500494,20200210,20200210,"",Free_text,"",MYOCARD_broad,"",emergency_room_diagnosis,"",PS,PS_605

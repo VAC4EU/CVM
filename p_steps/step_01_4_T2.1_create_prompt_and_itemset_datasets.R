@@ -25,8 +25,8 @@ covid_registry <- covid_registry[,-"survey_date"]
 #-----------------------------------------------------
 
 
-CreateItemsetDatasets(EAVtables = ECVM_CDM_EAV_tables_retrieve,
-                      datevar= ECVM_CDM_datevar_retrieve,
+CreateItemsetDatasets(EAVtables = ConcePTION_CDM_EAV_tables_retrieve,
+                      datevar= ConcePTION_CDM_datevar_retrieve,
                       dateformat= "YYYYmmdd",
                       rename_col = list(person_id=person_id,date=date),
                       study_variable_names = study_variables_of_our_study,

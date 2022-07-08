@@ -1,0 +1,22 @@
+\begin{tikzpicture}[node distance=3cm,auto]
+	\tikzstyle{format} = [draw,circle, text width =3cm]
+	\path[use as bounding box] (0,0) rectangle (\columnwidth,-.3\textheight);
+	\path (.5\columnwidth,-3.6) coordinate (center);
+	\foreach \n in {1,2}\path  (center) + (\n*360/2:1cm) coordinate (C\n);
+	\foreach \n in {1,2}\path  (center) + (\n*360/2:2.2cm) coordinate (N\n);
+	\foreach \n in {1,2}\path  (center) + (\n*360/2:3cm)  coordinate (L\n);
+	\path  (center) + (0,-3cm) coordinate (P);
+%	\path (center) node[ format,  text width =10cm, color=greenEMIF]  [label ={[greenEMIF]above left:Population}](population) {};
+	\path (center) node[ format,  text width =13cm]  [label ={above left:Population}](population) {};
+	\foreach \n in {1,2}\path (C\n) circle (2.5cm) [draw];
+	 \path (L1) + (0,2cm) node {Algorithm A};
+	 \path (L2) + (0,2cm) node {Algorithm B};
+	 \path (N1) node {$NA_ANDNOT_B};
+	 \path (N2) node {$NB_ANDNOT_A};
+	 \path (center) node {$NA_AND_B};
+	 \path (P) node {$NNOT_B_AND_NOT_A};
+\end{tikzpicture}
+
+
+
+

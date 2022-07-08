@@ -1,7 +1,7 @@
 #------------------------------------------------------------------
 # CREATE RISK FACTORS
+
 # input: D4_study_population, concept set datasets in DRUGS_conceptssets ("CV","COVCANCER","COVCOPD","COVHIV","COVCKD","COVDIAB","COVOBES","COVSICKLE","IMMUNOSUPPRESSANTS")
-# 
 # output: D3_study_population_DP.RData
 
 

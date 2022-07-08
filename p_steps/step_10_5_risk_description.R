@@ -2,6 +2,9 @@
 ##########################     risk description     ##########################
 ##############################################################################
 
+# input: RISK_BIRTHCOHORTS_CALENDARTIME, RISK_BIRTHCOHORTS_TIMESINCEVACCINATION
+# output: HTML_risk_description
+
 # library
 if (!require("rmarkdown")) install.packages("rmarkdown")
 library(rmarkdown )

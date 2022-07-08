@@ -18,10 +18,11 @@ hospitalisation_primary,ICD9,4111,2
 hospitalisation_secondary,ICD9,41090,1
 hospitalisation_primary,ICD9,41401,3
 hospitalisation_secondary,ICD9,44020,1
+hospitalisation_primary,ICD9,4148,1
+hospitalisation_secondary,ICD9,44021,2
 hospitalisation_primary,ICD9,41041,1
 hospitalisation_primary,ICD9,44021,2
 hospitalisation_secondary,ICD9,4408,2
 hospitalisation_primary,ICD9,4139,2
-hospitalisation_secondary,ICD9,44021,1
 hospitalisation_primary,ICD9,41021,2
 hospitalisation_secondary,ICD9,4409,1

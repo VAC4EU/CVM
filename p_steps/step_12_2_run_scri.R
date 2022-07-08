@@ -107,6 +107,12 @@ for (subpop in subpopulations_non_empty) {
   plot_during_running  <- F  
   CI_draw              <- T
   
+  # which part to run:
+  lmain <- T
+  ldist <- F
+  
+  onlyPfizer <- F
+  
   
   paral_vars <- c("lab_pre", "vax1_end_before_vax2")
   
@@ -123,8 +129,8 @@ for (subpop in subpopulations_non_empty) {
   vax2_end_before_vax3 <- substitute(pmin(days_vax3-1, study_exit_days, na.rm=T))
   
   rws_def_2vax_7  <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),  lab  = lab_pre , lab_add_interval=T, no_last_interval=T   ), # also can be added:    add_interval = T 
-                                       v1      = list( t0 = days_vax1, cuts = c( 0, 1, 8, 15, 29, 61 ),    tend = vax1_end_before_vax2,  lab = "dose 1 "   ), 
-                                       v2      = list( t0 = days_vax2, cuts = c( 0, 1, 8, 15, 29, 61 ),    tend = study_exit_days,       lab = "dose 2 "   ))
+                                       v1      = list( t0 = days_vax1, cuts = c( 0, 1, 8, 15, 22, 29, 61 ),    tend = vax1_end_before_vax2,  lab = "dose 1 "   ), 
+                                       v2      = list( t0 = days_vax2, cuts = c( 0, 1, 8, 15, 22, 29, 61 ),    tend = study_exit_days,       lab = "dose 2 "   ))
                                 #all      = list( t0 = study_entry_days, tend=study_exit_days,     lab = "all", lab_add_interval=F   )
   )
   
@@ -133,6 +139,12 @@ for (subpop in subpopulations_non_empty) {
                                         v2      = list( t0 = days_vax2, cuts = c( 0, 1, 15, 29, 61 ),  tend = study_exit_days,       lab = "dose 2 "   ))
                                  #all      = list( t0 = study_entry_days, tend=study_exit_days,     lab = "all", lab_add_interval=F   )
   )
+  rws_def_2vax_21 <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),  lab  = lab_pre , lab_add_interval=T, no_last_interval=T   ), # also can be added:    add_interval = T 
+                                       v1      = list( t0 = days_vax1, cuts = c( 0, 1, 22, 43 ),    tend = vax1_end_before_vax2,  lab = "dose 1 "   ), 
+                                       v2      = list( t0 = days_vax2, cuts = c( 0, 1, 22, 43 ),    tend = study_exit_days,       lab = "dose 2 "   ))
+                                #all      = list( t0 = study_entry_days, tend=study_exit_days,     lab = "all", lab_add_interval=F   )
+  )
+  
   rws_def_2vax_28 <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),  lab  = lab_pre , lab_add_interval=T, no_last_interval=T   ), # also can be added:    add_interval = T 
                                        v1      = list( t0 = days_vax1, cuts = c( 0, 1, 29 ),    tend = vax1_end_before_vax2,  lab = "dose 1 "   ), 
                                        v2      = list( t0 = days_vax2, cuts = c( 0, 1, 29 ),    tend = study_exit_days,       lab = "dose 2 "   ))
@@ -140,14 +152,19 @@ for (subpop in subpopulations_non_empty) {
   )
   
   rws_def_3vax_7  <- substitute(list(prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),               lab  = lab_pre , lab_add_interval=T, no_last_interval=T   ), # also can be added:    add_interval = T 
-                                     v1      = list( t0 = days_vax1, cuts = c( 0, 1, 8, 15, 29, 61 ), tend = vax1_end_before_vax2,  lab = "dose 1 "   ), 
-                                     v2      = list( t0 = days_vax2, cuts = c( 0, 1, 8, 15, 29, 61 ), tend = vax2_end_before_vax3,  lab = "dose 2 "   ), 
-                                     v3      = list( t0 = days_vax3, cuts = c( 0, 1, 8, 15, 29, 61 ), tend = study_exit_days,       lab = "dose 3 "   ))
+                                     v1      = list( t0 = days_vax1, cuts = c( 0, 1, 8, 15, 22, 29, 61 ), tend = vax1_end_before_vax2,  lab = "dose 1 "   ), 
+                                     v2      = list( t0 = days_vax2, cuts = c( 0, 1, 8, 15, 22, 29, 61 ), tend = vax2_end_before_vax3,  lab = "dose 2 "   ), 
+                                     v3      = list( t0 = days_vax3, cuts = c( 0, 1, 8, 15, 22, 29, 61 ), tend = study_exit_days,       lab = "dose 3 "   ))
   )
   rws_def_3vax_14  <- substitute(list(prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),     lab  = lab_pre , lab_add_interval=T, no_last_interval=T   ), # also can be added:    add_interval = T 
                                       v1      = list( t0 = days_vax1, cuts = c( 0, 1, 15, 29, 61 ), tend = vax1_end_before_vax2,  lab = "dose 1 "   ), 
                                       v2      = list( t0 = days_vax2, cuts = c( 0, 1, 15, 29, 61 ), tend = vax2_end_before_vax3,  lab = "dose 2 "   ), 
                                       v3      = list( t0 = days_vax3, cuts = c( 0, 1, 15, 29, 61 ), tend = study_exit_days,       lab = "dose 3 "   ))
+  )
+  rws_def_3vax_21 <- substitute(list(prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),               lab  = lab_pre , lab_add_interval=T, no_last_interval=T   ), # also can be added:    add_interval = T 
+                                     v1      = list( t0 = days_vax1, cuts = c( 0, 1, 22, 43 ), tend = vax1_end_before_vax2,  lab = "dose 1 "   ), 
+                                     v2      = list( t0 = days_vax2, cuts = c( 0, 1, 22, 43 ), tend = vax2_end_before_vax3,  lab = "dose 2 "   ), 
+                                     v3      = list( t0 = days_vax3, cuts = c( 0, 1, 22, 43 ), tend = study_exit_days,       lab = "dose 3 "   ))
   )
   rws_def_3vax_28 <- substitute(list(prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),               lab  = lab_pre , lab_add_interval=T, no_last_interval=T   ), # also can be added:    add_interval = T 
                                      v1      = list( t0 = days_vax1, cuts = c( 0, 1, 29 ), tend = vax1_end_before_vax2,  lab = "dose 1 "   ), 
@@ -158,14 +175,19 @@ for (subpop in subpopulations_non_empty) {
   
   # with overlap & the last intervals last till the end of observation !!!
   rws_def_3vax_overlap_7  <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),          lab  = lab_pre , no_last_interval=T   ), # also can be added:    add_interval = T 
-                                               v1      = list( t0 = days_vax1, cuts = c( 0, 1, 8, 15, 29, 61 ), tend = study_exit_days,  lab = "dose 1 ", no_last_interval=F    ), 
-                                               v2      = list( t0 = days_vax2, cuts = c( 0, 1, 8, 15, 29, 61 ), tend = study_exit_days,  lab = "dose 2 ", no_last_interval=F    ), 
-                                               v3      = list( t0 = days_vax3, cuts = c( 0, 1, 8, 15, 29, 61 ), tend = study_exit_days,  lab = "dose 3 ", no_last_interval=F    ))
+                                               v1      = list( t0 = days_vax1, cuts = c( 0, 1, 8, 15, 22, 29, 61 ), tend = study_exit_days,  lab = "dose 1 ", no_last_interval=F    ), 
+                                               v2      = list( t0 = days_vax2, cuts = c( 0, 1, 8, 15, 22, 29, 61 ), tend = study_exit_days,  lab = "dose 2 ", no_last_interval=F    ), 
+                                               v3      = list( t0 = days_vax3, cuts = c( 0, 1, 8, 15, 22, 29, 61 ), tend = study_exit_days,  lab = "dose 3 ", no_last_interval=F    ))
   )
   rws_def_3vax_overlap_14  <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),      lab  = lab_pre , no_last_interval=T   ), # also can be added:    add_interval = T 
                                                 v1      = list( t0 = days_vax1, cuts = c( 0, 1, 15, 29, 61 ), tend = study_exit_days,  lab = "dose 1 ", no_last_interval=F    ), 
                                                 v2      = list( t0 = days_vax2, cuts = c( 0, 1, 15, 29, 61 ), tend = study_exit_days,  lab = "dose 2 ", no_last_interval=F    ), 
                                                 v3      = list( t0 = days_vax3, cuts = c( 0, 1, 15, 29, 61 ), tend = study_exit_days,  lab = "dose 3 ", no_last_interval=F    ))
+  )
+  rws_def_3vax_overlap_21 <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),          lab  = lab_pre , no_last_interval=T   ), # also can be added:    add_interval = T 
+                                               v1      = list( t0 = days_vax1, cuts = c( 0, 1, 22, 43 ), tend = study_exit_days,  lab = "dose 1 ", no_last_interval=F    ), 
+                                               v2      = list( t0 = days_vax2, cuts = c( 0, 1, 22, 43 ), tend = study_exit_days,  lab = "dose 2 ", no_last_interval=F    ), 
+                                               v3      = list( t0 = days_vax3, cuts = c( 0, 1, 22, 43 ), tend = study_exit_days,  lab = "dose 3 ", no_last_interval=F    ))
   )
   rws_def_3vax_overlap_28 <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),          lab  = lab_pre , no_last_interval=T   ), # also can be added:    add_interval = T 
                                                v1      = list( t0 = days_vax1, cuts = c( 0, 1, 29, 61 ), tend = study_exit_days,  lab = "dose 1 ", no_last_interval=F    ), 
@@ -173,12 +195,16 @@ for (subpop in subpopulations_non_empty) {
                                                v3      = list( t0 = days_vax3, cuts = c( 0, 1, 29, 61 ), tend = study_exit_days,  lab = "dose 3 ", no_last_interval=F    ))
   )
   rws_def_2vax_overlap_7  <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),          lab  = lab_pre , no_last_interval=T   ), # also can be added:    add_interval = T 
-                                               v1      = list( t0 = days_vax1, cuts = c( 0, 1, 8, 15, 29, 61 ), tend = study_exit_days,  lab = "dose 1 ", no_last_interval=F    ), 
-                                               v2      = list( t0 = days_vax2, cuts = c( 0, 1, 8, 15, 29, 61 ), tend = study_exit_days,  lab = "dose 2 ", no_last_interval=F    )) 
+                                               v1      = list( t0 = days_vax1, cuts = c( 0, 1, 8, 15, 22, 29, 61 ), tend = study_exit_days,  lab = "dose 1 ", no_last_interval=F    ), 
+                                               v2      = list( t0 = days_vax2, cuts = c( 0, 1, 8, 15, 22, 29, 61 ), tend = study_exit_days,  lab = "dose 2 ", no_last_interval=F    )) 
   )
   rws_def_2vax_overlap_14  <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),      lab  = lab_pre , no_last_interval=T   ), # also can be added:    add_interval = T 
                                                 v1      = list( t0 = days_vax1, cuts = c( 0, 1, 15, 29, 61 ), tend = study_exit_days,  lab = "dose 1 ", no_last_interval=F    ), 
                                                 v2      = list( t0 = days_vax2, cuts = c( 0, 1, 15, 29, 61 ), tend = study_exit_days,  lab = "dose 2 ", no_last_interval=F    )) 
+  )
+  rws_def_2vax_overlap_21 <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),          lab  = lab_pre , no_last_interval=T   ), # also can be added:    add_interval = T 
+                                               v1      = list( t0 = days_vax1, cuts = c( 0, 1, 22, 43 ), tend = study_exit_days,  lab = "dose 1 ", no_last_interval=F    ), 
+                                               v2      = list( t0 = days_vax2, cuts = c( 0, 1, 22, 43 ), tend = study_exit_days,  lab = "dose 2 ", no_last_interval=F    )) 
   )
   rws_def_2vax_overlap_28 <- substitute(list(  prevax  = list( t0 = days_vax1, cuts = c( -90, -29, 0),          lab  = lab_pre , no_last_interval=T   ), # also can be added:    add_interval = T 
                                                v1      = list( t0 = days_vax1, cuts = c( 0, 1, 29, 61 ), tend = study_exit_days,  lab = "dose 1 ", no_last_interval=F    ), 
@@ -240,7 +266,7 @@ for (subpop in subpopulations_non_empty) {
   
   # create new type_vax1_short, type_vax2_short, ... : as substring(..., 1, 5 )
   for(iv in 1:nvax)
-    scri_input[paste0("type_vax",iv,"_short")] <- format(substring(scri_input[,paste0("type_vax",iv)], 1, 5), width=5)
+    scri_input[,paste0("type_vax",iv,"_short")] <- format(substring(scri_input[,paste0("type_vax",iv)], 1, 5), width=5)
   
   
   brand_2v_def <- substitute(list( splits_names  = "vax", 
@@ -388,19 +414,22 @@ for (subpop in subpopulations_non_empty) {
   #
   # specify calendar time interval for adjusting:
   #
-  lengths <- c( 10, 14, 21,30)
+  lengths <- c( 12, 21, 30, 30, 45)
+  #lengths <- c( 10, 14, 21, 30, 30)
   #lengths <- c( 7,14,10, 21,30)
   #lengths <- c( 3,7,14,10, 21,30)
-  starts  <- c(-1,-5,-8,-10,-1, -3)
+  starts  <- c(-3,-8,-10,-1,-5)
+  #starts  <- c(-1,-5,-8,-1,-10, -3)
   time_seq <- vector("list",length=length(lengths))
-  names(time_seq) <- paste0("period",lengths,"d")
   for(i in 1:length(lengths))
     time_seq[[i]] <- seq(min(scri_input$study_entry_days,na.rm=T)-starts[i],max(scri_input$study_exit_days,na.rm=T)+lengths[i]-1,by=lengths[i])
+  names(time_seq) <- paste0("period",lengths,"d_start",lapply(time_seq,min),"d")
   
   ########################################
   #
   #    define order of coefficient labels:
   #
+  
   
   lab_orders <- list(  
     c("F", "M" ),
@@ -408,11 +437,13 @@ for (subpop in subpopulations_non_empty) {
     paste0("age",c("(-1,30]","(30,40]","(30,50]","(30,60]","(30,Inf]",">=30",">30","(40,50]","(50,60]","(50,65]","(50,Inf]",">=50",">50",">=60","(60,Inf]", ">65" )),
     #c("(-1,30]","(30,40]","(30,50]","(30,60]","(30,Inf]",">=30",">30","(40,50]","(50,60]","(50,65]","(50,Inf]",">=50",">50",">=60","(60,Inf]", ">65" ),
     c("d1:","d2:","d3:" ),
-    c("Pfi","Mod","Ast", "JJ","J&J" ),
-    c("Pfizer","Moderna","AstraZeneca", "JJ","J&J" ),
-    c("pre-","buf", "dose 1","dose 2", "dose 3" ),
+    #c("Pfi", "Mod", "Ast",  "JJ","J&J" ),
+    #c("Pfizer", "Moderna", "AstraZeneca", "JJ","J&J" ),
+    c("Pfi","no_Pf","no Pf", "Mod","no_Mo","no Mo", "Ast","no_AZ","no AZ",  "JJ","J&J","no_JJ","no_J&","no JJ","no_J&" ),
+    c("Pfizer","no_Pfizer","no Pfizer", "Moderna","no_Moderna","no Moderna", "AstraZeneca","no_AZ", "no AZ", "JJ","J&J", "no_JJ","no_J&J", "no JJ","no J&J" ),
+    c("pre-","buf", "dose 1","dose 2", "dose 3", "only_for_time_adj" ),
     c("buf", "dose 1 pre-", paste0( rep(paste0("dose ",1:3),each=10), rep(c("pre-"," pre-","<"," <","("," (","["," [",">"," >"),3) ) ),
-    c("[-90;-30],[-29;-1],[0;0]","[1;7]","[1;14]","[1;28]","[8;14]","[15;28]",">28","[29;60]",">60","[61;180]", ">180"),
+    c("[-90;-30],[-29;-1],[0;0]","[1;7]","[1;14]","[1;21]","[1;28]","[8;14]","[15;21]","[15;28]","[22;28]","[22;42]",">28","[29;60]",">42",">60","[61;180]", ">180"),
     paste0(":",c("(-1,30]","(30,60]","(60,Inf]","(60, Inf]")),
     paste0(":",c("(-Inf,-1]","(-1,70]","(70,Inf]")),
     paste0(":",c("(-\U221E,-1]","(-Inf,-1]","(-1,21]","(-1,30]","(21,35]","(30,60]","(35,56]","(56,84]","(60,Inf]","(60, Inf]","(84, Inf]","(84, \U221E]")),
@@ -422,15 +453,15 @@ for (subpop in subpopulations_non_empty) {
   
   # during testing: may use only one vector to adjust for calendar time, for example, time_seq[5]:
   # time_seq <- time_seq[5]
+
+  # colors:
+  col_list <- c("red", "green3", "orange",  "deepskyblue", "magenta2", "cyan2", "chocolate1", "gray" ) 
   
   
-  
-  col_list <- c("red", "green3", "orange",  "deepskyblue", "magenta2", "gray", "cyan2","chocolate1" ) 
-  
-  
-  
-  #ae_events <- c("myocarditis","pericarditis","myopericarditis")
+  # outcome variables:
   ae_events <- c("myocarditis","pericarditis")
+  #ae_events <- c("myocarditis","pericarditis","myopericarditis")
+  
   
   # create covid selection variables: no_covid_before_myocard_30d, no_covid_before_pericar_30d, no_covid_before_myoperi_30d, ...
   for(iae in ae_events){ 
@@ -444,7 +475,21 @@ for (subpop in subpopulations_non_empty) {
   }
   
   
+  # select only those who didnot have COVID 30 days before the event. These 30 days added extra to make sure that 
+  # if someone had COVID then there was no connection to the event.
+  # create covid selection variables: no_covid_before_myocard_30d, no_covid_before_pericar_30d, no_covid_before_myoperi_30d, ...
+  for(iae in ae_events){ 
+    scri_input[,paste0("no_covid_before_",substring(iae,1,7),"_plus30d")] <- scri_input$covid19_date > ( scri_input[,paste0(iae,"_date")] + 30 )  &  !is.na(scri_input$covid19_date) & !is.na(scri_input[,paste0(iae,"_date")])
+    scri_input[is.na(scri_input$covid19_date),paste0("no_covid_before_",substring(iae,1,7),"_plus30d")] <- T
+  }                                      
+  {
+    cat("\n\ntable for variables:\n")
+    print(c("covid",paste0("no_covid_before_",substring(ae_events,1,7),"_plus30d")))
+    table1(scri_input[,c("covid",paste0("no_covid_before_",substring(ae_events,1,7),"_plus30d"))] )
+  }
   
+  
+ # time_seq <- time_seq[4]
   
   
   #################################################
@@ -455,8 +500,23 @@ for (subpop in subpopulations_non_empty) {
   
   scri_input0 <- scri_input
   
-  for(icovid in c("all_data","no_covid_before_event_30d","no_covid_start_control_rw")){
+  
+  
+  if(onlyPfizer){   # run analysis only if at least one of the doses is Pfizer
+    scri_input0 <- scri_input0[ scri_input0$type_vax1=="Pfizer" | is.na(scri_input0$type_vax2) | (!is.na(scri_input0$type_vax2) & scri_input0$type_vax2=="Pfizer"),]
+    scri_input0$type_vax1[!is.na(scri_input0$type_vax1) & scri_input0$type_vax1!="Pfizer"] <- "no_Pfizer"
+    scri_input0$type_vax2[!is.na(scri_input0$type_vax2) & scri_input0$type_vax2!="Pfizer"] <- "no_Pfizer"
     
+    # create new type_vax1_short, type_vax2_short, ... : as substring(..., 1, 5 )
+    for(iv in 1:nvax)
+      scri_input0[,paste0("type_vax",iv,"_short")] <- format(substring(scri_input0[,paste0("type_vax",iv)], 1, 5), width=5)
+  }
+  
+  
+  
+  for(icovid in c( "all_data", "no_covid_before_event_plus30d", "no_covid_start_control_rw" ) ){
+  #for(icovid in c( "all_data", "no_covid_before_event_plus30d", "no_covid_before_event_30d", "no_covid_start_control_rw" ) ){
+      
     if( length(grep("covid",tolower(icovid)))>0 & all(tolower(names(scri_input0)) != c("covid19_date")) ) next 
     
     # SCCS output_directory  
@@ -470,521 +530,1066 @@ for (subpop in subpopulations_non_empty) {
     scri_input <- scri_input0
     
     for(iae in ae_events){
-      if( icovid =="all_data"                  ) scri_input[,paste0("cond_covid_",substring(iae,1,7))] <- rep(T,nrow(scri_input))
-      if( icovid =="no_covid_before_event_30d" ) scri_input[,paste0("cond_covid_",substring(iae,1,7))] <- scri_input[,paste0("no_covid_before_",substring(iae,1,7),"_30d") ]
-      if( icovid =="no_covid_start_control_rw" ) scri_input[,paste0("cond_covid_",substring(iae,1,7))] <- scri_input$covid==0
+      if( icovid =="all_data"                      ) scri_input[,paste0("cond_covid_",substring(iae,1,7))] <- rep(T,nrow(scri_input))
+      if( icovid =="no_covid_before_event_plus30d" ) scri_input[,paste0("cond_covid_",substring(iae,1,7))] <- scri_input[,paste0("no_covid_before_",substring(iae,1,7),"_plus30d") ]
+      if( icovid =="no_covid_before_event_30d"     ) scri_input[,paste0("cond_covid_",substring(iae,1,7))] <- scri_input[,paste0("no_covid_before_",substring(iae,1,7),"_30d") ]
+      if( icovid =="no_covid_start_control_rw"     ) scri_input[,paste0("cond_covid_",substring(iae,1,7))] <- scri_input$covid==0
     }  
     
     covid_select_text <- switch (icovid,
-                                 "all_data"                  = "alldata",
-                                 "no_covid_before_event_30d" = "covid30d",
-                                 "no_covid_start_control_rw" = "covidstart"
+                                 "all_data"                      = "alldata",
+                                 "no_covid_before_event_plus30d" = "covidplus30d",
+                                 "no_covid_before_event_30d"     = "covid30d",
+                                 "no_covid_start_control_rw"     = "covidstart"
     )
     
     vax_priority <- paste0("_vax2prior_",covid_select_text)
     
     
-    ########### no strata: #############
-    #
     
-    # for(iae in ae_events)
-    #   brand_images( plot_data, ae_event=iae, tit="")
-    
-    cat("\n\nAnalysis for ",icovid," together.\n\n")
-    
-    models_list <- list()
-    report_list <- list()
-    for(iae in ae_events){
+    if(lmain){
+      ########### no strata: #############
+      #
       
-      cat("\n",paste(iae, format(Sys.time()),"\n\n"))
-      cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
-
+      # for(iae in ae_events)
+      #   brand_images( plot_data, ae_event=iae, tit="")
       
-      first_plot <- T
-      ae_event_first <- T  
+      cat("\n\nAnalysis for ",icovid," together.\n\n")
       
-      for(iii in ifelse(nvax>=3,6,3):1){
+      models_list <- list()
+      report_list <- list()
+      for(iae in ae_events){
         
-        if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
-        if(iii==2) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
-        if(iii==3) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+        cat("\n",paste(iae, format(Sys.time()),"\n\n"))
+        cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
         
-        if(iii==4) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
-        if(iii==5) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
-        if(iii==6) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
         
-        #vax_priority <- paste0("_vax2prior_",covid_select_text)
-        specif_name  <- "_no_split" 
+        first_plot <- T
+        ae_event_first <- T  
         
-        global_name  <- paste0( vax_priority, specif_name )
-        output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
-        cat(paste(output_name, format(Sys.time()),"\n"))
-        
-        formula_text <-  "~ lab"
-        
-        res <- scri_strata( output_name  = output_name, 
-                            formula_text = formula_text,       time_seq = time_seq, 
-                            event_time = paste0(iae,"_days"), event = iae, id="person_id",
-                            rws          = rws_def,
-                            start_obs    = "study_entry_days", end_obs = "study_exit_days",
-                            data         = scri_input[cond_iae,],
-                            image_plots = ae_event_first,
-                            lab_orders = lab_orders,
-                            paral = T, paral_vars = paral_vars, n_cores = n_cores,
-                            lprint = print_during_running,
-                            global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
-                            CI = CI_draw
-        )
-        first_plot <- F
-        ae_event_first <- F
-        
-        report_list <- add_to_report_list(res$tabs,     output_name)
-        models_list <- add_to_models_list(res$scri_all, output_name)
-      }
-    }
-    # plots:
-    if(plot_during_running) 
-      for(istr in names(report_list) )
-        if(!is.null(report_list[[istr]][[1]]))
-          plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
-    gc()
-    
-    
-    ###########
-    #  save report_list and model_list
-    save_results(global_name, report_list, models_list)
-    #
-    #######################################################################################
-    
-
-    
-    ########### per brand:  all brands in one model #############
-    
-    cat("\n\nAnalysis for ",icovid," per brand.\n\n")
-    
-    models_list <- list()
-    report_list <- list()
-    
-    for(iae in ae_events){
+        for(iii in ifelse(nvax>=3,8,4):1){
+          
+          if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
+          if(iii==2) { rws_def <- rws_def_2vax_21; irw <- 21; idose <- 2 }
+          if(iii==3) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
+          if(iii==4) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+          
+          if(iii==5) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
+          if(iii==6) { rws_def <- rws_def_3vax_21; irw <- 21; idose <- 3 }
+          if(iii==7) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
+          if(iii==8) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+          
+          #vax_priority <- paste0("_vax2prior_",covid_select_text)
+          specif_name  <- "_no_split" 
+          
+          ##############################
+          global_name  <- paste0( vax_priority, specif_name )
+          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_0")
+          #output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+          cat(paste(output_name, format(Sys.time()),"\n"))
+          
+          formula_text <-  "~ lab"
+          
+          res <- scri_strata( output_name  = output_name, 
+                              formula_text = formula_text,       time_seq = time_seq, 
+                              event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                              rws          = rws_def,
+                              start_obs    = "study_entry_days", end_obs = "study_exit_days",
+                              data         = scri_input[cond_iae,],
+                              rw_observed_percentage = 0,   
+                              censored_vars = "death_days",           
+                              event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                              image_plots = ae_event_first,
+                              lab_orders = lab_orders,
+                              paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                              lprint = print_during_running,
+                              global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                              CI = CI_draw
+          )
+          first_plot <- F
+          ae_event_first <- F
+          
+          report_list <- add_to_report_list(res$tabs,     output_name)
+          models_list <- add_to_models_list(res$scri_all, output_name)
+          
+          
+          ##############################
+          global_name  <- paste0( vax_priority, specif_name )
+          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_T")
+          cat(paste(output_name, format(Sys.time()),"\n"))
+          
+          formula_text <-  "~ lab"
+          
+          res <- scri_strata( output_name  = output_name, 
+                              formula_text = formula_text,       time_seq = time_seq, 
+                              event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                              rws          = rws_def,
+                              start_obs    = "study_entry_days", end_obs = "study_exit_days",
+                              data         = scri_input[cond_iae,],
+                              rw_observed_percentage = 100,   
+                              censored_vars = "death_days",           
+                              event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                              image_plots = ae_event_first,
+                              lab_orders = lab_orders,
+                              paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                              lprint = print_during_running,
+                              global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                              CI = CI_draw
+          )
+          first_plot <- F
+          ae_event_first <- F
+          
+          report_list <- add_to_report_list(res$tabs,     output_name)
+          models_list <- add_to_models_list(res$scri_all, output_name)
+          
+          ##############################
+          global_name  <- paste0( vax_priority, specif_name )
+          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_F")
+          cat(paste(output_name, format(Sys.time()),"\n"))
+          
+          formula_text <-  "~ lab"
+          
+          res <- scri_strata( output_name  = output_name, 
+                              formula_text = formula_text,       time_seq = time_seq, 
+                              event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                              rws          = rws_def,
+                              start_obs    = "study_entry_days", end_obs = "study_exit_days",
+                              data         = scri_input[cond_iae,],
+                              rw_observed_percentage = 100,   
+                              censored_vars = "death_days",           
+                              event_in_rw=F,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                              image_plots = ae_event_first,
+                              lab_orders = lab_orders,
+                              paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                              lprint = print_during_running,
+                              global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                              CI = CI_draw
+          )
+          first_plot <- F
+          ae_event_first <- F
+          
+          report_list <- add_to_report_list(res$tabs,     output_name)
+          models_list <- add_to_models_list(res$scri_all, output_name)
+          
+        }
+        gc()
+      }  # end of iae
+      # plots:
+      if(plot_during_running) 
+        for(istr in names(report_list) )
+          if(!is.null(report_list[[istr]][[1]]))
+            plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
+      #gc()
       
-      cat("\n",paste(iae, format(Sys.time()),"\n\n"))
-      cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
       
-      first_plot <- T
-      ae_event_first <- T
+      ###########
+      #  save report_list and model_list
+      save_results(global_name, report_list, models_list)
+      #
+      #######################################################################################
       
-      for(iii in ifelse(nvax>=3,6,3):1){
-        
-        
-        if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
-        if(iii==2) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
-        if(iii==3) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
-        
-        if(iii==4) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
-        if(iii==5) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
-        if(iii==6) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
-        
-        specif_name  <-"_brands" 
-        
-        global_name  <- paste0( vax_priority, specif_name )
-        output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
-        cat(paste(output_name, format(Sys.time()),"\n"))
-        
-        formula_text <-  "~ br:lab"
-        
-        if(nvax>=3) time_dep <- list( brand_3v_def )
-        else        time_dep <- list( brand_2v_def )
-        
-        res <- scri_strata( output_name  = output_name, 
-                            formula_text = formula_text,       time_seq = time_seq, 
-                            event_time = paste0(iae,"_days"), event = iae, id="person_id",
-                            rws          = rws_def,
-                            time_dep     = time_dep,
-                            start_obs    = "study_entry_days", end_obs = "study_exit_days",
-                            data         = scri_input[cond_iae,],
-                            image_plots  = ae_event_first, image_brand=T,
-                            lab_orders   = lab_orders,
-                            paral = T, paral_vars = paral_vars, n_cores = n_cores,
-                            lprint       = print_during_running,
-                            global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
-                            CI = CI_draw
-        )
-        first_plot <- F
-        ae_event_first <- F
-        
-        report_list <- add_to_report_list(res$tabs,     output_name)
-        models_list <- add_to_models_list(res$scri_all, output_name)
-      }
-    }  
-    
-    
-    
-    # plots:
-    if(plot_during_running) 
-      for(istr in names(report_list) )
-        if(!is.null(report_list[[istr]][[1]]))
-          plot_res(report_list[[istr]][[1]], main=paste( report_list[[istr]][[1]][[1]][1,"event"], formula_text," + cal_time_cat"), col=col_list)
-    gc()
-    
-    ####
-    #  save report_list and model_list
-    save_results(global_name, report_list, models_list)
-    #
-    #######################################################################################
-    
-    
-    
-    
-    #######################################################################################
-    
-    ########### per sex & age30: one model #############
-    #
-    
-    cat("\n\nAnalysis for ",icovid," per sex, age30, brand.\n\n")
-    
-    if(all(names(scri_input) !="age30"))
-      scri_input$age30 <- paste0("age",as.character(cut(scri_input$age_at_study_entry, c(-1,30,Inf))))
-    #levels(scri_input$age30) <- gsub( "Inf","\U221E", levels(scri_input$age30),fixed=T)
-    
-    scri_input$sex_age30 <- paste0("sex:",scri_input$sex, " ", scri_input$age30)
-    
-    models_list <- list()
-    report_list <- list()
-    
-    for(iae in ae_events[1]){
       
-      cat("\n",paste(iae, format(Sys.time()),"\n\n"))
-      cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
       
-      for(istr in unique(scri_input$sex_age30[cond_iae]) ){
+      ########### per brand:  all brands in one model #############
+      
+      cat("\n\nAnalysis for ",icovid," per brand.\n\n")
+      
+      models_list <- list()
+      report_list <- list()
+      
+      for(iae in ae_events){
+        
+        cat("\n",paste(iae, format(Sys.time()),"\n\n"))
+        cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
         
         first_plot <- T
         ae_event_first <- T
         
-        for(iii in ifelse(nvax>=3,6,3):1){
+        for(iii in ifelse(nvax>=3,8,4):1){
           
           
           if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
-          if(iii==2) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
-          if(iii==3) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+          if(iii==2) { rws_def <- rws_def_2vax_21; irw <- 21; idose <- 2 }
+          if(iii==3) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
+          if(iii==4) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
           
-          if(iii==4) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
-          if(iii==5) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
-          if(iii==6) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+          if(iii==5) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
+          if(iii==6) { rws_def <- rws_def_3vax_21; irw <- 21; idose <- 3 }
+          if(iii==7) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
+          if(iii==8) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
           
-          specif_name  <- istr   #  "_sex_age30" 
           
-          global_name0 <- paste0( vax_priority, "_sex_age30" )
+          specif_name  <-"_brands" 
+          
+          ##############################
           global_name  <- paste0( vax_priority, specif_name )
-          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_0")
+          #output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
           cat(paste(output_name, format(Sys.time()),"\n"))
           
-          formula_text <-  "~ sex_age30:br:lab"
+          formula_text <-  "~ br:lab"
           
           if(nvax>=3) time_dep <- list( brand_3v_def )
           else        time_dep <- list( brand_2v_def )
           
-          res <- scri_strata(  output_name  = output_name, 
-                               formula_text = formula_text,       time_seq = time_seq, 
-                               event_time = paste0(iae,"_days"), event = iae, id="person_id",
-                               rws          = rws_def,
-                               time_dep     = time_dep, 
-                               #combine_vars =  c("sex","age4"), 
-                               start_obs    = "study_entry_days", end_obs = "study_exit_days", 
-                               data         = scri_input[scri_input$sex_age30==istr & cond_iae, ],
-                               nvax         = min(3,nvax),
-                               image_plots  = ae_event_first, image_brand=T, image_tit=istr,
-                               lab_orders   = lab_orders,
-                               paral = T, paral_vars = paral_vars, n_cores = n_cores,
-                               lprint       = print_during_running,
-                               global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
-                               CI = CI_draw
+          res <- scri_strata( output_name  = output_name, 
+                              formula_text = formula_text,       time_seq = time_seq, 
+                              event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                              rws          = rws_def,
+                              time_dep     = time_dep,
+                              start_obs    = "study_entry_days", end_obs = "study_exit_days",
+                              data         = scri_input[cond_iae,],
+                              rw_observed_percentage = 0,   
+                              censored_vars = "death_days",           
+                              event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                              image_plots  = ae_event_first, image_brand=T,
+                              lab_orders   = lab_orders,
+                              paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                              lprint       = print_during_running,
+                              global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                              CI = CI_draw
           )
-          ae_event_first <- F
           first_plot <- F
+          ae_event_first <- F
           
           report_list <- add_to_report_list(res$tabs,     output_name)
           models_list <- add_to_models_list(res$scri_all, output_name)
-        }
-      }
-    }  
-    
-    # plots:
-    if(plot_during_running) 
-      for(istr in names(report_list) )
-        if(!is.null(report_list[[istr]][[1]]))
-          plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
-    gc()
-    
-    ####
-    #  save report_list and model_list
-    save_results(global_name0, report_list, models_list)
-    #
-    #######################################################################################
-    
-    
-    
-    
-    
-    
-    
-    ########### per age30_50: one model #############
-    #
-    
-    cat("\n\nAnalysis for ",icovid," per age30_50, brand.\n\n")
-    
-    if(all(names(scri_input) !="age30_50"))
-      scri_input$age30_50 <- paste0("age",as.character(cut(scri_input$age_at_study_entry, c(-1,30,50,Inf))))
-    #levels(scri_input$age30_50) <- gsub( "Inf","\U221E", levels(scri_input$age30_50),fixed=T)
-    
-    
-    models_list <- list()
-    report_list <- list()
-    
-    for(iae in ae_events){
-      
-      cat("\n",paste(iae, format(Sys.time()),"\n\n"))
-      cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
-      
-      for(istr in unique(scri_input$age30_50[cond_iae]) ){
-        
-        first_plot <- T
-        ae_event_first <- T
-        
-        for(iii in ifelse(nvax>=3,6,3):1){
           
-          
-          if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
-          if(iii==2) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
-          if(iii==3) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
-          
-          if(iii==4) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
-          if(iii==5) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
-          if(iii==6) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
-          
-          specif_name  <-  istr  # "_age30_50" # istr
-          
-          global_name0 <- paste0( vax_priority, "_age30_50" )
+          ##############################
           global_name  <- paste0( vax_priority, specif_name )
-          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_T")
           cat(paste(output_name, format(Sys.time()),"\n"))
           
-          formula_text <-  "~ age30_50:br:lab"
+          formula_text <-  "~ br:lab"
           
           if(nvax>=3) time_dep <- list( brand_3v_def )
           else        time_dep <- list( brand_2v_def )
           
-          res <- scri_strata(  output_name  = output_name, 
-                               formula_text = formula_text,       time_seq = time_seq, 
-                               event_time = paste0(iae,"_days"), event = iae, id="person_id",
-                               rws          = rws_def,
-                               time_dep     = time_dep,  
-                               #combine_vars =  c("sex","age4"), 
-                               start_obs    = "study_entry_days", end_obs = "study_exit_days", 
-                               data         = scri_input[scri_input$age30_50==istr & cond_iae,],
-                               image_plots = ae_event_first, image_brand=T, image_tit=istr,
-                               lab_orders   = lab_orders,
-                               paral = T, paral_vars = paral_vars, n_cores = n_cores,
-                               lprint       = print_during_running,
-                               global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
-                               CI = CI_draw
+          res <- scri_strata( output_name  = output_name, 
+                              formula_text = formula_text,       time_seq = time_seq, 
+                              event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                              rws          = rws_def,
+                              time_dep     = time_dep,
+                              start_obs    = "study_entry_days", end_obs = "study_exit_days",
+                              data         = scri_input[cond_iae,],
+                              rw_observed_percentage = 100,   
+                              censored_vars = "death_days",           
+                              event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                              image_plots  = ae_event_first, image_brand=T,
+                              lab_orders   = lab_orders,
+                              paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                              lprint       = print_during_running,
+                              global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                              CI = CI_draw
           )
-          ae_event_first <- F
           first_plot <- F
+          ae_event_first <- F
           
           report_list <- add_to_report_list(res$tabs,     output_name)
           models_list <- add_to_models_list(res$scri_all, output_name)
-        }
-      }
-    }  
-    
-    # plots:
-    if(plot_during_running) 
-      for(istr in names(report_list) )
-        if(!is.null(report_list[[istr]][[1]]))
-          plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
-    gc()
-    
-    ####
-    #  save report_list and model_list
-    save_results(global_name0, report_list, models_list)
-    #
-    #######################################################################################
-    
-    
-    
-    
-    
-    
-    
-    ########### per age30  #############
-    #
-    
-    cat("\n\nAnalysis for ",icovid," per age30, brand.\n\n")
-    
-    if(all(names(scri_input) !="age30"))
-      scri_input$age30 <- paste0("age",as.character(cut(scri_input$age_at_study_entry, c(-1,30,Inf))))
-    #levels(scri_input$age30) <- gsub( "Inf","\U221E", levels(scri_input$age30),fixed=T)
-    
-    
-    models_list <- list()
-    report_list <- list()
-    
-    for(iae in ae_events){
-      
-      cat("\n",paste(iae, format(Sys.time()),"\n\n"))
-      cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
-      
-      for(istr in unique(scri_input$age30[cond_iae]) ){
-        
-        first_plot <- T
-        ae_event_first <- T
-        
-        for(iii in ifelse(nvax>=3,6,3):1){
           
           
-          if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
-          if(iii==2) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
-          if(iii==3) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
-          
-          if(iii==4) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
-          if(iii==5) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
-          if(iii==6) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
-          
-          specif_name  <- istr  #  "_age30" 
-          
-          global_name0 <- paste0( vax_priority, "_age30" )
+          ##############################
           global_name  <- paste0( vax_priority, specif_name )
-          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_F")
           cat(paste(output_name, format(Sys.time()),"\n"))
           
-          formula_text <-  "~ age30:br:lab"
+          formula_text <-  "~ br:lab"
           
           if(nvax>=3) time_dep <- list( brand_3v_def )
           else        time_dep <- list( brand_2v_def )
           
-          res <- scri_strata(  output_name  = output_name,  
-                               formula_text = formula_text,       time_seq = time_seq, 
-                               event_time = paste0(iae,"_days"), event = iae, id="person_id",
-                               rws          = rws_def,
-                               time_dep     = time_dep,
-                               #combine_vars =  c("sex","age4"), 
-                               start_obs    = "study_entry_days", end_obs = "study_exit_days", 
-                               data         = scri_input[scri_input$age30==istr & cond_iae,],
-                               image_plots = ae_event_first, image_brand=T, image_tit=istr,
-                               lab_orders   = lab_orders,
-                               paral = T, paral_vars = paral_vars, n_cores = n_cores,
-                               lprint       = print_during_running,
-                               global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
-                               CI = CI_draw
+          res <- scri_strata( output_name  = output_name, 
+                              formula_text = formula_text,       time_seq = time_seq, 
+                              event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                              rws          = rws_def,
+                              time_dep     = time_dep,
+                              start_obs    = "study_entry_days", end_obs = "study_exit_days",
+                              data         = scri_input[cond_iae,],
+                              rw_observed_percentage = 100,   
+                              censored_vars = "death_days",           
+                              event_in_rw=F,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                              image_plots  = ae_event_first, image_brand=T,
+                              lab_orders   = lab_orders,
+                              paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                              lprint       = print_during_running,
+                              global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                              CI = CI_draw
           )
-          ae_event_first <- F
           first_plot <- F
+          ae_event_first <- F
           
           report_list <- add_to_report_list(res$tabs,     output_name)
           models_list <- add_to_models_list(res$scri_all, output_name)
+          
         }
-      }
-    }  
-    
-    # plots:
-    if(plot_during_running) 
-      for(istr in names(report_list) )
-        if(!is.null(report_list[[istr]][[1]]))
-          plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
-    gc()
-    
-    ####
-    #  save report_list and model_list
-    save_results(global_name0, report_list, models_list)
-    #
-    #######################################################################################
-    
-    
-    
-    ########### per sex  #############
-    #
-    
-    cat("\n\nAnalysis for ",icovid," per sex, brand.\n\n")
-    
-    scri_input$sexc <- paste0("sex:",scri_input$sex )
-    
-    models_list <- list()
-    report_list <- list()
-    
-    for(iae in ae_events){
+        gc()
+      }  # end of iae  
       
-      cat("\n",paste(iae, format(Sys.time()),"\n\n"))
-      cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
       
-      for(istr in unique(scri_input$sexc[cond_iae]) ){
+      
+      # plots:
+      if(plot_during_running) 
+        for(istr in names(report_list) )
+          if(!is.null(report_list[[istr]][[1]]))
+            plot_res(report_list[[istr]][[1]], main=paste( report_list[[istr]][[1]][[1]][1,"event"], formula_text," + cal_time_cat"), col=col_list)
+      #gc()
+      
+      ####
+      #  save report_list and model_list
+      save_results(global_name, report_list, models_list)
+      #
+      #######################################################################################
+      
+      
+      
+      
+      #######################################################################################
+      
+      ########### per sex & age30: one model #############
+      #
+      
+      cat("\n\nAnalysis for ",icovid," per sex, age30, brand.\n\n")
+      
+      if(all(names(scri_input) !="age30"))
+        scri_input$age30 <- paste0("age",as.character(cut(scri_input$age_at_study_entry, c(-1,30,Inf))))
+      #levels(scri_input$age30) <- gsub( "Inf","\U221E", levels(scri_input$age30),fixed=T)
+      
+      scri_input$sex_age30_0 <- scri_input$sex_age30 <- paste0("sex:",scri_input$sex, " ", scri_input$age30)
+      
+      models_list <- list()
+      report_list <- list()
+      
+      for(iae in ae_events){
         
-        first_plot <- T
-        ae_event_first <- T
+        cat("\n",paste(iae, format(Sys.time()),"\n\n"))
+        cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
         
-        for(iii in ifelse(nvax>=3,6,3):1){
+        for(istr in unique(scri_input$sex_age30_0[cond_iae]) ){
           
+          first_plot <- T
+          ae_event_first <- T
           
+          for(iii in ifelse(nvax>=3,8,4):1){
+            
+            if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
+            if(iii==2) { rws_def <- rws_def_2vax_21; irw <- 21; idose <- 2 }
+            if(iii==3) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
+            if(iii==4) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+            
+            if(iii==5) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
+            if(iii==6) { rws_def <- rws_def_3vax_21; irw <- 21; idose <- 3 }
+            if(iii==7) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
+            if(iii==8) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+            
+            for(iadj in c("_subgrtadj","_alltadj")){
+              
+              if(iadj == "_subgrtadj"){
+                scri_input$cond_subgr_adj <- scri_input$sex_age30_0==istr
+                cond_var <- ""
+                scri_input$sex_age30 <- scri_input$sex_age30_0
+              }
+              if(iadj == "_alltadj"){
+                scri_input$cond_subgr_adj <- rep(T,nrow(scri_input))
+                scri_input$cond_all_adj   <- scri_input$sex_age30_0==istr
+                cond_var <- "cond_all_adj"
+                scri_input$sex_age30 <- scri_input$sex_age30_0
+                scri_input$sex_age30[scri_input$sex_age30!=istr] <- paste0("no_",istr)
+              }
+              
+              specif_name  <- istr   #  "_sex_age30" 
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_sex_age30" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_0",iadj)
+              #output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ sex_age30:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name, 
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep, 
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   #data         = scri_input[scri_input$sex_age30==istr & cond_iae, ],
+                                   nvax         = min(3,nvax),
+                                   rw_observed_percentage = 0,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots  = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+              
+              
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_sex_age30" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_T",iadj)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ sex_age30:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name, 
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep, 
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   nvax         = min(3,nvax),
+                                   rw_observed_percentage = 100,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots  = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+              
+              
+              
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_sex_age30" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_F",iadj)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ sex_age30:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name, 
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep, 
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   nvax         = min(3,nvax),
+                                   rw_observed_percentage = 100,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=F,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots  = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+            
+            } # end of for iadj
+            
+          }
+          gc()
+        } # end of subgr
+      }  
+      
+      # plots:
+      if(plot_during_running) 
+        for(istr in names(report_list) )
+          if(!is.null(report_list[[istr]][[1]]))
+            plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
+      #gc()
+      
+      ####
+      #  save report_list and model_list
+      save_results(global_name0, report_list, models_list)
+      #
+      #######################################################################################
+      
+      
+      
+      
+      
+      
+      
+      ########### per age30_50: one model #############
+      #
+      
+      cat("\n\nAnalysis for ",icovid," per age30_50, brand.\n\n")
+      
+      if(all(names(scri_input) !="age30_50"))
+        scri_input$age30_50_0 <- scri_input$age30_50 <- paste0("age",as.character(cut(scri_input$age_at_study_entry, c(-1,30,50,Inf))))
+      #levels(scri_input$age30_50) <- gsub( "Inf","\U221E", levels(scri_input$age30_50),fixed=T)
+      
+      
+      models_list <- list()
+      report_list <- list()
+      
+      for(iae in ae_events){
+        
+        cat("\n",paste(iae, format(Sys.time()),"\n\n"))
+        cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
+        
+        for(istr in unique(scri_input$age30_50_0[cond_iae]) ){
           
-          if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
-          if(iii==2) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
-          if(iii==3) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+          first_plot <- T
+          ae_event_first <- T
           
-          if(iii==4) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
-          if(iii==5) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
-          if(iii==6) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+          for(iii in ifelse(nvax>=3,8,4):1){
+            
+            if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
+            if(iii==2) { rws_def <- rws_def_2vax_21; irw <- 21; idose <- 2 }
+            if(iii==3) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
+            if(iii==4) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+            
+            if(iii==5) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
+            if(iii==6) { rws_def <- rws_def_3vax_21; irw <- 21; idose <- 3 }
+            if(iii==7) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
+            if(iii==8) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+            
+            for(iadj in c("_subgrtadj","_alltadj")){
+              
+              if(iadj == "_subgrtadj"){
+                scri_input$cond_subgr_adj <- scri_input$age30_50_0==istr
+                cond_var <- ""
+                scri_input$age30_50 <- scri_input$age30_50_0 
+              }
+              if(iadj == "_alltadj"){
+                scri_input$cond_subgr_adj <- rep(T,nrow(scri_input))
+                scri_input$cond_all_adj   <- scri_input$age30_50_0==istr
+                cond_var <- "cond_all_adj"
+                scri_input$age30_50 <- scri_input$age30_50_0 
+                scri_input$age30_50[scri_input$age30_50!=istr] <- paste0("no_",istr)
+              }
+              
+              specif_name  <-  istr  # "_age30_50" # istr
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_age30_50" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_0",iadj)
+              #output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ age30_50:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name, 
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep,  
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   #data         = scri_input[scri_input$age30_50==istr & cond_iae,],
+                                   rw_observed_percentage = 0,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+              
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_age30_50" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_T",iadj)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ age30_50:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name, 
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep,  
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   rw_observed_percentage = 100,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+              
+              
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_age30_50" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_F",iadj)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ age30_50:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name, 
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep,  
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   rw_observed_percentage = 100,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=F,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+            
+            } # end of for iadj
+            
+          }
+          gc()
+        }   # end of subgr
+      }  
+      
+      # plots:
+      if(plot_during_running) 
+        for(istr in names(report_list) )
+          if(!is.null(report_list[[istr]][[1]]))
+            plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
+      #gc()
+      
+      ####
+      #  save report_list and model_list
+      save_results(global_name0, report_list, models_list)
+      #
+      #######################################################################################
+      
+      
+      
+      
+      
+      
+      
+      ########### per age30  #############
+      #
+      
+      cat("\n\nAnalysis for ",icovid," per age30, brand.\n\n")
+      
+      if(all(names(scri_input) !="age30"))
+        scri_input$age30 <- paste0("age",as.character(cut(scri_input$age_at_study_entry, c(-1,30,Inf))))
+      #levels(scri_input$age30) <- gsub( "Inf","\U221E", levels(scri_input$age30),fixed=T)
+      
+      
+      models_list <- list()
+      report_list <- list()
+      
+      for(iae in ae_events){
+        
+        cat("\n",paste(iae, format(Sys.time()),"\n\n"))
+        cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
+        
+        for(istr in unique(scri_input$age30[cond_iae]) ){
           
-          specif_name  <- istr  # "_sex" # istr
+          first_plot <- T
+          ae_event_first <- T
           
-          global_name0 <- paste0( vax_priority, "_sex" )
-          global_name  <- paste0( vax_priority, specif_name )
-          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
-          cat(paste(output_name, format(Sys.time()),"\n"))
+          for(iii in ifelse(nvax>=3,8,4):1){
+            
+            
+            if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
+            if(iii==2) { rws_def <- rws_def_2vax_21; irw <- 21; idose <- 2 }
+            if(iii==3) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
+            if(iii==4) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+            
+            if(iii==5) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
+            if(iii==6) { rws_def <- rws_def_3vax_21; irw <- 21; idose <- 3 }
+            if(iii==7) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
+            if(iii==8) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+            
+            for(iadj in c("_subgrtadj","_alltadj")){
+              
+              if(iadj == "_subgrtadj"){
+                scri_input$cond_subgr_adj <- scri_input$age30==istr
+                cond_var <- ""
+              }
+              if(iadj == "_alltadj"){
+                scri_input$cond_subgr_adj <- rep(T,nrow(scri_input))
+                scri_input$cond_all_adj   <- scri_input$age30==istr
+                cond_var <- "cond_all_adj"
+              }
+              
+              specif_name  <- istr  #  "_age30" 
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_age30" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_0",iadj)
+              #output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ age30:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name,  
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep,
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   #data         = scri_input[scri_input$age30==istr & cond_iae,],
+                                   rw_observed_percentage = 0,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_age30" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_T",iadj)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ age30:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name,  
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep,
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   rw_observed_percentage = 100,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+              
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_age30" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_F",iadj)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ age30:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name,  
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep,
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   rw_observed_percentage = 100,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=F,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+            
+            }  # end of for iadj
+            
+          }
+          gc()
+        }  # end of subgr
+      }  
+      
+      # plots:
+      if(plot_during_running) 
+        for(istr in names(report_list) )
+          if(!is.null(report_list[[istr]][[1]]))
+            plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
+      #gc()
+      
+      ####
+      #  save report_list and model_list
+      save_results(global_name0, report_list, models_list)
+      #
+      #######################################################################################
+      
+      
+      
+      ########### per sex  #############
+      #
+      
+      cat("\n\nAnalysis for ",icovid," per sex, brand.\n\n")
+      
+      scri_input$sexc <- paste0("sex:",scri_input$sex )
+      
+      models_list <- list()
+      report_list <- list()
+      
+      for(iae in ae_events){
+        
+        cat("\n",paste(iae, format(Sys.time()),"\n\n"))
+        cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
+        
+        for(istr in unique(scri_input$sexc[cond_iae]) ){
           
-          formula_text <-  "~ sexc:br:lab"
+          first_plot <- T
+          ae_event_first <- T
           
-          if(nvax>=3) time_dep <- list( brand_3v_def )
-          else        time_dep <- list( brand_2v_def )
-          
-          res <- scri_strata(  output_name  = output_name,
-                               formula_text = formula_text,       time_seq = time_seq, 
-                               event_time = paste0(iae,"_days"), event = iae, id="person_id",
-                               rws          = rws_def,
-                               time_dep     = time_dep, 
-                               #combine_vars =  c("sex","age4"), 
-                               start_obs    = "study_entry_days", end_obs = "study_exit_days", 
-                               data         = scri_input[scri_input$sexc==istr & cond_iae,],
-                               image_plots = ae_event_first, image_brand=T, image_tit=istr,
-                               lab_orders   = lab_orders,
-                               paral = T, paral_vars = paral_vars, n_cores = n_cores,
-                               lprint       = print_during_running,
-                               global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
-                               CI = CI_draw
-          )
-          ae_event_first <- F
-          first_plot <- F
-          
-          report_list <- add_to_report_list(res$tabs,     output_name)
-          models_list <- add_to_models_list(res$scri_all, output_name)
+          for(iii in ifelse(nvax>=3,8,4):1){
+            
+            
+            if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
+            if(iii==2) { rws_def <- rws_def_2vax_21; irw <- 21; idose <- 2 }
+            if(iii==3) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
+            if(iii==4) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+            
+            if(iii==5) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
+            if(iii==6) { rws_def <- rws_def_3vax_21; irw <- 21; idose <- 3 }
+            if(iii==7) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
+            if(iii==8) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+            
+            
+            for(iadj in c("_subgrtadj","_alltadj")){
+              
+              if(iadj == "_subgrtadj"){
+                scri_input$cond_subgr_adj <- scri_input$sexc==istr
+                cond_var <- ""
+              }
+              if(iadj == "_alltadj"){
+                scri_input$cond_subgr_adj <- rep(T,nrow(scri_input))
+                scri_input$cond_all_adj   <- scri_input$sexc==istr
+                cond_var <- "cond_all_adj"
+              }
+                  
+              
+              specif_name  <- istr  # "_sex" # istr
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_sex" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_0",iadj)
+              #output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ sexc:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name,
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep, 
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   #data         = scri_input[scri_input$sexc==istr & cond_iae,],
+                                   rw_observed_percentage = 0,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+              
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_sex" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_T",iadj)
+              #output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ sexc:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name,
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep, 
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   rw_observed_percentage = 100,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+              
+              
+              
+              ##############################
+              global_name0 <- paste0( vax_priority, "_sex" )
+              global_name  <- paste0( vax_priority, specif_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw,"d_obsperc_100_rw_event_F",iadj)
+              #output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ sexc:br:lab"
+              
+              if(nvax>=3) time_dep <- list( brand_3v_def )
+              else        time_dep <- list( brand_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name,
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep, 
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$cond_subgr_adj & cond_iae,], cond_var = cond_var,
+                                   rw_observed_percentage = 100,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=F,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = paral, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+            
+            }  # end of for iadj  
+            
+          }
         }
-      }
-    }  
-    
-    # plots:
-    if(plot_during_running) 
-      for(istr in names(report_list) )
-        if(!is.null(report_list[[istr]][[1]]))
-          plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
-    gc()
-    
-    ####
-    #  save report_list and model_list
-    save_results(global_name0, report_list, models_list)
-    #
-    #######################################################################################
-    
-    
-    
+      }  
+      
+      # plots:
+      if(plot_during_running) 
+        for(istr in names(report_list) )
+          if(!is.null(report_list[[istr]][[1]]))
+            plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
+      gc()
+      
+      ####
+      #  save report_list and model_list
+      save_results(global_name0, report_list, models_list)
+      #
+      #######################################################################################
+      
+      
+    }  # end of if(lmain)   
     
     
     #  days_to_week_infinity <- function( var, 
@@ -1018,428 +1623,450 @@ for (subpop in subpopulations_non_empty) {
     
     #                      distance between doses:
     
+    if(ldist){
     
-    
-    #########################################################################  
-    ######################################################################### 
-    #
-    #            Preparation for distance between doses analyses:
-    #
-    
-    
-    scri_input$dose12_diff  <-  as.numeric(difftime(scri_input$date_vax2, scri_input$date_vax1 ,units="days"))
-    
-    if(F){
-      # hist( scri_input$dose12_diff,seq(0,max( scri_input$dose12_diff,na.rm=T)+9,by=10))
-      # plot( (scri_input$myopericarditis_days - scri_input$days_vax1), scri_input$dose12_diff)
-      # plot( (scri_input$myopericarditis_days - scri_input$days_vax2), scri_input$dose12_diff)
-      plot( (scri_input$myopericarditis_days - scri_input$days_vax2), scri_input$dose12_diff, ylim=c(0,100))
-      abline(v=c(0,7,14,21,28,60))
+      #########################################################################  
+      ######################################################################### 
+      #
+      #            Preparation for distance between doses analyses:
+      #
       
-      par(mfcol=c(2,3))
-      for(ibr in brands){ 
-        ylim <- c(0,max(scri_input$dose12_diff, na.rm=T))
-        xlim <- range((scri_input$myopericarditis_days - scri_input$days_vax2), na.rm=T)
+      
+      scri_input$dose12_diff  <-  as.numeric(difftime(scri_input$date_vax2, scri_input$date_vax1 ,units="days"))
+      
+      if(F){
+        # hist( scri_input$dose12_diff,seq(0,max( scri_input$dose12_diff,na.rm=T)+9,by=10))
+        # plot( (scri_input$myopericarditis_days - scri_input$days_vax1), scri_input$dose12_diff)
+        # plot( (scri_input$myopericarditis_days - scri_input$days_vax2), scri_input$dose12_diff)
+        plot( (scri_input$myopericarditis_days - scri_input$days_vax2), scri_input$dose12_diff, ylim=c(0,100))
+        abline(v=c(0,7,14,21,28,60))
         
-        xlim <- c(-120,150); ylim <- c(0,120)
-        
-        cond <- scri_input$myocarditis==1 & scri_input$type_vax2 == ibr
-        plot( (scri_input$myopericarditis_days - scri_input$days_vax2)[cond], scri_input$dose12_diff[cond], ylim=ylim, xlim=xlim)
-        abline(v=c(0,7,14,21,28,60)); title(paste("myocarditis",ibr))
-        
-        cond <- scri_input$pericarditis==1 & scri_input$type_vax2 == ibr
-        plot( (scri_input$myopericarditis_days - scri_input$days_vax2)[cond], scri_input$dose12_diff[cond], ylim=ylim, xlim=xlim)
-        abline(v=c(0,7,14,21,28,60)); title(paste("pericarditis",ibr))
+        par(mfcol=c(2,3))
+        for(ibr in brands){ 
+          ylim <- c(0,max(scri_input$dose12_diff, na.rm=T))
+          xlim <- range((scri_input$myopericarditis_days - scri_input$days_vax2), na.rm=T)
+          
+          xlim <- c(-120,150); ylim <- c(0,120)
+          
+          cond <- scri_input$myocarditis==1 & scri_input$type_vax2 == ibr
+          plot( (scri_input$myopericarditis_days - scri_input$days_vax2)[cond], scri_input$dose12_diff[cond], ylim=ylim, xlim=xlim)
+          abline(v=c(0,7,14,21,28,60)); title(paste("myocarditis",ibr))
+          
+          cond <- scri_input$pericarditis==1 & scri_input$type_vax2 == ibr
+          plot( (scri_input$myopericarditis_days - scri_input$days_vax2)[cond], scri_input$dose12_diff[cond], ylim=ylim, xlim=xlim)
+          abline(v=c(0,7,14,21,28,60)); title(paste("pericarditis",ibr))
+        }
       }
-    }
-    
- #   # define distance categories for number of days between vax1 and vax2 ('dist12'), between vax2 and vax3 ('dist32')
- #   distances <- list( list( dist12 = c(-Inf,-1,      10*7,  Inf),
- #                            dist23 = c(-Inf,-1,      25*7,  Inf),
- #                            name   = "_dist10w"                        ),
- #                      list( dist12 = c(-Inf,-1, 4*7,  8*7,  Inf),
- #                            dist23 = c(-Inf,-1,      25*7,  Inf),
- #                            name   = "_dist4_8w"                       )
- #                 )
-   
-    
-    # loop for different categorizing of the distance between vaccines
-    for(idist in 1:length(distances)){
       
-      distance_12 <- distances[[idist]][["dist12"]]
-      dist_name   <- distances[[idist]][["name"]]
+      #   # define distance categories for number of days between vax1 and vax2 ('dist12'), between vax2 and vax3 ('dist32')
+      #   distances <- list( list( dist12 = c(-Inf,-1,      10*7,  Inf),
+      #                            dist23 = c(-Inf,-1,      25*7,  Inf),
+      #                            name   = "_dist10w"                        ),
+      #                      list( dist12 = c(-Inf,-1, 4*7,  8*7,  Inf),
+      #                            dist23 = c(-Inf,-1,      25*7,  Inf),
+      #                            name   = "_dist4_8w"                       )
+      #                 )
       
-      cat("\n\nAnalysis with distance between vaccines: ",dist_name ," \n\n")
       
-      scri_input$dose12_diff_cat <- scri_input$dose12_diff
-      scri_input$dose12_diff_cat[is.na(scri_input$dose12_diff_cat)] <- -999999999
-      scri_input$dose12_diff_cat <- paste0("dist12:",cut( scri_input$dose12_diff_cat, distance_12 ))
-      #scri_input$dose12_diff_cat <- paste0("dist12:",cut( scri_input$dose12_diff_cat, c(-Inf,-1, 10*7    ,Inf) ))   #10 weeks
+      # loop for different categorizing of the distance between vaccines
+      for(idist in 1:length(distances)){
+        
+        distance_12 <- distances[[idist]][["dist12"]]
+        dist_name   <- distances[[idist]][["name"]]
+        
+        cat("\n\nAnalysis with distance between vaccines: ",dist_name ," \n\n")
+        
+        scri_input$dose12_diff_cat <- scri_input$dose12_diff
+        scri_input$dose12_diff_cat[is.na(scri_input$dose12_diff_cat)] <- -999999999
+        scri_input$dose12_diff_cat <- paste0("dist12:",cut( scri_input$dose12_diff_cat, distance_12 ))
+        #scri_input$dose12_diff_cat <- paste0("dist12:",cut( scri_input$dose12_diff_cat, c(-Inf,-1, 10*7    ,Inf) ))   #10 weeks
+        
+        scri_input$dose12_diff_cat <- gsub( " Inf","Inf", scri_input$dose12_diff_cat,fixed=T)
+        #scri_input$dose12_diff_cat <- gsub( "Inf","\U221E", scri_input$dose12_diff_cat,fixed=T)
+        
+        table1(scri_input$dose12_diff_cat)
+        
+        
+        if(nvax>2){
+          
+          distance_23 <- distances[[idist]][["dist23"]]
+          
+          scri_input$dose23_diff  <-  as.numeric(difftime(scri_input$date_vax3, scri_input$date_vax2 ,units="days"))
+          scri_input$dose23_diff_cat <- scri_input$dose23_diff
+          scri_input$dose23_diff_cat[is.na(scri_input$dose23_diff_cat)] <- -999999999
+          scri_input$dose23_diff_cat <- paste0("dist23:",cut( scri_input$dose23_diff_cat, distance_23 ))
+          #scri_input$dose23_diff_cat <- paste0("dist23:",cut( scri_input$dose23_diff_cat, c(-Inf,-1,  25*7, Inf) ))
+          
+          scri_input$dose23_diff_cat <- gsub( " Inf","Inf", scri_input$dose23_diff_cat,fixed=T)
+          #scri_input$dose23_diff_cat <- gsub( "Inf","\U221E", scri_input$dose23_diff_cat,fixed=T)
+          table1(scri_input$dose23_diff_cat)
+        }
+        
+        
+        scri_input$vax01_distance <- paste0(  "d1:", "_dist:first_dose" )
+        scri_input$vax12_distance <- paste0(  "d2:", "_", scri_input$dose12_diff_cat )
+        scri_input$vax23_distance <- paste0(  "d3:", "_", scri_input$dose23_diff_cat )
+        table1(scri_input$vax01_distance)
+        table1(scri_input$vax12_distance)
+        table1(scri_input$vax23_distance)
+        
+        
+        
+        ########### no strata  interaction with distance between vaccines:     #############
+        #
+        
+        # for(iae in ae_events)
+        #   brand_images( plot_data, ae_event=iae, tit="")
+        
+        cat("\n\nAnalysis for ",icovid," per distance between vaccines.\n\n")
+        
+        models_list <- list()
+        report_list <- list()
+        
+        for(iae in ae_events){
+          
+          cat("\n",paste(iae, format(Sys.time()),"\n\n"))
+          cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
+          
+          first_plot <- T
+          ae_event_first <- T
+          
+          for(iii in ifelse(nvax>=3,8,4):1){
+            
+            
+            if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
+            if(iii==2) { rws_def <- rws_def_2vax_21; irw <- 21; idose <- 2 }
+            if(iii==3) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
+            if(iii==4) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+            
+            if(iii==5) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
+            if(iii==6) { rws_def <- rws_def_3vax_21; irw <- 21; idose <- 3 }
+            if(iii==7) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
+            if(iii==8) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+            
+            specif_name  <- "_no_split" 
+            
+            global_name  <- paste0( vax_priority, specif_name, dist_name )
+            output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+            cat(paste(output_name, format(Sys.time()),"\n"))
+            
+            formula_text <-  "~ lab:dist"
+            
+            if(nvax>=3) time_dep <- list( distance_3v_def )
+            else        time_dep <- list( distance_2v_def )
+            
+            res <- scri_strata( output_name  = output_name, 
+                                formula_text = formula_text,  time_seq = time_seq, 
+                                event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                rws          = rws_def,
+                                time_dep     = time_dep,              
+                                start_obs    = "study_entry_days", end_obs = "study_exit_days",
+                                data         = scri_input[cond_iae,],
+                                rw_observed_percentage = 100,   
+                                censored_vars = "death_days",           
+                                event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                image_plots = ae_event_first,
+                                lab_orders = lab_orders,
+                                paral = T, paral_vars = paral_vars, n_cores = n_cores,
+                                lprint = print_during_running,
+                                global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                CI = CI_draw
+            )
+            first_plot <- F
+            ae_event_first <- F
+            
+            report_list <- add_to_report_list(res$tabs,     output_name)
+            models_list <- add_to_models_list(res$scri_all, output_name)
+          }
+        }
+        
+        # plots:
+        if(plot_during_running) 
+          for(istr in names(report_list) )
+            if(!is.null(report_list[[istr]][[1]]))
+              plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
+        gc()
+        
+        
+        ###########
+        #  save report_list and model_list
+        save_results(global_name, report_list, models_list)
+        #
+        #######################################################################################
+        
+        
+        
+        
+        ########### brand  interaction with distance between vaccines:     #############
+        #
+        
+        # for(iae in ae_events)
+        #   brand_images( plot_data, ae_event=iae, tit="")
+        
+        cat("\n\nAnalysis for ",icovid," per brand, distance between vaccines.\n\n")
+        
+        models_list <- list()
+        report_list <- list()
+        
+        for(iae in ae_events){
+          
+          cat("\n",paste(iae, format(Sys.time()),"\n\n"))
+          cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
+          
+          first_plot <- T
+          ae_event_first <- T
+          
+          for(iii in ifelse(nvax>=3,8,4):1){
+            
 
-      scri_input$dose12_diff_cat <- gsub( " Inf","Inf", scri_input$dose12_diff_cat,fixed=T)
-      #scri_input$dose12_diff_cat <- gsub( "Inf","\U221E", scri_input$dose12_diff_cat,fixed=T)
-      
-      table1(scri_input$dose12_diff_cat)
-      
-      
-      if(nvax>2){
-        
-        distance_23 <- distances[[idist]][["dist23"]]
-        
-        scri_input$dose23_diff  <-  as.numeric(difftime(scri_input$date_vax3, scri_input$date_vax2 ,units="days"))
-        scri_input$dose23_diff_cat <- scri_input$dose23_diff
-        scri_input$dose23_diff_cat[is.na(scri_input$dose23_diff_cat)] <- -999999999
-        scri_input$dose23_diff_cat <- paste0("dist23:",cut( scri_input$dose23_diff_cat, distance_23 ))
-        #scri_input$dose23_diff_cat <- paste0("dist23:",cut( scri_input$dose23_diff_cat, c(-Inf,-1,  25*7, Inf) ))
-        
-        scri_input$dose23_diff_cat <- gsub( " Inf","Inf", scri_input$dose23_diff_cat,fixed=T)
-        #scri_input$dose23_diff_cat <- gsub( "Inf","\U221E", scri_input$dose23_diff_cat,fixed=T)
-        table1(scri_input$dose23_diff_cat)
-      }
-      
-      
-      scri_input$vax01_distance <- paste0(  "d1:", "_dist:first_dose" )
-      scri_input$vax12_distance <- paste0(  "d2:", "_", scri_input$dose12_diff_cat )
-      scri_input$vax23_distance <- paste0(  "d3:", "_", scri_input$dose23_diff_cat )
-      table1(scri_input$vax01_distance)
-      table1(scri_input$vax12_distance)
-      table1(scri_input$vax23_distance)
-      
-      
-      
-      ########### no strata  interaction with distance between vaccines:     #############
-      #
-      
-      # for(iae in ae_events)
-      #   brand_images( plot_data, ae_event=iae, tit="")
-      
-      cat("\n\nAnalysis for ",icovid," per distance between vaccines.\n\n")
-      
-      models_list <- list()
-      report_list <- list()
-      
-      for(iae in ae_events){
-        
-        cat("\n",paste(iae, format(Sys.time()),"\n\n"))
-        cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
-        
-        first_plot <- T
-        ae_event_first <- T
-        
-        for(iii in ifelse(nvax>=3,6,3):1){
-          
-          
-          if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
-          if(iii==2) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
-          if(iii==3) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
-          
-          if(iii==4) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
-          if(iii==5) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
-          if(iii==6) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
-          
-          specif_name  <- "_no_split" 
-          
-          global_name  <- paste0( vax_priority, specif_name, dist_name )
-          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
-          cat(paste(output_name, format(Sys.time()),"\n"))
-          
-          formula_text <-  "~ lab:dist"
-          
-          if(nvax>=3) time_dep <- list( distance_3v_def )
-          else        time_dep <- list( distance_2v_def )
-          
-          res <- scri_strata( output_name  = output_name, 
-                              formula_text = formula_text,  time_seq = time_seq, 
-                              event_time = paste0(iae,"_days"), event = iae, id="person_id",
-                              rws          = rws_def,
-                              time_dep     = time_dep,              
-                              start_obs    = "study_entry_days", end_obs = "study_exit_days",
-                              data         = scri_input[cond_iae,],
-                              image_plots = ae_event_first,
-                              lab_orders = lab_orders,
-                              paral = T, paral_vars = paral_vars, n_cores = n_cores,
-                              lprint = print_during_running,
-                              global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
-                              CI = CI_draw
-          )
-          first_plot <- F
-          ae_event_first <- F
-          
-          report_list <- add_to_report_list(res$tabs,     output_name)
-          models_list <- add_to_models_list(res$scri_all, output_name)
-        }
-      }
-      
-      # plots:
-      if(plot_during_running) 
-        for(istr in names(report_list) )
-          if(!is.null(report_list[[istr]][[1]]))
-            plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
-      gc()
-      
-      
-      ###########
-      #  save report_list and model_list
-      save_results(global_name, report_list, models_list)
-      #
-      #######################################################################################
-      
-      
-      
-      
-      ########### brand  interaction with distance between vaccines:     #############
-      #
-      
-      # for(iae in ae_events)
-      #   brand_images( plot_data, ae_event=iae, tit="")
-      
-      cat("\n\nAnalysis for ",icovid," per brand, distance between vaccines.\n\n")
-      
-      models_list <- list()
-      report_list <- list()
-      
-      for(iae in ae_events){
-        
-        cat("\n",paste(iae, format(Sys.time()),"\n\n"))
-        cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
-        
-        first_plot <- T
-        ae_event_first <- T
-        
-        for(iii in ifelse(nvax>=3,6,3):1){
-          
-          
-          if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
-          if(iii==2) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
-          if(iii==3) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
-          
-          if(iii==4) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
-          if(iii==5) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
-          if(iii==6) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
-          
-          specif_name  <- "_brand" 
-          
-          global_name  <- paste0( vax_priority, specif_name, dist_name )
-          output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
-          cat(paste(output_name, format(Sys.time()),"\n"))
-          
-          formula_text <-  "~ br_dist : lab "
-          
-          if(nvax>=3) time_dep <- list( brand_distance_3v_def )
-          else        time_dep <- list( brand_distance_2v_def )
-          
-          res <- scri_strata(   
-            output_name  = output_name, 
-            formula_text = formula_text,       time_seq = time_seq, 
-            event_time = paste0(iae,"_days"), event = iae, id="person_id",
-            rws          = rws_def,
-            time_dep     = time_dep,     
-            start_obs    = "study_entry_days", end_obs = "study_exit_days",
-            data         = scri_input[cond_iae,],
-            image_plots = ae_event_first, image_brand=T, 
-            lab_orders = lab_orders,
-            paral = T, paral_vars = paral_vars, n_cores = n_cores,
-            lprint = print_during_running,
-            global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
-            CI = CI_draw
-          )
-          first_plot <- F
-          ae_event_first <- F
-          
-          report_list <- add_to_report_list(res$tabs,     output_name)
-          models_list <- add_to_models_list(res$scri_all, output_name)
-        }
-      }
-      
-      # plots:
-      if(plot_during_running) 
-        for(istr in names(report_list) )
-          if(!is.null(report_list[[istr]][[1]]))
-            plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
-      gc()
-      
-      ###########
-      #  save report_list and model_list
-      save_results(global_name, report_list, models_list)
-      #
-      #######################################################################################
-      
-      
-      
-      
-      ########### per age30 per brand  interaction with distance between vaccines #############
-      #
-      
-      cat("\n\nAnalysis for ",icovid," per age30, brand, distance between vaccines.\n\n")
-      
-      if(all(names(scri_input) !="age30"))
-        scri_input$age30 <- paste0("age",as.character(cut(scri_input$age_at_study_entry, c(-1,30,Inf))))
-      #levels(scri_input$age30) <- gsub( "Inf","\U221E", levels(scri_input$age30),fixed=T)
-      
-      
-      models_list <- list()
-      report_list <- list()
-      
-      for(iae in ae_events){
-        
-        cat("\n",paste(iae, format(Sys.time()),"\n\n"))
-        cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
-        
-        for(istr in unique(scri_input$age30[cond_iae]) ){
-          
-          first_plot <- T
-          ae_event_first <- T
-          
-          for(iii in ifelse(nvax>=3,6,3):1){
-            
-            
             if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
-            if(iii==2) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
-            if(iii==3) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+            if(iii==2) { rws_def <- rws_def_2vax_21; irw <- 21; idose <- 2 }
+            if(iii==3) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
+            if(iii==4) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
             
-            if(iii==4) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
-            if(iii==5) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
-            if(iii==6) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+            if(iii==5) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
+            if(iii==6) { rws_def <- rws_def_3vax_21; irw <- 21; idose <- 3 }
+            if(iii==7) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
+            if(iii==8) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
             
-            specif_name  <- paste0(istr,"_brand")  #  "_age30" 
             
-            global_name0 <- paste0( vax_priority, "_age30"   , dist_name )
+            specif_name  <- "_brand" 
+            
             global_name  <- paste0( vax_priority, specif_name, dist_name )
             output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
             cat(paste(output_name, format(Sys.time()),"\n"))
             
-            formula_text <-  "~ age30 : br_dist : lab"
+            formula_text <-  "~ br_dist : lab "
             
             if(nvax>=3) time_dep <- list( brand_distance_3v_def )
             else        time_dep <- list( brand_distance_2v_def )
             
-            res <- scri_strata(  output_name  = output_name,  
-                                 formula_text = formula_text,       time_seq = time_seq, 
-                                 event_time = paste0(iae,"_days"), event = iae, id="person_id",
-                                 rws          = rws_def,
-                                 time_dep     = time_dep,
-                                 #combine_vars =  c("sex","age4"), 
-                                 start_obs    = "study_entry_days", end_obs = "study_exit_days", 
-                                 data         = scri_input[scri_input$age30==istr & cond_iae,],
-                                 image_plots = ae_event_first, image_brand=T, image_tit=istr,
-                                 lab_orders   = lab_orders,
-                                 paral = T, paral_vars = paral_vars, n_cores = n_cores,
-                                 lprint       = print_during_running,
-                                 global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
-                                 CI = CI_draw
+            res <- scri_strata(   
+              output_name  = output_name, 
+              formula_text = formula_text,       time_seq = time_seq, 
+              event_time = paste0(iae,"_days"), event = iae, id="person_id",
+              rws          = rws_def,
+              time_dep     = time_dep,     
+              start_obs    = "study_entry_days", end_obs = "study_exit_days",
+              data         = scri_input[cond_iae,],
+              rw_observed_percentage = 100,   
+              censored_vars = "death_days",           
+              event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+              image_plots = ae_event_first, image_brand=T, 
+              lab_orders = lab_orders,
+              paral = T, paral_vars = paral_vars, n_cores = n_cores,
+              lprint = print_during_running,
+              global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+              CI = CI_draw
             )
-            ae_event_first <- F
             first_plot <- F
+            ae_event_first <- F
             
             report_list <- add_to_report_list(res$tabs,     output_name)
             models_list <- add_to_models_list(res$scri_all, output_name)
           }
         }
-      }  
-      
-      # plots:
-      if(plot_during_running) 
-        for(istr in names(report_list) )
-          if(!is.null(report_list[[istr]][[1]]))
-            plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
-      gc()
-      
-      ####
-      #  save report_list and model_list
-      save_results(global_name0, report_list, models_list)
-      #
-      #######################################################################################
-      
-      
-      
-      
-      
-      
-      ########### per sex per brand  interaction with distance between vaccines #############
-      #
-      
-      cat("\n\nAnalysis for ",icovid," per sex, brand, distance between vaccines.\n\n")
-      
-      if(all(names(scri_input) !="sexc"))
-        scri_input$sexc <- paste0("sex:",scri_input$sex )
-      
-      
-      models_list <- list()
-      report_list <- list()
-      
-      for(iae in ae_events){
         
-        cat("\n",paste(iae, format(Sys.time()),"\n\n"))
-        cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
+        # plots:
+        if(plot_during_running) 
+          for(istr in names(report_list) )
+            if(!is.null(report_list[[istr]][[1]]))
+              plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
+        gc()
         
-        for(istr in unique(scri_input$sexc[cond_iae]) ){
+        ###########
+        #  save report_list and model_list
+        save_results(global_name, report_list, models_list)
+        #
+        #######################################################################################
+        
+        
+        
+        
+        ########### per age30 per brand  interaction with distance between vaccines #############
+        #
+        
+        cat("\n\nAnalysis for ",icovid," per age30, brand, distance between vaccines.\n\n")
+        
+        if(all(names(scri_input) !="age30"))
+          scri_input$age30 <- paste0("age",as.character(cut(scri_input$age_at_study_entry, c(-1,30,Inf))))
+        #levels(scri_input$age30) <- gsub( "Inf","\U221E", levels(scri_input$age30),fixed=T)
+        
+        
+        models_list <- list()
+        report_list <- list()
+        
+        for(iae in ae_events){
           
-          first_plot <- T
-          ae_event_first <- T
+          cat("\n",paste(iae, format(Sys.time()),"\n\n"))
+          cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
           
-          for(iii in ifelse(nvax>=3,6,3):1){
+          for(istr in unique(scri_input$age30[cond_iae]) ){
             
+            first_plot <- T
+            ae_event_first <- T
             
-            if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
-            if(iii==2) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
-            if(iii==3) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
-            
-            if(iii==4) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
-            if(iii==5) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
-            if(iii==6) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
-            
-            specif_name  <- paste0(istr,"_brand")  #  "_sex" 
-            
-            global_name0 <- paste0( vax_priority, "_sex"     , dist_name )
-            global_name  <- paste0( vax_priority, specif_name, dist_name )
-            output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
-            cat(paste(output_name, format(Sys.time()),"\n"))
-            
-            formula_text <-  "~ sexc : br_dist : lab"
-            
-            if(nvax>=3) time_dep <- list( brand_distance_3v_def )
-            else        time_dep <- list( brand_distance_2v_def )
-            
-            res <- scri_strata(  output_name  = output_name,  
-                                 formula_text = formula_text,       time_seq = time_seq, 
-                                 event_time = paste0(iae,"_days"), event = iae, id="person_id",
-                                 rws          = rws_def,
-                                 time_dep     = time_dep,
-                                 #combine_vars =  c("sex","age4"), 
-                                 start_obs    = "study_entry_days", end_obs = "study_exit_days", 
-                                 data         = scri_input[scri_input$sexc==istr & cond_iae,],
-                                 image_plots = ae_event_first, image_brand=T, image_tit=istr,
-                                 lab_orders   = lab_orders,
-                                 paral = T, paral_vars = paral_vars, n_cores = n_cores,
-                                 lprint       = print_during_running,
-                                 global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
-                                 CI = CI_draw
-            )
-            ae_event_first <- F
-            first_plot <- F
-            
-            report_list <- add_to_report_list(res$tabs,     output_name)
-            models_list <- add_to_models_list(res$scri_all, output_name)
+            for(iii in ifelse(nvax>=3,8,4):1){
+              
+              
+              if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
+              if(iii==2) { rws_def <- rws_def_2vax_21; irw <- 21; idose <- 2 }
+              if(iii==3) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
+              if(iii==4) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+              
+              if(iii==5) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
+              if(iii==6) { rws_def <- rws_def_3vax_21; irw <- 21; idose <- 3 }
+              if(iii==7) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
+              if(iii==8) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+              
+              
+              specif_name  <- paste0(istr,"_brand")  #  "_age30" 
+              
+              global_name0 <- paste0( vax_priority, "_age30"   , dist_name )
+              global_name  <- paste0( vax_priority, specif_name, dist_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ age30 : br_dist : lab"
+              
+              if(nvax>=3) time_dep <- list( brand_distance_3v_def )
+              else        time_dep <- list( brand_distance_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name,  
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep,
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$age30==istr & cond_iae,],
+                                   rw_observed_percentage = 100,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = T, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+            }
           }
-        }
-      }  
-      gc()
+        }  
+        
+        # plots:
+        if(plot_during_running) 
+          for(istr in names(report_list) )
+            if(!is.null(report_list[[istr]][[1]]))
+              plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
+        gc()
+        
+        ####
+        #  save report_list and model_list
+        save_results(global_name0, report_list, models_list)
+        #
+        #######################################################################################
+        
+        
+        
+        
+        
+        
+        ########### per sex per brand  interaction with distance between vaccines #############
+        #
+        
+        cat("\n\nAnalysis for ",icovid," per sex, brand, distance between vaccines.\n\n")
+        
+        if(all(names(scri_input) !="sexc"))
+          scri_input$sexc <- paste0("sex:",scri_input$sex )
+        
+        
+        models_list <- list()
+        report_list <- list()
+        
+        for(iae in ae_events){
+          
+          cat("\n",paste(iae, format(Sys.time()),"\n\n"))
+          cond_iae <- scri_input[,paste0("cond_covid_",substring(iae,1,7))]
+          
+          for(istr in unique(scri_input$sexc[cond_iae]) ){
+            
+            first_plot <- T
+            ae_event_first <- T
+            
+            for(iii in ifelse(nvax>=3,8,4):1){
+              
+              
+              if(iii==1) { rws_def <- rws_def_2vax_28; irw <- 28; idose <- 2 }
+              if(iii==2) { rws_def <- rws_def_2vax_21; irw <- 21; idose <- 2 }
+              if(iii==3) { rws_def <- rws_def_2vax_14; irw <- 14; idose <- 2 }
+              if(iii==4) { rws_def <- rws_def_2vax_7;  irw <- 7 ; idose <- 2 }
+              
+              if(iii==5) { rws_def <- rws_def_3vax_28; irw <- 28; idose <- 3 }
+              if(iii==6) { rws_def <- rws_def_3vax_21; irw <- 21; idose <- 3 }
+              if(iii==7) { rws_def <- rws_def_3vax_14; irw <- 14; idose <- 3 }
+              if(iii==8) { rws_def <- rws_def_3vax_7;  irw <- 7 ; idose <- 3 }
+              
+              specif_name  <- paste0(istr,"_brand")  #  "_sex" 
+              
+              global_name0 <- paste0( vax_priority, "_sex"     , dist_name )
+              global_name  <- paste0( vax_priority, specif_name, dist_name )
+              output_name  <- paste0( "_",substring(iae,1,7), global_name,"_",idose,"v","_",irw)
+              cat(paste(output_name, format(Sys.time()),"\n"))
+              
+              formula_text <-  "~ sexc : br_dist : lab"
+              
+              if(nvax>=3) time_dep <- list( brand_distance_3v_def )
+              else        time_dep <- list( brand_distance_2v_def )
+              
+              res <- scri_strata(  output_name  = output_name,  
+                                   formula_text = formula_text,       time_seq = time_seq, 
+                                   event_time = paste0(iae,"_days"), event = iae, id="person_id",
+                                   rws          = rws_def,
+                                   time_dep     = time_dep,
+                                   #combine_vars =  c("sex","age4"), 
+                                   start_obs    = "study_entry_days", end_obs = "study_exit_days", 
+                                   data         = scri_input[scri_input$sexc==istr & cond_iae,],
+                                   rw_observed_percentage = 100,   
+                                   censored_vars = "death_days",           
+                                   event_in_rw=T,                # if event in rw ==> this rw shouldnot be deleted even if not completely observed
+                                   image_plots = ae_event_first, image_brand=T, image_tit=istr,
+                                   lab_orders   = lab_orders,
+                                   paral = T, paral_vars = paral_vars, n_cores = n_cores,
+                                   lprint       = print_during_running,
+                                   global_plot_name = paste0( substring(iae,1,7),global_name), add_global_plot = !first_plot,
+                                   CI = CI_draw
+              )
+              ae_event_first <- F
+              first_plot <- F
+              
+              report_list <- add_to_report_list(res$tabs,     output_name)
+              models_list <- add_to_models_list(res$scri_all, output_name)
+            }
+          }
+        }  
+        gc()
+        
+        # plots:
+        if(plot_during_running) 
+          for(istr in names(report_list) )
+            if(!is.null(report_list[[istr]][[1]]))
+              plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
+        
+        ####
+        #  save report_list and model_list
+        save_results(global_name0, report_list, models_list)
+        #
+        #######################################################################################
+        
+      } # end of 'distance' loop
+    }   # end of   if(ldist)    
       
-      # plots:
-      if(plot_during_running) 
-        for(istr in names(report_list) )
-          if(!is.null(report_list[[istr]][[1]]))
-            plot_res(report_list[[istr]][[1]], main=paste(formula_text," + cal_time_cat"), col=col_list)
-      
-      ####
-      #  save report_list and model_list
-      save_results(global_name0, report_list, models_list)
-      #
-      #######################################################################################
-      
-    } # end of 'distance' loop
-    
-    
   }  # end of 'covid' loop
   
   

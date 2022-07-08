@@ -3,9 +3,9 @@ hospitalisation_primary,ICD9,41011,1
 hospitalisation_primary,ICD9,41071,3
 hospitalisation_primary,ICD9,43401,3
 hospitalisation_primary,ICD9,41090,1
-hospitalisation_primary,ICD9,41031,2
+hospitalisation_primary,ICD9,41031,3
 hospitalisation_primary,ICD9,41001,2
-hospitalisation_secondary,ICD9,412,3
+hospitalisation_secondary,ICD9,412,2
 hospitalisation_secondary,ICD9,43491,1
 hospitalisation_primary,ICD9,43411,1
 hospitalisation_secondary,ICD9,41010,1

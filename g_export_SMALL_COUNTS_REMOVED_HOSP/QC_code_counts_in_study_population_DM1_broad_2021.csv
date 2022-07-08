@@ -1,11 +1,14 @@
 meaning_of_first_event,coding_system_of_code_first_event,code_first_event,count_n
-exemption,ICD9,250,16
+exemption,ICD9,250,19
 hospitalisation_secondary,ICD9,25002,8
+hospitalisation_primary,ICD9,25001,< 5
 hospitalisation_secondary,ICD9,25070,< 5
 hospitalisation_secondary,ICD9,25071,< 5
 hospitalisation_secondary,ICD9,25000,13
+hospitalisation_secondary,ICD9,25001,< 5
 hospitalisation_secondary,ICD9,25072,< 5
 hospitalisation_secondary,ICD9,25040,< 5
 hospitalisation_secondary,ICD9,25062,< 5
+hospitalisation_secondary,ICD9,25011,< 5
 hospitalisation_secondary,ICD9,25012,< 5
 hospitalisation_secondary,ICD9,25090,< 5

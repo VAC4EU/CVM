@@ -1,8 +1,8 @@
 # ----------------------------------
 # for all covariates create binary variable drug proxy OR diagnosis; also create binary 'overall'
 
-# input: D3_Vaccin_cohort, D4_Vaccin_cohort_cov , D3_Vaccin_cohort_DP.RData
-# output: D3_Vaccin_cohort_cov_ALL.RData
+# input: D3_Vaccin_cohort_no_risk, D4_Vaccin_cohort_cov , D3_Vaccin_cohort_DP
+# output: D3_Vaccin_cohort_cov_ALL
 
 print('create RISK FACTORS at date_vax_1 as either diagnosis or drugs')
 

@@ -1,3 +1,9 @@
+#-----------------------------------------------
+# Create D4 descriptive tables for MIS/Myocard
+
+# input: Flowchart_basic_exclusion_criteria, Flowchart_exclusion_criteria, D4_descriptive_dataset_ageband_studystart_MIS, D4_descriptive_dataset_age_studystart_MIS, D4_followup_fromstudystart_MIS, D4_descriptive_dataset_covariate_studystart_MIS, D4_population_d, D4_descriptive_dataset_ageband_studystart_c_MIS, D4_descriptive_dataset_age_studystart_c_MIS, D4_followup_fromstudystart_MIS_c, D4_descriptive_dataset_covid_studystart_c_MIS, D4_descriptive_dataset_covariate_covid_c_MIS, D3_Vaccin_cohort, QC_code_counts_in_study_population_OUTCOME_YEAR, RES_IR_monthly_MIS_b, RES_IR_monthly_MIS_c, RES_IR_monthly_MIS_d
+# output: Attrition diagram 1, Attrition diagram 2, Cohort characteristics at start of study (1-1-2020), Cohort characteristics at first COVID-19 vaccination, Cohort characteristics at first occurrence of COVID-19 prior to vaccination (cohort c), COVID-19 vaccination by dose and time period between first and second dose (days), Code counts for narrow definitions (for each event) separately, Incidence of AESI (narrow) per 100,000 PY by calendar month in 2020, Incidence of each concept (narrow) per 100,000 PY prior to vaccination and COVID-19, Incidence of each concept (narrow) per 100,000 PY after COVID-19 and prior to vaccination, Incidence of each concept (narrow) per 100,000 PY after vaccination (BRAND)
+
 ##FUNCTIONS---------------------------------
 `%not in%` <- negate(`%in%`)
 
@@ -200,10 +206,10 @@ col_order <- c(rbind(daps, daps_perc))
 table2 <- table2[, (daps_perc) := character(nrow(table2))]
 total_pop <- total_pop[, ..daps]
 pt_total <- pt_total[, ..daps]
-table2 <- table2[a %in% c("Age in categories", "Person years across sex", "At risk population at January 1-2020"),
+table2 <- table2[a %in% c("Age in categories", "At risk population at January 1-2020"),
                  (daps_perc) := round(.SD / as.numeric(total_pop) * 100, 1), .SDcols = daps]
 
-table2 <- table2[a == "Person years across age categories",
+table2 <- table2[a %in% c("Person years across age categories", "Person years across sex"),
                  (daps_perc) := round(.SD / as.numeric(pt_total) * 100, 1), .SDcols = daps]
 
 table2 <- table2[a %in% c("Age in categories", "Person years across sex", "At risk population at January 1-2020", 
@@ -258,6 +264,7 @@ cols_to_keep = c("a", "Parameters", col_order)
 N_pop <- N_fup_pop[, .N, by = "type_vax"]
 N_pop_by_vax <- setNames(copy(N_pop)$N, as.character(copy(N_pop)$type_vax))
 N_pop_by_vax <- N_pop_by_vax[names(N_pop_by_vax) %in% vax_man]
+N_pop_by_vax <- N_pop_by_vax[order(match(names(N_pop_by_vax), vax_man))]
 total_pop <- N_pop[, sum(N)]
 N_pop <- dcast(N_pop, . ~ type_vax, value.var = "N")[, . := NULL]
 totals_man_d <- copy(N_pop)

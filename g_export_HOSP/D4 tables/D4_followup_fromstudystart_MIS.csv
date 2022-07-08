@@ -1,2 +1,6 @@
 Datasource,Followup_males,Followup_females,Followup_0-4,Followup_5-11,Followup_12-17,Followup_18-24,Followup_25-29,Followup_30-39,Followup_40-49,Followup_50-59,Followup_60-69,Followup_70-79,Followup_80+
-TEST,4598,4869,106,392,493,544,438,1005,1550,1694,1298,1020,927
+<<<<<<< HEAD
+TEST,5213,5427,271,723,614,669,505,1085,1637,1754,1361,1059,963
+=======
+TEST,5229,5427,271,723,614,669,505,1085,1637,1786,1361,1059,963
+>>>>>>> eec1baf2dd319eab6e1ee9a85ee00bdf35f92527

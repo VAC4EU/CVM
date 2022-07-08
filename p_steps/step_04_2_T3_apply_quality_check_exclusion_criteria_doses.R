@@ -1,3 +1,9 @@
+#---------------------------------------------------------------
+# Apply all exclusion criteria
+
+# input: persons_doses
+# output: Flowchart_doses
+
 #merge vaccine information to persons
 for (subpop in subpopulations_non_empty){
   print(subpop)

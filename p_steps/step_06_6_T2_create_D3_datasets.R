@@ -1,3 +1,9 @@
+# ----------------------------------
+# Create basic D3 datasets based on the population
+
+# input: D3_study_population_no_risk, D3_study_population_cov_ALL , D3_Vaccin_cohort_cov_ALL
+# output: D3_study_population, D3_Vaccin_cohort, D3_vaxweeks_vaccin_cohort, D3_studyweeks, D3_vaxweeks, D3_vaxweeks_including_not_vaccinated
+
 for (subpop in subpopulations_non_empty) {
   print(subpop)
   load(paste0(dirtemp,"D3_study_population_no_risk",suffix[[subpop]],".RData"))
@@ -5,8 +11,12 @@ for (subpop in subpopulations_non_empty) {
   load(paste0(diroutput,"D3_Vaccin_cohort_cov_ALL",suffix[[subpop]],".RData"))
   
   study_population_no_risk<-get(paste0("D3_study_population_no_risk", suffix[[subpop]]))
+  rm(list=paste0("D3_study_population_no_risk", suffix[[subpop]]))
+  
   study_population_cov_ALL<-get(paste0("D3_study_population_cov_ALL", suffix[[subpop]]))
   Vaccin_cohort_cov_ALL<-get(paste0("D3_Vaccin_cohort_cov_ALL", suffix[[subpop]]))
+  rm(list=paste0("D3_study_population_cov_ALL", suffix[[subpop]]))
+  rm(list=paste0("D3_Vaccin_cohort_cov_ALL", suffix[[subpop]]))
   
   cols_risk_factors = c("CV_either_DX_or_DP", "COVCANCER_either_DX_or_DP", "COVCOPD_either_DX_or_DP",
                    "COVHIV_either_DX_or_DP", "COVCKD_either_DX_or_DP", "COVDIAB_either_DX_or_DP",
@@ -65,6 +75,8 @@ nameoutput<-paste0("D3_Vaccin_cohort",suffix[[subpop]])
 assign(nameoutput,D3_Vaccin_cohort)
 save(nameoutput, file = paste0(dirtemp, "D3_Vaccin_cohort",suffix[[subpop]],".RData"),list=nameoutput)
 
+rm(list=paste0("D3_Vaccin_cohort", suffix[[subpop]]))
+
 persons_at_risk <- copy(study_population_cov_ALL)[, .(person_id, at_risk_at_study_entry)]
 D3_vaxweeks_vaccin_cohort <- D3_study_population[!is.na(date_vax1) & (is.na(date_vax2) | date_vax1 < date_vax2), ]
 D3_vaxweeks_vaccin_cohort <- D3_vaxweeks_vaccin_cohort[, .(person_id, sex, ageband_at_study_entry, study_entry_date,
@@ -84,9 +96,12 @@ cohort_to_vaxweeks <- D3_study_population[, .(person_id, sex, study_entry_date, 
                                               study_exit_date_vax2, type_vax_1, type_vax_2, fup_no_vax, fup_vax1,
                                               fup_vax2, at_risk_at_study_entry)]
 
+rm(list=paste0("D3_study_population", suffix[[subpop]]))
+
 cohort_to_vaxweeks <- cohort_to_vaxweeks[!is.na(study_entry_date_vax1), study_exit_date := study_entry_date_vax1 - 1]
 cols <- c("fup_no_vax", "fup_vax1", "fup_vax2")
 cohort_to_vaxweeks <- cohort_to_vaxweeks[, (cols) := lapply(.SD, calc_precise_week), .SDcols = cols]
+
 colA = c(paste("study_entry_date_vax", 1:2, sep = ""), "study_entry_date")
 colB = c(paste("study_exit_date_vax", 1:2, sep = ""), "study_exit_date")
 colC = c(paste("fup_vax", 1:2, sep = ""), "fup_no_vax")
@@ -109,8 +124,22 @@ vaxweeks <- vaxweeks[, month := month(start_date_of_period)]
 vaxweeks <- vaxweeks[, .(person_id, start_date_of_period, end_date_of_period, Dose, week, month, sex, type_vax, ageband_at_study_entry)]
 
 vaxweeks_including_not_vaccinated <- copy(vaxweeks)[, month := NULL]
+
+vaxweeks <- vaxweeks[, c("sex", "type_vax", "ageband_at_study_entry") := NULL]
+vaxweeks <- vaxweeks[, .(person_id, start_date_of_period, end_date_of_period, Dose, week, month)]
+
+tempname<-paste0("D3_vaxweeks",suffix[[subpop]])
+assign(tempname,vaxweeks)
+save(tempname, file = paste0(dirtemp, "D3_vaxweeks",suffix[[subpop]],".RData"),list=tempname)
+rm(list=paste0("D3_vaxweeks",suffix[[subpop]]))
+
 D3_studyweeks_not_vaccinated <- copy(studyweeks)[Dose == 0, ][, fup := 0]
 D3_studyweeks_not_vaccinated <- D3_studyweeks_not_vaccinated[, .(person_id, study_entry_date, study_exit_date, Dose, fup, sex, type_vax, ageband_at_study_entry)]
+
+tempname<-paste0("D3_studyweeks",suffix[[subpop]])
+assign(tempname,studyweeks)
+save(tempname, file = paste0(dirtemp, "D3_studyweeks",suffix[[subpop]],".RData"),list=tempname)
+rm(list=paste0("D3_studyweeks",suffix[[subpop]]))
 
 vaxweeks_including_not_vaccinated <- vaxweeks_including_not_vaccinated[, week := week + 1]
 
@@ -130,29 +159,12 @@ setnames(study_population_cov_ALL,
 vaxweeks_including_not_vaccinated <- merge(vaxweeks_including_not_vaccinated, study_population_cov_ALL,
                                               all.x = T, by = "person_id", allow.cartesian = T)
 
-vaxweeks <- vaxweeks[, c("sex", "type_vax", "ageband_at_study_entry") := NULL]
-vaxweeks <- vaxweeks[, .(person_id, start_date_of_period, end_date_of_period, Dose, week, month)]
-
-tempname<-paste0("D3_studyweeks",suffix[[subpop]])
-assign(tempname,studyweeks)
-save(tempname, file = paste0(dirtemp, "D3_studyweeks",suffix[[subpop]],".RData"),list=tempname)
-
-tempname<-paste0("D3_vaxweeks",suffix[[subpop]])
-assign(tempname,vaxweeks)
-save(tempname, file = paste0(dirtemp, "D3_vaxweeks",suffix[[subpop]],".RData"),list=tempname)
 
 tempname<-paste0("D3_vaxweeks_including_not_vaccinated",suffix[[subpop]])
 assign(tempname,vaxweeks_including_not_vaccinated)
 save(tempname, file = paste0(dirtemp, tempname,".RData"),list=tempname)
 
-rm(list=paste0("D3_study_population_no_risk", suffix[[subpop]]))
-rm(list=paste0("D3_study_population_cov_ALL", suffix[[subpop]]))
-rm(list=paste0("D3_Vaccin_cohort_cov_ALL", suffix[[subpop]]))
 rm(list=paste0("D3_vaxweeks_including_not_vaccinated",suffix[[subpop]]))
-rm(list=paste0("D3_vaxweeks",suffix[[subpop]]))
-rm(list=paste0("D3_studyweeks",suffix[[subpop]]))
-rm(list=paste0("D3_study_population", suffix[[subpop]]))
-rm(list=paste0("D3_Vaccin_cohort", suffix[[subpop]]))
 }
 
 rm(study_population_no_risk, Vaccin_cohort_cov_ALL, cohort_to_vaxweeks,

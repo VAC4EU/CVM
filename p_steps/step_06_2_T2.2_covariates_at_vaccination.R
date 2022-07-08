@@ -1,10 +1,10 @@
 #------------------------------------------------------------------
 # CREATE RISK FACTORS
 
-print('CREATE RISK FACTORS (diagnosis only) at date_vax_1')
+# input: D3_Vaccin_cohort_no_risk, concept set datasets of covariates (plus the six concept sets of the three outcomes CAD, MYOCARD and HF which form the covariate CV): "CV","COVCANCER","COVCOPD","COVHIV","COVCKD","COVDIAB","COVOBES","COVSICKLE"
+# output: D3_Vaccin_cohort_covariates
 
-# input: D3_Vaccin_cohort, concept set datasets of covariates (plus the six concept sets of the three outcomes CAD, MYOCARD and HF which form the covariate CV): "CV","COVCANCER","COVCOPD","COVHIV","COVCKD","COVDIAB","COVOBES","COVSICKLE"
-# output: D3_Vaccin_cohort_covariates.RData
+print('CREATE RISK FACTORS (diagnosis only) at date_vax_1')
 
 CV_string<-c("HF_narrow","HF_possible","MYOCARD_narrow","MYOCARD_possible","CAD_narrow","CAD_possible") 
 

@@ -1,3 +1,9 @@
+# -----------------------------------------------------------------------
+# Create Quality Check criteria for vaccination records
+
+# input: CONCEPT
+# output: D3_concepts_QC_criteria, QC_dose_derived, table_QC_dose_derived
+
 concepts <- import_concepts(dirtemp, vaccine__conceptssets)
 
 # Recode, create variables and keep only useful ones

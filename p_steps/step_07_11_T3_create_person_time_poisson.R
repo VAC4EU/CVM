@@ -1,3 +1,10 @@
+# COUNT PERSON TIME PER COVID PER POISSON
+#-----------------------------------------------
+# To estimate the weekly incidence rates of risks in 2020 by data source for poisson
+
+# input: D3_events_ALL_OUTCOMES, D3_vaxweeks_poisson
+# output: D4_persontime_risk_month_poisson
+
 print("COUNT PERSON TIME by month for risks (Poisson)")
 
 persontime_risk_year <- vector(mode = 'list')
@@ -20,32 +27,44 @@ for (subpop in subpopulations_non_empty) {
   list_recurrent_outcomes <- list_outcomes[str_detect(list_outcomes, "^GENCONV_") | str_detect(list_outcomes, "^ANAPHYL_")]
   list_outcomes <- setdiff(list_outcomes, list_recurrent_outcomes)
   
-  sex_vect = c(0, 1)
-  for (ageband in sex_vect) {
-    nameoutput <- paste0("pop_age_", gsub("-", "_", ageband), suffix[[subpop]])
-    assign(nameoutput, study_population[Gender == ageband, ])
-    save(nameoutput, file = paste0(dirtemp, nameoutput,".RData"),list=nameoutput)
-    rm(list=nameoutput)
+  sex_vect <- c(0,1)
+  
+  for (ageband in Agebands_labels) {
+    for (sex in  sex_vect) {
+      nameoutput <- paste0("pop_age_", gsub("-", "_", ageband), "_", sex, suffix[[subpop]])
+      assign(nameoutput, study_population[ageband_at_study_entry == ageband & Gender == sex, ])
+      save(nameoutput, file = paste0(dirtemp, nameoutput,".RData"),list=nameoutput)
+      rm(list=nameoutput)
+    }
   }
   
-  df_events_ages <- paste0("pop_age_", gsub("-", "_", sex_vect))
+  df_events_ages <- c(paste0("pop_age_", gsub("-", "_", Agebands_labels), "_", "0"),
+                      paste0("pop_age_", gsub("-", "_", Agebands_labels), "_", "1"))
   
   for (events_df_sex in df_events_ages) {
-    print(paste("Sex", substring(events_df_sex, 9)))
+    print(paste("age/sex", substring(events_df_sex, 9)))
     load(paste0(dirtemp, events_df_sex,suffix[[subpop]], ".RData"))
     print("recurrent")
     
     nameoutput <- paste0("Recurrent_output_file",suffix[[subpop]])
     assign(nameoutput,CountPersonTime(
       Dataset_events = events_ALL_OUTCOMES,
-      Dataset = get(paste0(events_df_sex,suffix[[subpop]])),
+      Dataset = get(paste0(events_df_sex, suffix[[subpop]])),
       Person_id = "person_id",
       Start_study_time = start_persontime_studytime,
       End_study_time = end_persontime_studytime,
       Start_date = "start_date_of_period",
       End_date = "end_date_of_period",
-      Strata = c("DAP", "Gender", "COVID19", "Comorbity_at_study_entry", "Comorbity_at_date_vax", "Vaccine1",
-                 "Vaccine2", "Dose1", "Dose2"),
+      Strata = c("DAP", "Gender", "ageband_at_study_entry",
+                 "COVID19", "Vaccine1", "Vaccine2", "Dose1", "Dose2", "CV_at_study_entry",
+                 "COVCANCER_at_study_entry", "COVCOPD_at_study_entry", "COVHIV_at_study_entry",
+                 "COVCKD_at_study_entry", "COVDIAB_at_study_entry", "COVOBES_at_study_entry",
+                 "COVSICKLE_at_study_entry", "IMMUNOSUPPR_at_study_entry",
+                 "any_risk_factors_at_study_entry", "all_risk_factors_at_study_entry",
+                 "CV_at_date_vax", "COVCANCER_at_date_vax", "COVCOPD_at_date_vax", "COVHIV_at_date_vax",
+                 "COVCKD_at_date_vax", "COVDIAB_at_date_vax", "COVOBES_at_date_vax",
+                 "COVSICKLE_at_date_vax", "IMMUNOSUPPR_at_date_vax", "any_risk_factors_at_date_vax",
+                 "all_risk_factors_at_date_vax"),
       Name_event = "name_event",
       Date_event = "date_event",
       Increment = "month",
@@ -67,8 +86,16 @@ for (subpop in subpopulations_non_empty) {
       End_study_time = end_persontime_studytime,
       Start_date = "start_date_of_period",
       End_date = "end_date_of_period",
-      Strata = c("DAP", "Gender", "COVID19", "Comorbity_at_study_entry", "Comorbity_at_date_vax", "Vaccine1",
-                 "Vaccine2", "Dose1", "Dose2"),
+      Strata = c("DAP", "Gender", "ageband_at_study_entry",
+                 "COVID19", "Vaccine1", "Vaccine2", "Dose1", "Dose2", "CV_at_study_entry",
+                 "COVCANCER_at_study_entry", "COVCOPD_at_study_entry", "COVHIV_at_study_entry",
+                 "COVCKD_at_study_entry", "COVDIAB_at_study_entry", "COVOBES_at_study_entry",
+                 "COVSICKLE_at_study_entry", "IMMUNOSUPPR_at_study_entry",
+                 "any_risk_factors_at_study_entry", "all_risk_factors_at_study_entry",
+                 "CV_at_date_vax", "COVCANCER_at_date_vax", "COVCOPD_at_date_vax", "COVHIV_at_date_vax",
+                 "COVCKD_at_date_vax", "COVDIAB_at_date_vax", "COVOBES_at_date_vax",
+                 "COVSICKLE_at_date_vax", "IMMUNOSUPPR_at_date_vax", "any_risk_factors_at_date_vax",
+                 "all_risk_factors_at_date_vax"),
       Name_event = "name_event",
       Date_event = "date_event",
       Increment = "month",
@@ -80,8 +107,16 @@ for (subpop in subpopulations_non_empty) {
     print("Merging")
     nameoutput<-paste0("Output_file",suffix[[subpop]])
     assign(nameoutput,merge(get(paste0("Output_file",suffix[[subpop]])), get(paste0("Recurrent_output_file",suffix[[subpop]])) ,
-                            by = c("DAP", "Gender", "COVID19", "Comorbity_at_study_entry", "Comorbity_at_date_vax", "Vaccine1",
-                                   "Vaccine2", "Dose1", "Dose2", "month", "Persontime"),
+                            by = c("DAP", "Gender", "ageband_at_study_entry",
+                                   "COVID19", "Vaccine1", "Vaccine2", "Dose1", "Dose2", "CV_at_study_entry",
+                                   "COVCANCER_at_study_entry", "COVCOPD_at_study_entry", "COVHIV_at_study_entry",
+                                   "COVCKD_at_study_entry", "COVDIAB_at_study_entry", "COVOBES_at_study_entry",
+                                   "COVSICKLE_at_study_entry", "IMMUNOSUPPR_at_study_entry",
+                                   "any_risk_factors_at_study_entry", "all_risk_factors_at_study_entry",
+                                   "CV_at_date_vax", "COVCANCER_at_date_vax", "COVCOPD_at_date_vax", "COVHIV_at_date_vax",
+                                   "COVCKD_at_date_vax", "COVDIAB_at_date_vax", "COVOBES_at_date_vax",
+                                   "COVSICKLE_at_date_vax", "IMMUNOSUPPR_at_date_vax", "any_risk_factors_at_date_vax",
+                                   "all_risk_factors_at_date_vax", "month", "Persontime"),
                             all = T)
     )
     print("Saving")

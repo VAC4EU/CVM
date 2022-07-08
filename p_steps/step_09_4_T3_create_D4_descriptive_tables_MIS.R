@@ -1,3 +1,9 @@
+#-----------------------------------------------
+# Create D4 descriptive tables for MIS/Myocard
+
+# input: D3_Vaccin_cohort, D3_study_population, D3_study_population_cov_ALL, D4_population_b, D4_population_c, D4_population_d, D3_Vaccin_cohort_cov_ALL
+# output: D4_descriptive_dataset_age_studystart_MIS, D4_descriptive_dataset_ageband_studystart_MIS, D4_descriptive_dataset_sex_studystart_MIS, D4_descriptive_dataset_covariate_studystart_MIS, D4_followup_fromstudystart_MIS_c, D4_followup_fromstudystart_MIS, D4_descriptive_dataset_age_vax1_MIS, D4_descriptive_dataset_ageband_vax_MIS, D4_followup_from_vax_MIS_d, D4_descriptive_dataset_covid_studystart_c_MIS, D4_descriptive_dataset_age_studystart_c_MIS, D4_descriptive_dataset_ageband_studystart_c_MIS, D4_descriptive_dataset_covariate_covid_c_MIS, D4_followup_fromstudystart_MIS_c_total, D4_descriptive_dataset_sex_vaccination_MIS
+
 na_to_0 = function(DT) {
   for (i in names(DT))
     DT[is.na(get(i)), (i):=0]

@@ -2,6 +2,9 @@
 ##########################   Coverage description   ##########################
 ##############################################################################
 
+# input: COVERAGE_BIRTHCOHORTS
+# output: HTML_COVERAGE_BIRTHCOHORTS_description
+
 # library
 if (!require("rmarkdown")) install.packages("rmarkdown")
 library(rmarkdown )
