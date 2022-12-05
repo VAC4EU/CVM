@@ -28,7 +28,7 @@ rm(OUTCOME_concepts_in_var, COV_concepts_in_var, DRUG_concepts_in_var)
 
 for (var in names(variable_definition)) {
   if (var %in% CONCEPTSETS_to_be_split) {
-    variable_definition[[var]] <- paste(var, seq_len(numbers_split[[var]]), sep = "_")
+    variable_definition[[var]] <- paste(var, seq_len(numbers_split[[which(CONCEPTSETS_to_be_split %in% var)]]), sep = "_")
   }
 }
 
