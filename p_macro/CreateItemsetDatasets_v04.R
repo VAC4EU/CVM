@@ -142,11 +142,9 @@ CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numer
             if(!missing(rename_col)){
               ##################RENAME THE COLUMNS ID AND DATE
               for (elem in names(rename_col)) {
-                data<-eval(parse(text=elem))
-                for (col in names(used_df)) {
-                  if (col == data[[df2]]) {
-                    setnames(used_df, col, elem )
-                  }
+                data <- rename_col[[elem]]
+                if (data[[df2]] %in% names(used_df)) {
+                  data.table::setnames(used_df, data[[df2]], elem)
                 }
               }
             }

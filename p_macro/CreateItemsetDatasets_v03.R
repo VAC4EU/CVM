@@ -1,28 +1,30 @@
 #'CreateItemsetDatasets
 #'
-#' The function RetrieveRecordsFromEAVDatasets inspects a set of input tables af data and creates a group of datasets, each corresponding to a concept set. Each dataset contains the records of the input tables that match the corresponding concept set and is named out of it. 
+#'Version 05 
+#'15/02/2022
+#'Authors: Olga Paoletti, Davide Messina
+#'
+#' The function CreateItemsetDatasets inspects a set of input tables af data and creates a group of datasets, each corresponding to a item set. Each dataset contains the records of the input tables that match the corresponding item set and is named out of it. 
 #'
 #'
 #' @param EAVtables a 2-level list specifying, tables in a Entity-Attribute-Value structure; each table is listed with the name of two columns: the one contaning attributes and the one containing values
+#' @param	datevar (optional): a 2-level list containing, for each input table of data, the name(s) of the column(s) containing dates (only if extension="csv"), to be saved as dates in the output
+#' @param	dateformat (optional): a string containing the format of the dates in the input tables of data (only if -datevar- is indicated); the string must be in one of the following:	YYYYDDMM
+#' @param rename_col (optional) a list containing the 2-level lists to rename (for istance, id and date)
+#' @param	numericvar (optional): a 2-level list containing, for each input table of data, the name(s) of the column(s) containing numbers (only if extension="csv"), to be saved as a number in the output
 #' @param study_variable_names (list of strings): list of the study variables of interest
 #' @param	itemset (3-level list of lists): this is a list specifying which itemsets are to be retrieved for a study variable: the list has 3 levels:study variable (string): must be one of the strings in the list -study_variable_names-,	table to be queried (string): specified the name of the input table of data where the attributes must be searched for,	attribute to be selected (list of strings): attributes to be matched in the table; it can be a single column, or multiple columns
-#' @param	datevar (optional): a 2-level list containing, for each input table of data, the name(s) of the column(s) containing dates (only if extension="csv"), to be saved as dates in the output
-#' @param	numericvar (optional): a 2-level list containing, for each input table of data, the name(s) of the column(s) containing numbers (only if extension="csv"), to be saved as a number in the output
-#' @param rename_col (optional) a list containing the 2-level lists to rename (for istance, id and date)
-#' @param	dateformat (optional): a string containing the format of the dates in the input tables of data (only if -datevar- is indicated); the string must be in one of the following:	YYYYDDMM
 #' @param addtabcol a logical parameter, by default set to TRUE: if so, the columns "Table_cdm" and "Col" are added to the output, indicating respectively from which original table and column the code is taken.
 #' @param verbose a logical parameter, by default set to FALSE. If it is TRUE additional intermediate output datasets will be shown in the R environment
+#' @param discard_from_environment a logical parameter, by default set to FALSE: if so the itemsets datasets are saved in the R environment
 #' @param dirinput (optional) the directory where the input tables of data are stored. If not provided the working directory is considered.
 #' @param diroutput (optional) the directory where the output concept sets datasets will be saved. If not provided the working directory is considered.
 #' @param extension the extension of the input tables of data (csv and dta are supported)
 #'
 #' @details
 #'
-
-#' 
 #' @seealso 
 #' 
-#'
 CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numericvar,
                                   study_variable_names,itemset,
                                   addtabcol=T, verbose=F,                                                                discard_from_environment=F,
@@ -48,7 +50,6 @@ CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numer
   })
   
   empty_df<-data.table()
-  
   #adapt the EAVtables parameter structure to the old one
   for (t in 1:length(EAVtables)){
     if (length(unlist(EAVtables[[t]]))==2) {
@@ -95,26 +96,20 @@ CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numer
           print(paste0(numericvar[[df2]], " are all numeric"))
       }
       
+      
       if(!missing(rename_col)){
-        for (i in 1:length(rename_col)) {
-          if (i==1) {
-            for (t in  names(rename_col[[i]])) {
-              if (t=="Diagnosis") {
-                person_id = rename_col[[i]][[t]] 
-              } 
-            }
-          } else{
-            for (t in  names(rename_col[[i]])) {
-              if (t=="Diagnosis") {
-                date = rename_col[[i]][[t]] 
-              } 
-            }
+        ###################RENAME THE COLUMNS ID AND DATE
+        for (elem in names(rename_col)) {
+          data <- rename_col[[elem]]
+          if (data[[df2]] %in% names(used_df)) {
+            data.table::setnames(used_df, data[[df2]], elem)
           }
         }
       }
       
+      
       used_df[, General:=0]
-      used_df0<-as.data.table(data.frame(matrix(ncol = 0, nrow = 0)))
+      #used_df0<-as.data.table(data.frame(matrix(ncol = 0, nrow = 0)))
       #for each table search for pair in the specified columns
       if (length(itemset)!=0) {
         for (study_var in study_variable_names) {
@@ -139,26 +134,24 @@ CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numer
             }
             
             
-            if(!missing(rename_col)){
-              ##################RENAME THE COLUMNS ID AND DATE
-              for (elem in names(rename_col)) {
-                data<-eval(parse(text=elem))
-                for (col in names(used_df)) {
-                  if (col == data[[df2]]) {
-                    setnames(used_df, col, elem )
-                  }
-                }
-              }
+            
+            if(ncol(empty_df)==0) {
+              empty_df <- used_df[0,]
+            } else {
+              empty_df<-rbind(used_df[0,], empty_df, fill=T)
             }
+            empty_df<-empty_df[, .SD, .SDcols = !patterns("^Col_|^Filter|^General")]
             
             #keep only the rows that have matched AVpair
-            filtered_df <- used_df[General == 1,] [,Table_cdm:=df2]
+            filtered_df <- used_df[General == 1,][,Table_cdm:=df2]
+            
             
             if (verbose == F) {
-              if (nrow(filtered_df) != 0) {
-                assign(paste0("FILTERED","_",df2),filtered_df)
-              }
-            }else{if (nrow(filtered_df) != 0)
+              #if (nrow(filtered_df) != 0) {
+              assign(paste0("FILTERED","_",df2),filtered_df)
+              #}
+            }else{
+              #if (nrow(filtered_df) != 0)
               assign(paste0("FILTERED","_",df2),filtered_df,envir = parent.frame())
             }
             
@@ -178,9 +171,9 @@ CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numer
                   setnames(filtered_df,old = "Filter",new = Newfilter2)
                   
                   if (verbose == F) {
-                    if (nrow(filtered_df2) != 0)
-                      assign(paste0(study_var,"_",df2),filtered_df2)
-                  }else{if (nrow(filtered_df2) != 0)
+                    #if (nrow(filtered_df2) != 0)
+                    assign(paste0(study_var,"_",df2),filtered_df2)
+                  }else{#if (nrow(filtered_df2) != 0)
                     assign(paste0(study_var,"_",df2),filtered_df2,envir = parent.frame())
                   }
                 }
@@ -192,25 +185,30 @@ CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numer
       
       ###########append all the datasets related to the same study_var
       for (study_var in study_variable_names) {
-        if (length(itemset)!=0) {
+        if (TRUE) { #length(itemset)!=0
           if (df2 %in% names(itemset[[study_var]])) {
             export_df <- as.data.table(data.frame(matrix(ncol = 0, nrow = 0)))
             for (p in 1:length(EAVtables)){
               for (df2 in EAVtables[[p]][[1]][[1]]){
                 if (exists(paste0(study_var,"_",df2))){
-                  export_df = suppressWarnings( rbind(export_df, eval(parse(text = paste0(study_var,"_",df2))),fill = T) )
+                  temp <- eval(parse(text = paste0(study_var,"_",df2)))
+                  if(nrow(temp)!=0){
+                    export_df = suppressWarnings(rbind(export_df, temp, fill = T))
+                  }
                 }
               }
             }
+            if(nrow(export_df)==0) {export_df <- empty_df}
             if (addtabcol == F) {export_df<-export_df[,c("Table_cdm","AVpair"):=NULL]}
             if (discard_from_environment==T) {
-              if (nrow(export_df)==0) {colnames <- colnames(used_df)
-              export_df <- setNames(as.data.table(matrix(nrow = 1, ncol = ncol(used_df))), nm = colnames)
-              }
+              # if (nrow(export_df)==0) {colnames <- colnames(used_df)
+              # export_df <- setNames(as.data.table(matrix(nrow = 1, ncol = ncol(used_df))), nm = colnames)
+              # }
               assign(study_var, export_df)
-            }else{  if (nrow(export_df)==0) {colnames <- colnames(used_df)
-            export_df <- setNames(as.data.table(matrix(nrow = 1, ncol = ncol(used_df))), nm = colnames)
-            }
+            }else{
+              #if (nrow(export_df)==0) {colnames <- colnames(used_df)
+              # export_df <- setNames(as.data.table(matrix(nrow = 1, ncol = ncol(used_df))), nm = colnames)
+              # }
               assign(study_var, export_df, envir = parent.frame())}
             save(study_var, file = paste0(diroutput,"/",study_var,".RData"),list = study_var)
           }

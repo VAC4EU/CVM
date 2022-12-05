@@ -59,7 +59,7 @@ rm(read_library, new.packages, list.of.packages)
 
 # load macros
 source(paste0(dirmacro,"CreateConceptSetDatasets_v20.R"))
-source(paste0(dirmacro,"CreateItemsetDatasets.R"))
+source(paste0(dirmacro,"CreateItemsetDatasets_v03.R"))
 source(paste0(dirmacro,"MergeFilterAndCollapse_v5.R"))
 source(paste0(dirmacro,"CreateSpells_v15.R"))
 source(paste0(dirmacro,"CreateFlowChart.R"))
@@ -72,7 +72,7 @@ source(paste0(dirmacro,"CalculateNumeratorAggregated.R"))
 source(paste0(dirmacro,"SplitSpellsAgeBands.R"))
 source(paste0(dirmacro,"CalculateNumeratorNotRecurrent.R"))
 source(paste0(dirmacro,"SetToInteger.R"))
-source(paste0(dirmacro,"CountPersonTimeV13.9.R"))
+source(paste0(dirmacro,"CountPersonTimeV13.8.R"))
 source(paste0(dirmacro,"df_to_list_of_list.R"))
 source(paste0(dirmacro,"list_of_list_to_df.R"))
 source(paste0(dirmacro,"dsr.R"))
@@ -492,7 +492,7 @@ create_table_characteristic_population <- function(study_pop, persontime = NULL,
   # covariates[ , PREGNANCY := round(runif(nrow(covariates)))]
   
   # Create vector with risk factors and medicines defined as variables (PREGNANCY should be counted as special case)
-  risk_factors <- check_columns_exist(covariates, setdiff(COV_variables, "PREGNANCY"))
+  risk_factors <- check_columns_exist(covariates, setdiff(c(COV_variables, "COVID"), "PREGNANCY"))
   medicines <- check_columns_exist(covariates, DP_variables)
   pregnancy <- check_columns_exist(covariates, "PREGNANCY")
   
@@ -504,6 +504,7 @@ create_table_characteristic_population <- function(study_pop, persontime = NULL,
   # Get the column to recode and the vector with the names of the covariate
   cols <- c(risk_factors, medicines, pregnancy)
   covariate_names <- c(str_match(setdiff(cols, pregnancy), "_(.*?)_")[, 2], pregnancy)
+  covariate_names[is.na(covariate_names)] <- "COVID"
   
   # Recode 1 to name of covariate
   pop_covariates <- pop_covariates[ , (cols) := Map(function(x, single_cov) ifelse(x == 1, single_cov, F),
