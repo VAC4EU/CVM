@@ -11,7 +11,7 @@ rm(COVID_VACCINES)
 # Recode, create variables and keep only useful ones
 
 Covid_vaccine[, vx_record_date := ymd(vx_record_date)]
-Covid_vaccine[, vx_manufacturer := as.character(vx_manufacturer)]
+Covid_vaccine[, vx_manufacturer := tolower(as.character(vx_manufacturer))]
 Covid_vaccine[!str_detect(vx_dose, "^[1-9]$"), vx_dose := 0]
 Covid_vaccine[, vx_dose := as.integer(vx_dose)]
 Covid_vaccine[, date_curated := fifelse(!is.na(date), date, vx_record_date)]
