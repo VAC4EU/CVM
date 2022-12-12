@@ -34,8 +34,8 @@ SCRI_variables_vocabulary <- data.table(vac4eu = c("E_GOUT_COV", "C_MYOCARD_AESI
   #
   # specify the length and the start moment of the calendar time intervals:
   #
-  time_interval_width  <- c( 21, 30, 30, 45)
-  time_interval_starts <- c( -8,-10, -1, -5)
+  time_interval_width  <- c( 30, 30 )
+  time_interval_starts <- c(-10, -1 )
   
 
   #############################
@@ -61,10 +61,11 @@ SCRI_variables_vocabulary <- data.table(vac4eu = c("E_GOUT_COV", "C_MYOCARD_AESI
   col_list <- c("red", "green3", "orange",  "deepskyblue", "magenta2", "cyan2", "chocolate1", "gray" ) 
   
   # parallel 
-  lparal     = F    # if T ==> library(parallel) is started in function 'scri'
+  lparal     = T    # if T ==> library(parallel) is started in function 'scri'
   n_cores    = NA
   
   leventplot = T 
+  max_n_points = 1000 
   lplot      = T
   CI_draw    = T
   lforest    = T
