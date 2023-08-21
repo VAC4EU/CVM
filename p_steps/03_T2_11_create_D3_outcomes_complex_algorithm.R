@@ -1,8 +1,8 @@
 #------------------------------------------------------------------
 # create secondary components 
 
-# input: concept set datasets involved in secondary components, D4_study_population
-# output: for each secondary component SECCOMPONENT, D3_eventsSecondary_SECCOMP.RData
+# input: D4_study_population, and the concept set datasets involved in secondary components: for each SECCOMP in the list SECCOMPONENTS, the list of such conceptsets is c( concept_set_seccomp[[SECCOMP]][['A']], concept_set_seccomp[[SECCOMP]][['B']]))
+# output: for each secondary component SECCOMP in the list SECCOMPONENT, D3_eventsSecondary_SECCOMP.RData
 
 print('create secondary components SECCOMPONENTS.')
 
@@ -53,6 +53,8 @@ for (SECCOMP in SECCOMPONENTS) {
         if (this_datasource_has_subpopulations == TRUE){ 
           toadd <- toadd[eval(parse(text = select_in_subpopulationsEVENTS[[subpop]])),]
         }
+        # delete records whose meanings are not appropriate for a specific datasource are not observed in this whole subpopulation
+        toadd <- toadd[ eval(parse(text = paste0('!(',select_meanings_AESI[[thisdatasource]],')'))),]
         toadd <- toadd[,conceptsetname := conceptset]
         temp <- as.data.table(rbind(temp,toadd,fill = TRUE))
         rm(toadd)
@@ -68,7 +70,7 @@ for (SECCOMP in SECCOMPONENTS) {
     }
     
     # select according to the rule of the component
-    selection <- paste0("!is.na(dateA) & !is.na(dateB) & ", selectionrule_direction_seccomp[[direction_seccomp[[SECCOMP]]]])
+    selection <- paste0("!is.na(dateA) & !is.na(dateB) & ", selectionrule_direction_seccomp[[SECCOMP]][[direction_seccomp[[SECCOMP]]]])
     
     # merge datasets A and B
     unique_A_AND_B_timeframe <- MergeFilterAndCollapse(

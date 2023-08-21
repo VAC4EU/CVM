@@ -6,9 +6,11 @@ setwd("..")
 # dirinput <- paste0(dirbase,"/CDMInstances/PASS_COVIDVACCINES2205/")
 # dirpregnancy <- paste0(dirbase,"/StudyScripts/pregnancy_20221017/g_output/")
 
-# dirinput <- paste0(thisdir,"/i_input/")
+dirinput <- paste0(thisdir,"/i_input/")
 dirinput <- paste0(thisdir,"/i_input_subpop/")
 dirpregnancy <- ""
+
+# SCRI_list_variables <-  c("E_GOUT_COV", "C_MYOCARD_AESI", "C_PERICARD_AESI", "SO_OTITISEXT_COV", "C_VALVULAR_COV")
 
 set_and_create_dir <- function(x) {
   x <- paste0(thisdir, x)
@@ -39,6 +41,7 @@ dirmacro <- set_and_create_dir("/p_macro/")
 dirpargen <- set_and_create_dir("/g_parameters/")
 direvents <- set_and_create_dir("/g_intermediate/events/")
 dircomponents <- set_and_create_dir("/g_intermediate/components/")
+dirTD <- set_and_create_dir("/g_intermediate/TD/")
 
 rm(set_and_create_dir)
 
@@ -50,7 +53,7 @@ read_library <- function(...) {
 
 list.of.packages <- c("MASS", "haven", "tidyverse", "lubridate", "AdhereR", "stringr", "purrr", "readr", "dplyr",
                       "survival", "rmarkdown", "ggplot2", "data.table", "qpdf", "parallel", "readxl", "gtsummary",
-                      "labelled", "huxtable", "metafor", "markdown")
+                      "labelled", "huxtable", "metafor", "markdown", "R.utils", "SCCS", "RcppAlgos")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
 invisible(lapply(list.of.packages, require, character.only = T))
@@ -77,7 +80,9 @@ source(paste0(dirmacro,"df_to_list_of_list.R"))
 source(paste0(dirmacro,"list_of_list_to_df.R"))
 source(paste0(dirmacro,"dsr.R"))
 source(paste0(dirmacro,"launch_step.R"))
-source(paste0(dirmacro,"dsr.R"))
+source(paste0(dirmacro,"standardsccs2.R"))
+source(paste0(dirmacro,"sensitivity_functions.R"))
+source(paste0(dirmacro,"CompareListsOfCodes.R"))
 
 #other parameters
 # TODO remove this
@@ -112,7 +117,8 @@ start_COVID_diagnosis_date <- case_when((thisdatasource == 'TEST') ~ ymd(2020013
                                         (thisdatasource == 'CPRD') ~ ymd(20200123),
                                         (thisdatasource == 'BIFAP') ~ ymd(20200131),
                                         (thisdatasource == 'SIDIAP') ~ ymd(20200131),
-                                        TRUE ~ ymd(20200131))
+                                        (thisdatasource == 'UOSL') ~ ymd(20200226),
+                                        TRUE ~ ymd(20200123))
 
 ###################################################################
 # CREATE EMPTY FILES
@@ -167,10 +173,10 @@ file.copy(paste0(thisdir,'/to_run.R'), direxp, overwrite = T)
 
 #study_years_datasource
 
-study_years <- c("2019", "2020", "2021")
+# study_years <- c("2019", "2020", "2021")
 
 # TODO should add 2018?
-ComponentAnalysisYears <- c("2019", "2020")
+ComponentAnalysisYears <- c("2018", "2019")
 
 days <- ifelse(thisdatasource %in% c("ARS","TEST"), 180, 1)
 
@@ -197,6 +203,8 @@ vect_new_severity <- c("covid_severity_1_plus", "covid_severity_2_plus", "covid_
 
 ### Set gtsummary theme
 suppressMessages(gtsummary::theme_gtsummary_language("en", big.mark = ""))
+
+split_by_default <- c("sex", "dose", "type_vax")
 
 #############################################
 #FUNCTION TO COMPUTE AGE

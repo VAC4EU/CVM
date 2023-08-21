@@ -32,9 +32,10 @@ for (subpop in subpopulations_non_empty){
   if (this_datasource_has_subpopulations == T){
     D3_clean_spells <- D3_clean_spells[[subpop]]
   }
-  D3_clean_spells <- D3_clean_spells[, .(person_id, entry_spell_category, exit_spell_category, starts_after_ending,
-                                         no_overlap_study_period, less_than_365_days_and_not_starts_at_birth,
-                                         has_vax1_before_365_days, is_the_study_spell)]
+  D3_clean_spells <- D3_clean_spells[, .(person_id, entry_spell_category, exit_spell_category, starts_at_birth,
+                                         starts_after_ending, no_overlap_study_period,
+                                         less_than_365_days_and_not_starts_at_birth, has_vax1_before_365_days,
+                                         is_the_study_spell)]
   
   # Creation of no_spells criteria
   D3_sel_cri <- D3_sel_cri[, no_spells := fifelse(person_id %in% unlist(unique(D3_clean_spells[, .(person_id)])), 0, 1)]
@@ -72,11 +73,12 @@ for (subpop in subpopulations_non_empty){
   D3_clean_spells[, c("has_vax1_before_365_days", "tot_less_than_365_days", "tot_spell_num", "removed_row") := NULL]
   
   # Keep only study spells chosen in 01_T2_043_clean_spells
-  study_spells <- D3_clean_spells[is_the_study_spell == 1, ][, .(person_id, entry_spell_category, exit_spell_category)]
+  study_spells <- D3_clean_spells[is_the_study_spell == 1, ][, .(person_id, entry_spell_category, exit_spell_category,
+                                                                 starts_at_birth)]
   
   # Keep only one row for each spell which syntethize the previously defined exclusion criteria
   D3_clean_spells <- unique(D3_clean_spells[, c("entry_spell_category", "exit_spell_category",
-                                                "is_the_study_spell") := NULL])
+                                                "is_the_study_spell", "starts_at_birth") := NULL])
   for (i in names(D3_clean_spells)) D3_clean_spells[is.na(get(i)), (i) := 0]
   D3_clean_spells <- D3_clean_spells[, lapply(.SD, max), by = person_id]
   
@@ -92,7 +94,7 @@ for (subpop in subpopulations_non_empty){
   setorder(spells_vaccines, person_id, date_curated)
   
   # Find if each vaccination is inside the chosen spell for each person
-  spells_vaccines[, vax_in_spell := fifelse(between(
+  spells_vaccines[, vax_in_spell := fifelse(data.table::between(
     date_curated, entry_spell_category, exit_spell_category), 1, 0, na = 0)]
   
   # calculate order of vaccines inside the spell and compare with the original dose number
@@ -106,9 +108,12 @@ for (subpop in subpopulations_non_empty){
   spells_vaccines <- unique(spells_vaccines)
   
   D3_sel_cri_spells_vaccines <- merge(D3_sel_cri_spells, spells_vaccines, all.x = T, by = "person_id")
-  D3_sel_cri_spells_vaccines[, study_entry_date := pmax(entry_spell_category, start_lookback)]
+  D3_sel_cri_spells_vaccines[, spell_start_date := pmax(entry_spell_category, start_lookback)]
+  D3_sel_cri_spells_vaccines[, study_entry_date := pmax(fifelse(as.logical(starts_at_birth),
+                                                                spell_start_date, spell_start_date + 365),
+                                                        study_start)]
   D3_sel_cri_spells_vaccines[, study_exit_date := pmin(exit_spell_category, study_end)]
-  D3_sel_cri_spells_vaccines[, c("entry_spell_category", "exit_spell_category") := NULL]
+  D3_sel_cri_spells_vaccines[, c("entry_spell_category", "exit_spell_category", "starts_at_birth") := NULL]
   D3_sel_cri_spells_vaccines <- unique(D3_sel_cri_spells_vaccines)
   
   # Saving exclusion criteria for populations

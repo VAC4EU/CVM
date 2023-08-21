@@ -118,7 +118,7 @@ CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numer
       used_df[, General:=0]
       #used_df0<-as.data.table(data.frame(matrix(ncol = 0, nrow = 0)))
       #for each table search for pair in the specified columns
-      if (length(itemset)!=0) {
+      if (length(c)!=0) {
         for (study_var in study_variable_names) {
           if (df2 %in% names(itemset[[study_var]])) {
             print(paste(df2, "in study variable",study_var))

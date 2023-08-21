@@ -78,15 +78,13 @@ for (subpop in subpopulations_non_empty) {
     nameconceptset <- nameconceptset[nameconceptset %in% sub('\\.RData$', '', list.files(dirconceptsets))]
     
     if (COVARIATE %in% covid_variables) {
-      nameconceptset <- paste0(dirtemp, "D3_covid_episodes", suffix[[subpop]], ".RData")
+      nameconceptset <- paste0("D3_covid_episodes", suffix[[subpop]])
     } else if (COVARIATE %in% pregnancy_variables) {
       if (skip_pregnancy) {
         nameconceptset <- c()
       } else {
-        nameconceptset <- paste0(dirpregnancy, "D3_pregnancy_final.RData")
+        nameconceptset <- "D3_pregnancy_final"
       }
-    } else {
-      nameconceptset <- paste0(dirconceptsets, nameconceptset, ".RData")
     }
     
     # # Load, then select/create only variable of interest. If original concept empty use a base df.
@@ -123,25 +121,6 @@ for (subpop in subpopulations_non_empty) {
     
     for (covariate_time in names(vocabulary_covariate_times)) {
       
-      # Add to selectionOUTCOME the correct variable to select
-      date_var_name <- vocabulary_covariate_times[[covariate_time]]
-      lookback <- if (COVARIATE %in% DP_variables) 90 else 365
-      
-      if (COVARIATE %in% covid_variables) {
-        selectionOUTCOME <- sprintf("!is.na(date) & !is.na(%s) & date < %s", date_var_name, date_var_name)
-      } else if (COVARIATE %in% pregnancy_variables) {
-        selectionOUTCOME <- sprintf("!is.na(pregnancy_start_date) & !is.na(pregnancy_end_date) & !is.na(%s) &
-                                    pregnancy_start_date <= %s & pregnancy_end_date >= %s",
-                                    date_var_name, date_var_name, date_var_name)
-      } else {
-        selectionOUTCOME <- sprintf("!is.na(date) & !is.na(%s) & date >= %s - %s & date < %s",
-                                    date_var_name, date_var_name, lookback, date_var_name)
-        # delete records that are not observed in this whole subpopulation
-        if (this_datasource_has_subpopulations){
-          selectionOUTCOME <- paste0(selectionOUTCOME, ' & ', select_in_subpopulationsEVENTS[[subpop]])
-        }
-      }
-      
       # new_var <- c(paste0("binary_at_", covariate_time), paste0("fifelse(", selectionOUTCOME, ", 1, 0)"))
       # additionalvar[[covariate_time]] <- new_var
       # summarystat[[covariate_time]] <- c("max", paste0("binary_at_", covariate_time), paste0("binary_at_", covariate_time))
@@ -153,16 +132,49 @@ for (subpop in subpopulations_non_empty) {
       
       for (conceptset in nameconceptset) {
         
-        components <- MergeFilterAndCollapse(listdatasetL = list(get(load(conceptset)[[1]])),
-                                             datasetS = study_population,
-                                             key = "person_id",
-                                             condition = selectionOUTCOME,
-                                             strata = c("person_id"),
-                                             summarystat = list(c("exist", "person_id", "date_exists")))
+        # Add to selectionOUTCOME the correct variable to select
+        date_var_name <- vocabulary_covariate_times[[covariate_time]]
+        lookback <- if (conceptset %in% DP_variables) 90 else 365
         
+        if (COVARIATE %in% covid_variables) {
+          selectionOUTCOME <- sprintf("!is.na(date) & !is.na(%s) & date < %s", date_var_name, date_var_name)
+        } else if (COVARIATE %in% pregnancy_variables) {
+          selectionOUTCOME <- sprintf("!is.na(pregnancy_start_date) & !is.na(pregnancy_end_date) & !is.na(%s) &
+                                    pregnancy_start_date <= %s & pregnancy_end_date >= %s",
+                                      date_var_name, date_var_name, date_var_name)
+        } else {
+          selectionOUTCOME <- sprintf("!is.na(date) & !is.na(%s) & date >= %s - %s & date < %s",
+                                      date_var_name, date_var_name, lookback, date_var_name)
+          # delete records that are not observed in this whole subpopulation
+          if (this_datasource_has_subpopulations){
+            selectionOUTCOME <- paste0(selectionOUTCOME, ' & ', select_in_subpopulationsEVENTS[[subpop]])
+          }
+        }
+        
+        if (COVARIATE %in% covid_variables) {
+          conceptset_rdata <- paste0(dirtemp, conceptset, ".RData")
+        } else if (COVARIATE %in% pregnancy_variables) {
+          conceptset_rdata <- paste0(dirpregnancy, conceptset, ".RData")
+        } else {
+          conceptset_rdata <- paste0(dirconceptsets, conceptset, ".RData")
+        }
+        
+        # Che existence and recode person_id as character
+        components <- MergeFilterAndCollapse(listdatasetL = list(as.data.table(get(load(conceptset_rdata)[[1]])
+        )[, person_id := as.character(person_id)]),
+        datasetS = study_population,
+        key = "person_id",
+        condition = selectionOUTCOME,
+        strata = c("person_id"),
+        summarystat = list(c("exist", "person_id", "date_exists")))
+        
+        if (COVARIATE %not in% c(covid_variables, pregnancy_variables)) {
+          rm(list = conceptset)
+        }
         full_components <- list(full_components, components)
+        rm(components)
         full_components <- unique(rbindlist(full_components))
-  
+        
       }
       
       # add the variable name

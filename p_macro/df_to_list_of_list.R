@@ -38,13 +38,17 @@ df_to_list_of_list <- function(x, code_col = "code", concepts_col = "event_abbre
     next
   } else if (tolower(codying_system_recode) == "auto") {
     x[, coding_system := data.table::fcase(
-      coding_system %in% c("ICD10", "ICD10CM", "ICD10DA"), "ICD10CM",
+      coding_system %in% c("ICD10", "ICD10CM", "ICD10PCS"), "ICD10CM",
+      coding_system %in% c("ICD10DA"), "ICD10DA",
       coding_system %in% c("Free_text"), "Free_text",
-      coding_system %in% c("ICD9CM", "MTHICD9", "ICD9"), "ICD9CM",
+      coding_system %in% c("free_text"), "free_text",
+      coding_system %in% c("ICD9CM", "MTHICD9", "ICD9", "ICD9CM_HSD"), "ICD9CM",
       coding_system %in% c("ICPC"), "ICPC",
-      coding_system %in% c("ICPC2P", "ICPC2EENG"), "ICPC2P",
+      coding_system %in% c("ICPC2P", "ICPC2EENG", "ICPC2"), "ICPC2P",
       coding_system %in% c("RCD2", "RCD"), "READ",
-      coding_system %in% c("MEDCODEID", "SCTSPA", "SNOMEDCT_US", "SPA_EXT", "SNM", "SCTSPA_SNS", "MedCodeId"), "SNOMED", 
+      coding_system %in% c("SCTSPA", "SNOMEDCT_US", "SPA_EXT", "SNM", "SCTSPA_SNS", "SNOMED", "MDR", "HCPCS", "HCPT",
+                           "HSD_ACCERT", "NCMPNCSPNCRP"), "SNOMED",
+      coding_system %in% c("MEDCODEID", "MEDCODE"), "MEDCODEID",
       coding_system %in% c("ATC"), "ATC"
     )]
   } else {

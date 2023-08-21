@@ -26,7 +26,7 @@ for (subpop in subpopulations_non_empty){
   fwrite(get(paste0("Flowchart_exclusion_criteria", suffix[[subpop]])),
          paste0(direxpsubpop[[subpop]], "Flowchart_exclusion_criteria.csv"))
   
-  selected_population <- selected_population[, .(person_id, study_entry_date, study_exit_date)]
+  selected_population <- selected_population[, .(person_id, spell_start_date, study_entry_date, study_exit_date)]
   
   nameoutput <- paste0("D4_study_population", suffix[[subpop]])
   assign(nameoutput, selected_population)

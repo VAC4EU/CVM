@@ -8,23 +8,28 @@
 print("CREATE COVID EPISODES REPEATED")
 
 # data sources having registry
-datasources_covid_registry <- c("TEST","ARS","BIFAP","CASERTA")
+# datasources_covid_registry 
 
 # data sources having positive tests
-datasources_positive_tests <- c("TEST","SIDIAP","PEDIANET","UOSL")
+# datasources_positive_tests 
 
 # data sources including all records with a covid diagnosis
-datasources_covid_diagnosis_all <- c("FISABIO","SIDIAP","UOSL","CPRD")
+# datasources_covid_diagnosis_all 
 
 # data sources including only records of covid diagnosis from hospitals
-datasources_covid_diagnosis_only_hosp <- c("TEST","ARS","CASERTA")
+# datasources_covid_diagnosis_only_hosp 
 
 # load the subpopulation-independent input datasets
-load(paste0(dirpromptsets,"covid_registry.RData")) 
-load(paste0(diritemsets,"COVID_test.RData")) 
 load(paste0(dirconceptsets,"I_COVID19DX_AESI_narrow.RData"))
-dia_COVID_narrow <- I_COVID19DX_AESI_narrow
+# load(paste0(dirconceptsets,"I_COVID19DX_COV_narrow.RData"))
+# # according to PHARMO, in their data source covid is ICPC code R83.03, which is stored in I_COVID19DX_COV_narrow and not in I_COVID19DX_AESI_narrow, therefore this is assigned as follows
+# if (thisdatasource == 'PHARMO'){ 
+#   dia_COVID_narrow <- I_COVID19DX_COV_narrow}else{
+     dia_COVID_narrow <- I_COVID19DX_AESI_narrow
+#     }
 rm(I_COVID19DX_AESI_narrow)
+#rm(I_COVID19DX_COV_narrow)
+
 # OVERALL STRATEGY 
 # 1 rbind all files that imply covid
 # 2 remove recods closer than 60 days to a previous record
@@ -42,26 +47,27 @@ list_all_covid_notifications <- data.table()
 #-------------------------------------
 # add to list_all_covid_notifications positive results from covid test (after data source-specific processing)
 
-covid_test_positive <- data.table()
-
 if (thisdatasource %in% datasources_positive_tests){
-  covid_test_positive <- COVID_test[,.(person_id,date, mo_source_value)][mo_source_value == "positive"]
+  load(paste0(diritemsets,"COVID_test.RData")) 
+  covid_test_positive <- COVID_test
+  if (thisdatasource != "UOSL"){
+    covid_test_positive <- covid_test_positive[,.(person_id,date, mo_source_value)][mo_source_value == "positive"]
+    }
   rm(COVID_test)
   covid_test_positive <- covid_test_positive[,.(person_id,date)]
   covid_test_positive <- covid_test_positive[,origin_case := "covid_test_positive" ]
+  list_all_covid_notifications <- rbind(list_all_covid_notifications,covid_test_positive,fill = T)
 }
-
-list_all_covid_notifications <- rbind(list_all_covid_notifications,covid_test_positive,fill = T)
 
 #-------------------------------------
 # add to list_all_covid_notifications records from covid registry
 
 if (thisdatasource %in% datasources_covid_registry){
+  load(paste0(dirpromptsets,"covid_registry.RData")) 
   covid_registry <- covid_registry[,.(person_id,date)]
   covid_registry <- covid_registry[,origin_case := "covid_registry" ]
+  list_all_covid_notifications <- rbind(list_all_covid_notifications,covid_registry,fill = T)
 }
-
-list_all_covid_notifications <- rbind(list_all_covid_notifications,covid_registry,fill = T)
 
 #-------------------------------------
 # add to list_all_covid_notifications diagnoses of covid (only in selected data sources, and sometimes only in hospital)

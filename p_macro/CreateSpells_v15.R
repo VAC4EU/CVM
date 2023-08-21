@@ -18,7 +18,7 @@
 
 
 CreateSpells <- function(dataset, id, start_date, end_date, category, category_is_numeric=F, replace_missing_end_date,
-                       overlap=F, dataset_overlap = "df_overlap", only_overlaps=F, gap_allowed = 1){
+                       overlap=F, dataset_overlap = "df_overlap", only_overlaps=F, gap_allowed = 1, quiet = F){
   if (!require("data.table")) install.packages("data.table")
   library(data.table)
 
@@ -57,9 +57,9 @@ CreateSpells <- function(dataset, id, start_date, end_date, category, category_i
   if (only_overlaps==F) {
     dataset<-dataset[,(start_date) := lubridate::ymd(get(start_date))][, (end_date) := lubridate::ymd(get(end_date))]
 
-    if(sum(is.na(dataset[[start_date]]))==0) print("All start dates are not missing")
+    if(sum(is.na(dataset[[start_date]]))==0) {if(!quiet) print("All start dates are not missing")}
     else{print("Some start date are missing")}
-    if(sum(is.na(dataset[[end_date]]))==0){print("All end dates are not missing")}
+    if(sum(is.na(dataset[[end_date]]))==0){if(!quiet) print("All end dates are not missing")}
     else {print("Some end date are missing")
       if(!missing(replace_missing_end_date)) {
         print(paste0("Replacing missing end date with ", lubridate::ymd(replace_missing_end_date)))

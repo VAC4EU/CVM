@@ -8,7 +8,7 @@
 
 print("COUNT EVENTS by windows")
 
-source(paste0(dirmacro,"CountPersonTimeV13.8.R"))
+split_by <- if(thisdatasource %in% datasource_needing_split_conceptsets) split_by_default else NULL
 
 for (subpop in subpopulations_non_empty) {  
   print(subpop)
@@ -25,14 +25,14 @@ for (subpop in subpopulations_non_empty) {
   # missing_OUTCOME_variables <- setdiff(OUTCOME_variables, events_ALL_OUTCOMES[, unique(type_outcome)])
   #if (length(missing_OUTCOME_variables) > 0) {
   vars_to_add <- data.table(person_id = study_population[1, person_id], date = ymd(99991231),
-                            type_outcome = c(OUTCOME_variables, CONTROL_variables), meaning_renamed = "DO NOT USE",
+                            type_outcome = c(OUTCOME_variables, CONTROL_variables, "DEATH"), meaning_renamed = "DO NOT USE",
                             codvar = "DO NOT USE", event_record_vocabulary = "DO NOT USE")
   events_ALL_OUTCOMES <- rbind(events_ALL_OUTCOMES, vars_to_add)
   #}
   
   max_exit <- study_population[, ceiling_date(max(end_date_of_period), 'year') %m-% days(1)]
   
-  not_recurrent_OUTCOME_variables <- setdiff(c(OUTCOME_variables, CONTROL_variables), recurrent_OUTCOME_variables)
+  not_recurrent_OUTCOME_variables <- setdiff(c(OUTCOME_variables, CONTROL_variables, "DEATH"), recurrent_OUTCOME_variables)
   
   print("not recurrent")
   
@@ -53,7 +53,9 @@ for (subpop in subpopulations_non_empty) {
     Outcomes_nrec = not_recurrent_OUTCOME_variables,
     Unit_of_age = "year",
     include_remaning_ages = T,
-    Aggregate = T
+    Aggregate = T,
+    intermediate_folder = dirtemp,
+    split_by = split_by_default
   )
   
   print("recurrent")
@@ -76,7 +78,9 @@ for (subpop in subpopulations_non_empty) {
     Unit_of_age = "year",
     include_remaning_ages = T,
     Aggregate = T,
-    Rec_period = c(rep(30, length(recurrent_OUTCOME_variables)))
+    Rec_period = c(rep(30, length(recurrent_OUTCOME_variables))),
+    intermediate_folder = dirtemp,
+    split_by = split_by_default
   )
   
   print("Merging")

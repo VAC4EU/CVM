@@ -3,7 +3,7 @@
 ###################################################################
 
 
-datasources_prescriptions <- c('CPRD',"PHARMO")
+datasources_prescriptions <- c('CPRD', "PHARMO", "PEDIANET")
 
 # assign -files_ConcePTION_CDM_tables-: it is a 2-level list, listing the csv files where the tables of the local instance of the ConcePTION CDM are stored 
 files_ConcePTION_CDM_tables <- list()

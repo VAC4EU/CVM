@@ -9,7 +9,10 @@ print('PRE-PROCESSING OF PERSONS')
 # import input datasets
 PERSONS <- data.table()
 for (file in files_ConcePTION_CDM_tables[["PERSONS"]]) {
-  temp <- fread(paste0(dirinput, file, ".csv"), colClasses = list(character = "person_id"))
+  temp <- fread(paste0(dirinput, file, ".csv"),
+                colClasses = list(character = "person_id",
+                                  integer = c("day_of_birth", "month_of_birth", "year_of_birth",
+                                              "day_of_death", "month_of_death", "year_of_death")))
   PERSONS <- rbind(PERSONS, temp, fill = T)
   rm(temp)
 }
@@ -146,7 +149,7 @@ D3_PERSONS <- unique(D3_PERSONS)
 
 # Create and save D3_events_DEATH
 D3_events_DEATH <- D3_PERSONS[!is.na(death_date),.(person_id, death_date)][, date := death_date][, -"death_date"]
-save(D3_events_DEATH,file = paste0(dirtemp,"D3_events_DEATH.RData"))
+save(D3_events_DEATH,file = paste0(direvents,"D3_events_DEATH.RData"))
 rm(D3_events_DEATH)
 
 # Save D3_PERSONS

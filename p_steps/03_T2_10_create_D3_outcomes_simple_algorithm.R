@@ -11,92 +11,102 @@ print('create events and create components of OUTCOMES and CONTROLS')
 
 ##for each var in OUTCOME and for each negative outcome create D3_var including all dates when that outcome is observed (use the corresponding conceptsets)
 
-for (OUTCOME in c(OUTCOME_variables[OUTCOME_variables %not in% SECCOMPONENTS], CONTROL_variables)) {
-  tempOUTCOME <- vector(mode="list")
-  componentsOUTCOME <- vector(mode="list")
-  print(OUTCOME)
-  for (subpop in subpopulations_non_empty) {
-    print(subpop)
-    load(paste0(diroutput,"D4_study_population",suffix[[subpop]],".RData")) 
-    study_population <- get(paste0("D4_study_population", suffix[[subpop]]))
+for (subpop in subpopulations_non_empty) {
+  print(subpop)
+  
+  COHORT_TMP <- get(load(paste0(diroutput, "D4_study_population", suffix[[subpop]], ".RData"))[[1]])
+  rm(list = paste0("D4_study_population", suffix[[subpop]]))
+  
+  COHORT_TMP <- as.data.table(COHORT_TMP)
+  COHORT_TMP <- COHORT_TMP[, .(person_id, study_entry_date)]
+  
+  for (OUTCOME in c(OUTCOME_variables[OUTCOME_variables %not in% SECCOMPONENTS], CONTROL_variables)) {
+    print(OUTCOME)
     
-    COHORT_TMP <- as.data.table(study_population)  
-
-    COHORT_TMP <- COHORT_TMP[,.(person_id, study_entry_date)]
-   
-    namenewvar<-c()
+    summarystatOUTCOME <- list()
+    addvarOUTCOME <- list()
     
-    counter<-0
-    counter2<-0
-    summarystatOUTCOME<-vector(mode="list")
-    addvarOUTCOME <- vector(mode="list")
-    FirstJan<-vector(mode="list")
+    # for (year in ComponentAnalysisYears) {
+    #   FirstJan_1 <- ymd(paste0(year, "0101"))
+    #   
+    #   for (level1 in c("HOSP", "PC")) {
+    #     
+    #     namenewvar <- paste(OUTCOME, level1, year, sep = "_")
+    #     summarystatOUTCOME <- append(summarystatOUTCOME, list(list(c("max"), namenewvar, namenewvar)))
+    #     
+    #     condition_str <- paste0("(", condmeaning[[level1]], ") & date <= as.Date('", FirstJan_1,
+    #                             "') + 365 & date >= as.Date('", FirstJan_1, "')")
+    #     addvarOUTCOME <- append(addvarOUTCOME, list(list(c(namenewvar), "1", condition_str)))
+    #     addvarOUTCOME <- append(addvarOUTCOME, list(list(c(namenewvar), "0", paste0("is.na(", namenewvar, ")"))))
+    #     
+    #   }
+    # }
+    
     for (year in ComponentAnalysisYears) {
-      FirstJan[[year]] <- ymd(paste0(year,"0101"))
       
-      for (level1 in c("HOSP","PC")) {
-        namenewvar <- paste0(OUTCOME,level1, year, sep = "_")
-        counter<-counter+1
-        counter2<-counter2+1
-        summarystatOUTCOME[[counter2]]<-list(c("max"),namenewvar,namenewvar)
-        addvarOUTCOME[[counter]]=list(c(namenewvar),"1",paste0("(",condmeaning[[level1]], ") & date <= as.Date('",FirstJan[[year]],"') + 365 & date >= as.Date('",FirstJan[[year]],"')"))
-        counter<-counter+1
-        addvarOUTCOME[[counter]]=list(c(namenewvar),"0",paste0("is.na(",namenewvar,")"))
+      for (level1 in c("HOSP", "PC")) {
+        
+        namenewvar <- paste(OUTCOME, level1, year, sep = "_")
+        summarystatOUTCOME <- append(summarystatOUTCOME, list(list(c("max"), namenewvar, namenewvar)))
+        
+        condition_str <- paste0("(", condmeaning[[level1]], ") & year(date) == ", year)
+        addvarOUTCOME <- append(addvarOUTCOME, list(list(c(namenewvar), "1", condition_str)))
+        addvarOUTCOME <- append(addvarOUTCOME, list(list(c(namenewvar), "0", paste0("is.na(", namenewvar, ")"))))
+        
       }
     }
     
-    selectionOUTCOME <- "date >= study_entry_date - 365 "
+    selectionOUTCOME <- "date >= study_entry_date - 365"
     
     # delete records that are not observed in this whole subpopulation
     if (this_datasource_has_subpopulations == TRUE){
-      selectionOUTCOME <- paste0(selectionOUTCOME,' & ',select_in_subpopulationsEVENTS[[subpop]])
+      selectionOUTCOME <- paste(selectionOUTCOME, '&', select_in_subpopulationsEVENTS[[subpop]])
     }
+    
+    # delete records whose meanings are not appropriate for a specific datasource 
+    selectionOUTCOME <- paste0(selectionOUTCOME, ' & !(', select_meanings_AESI[[thisdatasource]], ')')
     
     nameconceptsetdatasetOUTCOMEtype <- variable_definition[[OUTCOME]]
     conceptsets_list <- lapply(nameconceptsetdatasetOUTCOMEtype,
                                function(x) get(load(paste0(dirconceptsets, x,".RData"))[[1]]))
+    
     components <- MergeFilterAndCollapse(
-      listdatasetL= conceptsets_list,
+      listdatasetL = conceptsets_list,
       condition = selectionOUTCOME,
-      key = c("person_id"),
+      key = "person_id",
       datasetS = COHORT_TMP,
       additionalvar = addvarOUTCOME,
-      saveintermediatedataset = T,
       nameintermediatedataset = paste0(dirtemp,'tempfile'),
-      strata = c("person_id"),
-      summarystat = summarystatOUTCOME
+      strata = "person_id",
+      saveintermediatedataset = T,
+      summarystat = list(list("count", "person_id", "count"))
     )
     
-    load(paste0(dirtemp,'tempfile.RData') )
-    
-    tempOUTCOME <- tempfile
-    componentsOUTCOME<- components 
+    load(paste0(dirtemp, 'tempfile.RData'))
     
     nameobjectOUTCOMEtype <- paste0('D3_events_', OUTCOME, '_simple', suffix[[subpop]])
-    foroutput <- tempOUTCOME
-    assign(nameobjectOUTCOMEtype,foroutput)
-    save(nameobjectOUTCOMEtype,file=paste0(direvents,paste0(nameobjectOUTCOMEtype,".RData")),list = nameobjectOUTCOMEtype)
-    rm(foroutput)
-    rm(nameobjectOUTCOMEtype,list = nameobjectOUTCOMEtype)
+    assign(nameobjectOUTCOMEtype, tempfile)
+    save(nameobjectOUTCOMEtype, file = paste0(direvents, nameobjectOUTCOMEtype, ".RData"), list = nameobjectOUTCOMEtype)
+    rm(components, tempfile, nameobjectOUTCOMEtype, list = nameobjectOUTCOMEtype)
     
-    
-    
-    # rm(nameconceptsetdatasetOUTCOMEtype)
+    # components <- MergeFilterAndCollapse(
+    #   listdatasetL = conceptsets_list,
+    #   condition = selectionOUTCOME,
+    #   key = "person_id",
+    #   datasetS = COHORT_TMP,
+    #   additionalvar = addvarOUTCOME,
+    #   strata = "person_id",
+    #   summarystat = summarystatOUTCOME
+    # )
     # 
-    # nameobjectOUTCOME <- paste0("D3_components","_",OUTCOME,suffix[[subpop]])
-    # componentsOUTCOMEfinal <- vector(mode = 'list')
-    # OUTCOME_narrow <- componentsOUTCOME
+    # componentsOUTCOMEfinal <- merge(COHORT_TMP, components, by = "person_id", all.x  = T)
+    # setnafill(componentsOUTCOMEfinal, fill = 0)
     # 
-    # temp2 <- merge(COHORT_TMP,OUTCOME_narrow, by="person_id",all.x  = T)
-    # for (i in names(temp2)) temp2[is.na(get(i)), (i):=0]
-    # componentsOUTCOMEfinal <- temp2
-    # 
+    # nameobjectOUTCOME <- paste0("D3_components_", OUTCOME, suffix[[subpop]])
     # assign(nameobjectOUTCOME, componentsOUTCOMEfinal)
     # 
-    # save(nameobjectOUTCOME,file=paste0(dircomponents,paste0(nameobjectOUTCOME,".RData")),list= nameobjectOUTCOME)
-    # rm(OUTCOME_narrow, temp2,componentsOUTCOMEfinal,componentsOUTCOME,tempOUTCOME)
-    # rm(nameobjectOUTCOME, list = nameobjectOUTCOME)
-    # 
-    # rm(addvarOUTCOME,study_population,summarystatOUTCOME, COHORT_TMP,tempfile,components)
+    # save(nameobjectOUTCOME, file = paste0(dircomponents, nameobjectOUTCOME, ".RData"), list = nameobjectOUTCOME)
+    # rm(components, componentsOUTCOMEfinal, componentsOUTCOMEfinal, nameobjectOUTCOME, list = nameobjectOUTCOME)
+    rm(conceptsets_list)
   }
 }

@@ -8,7 +8,7 @@ CountPersonTime <- function(Dataset_events = NULL, Dataset, Person_id, Start_stu
                             End_date, Birth_date = NULL,Rec_period = NULL, Strata = NULL,Outcomes_nrec = NULL,
                             Outcomes_rec = NULL, Name_event = NULL, Date_event = NULL, Age_bands = NULL,
                             Unit_of_age = "year" , Increment = "year", include_remaning_ages = T, Aggregate = T,
-                            print = F, check_overlap = T, save_intermediate = NULL, load_intermediate = F){
+                            print = F, check_overlap = T, intermediate_folder = NULL, save_or_load = NULL, split_by = NULL){
   
   if(print) print("Version 13.8")
   # Check if demanded R packages are installed, install if not,  and activate
@@ -24,15 +24,23 @@ CountPersonTime <- function(Dataset_events = NULL, Dataset, Person_id, Start_stu
   
   if(any(Outcomes_rec %in% Outcomes_nrec)){stop("Overlapping event names for Outcomes_rec and Outcomes_nrec")}
   
-  if (!is.logical(load_intermediate)) {stop("Parameter 'load_intermediate' accepts only logical constants")}
-  if (!missing(save_intermediate)) {
-    tryCatch(dirname(save_intermediate), error = function(e)
-      stop("Parameter 'save_intermediate' accepts only valid filepaths with already existing folders"))
+  if (!missing(intermediate_folder)) {
+    tryCatch(dirname(intermediate_folder), error = function(e)
+      stop("Parameter 'intermediate_folder' accepts only valid folders"))
+    
+    # Sanitize intermediate_folder
+    intermediate_folder <- gsub("[\\\\|/]$", "", intermediate_folder)
   }
   
-  if (load_intermediate) {
-    if (!missing(save_intermediate) && file.exists(save_intermediate)) {
-      load(save_intermediate)
+  if (!missing(split_by) & missing(intermediate_folder)) {
+    stop("Please provide a folder where to store the splitted temporary datasets")
+  }
+  
+  
+  
+  if (!missing(save_or_load) && save_or_load == "load") {
+    if (!missing(intermediate_folder) && file.exists(file.path(intermediate_folder, "CPT_intermediate.rds"))) {
+      load(intermediate_folder)
     } else {
       Dataset <- as.data.table(Dataset)
     }
@@ -220,115 +228,195 @@ CountPersonTime <- function(Dataset_events = NULL, Dataset, Person_id, Start_stu
         Dataset <- Dataset[age_start < ST  ,eval(Start_date) := as.IDate(add_with_rollback(get(Birth_date), period(ST,units = Unit_of_age), roll_to_first = T, preserve_hms = T)), by = row]
         Dataset <- Dataset[age_end > EN  ,eval(End_date) := as.IDate(add_with_rollback(get(Birth_date), period(EN + 1,units = Unit_of_age), roll_to_first = T, preserve_hms = T)) - 1, by = row]
         Dataset <- Dataset[,':=' (age_start = NULL, age_end = NULL,ST = NULL, EN = NULL, row = NULL)]
-        }
+      }
     }
     
     
-  
-  if(!is.null(Age_bands)){Age_band_coln<-"Ageband"} else Age_band_coln<-"Ageband"<-NULL
-  
-  
-  #Enlarge table by time increment. 
-  ################################################################################################################################
-  
-  
-  if(print) print(paste0("Transform input date to a dataset per ", Increment, ". This step increases the size of the file with respect to the choosen increment" ))
-  
-  Dummy <- as.data.table(cbind(Increment = Time_Increment,End = Time_Increment_end))
-  Dummy <- Dummy[, Increment := as.IDate(Increment)]
-  Dummy <- Dummy[, End := as.IDate(End)]
-  colnames(Dummy) <- c(Increment,"End")
-  
-  
-  setkeyv(Dataset, c(Start_date, End_date))
-  Dataset <- foverlaps(Dummy, Dataset, by.x=c(Increment, "End"), nomatch = 0L, type = "any")
-  
-  Dataset <- Dataset[get(Start_date) <= get(Increment) & get(End_date) >= get(Increment),eval(Start_date) := get(Increment)]
-  Dataset <-Dataset[get(End_date) >= End & get(Start_date) <= End, eval(End_date) := End][, End := NULL]
-  
-  rm(Dummy)
-  gc()
-  
-  ################################################################################################################################
-  
-  if (!missing(save_intermediate)) {
-    save(Dataset, file = save_intermediate)
-  } 
-  
+    
+    if(!is.null(Age_bands)){Age_band_coln<-"Ageband"} else Age_band_coln<-"Ageband"<-NULL
+    
+    #Enlarge table by time increment. 
+    ################################################################################################################################
+    
+    int.check <- function(vect) {
+      vect <- as.character(vect)
+      sapply(vect, function(x) all(unlist(strsplit(x, "")) %in% 0:9))
+    }
+    
+    check_columns_exist <- function(start_df, columns) {
+      colnames(start_df)[grepl(paste(columns, collapse = "|"), colnames(start_df))]
+    }
+    
+    split_by_int <- split_by[int.check(split_by)]
+    split_by_exist <- check_columns_exist(Dataset, split_by)
+    split_by_not_in_strata <- setdiff(split_by_exist, Strata)
+    split_by_unknown <- setdiff(split_by, c(split_by_int, split_by_exist))
+    
+    if (missing(split_by) | is.null(split_by)) {
+      split_by_int <- c()
+      split_by_exist <- c()
+      split_by_not_in_strata <- c()
+      split_by_unknown <- c()
+    }
+    
+    if (length(split_by_not_in_strata) != 0) {
+      stop(sprintf("Some values in split_by argument are columns of the Dataset but are not inside the parameter Strata: %s",
+                   paste(split_by_not_in_strata, collapse = ", ")))
+    }
+    
+    if (length(split_by_unknown) != 0) {
+      stop(sprintf("Some values in split_by argument are not columns in Dataset or are not integer: %s",
+                   paste(split_by_unknown, collapse = ", ")))
+    }
+    
+    if(print) print(paste0("Transform input date to a dataset per ", Increment, ". This step increases the size of the file with respect to the choosen increment" ))
+
+    Dummy <- as.data.table(cbind(Increment = Time_Increment, End = Time_Increment_end))
+    Dummy <- Dummy[, Increment := as.IDate(Increment)]
+    Dummy <- Dummy[, End := as.IDate(End)]
+    colnames(Dummy) <- c(Increment, "End")
+    setkeyv(Dataset, c(Start_date, End_date))
+    
+    n_strips_dummy <- 1
+    if (length(split_by_int) > 0) {
+      
+      # Transform split_by_int from character to size of splitted datsets
+      split_by_int <- as.integer(split_by_int)
+      
+      if (length(split_by_int) > 1) stop("Argument split_by accept only one integer argument inside the vector")
+      
+      if (split_by_int == 0) {
+        stop(sprintf("Some values in split_by argument are not columns in Dataset or are not integer: %s",
+                     paste(split_by_unknown, collapse = ", ")))
+      }
+      
+      if (nrow(Dummy) > split_by_int) {
+        Dummy[, flag := ceiling(seq_len(.N) / split_by_int)]
+        
+        Dummy <- split(Dummy, by = "flag", keep.by = F)
+        n_strips_dummy <- length(Dummy)
+        
+        for (i in seq_len(n_strips_dummy)) {
+          saveRDS(Dummy[[i]], file = file.path(intermediate_folder, paste0("dummy_CPT_", i, ".rds")))
+        }
+      }
+    }
+    
+    if (length(split_by_exist) > 0) {
+      Dataset <- split(Dataset, by = split_by_exist)
+      n_strips_dataset <- length(Dataset)
+      for (i in seq_len(n_strips_dataset)) {
+        saveRDS(Dataset[[i]], file = file.path(intermediate_folder, paste0("dataset_CPT_", i, ".rds")))
+      }
+    } else {
+      n_strips_dataset <- 1
+    }
+    
+    n_strips <- n_strips_dummy * n_strips_dataset
+
+    i = 1
+    for (du in 1:n_strips_dummy) {
+      if (n_strips_dummy != 1) Dummy <- readRDS(file.path(intermediate_folder, paste0("dummy_CPT_", du, ".rds")))
+      for (da in 1:n_strips_dataset) {
+        if (n_strips_dataset != 1 | length(split_by_exist) > 0) {
+          Dataset <- readRDS(file.path(intermediate_folder, paste0("dataset_CPT_", da, ".rds")))
+        }
+        
+        large_temp_CPT <- foverlaps(Dummy, Dataset, by.x=c(Increment, "End"), nomatch = 0L, type = "any")
+        large_temp_CPT[get(Start_date) <= get(Increment) & get(End_date) >= get(Increment),eval(Start_date) := get(Increment)]
+        large_temp_CPT[get(End_date) >= End & get(Start_date) <= End, eval(End_date) := End][, End := NULL]
+        
+        if (n_strips > 1) {
+          saveRDS(large_temp_CPT, file = file.path(intermediate_folder, paste0("large_temp_CPT_", i, ".rds")))
+        } else {
+          
+          Dataset <- large_temp_CPT
+          if (!missing(intermediate_folder) && !missing(save_or_load) && save_or_load == "save") {
+            saveRDS(Dataset, file = file.path(intermediate_folder, paste0("CPT_intermediate.rds")))
+          }
+          
+        }
+        i = i + 1
+      }
+    }
+    
+    if (n_strips_dummy != 1) for (du in 1:n_strips_dummy) file.remove(file.path(intermediate_folder, paste0("dummy_CPT_", du, ".rds")))
+    if (n_strips_dataset != 1) for (da in 1:n_strips_dataset) file.remove(file.path(intermediate_folder, paste0("dataset_CPT_", da, ".rds")))
+    
+    sprintf("Dataset has been splitted in %s stripes", n_strips)
   }
   
-  
-  #NEW CODE V11 If recurrent events is true. This is a whole different approach compared to the situation where only the first
-  # event is used. When joining multiple doubling will occur. I choose to do not do this and choose a method only allowing joins 
-  # that have unique combinations
-  ################################################################################################################################
-  
-  #Make boolean for reccurent and not recurrent events that are needed to decide which codes need to be applied
-  
-  if (is.null(Outcomes_rec)) {Rec_events <- F} else{Rec_events <- T}
-  if (is.null(Outcomes_nrec)) {nRec_events <- F} else{nRec_events <- T}
-  
-  #Combine two input datasets to one dataset if only the first occurrence of an event is evaluated or exclude events that are following 
-  #the previous event within a time period. 
-  ################################################################################################################################
-  
-  #Create a boolean for if there are any events at all so we can remove Dataset_events and spare RAM
-  if(!(is.null(Dataset_events) | (is.null(Outcomes_rec) & is.null(Outcomes_nrec)))){Dataset_events_b <- T} else{Dataset_events_b <- F}
-
-  
-  if (Dataset_events_b) {
-  
-  #Make a vector for all events that can be used to processes that are independent of recurrent or not  
-  Outcomes <- c(Outcomes_nrec, Outcomes_rec)
-  
-  Dataset_events <- copy(Dataset_events)    
-  
-  #NEW CODE FROM V11
-  
-  if(nrow(Dataset_events) > 0){
-    Dataset_events <- Dataset_events[get(Name_event) %in% Outcomes,]
+  for (j in seq_len(n_strips)) {
     
-    # set date to integer to spare RAM
-    Dataset_events[, c(Date_event) := lapply(.SD, as.IDate), .SDcols = Date_event]
+    if (n_strips > 1) Dataset <- readRDS(file.path(intermediate_folder, paste0("large_temp_CPT_", j, ".rds")))
     
-    #Add a column that represents the occurence of the event. This is needed to select the first 1 if not recurrent and to see which events are removed if recurrent
-    setorderv(Dataset_events,c(Person_id,Name_event,Date_event))
-    Dataset_events[,Recurrent := cumsum(!is.na(get(Date_event))),by=c(Person_id,Name_event)]
+    #NEW CODE V11 If recurrent events is true. This is a whole different approach compared to the situation where only the first
+    # event is used. When joining multiple doubling will occur. I choose to do not do this and choose a method only allowing joins 
+    # that have unique combinations
+    ################################################################################################################################
     
-    #Split events data in recurrent and not recurrent and select only the outcomes that are actually in the data to prevent processes that are not needed
-    if(print) print("Split outcomes in event table in recurrent and not recurrent")
-    Dataset_events_nrec <- copy(Dataset_events)[get(Name_event) %in% Outcomes_nrec,]
-    colls_outcomes_nrec <- Outcomes_nrec[Outcomes_nrec %in% Dataset_events_nrec[,get(Name_event)]]
-    Dataset_events_rec <- copy(Dataset_events)[get(Name_event) %in% Outcomes_rec ,]
-    colls_outcomes_rec <- Outcomes_rec[Outcomes_rec %in% Dataset_events_rec[,get(Name_event)]]
-   
+    #Make boolean for reccurent and not recurrent events that are needed to decide which codes need to be applied
     
-    rm(Dataset_events)
-    gc()
+    if (is.null(Outcomes_rec)) {Rec_events <- F} else{Rec_events <- T}
+    if (is.null(Outcomes_nrec)) {nRec_events <- F} else{nRec_events <- T}
     
-    if(Rec_events & nrow(Dataset_events_rec) > 0){
-      if(print) print("If Rec_events = T then determine the censoring periods. This is a looped procedure that may need some improvement still")
-      it=1
-      if(!length(Rec_period)==length(Outcomes_rec)) stop("the vectors Outcomes and rec period have different lengths")
+    #Combine two input datasets to one dataset if only the first occurrence of an event is evaluated or exclude events that are following 
+    #the previous event within a time period. 
+    ################################################################################################################################
+    
+    #Create a boolean for if there are any events at all so we can remove Dataset_events and spare RAM
+    if(!(is.null(Dataset_events) | (is.null(Outcomes_rec) & is.null(Outcomes_nrec)))){Dataset_events_b <- T} else{Dataset_events_b <- F}
+    
+    if (Dataset_events_b) {
       
-      events_rec_list <- copy(Dataset_events_rec[0])
+      #Make a vector for all events that can be used to processes that are independent of recurrent or not  
+      Outcomes <- c(Outcomes_nrec, Outcomes_rec)
       
-      #Split events on if they are in data and have a rec_period > 0. If they are not in the data or have a Rec_period of 0 they do not need to be in all the processes.
-      #Only the count of the events is mandatory if a Rec_period = 0. The while loop to remove events and the procedure to subtract persontime are not needed. 
-      Outcomes_rec1 <- colls_outcomes_rec[colls_outcomes_rec  %in% Outcomes_rec[!Rec_period == 0]]  
-      Outcomes_rec2 <- colls_outcomes_rec[!colls_outcomes_rec %in% Outcomes_rec1] 
-      #Make a vector with only the rec_period for the outcomes in Outcomes_rec1. This in needed along with Outcomes_rec1 in the row 313 untill 352 
-      Rec_period1 <- Rec_period[Outcomes_rec %in% Outcomes_rec1]
+      Dataset_events <- copy(Dataset_events)    
       
-      #Delete Rec_period to be sure it is not used anymore further in the script. It should be matched with Outcomes_rec1  
-      rm(Rec_period)
+      #NEW CODE FROM V11
       
-      
-      #Split the events in 2 datasets 
-      Dataset_events_rec2  <- copy(Dataset_events_rec)[get(Name_event) %in% Outcomes_rec1]
-      Dataset_events_rec3  <- copy(Dataset_events_rec)[get(Name_event) %in% Outcomes_rec2]
-      
-      if(length(Outcomes_rec1) > 0){
+      if(nrow(Dataset_events) > 0){
+        Dataset_events <- Dataset_events[get(Name_event) %in% Outcomes,]
+        
+        # set date to integer to spare RAM
+        Dataset_events[, c(Date_event) := lapply(.SD, as.IDate), .SDcols = Date_event]
+        
+        #Add a column that represents the occurence of the event. This is needed to select the first 1 if not recurrent and to see which events are removed if recurrent
+        setorderv(Dataset_events,c(Person_id,Name_event,Date_event))
+        Dataset_events[,Recurrent := cumsum(!is.na(get(Date_event))),by=c(Person_id,Name_event)]
+        
+        #Split events data in recurrent and not recurrent and select only the outcomes that are actually in the data to prevent processes that are not needed
+        if(print) print("Split outcomes in event table in recurrent and not recurrent")
+        Dataset_events_nrec <- copy(Dataset_events)[get(Name_event) %in% Outcomes_nrec,]
+        colls_outcomes_nrec <- Outcomes_nrec[Outcomes_nrec %in% Dataset_events_nrec[,get(Name_event)]]
+        Dataset_events_rec <- copy(Dataset_events)[get(Name_event) %in% Outcomes_rec ,]
+        colls_outcomes_rec <- Outcomes_rec[Outcomes_rec %in% Dataset_events_rec[,get(Name_event)]]
+        
+        gc()
+        
+        if(Rec_events & nrow(Dataset_events_rec) > 0){
+          if(print) print("If Rec_events = T then determine the censoring periods. This is a looped procedure that may need some improvement still")
+          it=1
+          if(!length(Rec_period)==length(Outcomes_rec)) stop("the vectors Outcomes and rec period have different lengths")
+          
+          events_rec_list <- copy(Dataset_events_rec[0])
+          
+          #Split events on if they are in data and have a rec_period > 0. If they are not in the data or have a Rec_period of 0 they do not need to be in all the processes.
+          #Only the count of the events is mandatory if a Rec_period = 0. The while loop to remove events and the procedure to subtract persontime are not needed. 
+          Outcomes_rec1 <- colls_outcomes_rec[colls_outcomes_rec  %in% Outcomes_rec[!Rec_period == 0]]  
+          Outcomes_rec2 <- colls_outcomes_rec[!colls_outcomes_rec %in% Outcomes_rec1] 
+          #Make a vector with only the rec_period for the outcomes in Outcomes_rec1. This in needed along with Outcomes_rec1 in the row 313 untill 352 
+          Rec_period1 <- Rec_period[Outcomes_rec %in% Outcomes_rec1]
+          
+          #Delete Rec_period to be sure it is not used anymore further in the script. It should be matched with Outcomes_rec1  
+          #rm(Rec_period)
+          
+          #Split the events in 2 datasets 
+          Dataset_events_rec2  <- copy(Dataset_events_rec)[get(Name_event) %in% Outcomes_rec1]
+          Dataset_events_rec3  <- copy(Dataset_events_rec)[get(Name_event) %in% Outcomes_rec2]
+          
+          if(length(Outcomes_rec1) > 0){
             for (i in 1:length(Outcomes_rec1)){
               
               if(print) print(paste("Remove ",Outcomes_rec1[i], "outcomes within a censoring of ",Rec_period1[i]," days"))
@@ -360,257 +448,262 @@ CountPersonTime <- function(Dataset_events = NULL, Dataset, Person_id, Start_stu
               rm(events_rec)
               gc()
             }
-      
-      
-      Dataset_events_rec <- events_rec_list
-      rm(events_rec_list,Dataset_events_rec2)
-      gc()
-      
-      for(i in 1:length(Rec_period1)){
+            
+            
+            Dataset_events_rec <- events_rec_list
+            rm(events_rec_list,Dataset_events_rec2)
+            gc()
+            
+            for(i in 1:length(Rec_period1)){
+              
+              if(print) print(paste("Set censoring start and end dates for outcome ",Outcomes_rec1[i], " with a duration of ",Rec_period1[i]," days"))
+              Dataset_events_rec <- Dataset_events_rec[dif!=0 & get(Name_event) == Outcomes_rec1[i] & dif < Rec_period1[i],Delete :=T ][is.na(Delete),]
+              Dataset_events_rec <- Dataset_events_rec[get(Name_event) == Outcomes_rec1[i], ":=" (RecSTDT=get(Date_event),RecENDT=get(Date_event) + Rec_period1[i])]  
+              gc()
+              
+            }
+            
+            
+            
+            lapply(c("dif","cumdif","D","Iteration","Delete"), function(x){Dataset_events_rec <- Dataset_events_rec[,eval(x) := NULL]})
+          }else{
+            Dataset_events_rec <- Dataset_events_rec3[0]
+          }
+          
+          setnames(Dataset_events_rec, eval(Person_id), "Person_id")
+          
+          setnames(Dataset_events_rec3, eval(Person_id), "Person_id")
+          
+        }  
         
-        if(print) print(paste("Set censoring start and end dates for outcome ",Outcomes_rec1[i], " with a duration of ",Rec_period1[i]," days"))
-        Dataset_events_rec <- Dataset_events_rec[dif!=0 & get(Name_event) == Outcomes_rec1[i] & dif < Rec_period1[i],Delete :=T ][is.na(Delete),]
-        Dataset_events_rec <- Dataset_events_rec[get(Name_event) == Outcomes_rec1[i], ":=" (RecSTDT=get(Date_event),RecENDT=get(Date_event) + Rec_period1[i])]  
+        if(nRec_events & nrow(Dataset_events_nrec) > 0){ 
+          
+          if(print) print("If Rec_events = F then selecting only the first event")
+          Dataset_events_nrec <- Dataset_events_nrec[Recurrent==1,]
+          Dataset_events_nrec<-dcast(Dataset_events_nrec, get(Person_id) + Recurrent ~ get(Name_event), value.var = eval(Date_event))
+          setcolorder(Dataset_events_nrec,neworder = c('Person_id','Recurrent',colls_outcomes_nrec))
+          
+          setkeyv(Dataset,Person_id)
+          setkey(Dataset_events_nrec,Person_id)
+          Dataset <- Dataset_events_nrec[Dataset,][,Recurrent := NULL]
+          setnames(Dataset, "Person_id", eval(Person_id))
+          
+        }
+        rm(Dataset_events_nrec)
         gc()
         
-      }
-      
-      
-      
-      lapply(c("dif","cumdif","D","Iteration","Delete"), function(x){Dataset_events_rec <- Dataset_events_rec[,eval(x) := NULL]})
-      }else{
-        Dataset_events_rec <- Dataset_events_rec3[0]
-      }
-      
-      setnames(Dataset_events_rec, eval(Person_id), "Person_id")
-      
-      setnames(Dataset_events_rec3, eval(Person_id), "Person_id")
-      
-    }  
-      
-    if(nRec_events & nrow(Dataset_events_nrec) > 0){ 
-      
-      if(print) print("If Rec_events = F then selecting only the first event")
-      Dataset_events_nrec <- Dataset_events_nrec[Recurrent==1,]
-      Dataset_events_nrec<-dcast(Dataset_events_nrec, get(Person_id) + Recurrent ~ get(Name_event), value.var = eval(Date_event))
-      setcolorder(Dataset_events_nrec,neworder = c('Person_id','Recurrent',colls_outcomes_nrec))
-      
-      setkeyv(Dataset,Person_id)
-      setkey(Dataset_events_nrec,Person_id)
-      Dataset <- Dataset_events_nrec[Dataset,][,Recurrent := NULL]
-      setnames(Dataset, "Person_id", eval(Person_id))
-      
-    }
-    rm(Dataset_events_nrec)
-    gc()
-    
-    
-    lapply(Outcomes_nrec, function(x) if (!x %in% colnames(Dataset)) Dataset <- Dataset[, eval(x) := as.IDate(NA, format = "%d%m%Y")]) 
-  } else{
-    invisible(lapply(Outcomes, function(x) Dataset <- Dataset[, eval(x) := as.IDate(NA, format = "%d%m%Y")]))
-    Dataset_events_nrec <- copy(Dataset_events)
-    Dataset_events_rec <- copy(Dataset_events)
-    Dataset_events_rec3 <- copy(Dataset_events)
-  }
-  
-  ################################################################################################################################
-  
-  if(Rec_events){
-    if(nrow(Dataset_events_rec) > 0 | nrow(Dataset_events_rec3) > 0){
-    
-    #Dataset[,row := row.names(Dataset)]
-    setnames(Dataset, eval(Person_id), "Person_id")
-      
-    #Calculate for every observation period the amount of persontime that needs to subtracted for every event
-    ################################################################################################################################
-    
-    Dataset_events_rec2 <- copy(Dataset_events_rec)
-    if(nrow(Dataset_events_rec2) > 0){
-    
-      if(print) print("Calculate days to subtract from persontime for recurrent events")
-      
-      Dataset_temp <- copy(Dataset)[,c("Person_id",Start_date,End_date), with = F]
-      
-      setkeyv(Dataset_temp, c("Person_id",Start_date, End_date))
-      Dataset_events_rec2 <- foverlaps(Dataset_events_rec2, Dataset_temp, by.x = c("Person_id","RecSTDT","RecENDT"), nomatch = 0L, type = "any")
-      
-      ###Bug fix, it can happen that recurrent events are without the study period minus the rec_period. It would also be an option to get rid of them on the event
-      ###File. However, I advise to do that before the function if wanted
-      
-      if(nrow(Dataset_events_rec2) > 0){
-      
-      Dataset_events_rec2 <- Dataset_events_rec2[, row2 := row.names(Dataset_events_rec2)]
-      Dataset_events_rec2 <- Dataset_events_rec2[,':=' (start_date2 = max(get(Start_date),RecSTDT,na.rm=T), end_date2 = min(get(End_date)+1,RecENDT,na.rm=T)), keyby = row2]     
-      Dataset_events_rec2 <- Dataset_events_rec2[,SUBTR := (as.numeric(end_date2)-as.numeric(start_date2)),by = row2]
-      
-      Dataset_events_rec2 <- Dataset_events_rec2[, var := paste0("SUBTRCUM_", get(Name_event))]
-      Dataset_events_rec2 <- dcast(Dataset_events_rec2, Person_id + get(Start_date) + get(End_date) ~  var, value.var = "SUBTR", fun.aggregate = sum)
-      setnames(Dataset_events_rec2, "Start_date",eval(Start_date))
-      setnames(Dataset_events_rec2, "End_date",eval(End_date))
-      
-      Dataset <- merge(x = Dataset, y = Dataset_events_rec2 , by = c("Person_id", eval(Start_date), eval(End_date)), all.x = T , all.y = F, allow.cartesian = F)
-      }else{
         
-        print("All recurrent events fall witout the period of interest")
+        lapply(Outcomes_nrec, function(x) if (!x %in% colnames(Dataset)) Dataset <- Dataset[, eval(x) := as.IDate(NA, format = "%d%m%Y")]) 
+      } else{
+        invisible(lapply(Outcomes, function(x) Dataset <- Dataset[, eval(x) := as.IDate(NA, format = "%d%m%Y")]))
+        Dataset_events_nrec <- copy(Dataset_events)
+        Dataset_events_rec <- copy(Dataset_events)
+        Dataset_events_rec3 <- copy(Dataset_events)
       }
       
-      rm(Dataset_temp)  
-      gc()
-    }
-    
-    # else{
-    #   add <- paste0("SUBTRCUM_",Outcomes_rec)                 
-    #   lapply(add, function(x){Dataset <- Dataset[,eval(x) := 0]})
-    #   rm(add)
-    # }
-    # 
-    rm(Dataset_events_rec2)
-    gc()
-    #Check if all outcomes are present. If not add column with value 0
-    
-    #if(length(Outcomes[!Outcomes %in% unique(p[["OUTC"]])]) > 0)lapply(paste0("SUBTRCUM_",Outcomes[!Outcomes %in% unique(p[["OUTC"]])]), function(x){Dataset <-Dataset[,eval(x) := 0]})
-    SUBTRCUM_MISSING <- Outcomes_rec[!paste0("SUBTRCUM_",Outcomes_rec) %in% unique(colnames(Dataset))] 
-    if(length(SUBTRCUM_MISSING) > 0)lapply(paste0("SUBTRCUM_",SUBTRCUM_MISSING), function(x){Dataset <- Dataset[,eval(x) := 0]})
-  
-    ################################################################################################################################
-    
-    #Calculate the number of events per observation period
-    ################################################################################################################################
-    #k <- c("Person_id",Start_date,End_date)
-    
-    if(print) print("Count the number of events per subject for recurrent events")
-    Dataset_temp <- copy(Dataset)[,c("Person_id",Start_date,End_date), with = F]
-    Event_temp <- rbind(copy(Dataset_events_rec)[,c("Person_id",Date_event,Name_event), with = F],copy(Dataset_events_rec3)[,c("Person_id",Date_event,Name_event), with = F])[, Dummy := get(Date_event)]
-    
-    setkeyv(Dataset_temp, c("Person_id",Start_date, End_date))
-    Dataset_temp <- foverlaps(Event_temp,Dataset_temp, by.x=c("Person_id",Date_event, "Dummy"), nomatch = 0L, type = "any")
-    
-    
-    if(nrow(Dataset_temp) > 0){
-    Dataset_temp <- Dataset_temp[,.("b" = .N),by = c("Person_id",Start_date,End_date, Name_event)][,var := paste0(get(Name_event),"_b")]
-    Dataset_temp <- dcast(Dataset_temp, Person_id + get(Start_date) + get(End_date) ~  var, value.var = "b", fill = 0)
-    setnames(Dataset_temp, c("Start_date","End_date"), c(eval(Start_date), eval(End_date) ))
-    
-    Dataset <- merge(x = Dataset, y = Dataset_temp, by = c("Person_id", Start_date, End_date), allow.cartesian = F, all.x = T, all.y = F)
-    }
-    
-    rm(Event_temp,Dataset_temp)
-    gc()
-    
-
-    rm(Dataset_events_rec)
-    gc()
-    
-    B_MISSING <- Outcomes_rec[!paste0(Outcomes_rec, "_b") %in% unique(colnames(Dataset))]
-    if(length(B_MISSING) > 0)lapply(paste0(B_MISSING,"_b"), function(x){Dataset <-Dataset[,eval(x) := 0]})
-    
-    
-    ################################################################################################################################   
-    }else{
-      lapply(Outcomes_rec, function(x){Dataset <- Dataset[,eval(paste0(x, "_b")) := 0]})
-      lapply(Outcomes_rec, function(x){Dataset <- Dataset[,eval(paste0("SUBTRCUM_",Outcomes_rec)) := 0]})
+      ################################################################################################################################
       
-    }
-  }
-  }
-  ################################################################################################################################
-  
-  # If aggregate is TRUE create columns for aggregation. I do this earlier in the program, so sparated from the aggregation so that I can delete Dataset_events earlier for 
-  #RAM optimalistation
-  if (Aggregate) {
-    
-    if (Dataset_events_b){
-      PT_colls <- c("Persontime",paste0("Persontime_",Outcomes),paste0(Outcomes,"_b"))
-    }else{
-      PT_colls <- "Persontime"
-    }
-    
-    if (!is.null(Age_bands)){
-      by_colls <- c(Strata, Increment, "Ageband")
-    }else{
-      by_colls <- c(Strata, Increment)
-    }
-  }
-  ################################################################################################################################  
-  
-  #Calculate persontimes
-  ################################################################################################################################
-  
-  if(print) print("Calculate persontimes")
-  
-  if(Dataset_events_b){
-  
-  #rm(Dataset_events)  
-  #gc()    
-    
-  Outcomes_b <- paste0(Outcomes, "_b")
-  Persontime_Outcomes <- paste0("Persontime_", Outcomes)
-  #sort_order <- c(eval(Person_id), eval(Start_date))
-  sort_order <- c(eval(Person_id), eval(Start_date),Age_band_coln,eval(Strata))
-  coln <- c(eval(Person_id), eval(Strata), Age_band_coln, eval(Increment), "Persontime", eval(Persontime_Outcomes), eval(Outcomes_b))
-  Dataset[,Persontime := .(get(End_date)-get(Start_date) + 1)]
-        
-          if(nRec_events){
-          lapply(Outcomes_nrec,function(x)Dataset[,paste0(eval(x),"_b") := fifelse(!is.na(get(x)) & get(x) %between% list(get(Start_date),get(End_date)),1,0)])
-          lapply(Outcomes_nrec, function(x) Dataset[,paste0("Persontime_",x) := fifelse(!is.na(get(x)) & get(x) < get(Start_date), 0, Persontime)])
-          #lapply(Outcomes,function(x)Dataset[get(x) %between% list(get(Start_date),get(End_date)),`:=`(paste0(eval(x),"_b")= 1, paste0("Persontime_",x) = .(get(x)-get(Start_date)+1))])
-          lapply(Outcomes_nrec,function(x)Dataset[get(x) %between% list(get(Start_date),get(End_date)),paste0("Persontime_",x) := .(get(x)-get(Start_date)+1)])
+      if(Rec_events){
+        if(nrow(Dataset_events_rec) > 0 | nrow(Dataset_events_rec3) > 0){
+          
+          #Dataset[,row := row.names(Dataset)]
+          setnames(Dataset, eval(Person_id), "Person_id")
+          
+          #Calculate for every observation period the amount of persontime that needs to subtracted for every event
+          ################################################################################################################################
+          
+          Dataset_events_rec2 <- copy(Dataset_events_rec)
+          if(nrow(Dataset_events_rec2) > 0){
+            
+            if(print) print("Calculate days to subtract from persontime for recurrent events")
+            
+            Dataset_temp <- copy(Dataset)[,c("Person_id",Start_date,End_date), with = F]
+            
+            setkeyv(Dataset_temp, c("Person_id",Start_date, End_date))
+            Dataset_events_rec2 <- foverlaps(Dataset_events_rec2, Dataset_temp, by.x = c("Person_id","RecSTDT","RecENDT"), nomatch = 0L, type = "any")
+            
+            ###Bug fix, it can happen that recurrent events are without the study period minus the rec_period. It would also be an option to get rid of them on the event
+            ###File. However, I advise to do that before the function if wanted
+            
+            if(nrow(Dataset_events_rec2) > 0){
+              
+              Dataset_events_rec2 <- Dataset_events_rec2[, row2 := row.names(Dataset_events_rec2)]
+              Dataset_events_rec2 <- Dataset_events_rec2[,':=' (start_date2 = max(get(Start_date),RecSTDT,na.rm=T), end_date2 = min(get(End_date)+1,RecENDT,na.rm=T)), keyby = row2]     
+              Dataset_events_rec2 <- Dataset_events_rec2[,SUBTR := (as.numeric(end_date2)-as.numeric(start_date2)),by = row2]
+              
+              Dataset_events_rec2 <- Dataset_events_rec2[, var := paste0("SUBTRCUM_", get(Name_event))]
+              Dataset_events_rec2 <- dcast(Dataset_events_rec2, Person_id + get(Start_date) + get(End_date) ~  var, value.var = "SUBTR", fun.aggregate = sum)
+              setnames(Dataset_events_rec2, "Start_date",eval(Start_date))
+              setnames(Dataset_events_rec2, "End_date",eval(End_date))
+              
+              Dataset <- merge(x = Dataset, y = Dataset_events_rec2 , by = c("Person_id", eval(Start_date), eval(End_date)), all.x = T , all.y = F, allow.cartesian = F)
+            }else{
+              
+              print("All recurrent events fall witout the period of interest")
+            }
+            
+            rm(Dataset_temp)  
+            gc()
           }
-        
-        
-        if(Rec_events){
-          if("Person_id" %in% colnames(Dataset)) setnames(Dataset,"Person_id",eval(Person_id))
           
-          #By merge NA's are introduced. Removed but not found a good method yet to do this in 1 step within data.table
-          x <- c(paste0("SUBTRCUM_",Outcomes_rec),paste0(Outcomes_rec, "_b"))
-          Dataset <- as.data.frame(Dataset)
-          Dataset[,x][is.na(Dataset[,x])] <- 0
-          Dataset <- as.data.table(Dataset)
-          rm(x)
+          # else{
+          #   add <- paste0("SUBTRCUM_",Outcomes_rec)                 
+          #   lapply(add, function(x){Dataset <- Dataset[,eval(x) := 0]})
+          #   rm(add)
+          # }
+          # 
+          rm(Dataset_events_rec2)
+          gc()
+          #Check if all outcomes are present. If not add column with value 0
           
-          lapply(Outcomes_rec,function(x)Dataset[,paste0("Persontime_",x) := .(get(End_date) - get(Start_date) + 1 - get(paste0("SUBTRCUM_",x)))])
+          #if(length(Outcomes[!Outcomes %in% unique(p[["OUTC"]])]) > 0)lapply(paste0("SUBTRCUM_",Outcomes[!Outcomes %in% unique(p[["OUTC"]])]), function(x){Dataset <-Dataset[,eval(x) := 0]})
+          SUBTRCUM_MISSING <- Outcomes_rec[!paste0("SUBTRCUM_",Outcomes_rec) %in% unique(colnames(Dataset))] 
+          if(length(SUBTRCUM_MISSING) > 0)lapply(paste0("SUBTRCUM_",SUBTRCUM_MISSING), function(x){Dataset <- Dataset[,eval(x) := 0]})
+          
+          ################################################################################################################################
+          
+          #Calculate the number of events per observation period
+          ################################################################################################################################
+          #k <- c("Person_id",Start_date,End_date)
+          
+          if(print) print("Count the number of events per subject for recurrent events")
+          Dataset_temp <- copy(Dataset)[,c("Person_id",Start_date,End_date), with = F]
+          Event_temp <- rbind(copy(Dataset_events_rec)[,c("Person_id",Date_event,Name_event), with = F],copy(Dataset_events_rec3)[,c("Person_id",Date_event,Name_event), with = F])[, Dummy := get(Date_event)]
+          
+          setkeyv(Dataset_temp, c("Person_id",Start_date, End_date))
+          Dataset_temp <- foverlaps(Event_temp,Dataset_temp, by.x=c("Person_id",Date_event, "Dummy"), nomatch = 0L, type = "any")
+          
+          
+          if(nrow(Dataset_temp) > 0){
+            Dataset_temp <- Dataset_temp[,.("b" = .N),by = c("Person_id",Start_date,End_date, Name_event)][,var := paste0(get(Name_event),"_b")]
+            Dataset_temp <- dcast(Dataset_temp, Person_id + get(Start_date) + get(End_date) ~  var, value.var = "b", fill = 0)
+            setnames(Dataset_temp, c("Start_date","End_date"), c(eval(Start_date), eval(End_date) ))
+            
+            Dataset <- merge(x = Dataset, y = Dataset_temp, by = c("Person_id", Start_date, End_date), allow.cartesian = F, all.x = T, all.y = F)
+          }
+          
+          rm(Event_temp,Dataset_temp)
+          gc()
+          
+          
+          rm(Dataset_events_rec)
+          gc()
+          
+          B_MISSING <- Outcomes_rec[!paste0(Outcomes_rec, "_b") %in% unique(colnames(Dataset))]
+          if(length(B_MISSING) > 0)lapply(paste0(B_MISSING,"_b"), function(x){Dataset <-Dataset[,eval(x) := 0]})
+          
+          
+          ################################################################################################################################   
+        }else{
+          lapply(Outcomes_rec, function(x){Dataset <- Dataset[,eval(paste0(x, "_b")) := 0]})
+          lapply(Outcomes_rec, function(x){Dataset <- Dataset[,eval(paste0("SUBTRCUM_",Outcomes_rec)) := 0]})
+          
         }
+      }
+    }
+    ################################################################################################################################
+    
+    # If aggregate is TRUE create columns for aggregation. I do this earlier in the program, so sparated from the aggregation so that I can delete Dataset_events earlier for 
+    #RAM optimalistation
+    if (Aggregate) {
+      
+      if (Dataset_events_b){
+        PT_colls <- c("Persontime",paste0("Persontime_",Outcomes),paste0(Outcomes,"_b"))
+      }else{
+        PT_colls <- "Persontime"
+      }
+      
+      if (!is.null(Age_bands)){
+        by_colls <- c(Strata, Increment, "Ageband")
+      }else{
+        by_colls <- c(Strata, Increment)
+      }
+    }
+    ################################################################################################################################  
+    
+    #Calculate persontimes
+    ################################################################################################################################
+    
+    if(print) print("Calculate persontimes")
+    
+    if(Dataset_events_b){
+      
+      #rm(Dataset_events)  
+      #gc()    
+      
+      Outcomes_b <- paste0(Outcomes, "_b")
+      Persontime_Outcomes <- paste0("Persontime_", Outcomes)
+      #sort_order <- c(eval(Person_id), eval(Start_date))
+      sort_order <- c(eval(Person_id), eval(Start_date),Age_band_coln,eval(Strata))
+      coln <- c(eval(Person_id), eval(Strata), Age_band_coln, eval(Increment), "Persontime", eval(Persontime_Outcomes), eval(Outcomes_b))
+      Dataset[,Persontime := .(get(End_date)-get(Start_date) + 1)]
+      
+      if(nRec_events){
+        lapply(Outcomes_nrec,function(x)Dataset[,paste0(eval(x),"_b") := fifelse(!is.na(get(x)) & get(x) %between% list(get(Start_date),get(End_date)),1,0)])
+        lapply(Outcomes_nrec, function(x) Dataset[,paste0("Persontime_",x) := fifelse(!is.na(get(x)) & get(x) < get(Start_date), 0, Persontime)])
+        #lapply(Outcomes,function(x)Dataset[get(x) %between% list(get(Start_date),get(End_date)),`:=`(paste0(eval(x),"_b")= 1, paste0("Persontime_",x) = .(get(x)-get(Start_date)+1))])
+        lapply(Outcomes_nrec,function(x)Dataset[get(x) %between% list(get(Start_date),get(End_date)),paste0("Persontime_",x) := .(get(x)-get(Start_date)+1)])
+      }
+      
+      
+      if(Rec_events){
+        if("Person_id" %in% colnames(Dataset)) setnames(Dataset,"Person_id",eval(Person_id))
         
-  } else {
+        #By merge NA's are introduced. Removed but not found a good method yet to do this in 1 step within data.table
+        x <- c(paste0("SUBTRCUM_",Outcomes_rec),paste0(Outcomes_rec, "_b"))
+        Dataset <- as.data.frame(Dataset)
+        Dataset[,x][is.na(Dataset[,x])] <- 0
+        Dataset <- as.data.table(Dataset)
+        rm(x)
+        
+        lapply(Outcomes_rec,function(x)Dataset[,paste0("Persontime_",x) := .(get(End_date) - get(Start_date) + 1 - get(paste0("SUBTRCUM_",x)))])
+      }
+      
+    } else {
+      
+      
+      Dataset[,Persontime := .(get(End_date)-get(Start_date) + 1)]
+      sort_order <- c(eval(Person_id), eval(Start_date),Age_band_coln,eval(Strata))
+      coln <- c(eval(Person_id), eval(Strata), Age_band_coln, eval(Increment),"Persontime")
+      
+    }
     
     
-    Dataset[,Persontime := .(get(End_date)-get(Start_date) + 1)]
-    sort_order <- c(eval(Person_id), eval(Start_date),Age_band_coln,eval(Strata))
-    coln <- c(eval(Person_id), eval(Strata), Age_band_coln, eval(Increment),"Persontime")
+    ################################################################################################################################
     
+    #Create output table
+    ################################################################################################################################
+    
+    if(print) print("Create output table")
+    if(Increment=="month"){Dataset[,eval(Increment) := substr(get(Increment),1,7)]}
+    if(Increment=="year"){Dataset[,eval(Increment) := substr(get(Increment),1,4)]}
+    
+    setorderv(Dataset, sort_order)
+    Dataset <- Dataset[,coln,with=FALSE]
+    
+    
+    #Aggregate based on PT_colls and by_colls created earlier  
+    if (Aggregate) {    
+      Dataset <- Dataset[, lapply(.SD, sum), .SDcols = PT_colls, by = by_colls]
+      rm(PT_colls,by_colls)
+      
+    }
+    
+    saveRDS(Dataset, file = file.path(intermediate_folder, paste0("small_temp_CPT_", j, ".rds")))
+    if (n_strips > 1) file.remove(file.path(intermediate_folder, paste0("large_temp_CPT_", j, ".rds")))
   }
-          
   
-  ################################################################################################################################
-  
-  #Create output table
-  ################################################################################################################################
-  
-  if(print) print("Create output table")
-  if(Increment=="month"){Dataset[,eval(Increment) := substr(get(Increment),1,7)]}
-  if(Increment=="year"){Dataset[,eval(Increment) := substr(get(Increment),1,4)]}
-  
-  setorderv(Dataset, sort_order)
-  Dataset <- Dataset[,coln,with=FALSE]
-  
-  
-  #Aggregate based on PT_colls and by_colls created earlier  
-  if (Aggregate) {    
-    Dataset <- Dataset[, lapply(.SD, sum), .SDcols = PT_colls, by = by_colls]
-    rm(PT_colls,by_colls)
-
+  if (n_strips > 1) {
+    Dataset <- rbindlist(lapply(seq_len(n_strips),
+                                function(x) readRDS(file.path(intermediate_folder, paste0("small_temp_CPT_", x, ".rds")))))
+    for (n_s in seq_len(n_strips)) {
+      file.remove(file.path(intermediate_folder, paste0("small_temp_CPT_", n_s, ".rds")))
+    }
   }
+  
   return(Dataset)
   ################################################################################################################################
   rm(Dataset)
   gc()
   
-  
-  
 }
-
-
-
-
-
-

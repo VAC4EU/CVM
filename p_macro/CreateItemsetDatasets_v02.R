@@ -47,24 +47,10 @@ CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numer
     dir.create(file.path( diroutput))
   })
   
-  empty_df<-data.table()
-  
-  #adapt the EAVtables parameter structure to the old one
-  for (t in 1:length(EAVtables)){
-    if (length(unlist(EAVtables[[t]]))==2) {
-      message("New parameter specification")
-      new_parameter<-c(names(EAVtables)[[t]],unlist(EAVtables[[t]]))
-      EAVtables[[t]]<-list(as.list(new_parameter))
-    }
-    else if(length(unlist(EAVtables[[t]]))==3){
-      message("Old parameter specification")
-    }else{
-      stop("The number of elements listed in each last level of the EAVtables parameters must be 2 or 3")
-    }
-  }
   
   for (p in 1:length(EAVtables)){
     for (df2 in EAVtables[[p]][[1]][[1]]){
+      browser()
       print(paste0("I'm analysing table ",df2))
       if (missing(dirinput)) dirinput<-getwd()
       if (extension == "dta") {

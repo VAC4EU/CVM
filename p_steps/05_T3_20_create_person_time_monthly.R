@@ -7,7 +7,7 @@
 
 print("COUNT PERSON TIME by month")
 
-source(paste0(dirmacro,"CountPersonTimeV13.8.R"))
+split_by <- if(thisdatasource %in% datasource_needing_split_conceptsets) c("sex", "dose", "type_vax", "COVID19", 1) else NULL
 
 for (subpop in subpopulations_non_empty) {  
   print(subpop)
@@ -41,7 +41,9 @@ for (subpop in subpopulations_non_empty) {
     Increment = "month",
     Unit_of_age = "year",
     include_remaning_ages = T,
-    Aggregate = T
+    Aggregate = T,
+    intermediate_folder = dirtemp,
+    split_by = split_by
     )
   
   persontime_monthly <- persontime_monthly[, .SD, .SDcols = unique(names(persontime_monthly))]

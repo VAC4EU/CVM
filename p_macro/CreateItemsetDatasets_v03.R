@@ -185,15 +185,17 @@ CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numer
       
       ###########append all the datasets related to the same study_var
       for (study_var in study_variable_names) {
+        
         if (TRUE) { #length(itemset)!=0
-          if (df2 %in% names(itemset[[study_var]])) {
             export_df <- as.data.table(data.frame(matrix(ncol = 0, nrow = 0)))
             for (p in 1:length(EAVtables)){
               for (df2 in EAVtables[[p]][[1]][[1]]){
-                if (exists(paste0(study_var,"_",df2))){
-                  temp <- eval(parse(text = paste0(study_var,"_",df2)))
-                  if(nrow(temp)!=0){
-                    export_df = suppressWarnings(rbind(export_df, temp, fill = T))
+                if (df2 %in% names(itemset[[study_var]])) {
+                  if (exists(paste0(study_var,"_",df2))){
+                    temp <- eval(parse(text = paste0(study_var,"_",df2)))
+                    if(nrow(temp)!=0){
+                      export_df = suppressWarnings(rbind(export_df, temp, fill = T))
+                    }
                   }
                 }
               }
@@ -211,7 +213,6 @@ CreateItemsetDatasets <- function(EAVtables,datevar,dateformat, rename_col,numer
               # }
               assign(study_var, export_df, envir = parent.frame())}
             save(study_var, file = paste0(diroutput,"/",study_var,".RData"),list = study_var)
-          }
         }else{
           export_df <- used_df[,-"General"]
           assign(study_var, export_df, envir = parent.frame())

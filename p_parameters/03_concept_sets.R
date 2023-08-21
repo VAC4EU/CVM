@@ -17,52 +17,107 @@
 # the lists of all conceptsets 
 # concept_sets_of_our_study
 
-# input: the VAC4EU spreadsheets, restricted to the conceptsets associated with this study
+# input: the list of variable names associated to the algorithms, created by carlos
+
 
 ### IN CASE A CONCEPT IS TOO BIG IN A DAP
 datasource_needing_split_conceptsets <- c("CPRD", "TEST", "ARS")
 CONCEPTSETS_to_be_split <- if(thisdatasource %in% datasource_needing_split_conceptsets) c("DP_COVCARDIOCEREBROVAS") else c()
 numbers_split <- c(15)
 
-OUT_codelist <- fread(paste0(thisdir,"/p_parameters/archive_parameters/20221004_V2_ALL_full_codelist.csv"))
+# File_variables_ALG_DP_ROC20 is the name of the input file (also used in 06_variable_lists)
+File_variables_ALG_DP_ROC20 <- paste0(thisdir,"/p_parameters/archive_parameters/Variables_ALG_DP_ROC20_19Jun23.xlsx")
+
+#  OUT_codelist: it is the dataframe containing the codelist itself (temporary: it is removed later)
+OUT_codelist <- fread(paste0(thisdir,"/p_parameters/archive_parameters/20230406_V2_full_codelist_at_20230718.csv"))
 OUT_codelist <- OUT_codelist[, .(coding_system, code, type, tags, event_abbreviation, system)]
 OUT_codelist <- OUT_codelist[, Varname := paste(system, event_abbreviation, type, sep = "_")]
-File_variables_ALG_DP_ROC20 <- paste0(thisdir,"/p_parameters/archive_parameters/Variables_ALG_DP_ROC20_July22.xlsx")
 
-VAR_list <- as.data.table(readxl::read_excel(File_variables_ALG_DP_ROC20, sheet = "Variables"))[, .(Varname)]
-
-# Adding I_COVID19DX_AESI manually
-VAR_list <- rbindlist(list(VAR_list, data.table(Varname = "I_COVID19DX_AESI")))
+# VAR_list: it is the list of variable names
+VAR_list <- as.data.table(readxl::read_excel(File_variables_ALG_DP_ROC20, sheet = "Variables"))[!(Algorithm & !Algorithm_input), .(Varname)]
 OUT_codelist <- merge(VAR_list, OUT_codelist, all.x = T, by = "Varname")
 rm(VAR_list)
 
-# TODO ok for release?
+# cleaning the codelist
 OUT_codelist <- OUT_codelist[code != "" & !is.na(code), ][, event_abbreviation := toupper(event_abbreviation)]
-OUT_codelist <- OUT_codelist[tags != ""][tags == "possbie", tags := "possible"]
-OUT_codelist <- OUT_codelist[coding_system %not in% c("MEDCODEID", "MedCodeId")]
+OUT_codelist <- OUT_codelist[tags == "??", tags := "possible"]
+# OUT_codelist <- OUT_codelist[tags != ""][tags == "possbie", tags := "possible"]
 
-concept_set_codes_our_study <- df_to_list_of_list(OUT_codelist, codying_system_recode = "auto", type_col = "type")
+# Add vocabulary free_text
+OUT_codelist <- rbindlist(list(OUT_codelist, copy(OUT_codelist)[coding_system == "Free_text", coding_system := "free_text"]))
+
+# concept_set_codes_our_study: codelist in the format to be used by CreateConceptsetDatasets
+concept_set_codes_our_study <- df_to_list_of_list(OUT_codelist[tags != "exclude", ], codying_system_recode = "auto", type_col = "type")
+
+concept_set_codes_our_nar <- df_to_list_of_list(OUT_codelist[tags == "narrow", ], codying_system_recode = "auto", type_col = "type")
+concept_set_codes_our_pos_nar <- df_to_list_of_list(OUT_codelist[tags == "possible", ][, tags := "narrow"], codying_system_recode = "auto", type_col = "type")
+
+concept_set_codes_our_pos <- df_to_list_of_list(OUT_codelist[tags == "possible", ], codying_system_recode = "auto", type_col = "type")
+concept_set_codes_our_nar_pos <- df_to_list_of_list(OUT_codelist[tags == "narrow", ][, tags := "possible"], codying_system_recode = "auto", type_col = "type")
+
+concept_set_codes_our_excl <- df_to_list_of_list(OUT_codelist[tags == "exclude", ], codying_system_recode = "auto", type_col = "type")
+
+concept_set_codes_our_study_excl <- list()
+for (concept in names(concept_set_codes_our_nar)) {
+  for (vocabulary in names(concept_set_codes_our_nar[[concept]])) {
+    if (vocabulary == "SNOMED") {
+      child_possible <- intersect(concept_set_codes_our_pos_nar[[concept]][[vocabulary]],
+                                  concept_set_codes_our_nar[[concept]][[vocabulary]])
+    } else {
+      child_possible <- setdiff(setdiff(concept_set_codes_our_pos_nar[[concept]][[vocabulary]],
+                                        CompareListsOfCodes(concept_set_codes_our_nar[[concept]][[vocabulary]],
+                                                            concept_set_codes_our_pos_nar[[concept]][[vocabulary]])),
+                                concept_set_codes_our_nar[[concept]][[vocabulary]])
+    }
+    
+    
+    concept_set_codes_our_study_excl[[concept]][[vocabulary]] <- c(child_possible,
+                                                                   concept_set_codes_our_excl[[concept]][[vocabulary]])
+  }
+}
+
+for (concept in names(concept_set_codes_our_pos)) {
+  for (vocabulary in names(concept_set_codes_our_pos[[concept]])) {
+    
+    if (vocabulary == "SNOMED") {
+      next
+    } else {
+      child_narrow <- setdiff(concept_set_codes_our_nar_pos[[concept]][[vocabulary]],
+                              CompareListsOfCodes(concept_set_codes_our_nar_pos[[concept]][[vocabulary]],
+                                                  concept_set_codes_our_pos[[concept]][[vocabulary]]))
+      child_narrow <- c(child_narrow, intersect(concept_set_codes_our_nar_pos[[concept]][[vocabulary]],
+                                                concept_set_codes_our_pos[[concept]][[vocabulary]]))
+    }
+    
+    concept_set_codes_our_study_excl[[concept]][[vocabulary]] <- c(child_narrow, concept_set_codes_our_excl[[concept]][[vocabulary]])
+  }
+}
+
+# concept_set_codes_our_study_excl <- df_to_list_of_list(OUT_codelist[tags == "narrow", ][, tags := "possible"],codying_system_recode = "auto", type_col = "type")
 rm(OUT_codelist)
 
-concept_set_domains<- vector(mode="list")
+# concept_set_domains: domain of each conceptset, to be used in CreateConceptsetDatasets
+concept_set_domains <- vector(mode="list")
 for (concept in names(concept_set_codes_our_study)) {
   concept_set_domains[[concept]] = "Diagnosis"
 }
 
-DRUG_codelist <- as.data.table(readxl::read_excel(File_variables_ALG_DP_ROC20, sheet = "DrugProxies",
-                                                  .name_repair = ~ vctrs::vec_as_names(..., repair = "universal", quiet = TRUE)))
+# DRUG_codelist: temporary dataset including the codelist of drug
+DRUG_codelist <- as.data.table(readxl::read_excel(File_variables_ALG_DP_ROC20, sheet = "DrugProxies",.name_repair = ~ vctrs::vec_as_names(..., repair = "universal", quiet = TRUE)))
 
 DRUG_codelist <- DRUG_codelist[, ATC.codes := strsplit(ATC.codes, ",")]
 
-DRUG_codelist_list <- df_to_list_of_list(DRUG_codelist, code_col = "ATC.codes", concepts_col = "Drug_proxie",
-                                    codying_system_col = F, codying_system_recode = "auto")
+DRUG_codelist_list <- df_to_list_of_list(DRUG_codelist, code_col = "ATC.codes", concepts_col = "Drug_proxie",codying_system_col = F, codying_system_recode = "auto")
+
+# add to the list of conceptset those of domain Medicines
+concept_set_codes_our_study <- c(concept_set_codes_our_study, DRUG_codelist_list)
 
 for (concept in names(DRUG_codelist_list)) {
   concept_set_domains[[concept]] = "Medicines"
 }
+rm(DRUG_codelist_list)
 
-concept_set_codes_our_study <- c(concept_set_codes_our_study, DRUG_codelist_list)
-
+# splitting conceptsets if necessary
 if (!is.null(CONCEPTSETS_to_be_split)) {
   
   # Select only concepts to be split
@@ -120,19 +175,42 @@ if (!is.null(CONCEPTSETS_to_be_split)) {
   df_concept_set_domains_to_be_split <- df_concept_set_domains_to_be_split[, group := NULL]
   list_concept_set_domains_splitted <- lapply(split(df_concept_set_domains_to_be_split, by = "concept", keep.by = F),
                                               unlist, use.names = F)
-    
+  
   concept_set_domains <- c(concept_set_domains, list_concept_set_domains_splitted)
   
 }
 
-concept_sets_of_our_study <- names(concept_set_codes_our_study)
-rm(DRUG_codelist_list)
+#--------------------------
+# add manually conceptsets of other domains
 
+
+# procedure for mechanical ventilation
+
+concept_set_codes_our_study[["ICU_VENTILATION"]][["ICD9PROC"]] <- c("96.70","96.71","96.72")
+concept_set_codes_our_study[["ICU_VENTILATION"]][["ICD10ES"]] <- c("5A19")
+concept_set_domains[["ICU_VENTILATION"]] = "Procedures"
+
+
+# results from covid test recorded with a code
+
+concept_set_codes_our_study[["COVID_test_coded"]][["Veneto_lab_coding_system"]] <- c("91.12.1_0")
+concept_set_domains[["COVID_test_coded"]] = "Results"
+
+
+#vaccines
 concept_set_codes_our_study[["COVID_VACCINES"]][["ATC"]] <- c("J07BX03")
 concept_set_domains[["COVID_VACCINES"]] = "VaccineATC"
-vaccine_conceptssets <- c("COVID_VACCINES")
 
-concept_set_codes_our_study_excl <- vector(mode="list")
+# This overwrite the automatic assignment of vaccines in variables spreadsheet
+concept_set_codes_our_study[["DP_VACCINES"]][["ATC"]] <- c("J07")
+concept_set_domains[["DP_VACCINES"]] = "VaccineATC"
+
 concept_set_codes_our_study_excl[["DP_VACCINES"]] <- concept_set_codes_our_study[["COVID_VACCINES"]]
 
+
+#--------------------------
+# assign the names of the conceptsets
+concept_sets_of_our_study <- names(concept_set_codes_our_study)
+
 rm(concept)
+

@@ -7,7 +7,7 @@ for (subpop in subpopulations_non_empty) {
   persontime_windows<-get(paste0("D4_persontime_background_aggregated", suffix[[subpop]]))
   rm(list=paste0("D4_persontime_background_aggregated", suffix[[subpop]]))
   
-  for (ev in c(OUTCOME_variables, CONTROL_variables)) {
+  for (ev in c(OUTCOME_variables, CONTROL_variables, "DEATH")) {
     name_cols <- paste0(c("IR_", "lb_", "ub_"), ev)
     name_count <- paste0(ev,"_b")
     name_pt <- paste0("Persontime_",ev)

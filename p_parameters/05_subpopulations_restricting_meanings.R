@@ -48,9 +48,10 @@ exclude_itemset_of_so[["TEST"]][["HOSP"]] <- list(list("Covid19_UCI","Ingreso_uc
 
 
 # # BIFAP
-subpopulations[["BIFAP"]] = c("PC","PC_HOSP","WITH_ICU")
+subpopulations[["BIFAP"]] = c("PC","PC_HOSP")
 
-op_meaning_sets[["BIFAP"]] <- c("meaningsPC","meaningsHOSP","meaningsWITH_ICU")
+op_meaning_sets[["BIFAP"]] <- c("meaningsPC","meaningsHOSP")
+#op_meaning_sets[["BIFAP"]] <- c("meaningsPC","meaningsHOSP","meaningsWITH_ICU")
 op_meanings_list_per_set[["BIFAP"]][["meaningsPC"]] <- c("region2_PC","region3_PC","region7_PC","region13_PC","region14_PC")
 op_meanings_list_per_set[["BIFAP"]][["meaningsHOSP"]] <- c("region3_HOSP","region7_HOSP","region13_HOSP")
 op_meanings_list_per_set[["BIFAP"]][["meaningsWITH_ICU"]] <- c("region2_PC","region3_PC","region7_PC","region14_PC")
@@ -62,7 +63,7 @@ op_meaning_sets_in_subpopulations[["BIFAP"]][["WITH_ICU"]] <- c("meaningsWITH_IC
 op_meaning_sets_in_subpopulations[["BIFAP"]][["PC_COVID"]] <- c("meaningsPC","meaningsCOVID")
 
 exclude_meaning_renamed[["BIFAP"]][["PC"]] <- c("hopitalisation_diagnosis_unspecified","hospitalisation_primary","
-hospitalisation_secondary")
+hospitalisation_secondary","hospitalisation_secundary")
 exclude_meaning_renamed[["BIFAP"]][["PC_COVID"]]<-c("hopitalisation_diagnosis_unspecified","hospitalisation_primary","
 hospitalisation_secondary")
 exclude_meaning_renamed[["BIFAP"]][["PC_HOSP"]]<-c()
@@ -163,6 +164,10 @@ if (this_datasource_has_subpopulations == FALSE) {
   dirD4D5subpop <- vector(mode="list")
   dirD4D5subpop[['ALL']] <- paste0(direxpsubpop[['ALL']], "D4-D5 tables/")
   suppressWarnings(if (!file.exists(dirD4D5subpop[['ALL']])) dir.create(file.path(paste0(dirD4D5subpop[['ALL']]))))
+  
+  dircomponents <- vector(mode="list")
+  dircomponents[['ALL']] <- paste0(direxpsubpop[['ALL']], "components/")
+  suppressWarnings(if (!file.exists(dircomponents[['ALL']])) dir.create(file.path(paste0(dircomponents[['ALL']]))))
 }else{
   subpopulations_non_empty <- subpopulations[[thisdatasource]]
   dirtablesubpop <- vector(mode="list")
@@ -172,9 +177,11 @@ if (this_datasource_has_subpopulations == FALSE) {
     dirtablesubpop[[subpop]] <- paste0(direxpsubpop[[subpop]], "Dummy tables/")
     suppressWarnings(if(!file.exists(dirtablesubpop[[subpop]])) dir.create(file.path(paste0(dirtablesubpop[[subpop]]))))
     
-    
     dirD4D5subpop[[subpop]] <- paste0(direxpsubpop[[subpop]], "D4-D5 tables/")
     suppressWarnings(if (!file.exists(dirD4D5subpop[[subpop]])) dir.create(file.path(paste0(dirD4D5subpop[[subpop]]))))
+    
+    dircomponents[[subpop]] <- paste0(direxpsubpop[[subpop]], "components/")
+    suppressWarnings(if (!file.exists(dircomponents[[subpop]])) dir.create(file.path(paste0(dircomponents[[subpop]]))))
   }
 }
 

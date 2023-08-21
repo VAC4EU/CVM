@@ -279,10 +279,10 @@ for (subpop in subpopulations_non_empty) {
   RES_IR <- RES_IR[, Persontime := NULL]
   
   # Retain only year 2019/2020
-  RES_IR <- RES_IR[year == "2019/2020", ][, year := NULL]
+  RES_IR <- RES_IR[year %in% c("2019", "2020"), ]
   
   # Prepare for the melt by creating the list of columns needed
-  list_AESI_NCO <- c(OUTCOME_variables, CONTROL_variables)
+  list_AESI_NCO <- c(OUTCOME_variables, "DEATH", CONTROL_variables)
   
   colA = paste0(list_AESI_NCO, "_b")
   colB = paste0("Persontime_", list_AESI_NCO)
@@ -318,12 +318,18 @@ for (subpop in subpopulations_non_empty) {
     # Create list wich will contains the tables
     tbl_list <- list()
     
+    # Create vector to cycle
+    year_to_select <- c(2019, 2020, 2020)
+    covid_to_select <- c(0, 0, 1)
+    
     ### Divide for before and after COVID
-    for (i in c(0, 1)) {
+    for (i in seq_len(3)) {
       
       # Select only PT without COVID
-      RES_IR_no_covid <- copy(RES_IR_var)[COVID19 == i, ][, COVID19 := NULL]
-      RES_IR_std_no_covid <- copy(RES_IR_std_var)[COVID19 == i, ][, COVID19 := NULL]
+      RES_IR_no_covid <- copy(RES_IR_var)[COVID19 == covid_to_select[i], ][, COVID19 := NULL]
+      RES_IR_no_covid <- RES_IR_no_covid[year == year_to_select[i], ][, year := NULL]
+      RES_IR_std_no_covid <- copy(RES_IR_std_var)[COVID19 == covid_to_select[i], ][, COVID19 := NULL]
+      RES_IR_std_no_covid <- RES_IR_std_no_covid[year == year_to_select[i], ][, year := NULL]
       
       # Select the total for sex and age
       total_RES_IR_no_covid <- RES_IR_no_covid[sex == "total" & Ageband == "total", ][, c("sex", "Ageband") := NULL]
@@ -369,8 +375,9 @@ for (subpop in subpopulations_non_empty) {
                                                        sex_RES_IR_no_covid, age_RES_IR_no_covid))))
     }
     
-    table_6 <- tbl_stack(tbl_list, group_header = c("2019/2020 before COVID-19 infection",
-                                                    "2019/2020 after COVID-19 infection before vaccination"))
+    table_6 <- tbl_stack(tbl_list, group_header = c("2019 before COVID-19 infection",
+                                                    "2020 before COVID-19 infection",
+                                                    "2020 after COVID-19 infection before vaccination"))
     
     table6_name <- paste0("Table 6.1-", which(list_AESI_NCO == current_var),
                           " - Background Incidence rates of ", current_var)

@@ -10,7 +10,7 @@ study_variables_of_our_study <- c("COVID_symptoms","COVID_hospitalised","COVID_h
 
 itemset_AVpair_our_study <- vector(mode="list")
 itemset_AVpair_our_study_meaning <- vector(mode="list")
-datasources<-c("TEST","ARS","BIPS","BIFAP","FISABIO","SIDIAP","PEDIANET","PHARMO")
+datasources <- c("TEST","ARS","BIPS","BIFAP","FISABIO","SIDIAP","PEDIANET","PHARMO","UOSL")
 
 
 # specification COVID_symptoms
@@ -39,6 +39,8 @@ for (file in files_ConcePTION_CDM_tables[["MEDICAL_OBSERVATIONS"]]){
   itemset_AVpair_our_study_meaning[["COVID_test"]][[file]][["FISABIO"]] <- list(list("RedMIVA","covid19_pcr_test"),list("RedMIVA","covid19_antigen_test"))
   # PEDIANET uses mo_origin and mo_meaning
   itemset_AVpair_our_study_meaning[["COVID_test"]][[file]][["PEDIANET"]] <- list(list("TAMPONI_COVID19","path_test"))
+  # UOSL uses mo_origin and mo_meaning
+  itemset_AVpair_our_study_meaning[["COVID_test"]][[file]][["UOSL"]] <- list(list("MSIS","covid19_positive_test"))
 }
 
 itemset_AVpair_our_study_this_datasource <- vector(mode="list")
