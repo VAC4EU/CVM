@@ -1,11 +1,393 @@
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=5,IE=9" ><![endif]-->
 <!DOCTYPE html>
-<html>
-<head>
-<title>readiness</title>
-<meta charset="utf-8"/>
-</head>
-<body><div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;Electron\&quot; modified=\&quot;2023-04-25T13:40:11.692Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/20.8.16 Chrome/106.0.5249.199 Electron/21.4.0 Safari/537.36\&quot; etag=\&quot;SbMGgW6il8Rpsg4q8Xhx\&quot; version=\&quot;20.8.16\&quot; type=\&quot;device\&quot;&gt;&lt;diagram id=\&quot;VckEYmbX723HH28v9ePG\&quot; name=\&quot;Page-1\&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
-<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
-</body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.95.0">
+    <meta name="generator" content="Relearn 5.19.0+tip">
+    <meta name="description" content="CVM Documentation">
+    <meta name="author" content="ARS Tuscany">
+    <title>Documentation for the CVM project :: CVM Documentation</title>
+    <link href="./index.html" rel="alternate" hreflang="x-default">
+    <link href="./index.html" rel="alternate" hreflang="en">
+    <link href="./pir/index.html" rel="alternate" hreflang="pir">
+    <link href="./index.xml" rel="alternate" type="application/rss+xml" title="Documentation for the CVM project :: CVM Documentation">
+    <link href="./index.print.html" rel="alternate" type="text/html" title="Documentation for the CVM project :: CVM Documentation">
+    <link href="./images/logo.svg?1692905445" rel="icon" type="image/svg+xml">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="./css/fontawesome-all.min.css?1692905445" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/fontawesome-all.min.css?1692905445" rel="stylesheet"></noscript>
+    <link href="./css/nucleus.css?1692905445" rel="stylesheet">
+    <link href="./css/auto-complete.css?1692905445" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/auto-complete.css?1692905445" rel="stylesheet"></noscript>
+    <link href="./css/perfect-scrollbar.min.css?1692905445" rel="stylesheet">
+    <link href="./css/fonts.css?1692905445" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/fonts.css?1692905445" rel="stylesheet"></noscript>
+    <link href="./css/theme.css?1692905445" rel="stylesheet">
+    <link href="./css/theme-auto.css?1692905445" rel="stylesheet" id="variant-style">
+    <link href="./css/variant.css?1692905445" rel="stylesheet">
+    <link href="./css/print.css?1692905445" rel="stylesheet" media="print">
+    <link href="./css/ie.css?1692905445" rel="stylesheet">
+    <script src="./js/url.js?1692905445"></script>
+    <script src="./js/variant.js?1692905445"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="./index.search.js";
+      var root_url="./";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='/';
+      window.variants && variants.init( [ 'auto', 'relearn-bright', 'relearn-light', 'relearn-dark', 'zen-dark', 'neon', 'learn', 'blue', 'green', 'red' ] );
+    </script><style>
+#body img.bg-white {
+        background-color: white;
+}
+      
+<!--
+div.main-container {
+  max-width: 1800px;
+}
+-->
+
+
+.tab {font-family: Arial;}
+
+ 
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+ 
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+ 
+.tab button:hover {
+  background-color: #ddd;
+}
+
+ 
+.tab button.active {
+  background-color: #ccc;
+}
+
+ 
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+@media screen and (min-width: 1300px) {
+   
+  #body .flex-block-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1300px;
+    width: 100%;
+  }
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="./index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div class="navigation">
+            <a class="nav nav-next topbar-link" href="./step_1/index.html" title="Step 1 (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+          </div>
+          <div class="navigation">
+            <span class="nav nav-prev topbar-link"><i class="fa fa-chevron-left fa-fw"></i></span>
+          </div>
+          <div id="top-print-link">
+            <a class="print-link topbar-link" title='Print whole chapter (CTRL+ALT+p)' href="./index.print.html">
+              <i class="fas fa-print fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" class="topbar-link" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Documentation for the CVM project</span><meta itemprop="position" content="1"></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="toc-wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#documentation-for-the-cvm-project">Documentation for the CVM project</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable home" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="home">
+            <header class="headline">
+            </header>
+<h1 id="documentation-for-the-cvm-project">Documentation for the CVM project</h1>
+
+<h2 id="documentation-for-the-cvm-project">Documentation for the CVM project</h2>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a id="logo" href="./">
+  <img src="./CVM_logo.png">
+</a>
+        </div>
+        <form action="./search.html" method="get"><div class="searchbox default-animation">
+          <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+          <label class="a11y-only" for="search-by">Search</label>
+          <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+          <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+        </div></form>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="./js/auto-complete.js?1692905448" defer></script>
+        <script src="./js/lunr/lunr.min.js?1692905448" defer></script>
+        <script src="./js/lunr/lunr.stemmer.support.min.js?1692905448" defer></script>
+        <script src="./js/lunr/lunr.multi.min.js?1692905448" defer></script>
+        <script src="./js/lunr/lunr.en.min.js?1692905448" defer></script>
+        <script src="./js/search.js?1692905448" defer></script>
+      </div>
+      <div id="homelinks" class="default-animation">
+        <ul>
+          <li><a class="padding" href="./index.html"><i class='fas fa-home'></i> Home</a></li>
+        </ul>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics enlarge morespace collapsible-menu">
+          <li data-nav-id="/step_1/index.html" class=""><input type="checkbox" id="section-0098fe3b60aac87257f760cd16a95003" aria-controls="subsections-0098fe3b60aac87257f760cd16a95003"><label for="section-0098fe3b60aac87257f760cd16a95003"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Step 1</span></label><a class="padding" href="./step_1/index.html"><b style="display: inline-block; font-weight: 200; padding-left: .3rem; text-align: left; width: 1.1rem;"></b> Step 1</a><ul id="subsections-0098fe3b60aac87257f760cd16a95003" class="morespace collapsible-menu">
+          <li data-nav-id="/step_1/d3-person/index.html" class=""><a class="padding" href="./step_1/d3-person/index.html">D3_PERSONS</a></li>
+          <li data-nav-id="/step_1/d3-death/index.html" class=""><a class="padding" href="./step_1/d3-death/index.html">D3_events_DEATH</a></li>
+          <li data-nav-id="/step_1/d3-spell-cat/index.html" class=""><a class="padding" href="./step_1/d3-spell-cat/index.html">D3_output_spells_category</a></li>
+          <li data-nav-id="/step_1/conceptset/index.html" class=""><a class="padding" href="./step_1/conceptset/index.html">conceptsetdataset</a></li>
+          <li data-nav-id="/step_1/d3-vaccine/index.html" class=""><a class="padding" href="./step_1/d3-vaccine/index.html">D3_clean_vaccines</a></li>
+          <li data-nav-id="/step_1/d3-vaccine-cur/index.html" class=""><a class="padding" href="./step_1/d3-vaccine-cur/index.html">D3_vaccines_curated</a></li>
+          <li data-nav-id="/step_1/flow-dose/index.html" class=""><a class="padding" href="./step_1/flow-dose/index.html">Flowchart_criteria_for_doses</a></li>
+          <li data-nav-id="/step_1/d3-spell/index.html" class=""><a class="padding" href="./step_1/d3-spell/index.html">D3_clean_spells</a></li>
+          <li data-nav-id="/step_1/sel-cri-pop/index.html" class=""><a class="padding" href="./step_1/sel-cri-pop/index.html">D3_selection_criteria_from_PERSONS_to_study_population</a></li></ul></li>
+          <li data-nav-id="/step_2/index.html" class=""><input type="checkbox" id="section-9ab6966dbda04c448f210d1dec445892" aria-controls="subsections-9ab6966dbda04c448f210d1dec445892"><label for="section-9ab6966dbda04c448f210d1dec445892"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Step 2</span></label><a class="padding" href="./step_2/index.html"><b style="display: inline-block; font-weight: 200; padding-left: .3rem; text-align: left; width: 1.1rem;"></b> Step 2</a><ul id="subsections-9ab6966dbda04c448f210d1dec445892" class="morespace collapsible-menu">
+          <li data-nav-id="/step_2/d4-study-pop/index.html" class=""><a class="padding" href="./step_2/d4-study-pop/index.html">D4_study_population</a></li>
+          <li data-nav-id="/step_2/flow-excl/index.html" class=""><a class="padding" href="./step_2/flow-excl/index.html">Flowchart_exclusion_criteria</a></li></ul></li>
+          <li data-nav-id="/step_3/index.html" class=""><input type="checkbox" id="section-b4f7840100d5a23406c6a8e9aa50bc6c" aria-controls="subsections-b4f7840100d5a23406c6a8e9aa50bc6c"><label for="section-b4f7840100d5a23406c6a8e9aa50bc6c"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Step 3</span></label><a class="padding" href="./step_3/index.html"><b style="display: inline-block; font-weight: 200; padding-left: .3rem; text-align: left; width: 1.1rem;"></b> Step 3</a><ul id="subsections-b4f7840100d5a23406c6a8e9aa50bc6c" class="morespace collapsible-menu">
+          <li data-nav-id="/step_3/d3-out-sim/index.html" class=""><a class="padding" href="./step_3/d3-out-sim/index.html">D3_events_OUTCOMESIM_simple</a></li>
+          <li data-nav-id="/step_3/d3-out-compl/index.html" class=""><a class="padding" href="./step_3/d3-out-compl/index.html">D3_events_OUTCOMECOMPL_complex</a></li>
+          <li data-nav-id="/step_3/d3-all-out/index.html" class=""><a class="padding" href="./step_3/d3-all-out/index.html">D3_events_ALL_OUTCOMES</a></li>
+          <li data-nav-id="/step_3/d3-cov-epi/index.html" class=""><a class="padding" href="./step_3/d3-cov-epi/index.html">D3_covid_episodes</a></li>
+          <li data-nav-id="/step_3/d3-cov-epi-desc/index.html" class=""><a class="padding" href="./step_3/d3-cov-epi-desc/index.html">D3_covid_episodes_description</a></li>
+          <li data-nav-id="/step_3/qc-cov-epi/index.html" class=""><a class="padding" href="./step_3/qc-cov-epi/index.html">QC_covid_episodes</a></li>
+          <li data-nav-id="/step_3/d3-cov-sev-hosp/index.html" class=""><a class="padding" href="./step_3/d3-cov-sev-hosp/index.html">D3_covid_severity_components_hospitalisation</a></li>
+          <li data-nav-id="/step_3/qc-cov-sev-hosp/index.html" class=""><a class="padding" href="./step_3/qc-cov-sev-hosp/index.html">QC_covid_severity_components_hospitalisation</a></li>
+          <li data-nav-id="/step_3/d3-cov-sev-icu/index.html" class=""><a class="padding" href="./step_3/d3-cov-sev-icu/index.html">D3_covid_severity_components_ICU</a></li>
+          <li data-nav-id="/step_3/qc-cov-sev-icu/index.html" class=""><a class="padding" href="./step_3/qc-cov-sev-icu/index.html">QC_covid_severity_components_ICU</a></li>
+          <li data-nav-id="/step_3/d3-cov-sev-death/index.html" class=""><a class="padding" href="./step_3/d3-cov-sev-death/index.html">D3_covid_severity_components_death</a></li>
+          <li data-nav-id="/step_3/qc-cov-sev-death/index.html" class=""><a class="padding" href="./step_3/qc-cov-sev-death/index.html">QC_covid_severity_components_death</a></li>
+          <li data-nav-id="/step_3/d3-td-cov/index.html" class=""><a class="padding" href="./step_3/d3-td-cov/index.html">D3_TD_variable_COVID</a></li>
+          <li data-nav-id="/step_3/d3-cov-all/index.html" class=""><a class="padding" href="./step_3/d3-cov-all/index.html">D3_covariates_ALL</a></li>
+          <li data-nav-id="/step_3/qc-comp-out/index.html" class=""><a class="padding" href="./step_3/qc-comp-out/index.html">QC_all_components_OUTCOME</a></li></ul></li>
+          <li data-nav-id="/step_4/index.html" class=""><input type="checkbox" id="section-af8bd746419c1a5509a32a36c88de744" aria-controls="subsections-af8bd746419c1a5509a32a36c88de744"><label for="section-af8bd746419c1a5509a32a36c88de744"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Step 4</span></label><a class="padding" href="./step_4/index.html"><b style="display: inline-block; font-weight: 200; padding-left: .3rem; text-align: left; width: 1.1rem;"></b> Step 4</a><ul id="subsections-af8bd746419c1a5509a32a36c88de744" class="morespace collapsible-menu">
+          <li data-nav-id="/step_4/d3-stud-pop/index.html" class=""><a class="padding" href="./step_4/d3-stud-pop/index.html">D3_Total_study_population</a></li>
+          <li data-nav-id="/step_4/d3-stud-pop-dose/index.html" class=""><a class="padding" href="./step_4/d3-stud-pop-dose/index.html">D3_study_population_by_dose</a></li>
+          <li data-nav-id="/step_4/d3-stud-pop-win-dose/index.html" class=""><a class="padding" href="./step_4/d3-stud-pop-win-dose/index.html">D3_study_population_by_window_and_dose</a></li>
+          <li data-nav-id="/step_4/d3-stud-pop-scri/index.html" class=""><a class="padding" href="./step_4/d3-stud-pop-scri/index.html">D3_study_population_SCRI</a></li>
+          <li data-nav-id="/step_4/d3-stud-pop-cohort/index.html" class=""><a class="padding" href="./step_4/d3-stud-pop-cohort/index.html">D3_study_population_cohort</a></li>
+          <li data-nav-id="/step_4/d3-td-condi/index.html" class=""><a class="padding" href="./step_4/d3-td-condi/index.html">D3_TD_variable_condition</a></li>
+          <li data-nav-id="/step_4/d3-td-comedi/index.html" class=""><a class="padding" href="./step_4/d3-td-comedi/index.html">D3_TD_variable_comedication</a></li>
+          <li data-nav-id="/step_4/d3-td-num-condi/index.html" class=""><a class="padding" href="./step_4/d3-td-num-condi/index.html">D3_TD_variable_NUMBER_CONDITIONS</a></li></ul></li>
+          <li data-nav-id="/step_5/index.html" class=""><input type="checkbox" id="section-449ad8fd5b5f99ebba06da4dde81c102" aria-controls="subsections-449ad8fd5b5f99ebba06da4dde81c102"><label for="section-449ad8fd5b5f99ebba06da4dde81c102"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Step 5</span></label><a class="padding" href="./step_5/index.html"><b style="display: inline-block; font-weight: 200; padding-left: .3rem; text-align: left; width: 1.1rem;"></b> Step 5</a><ul id="subsections-449ad8fd5b5f99ebba06da4dde81c102" class="morespace collapsible-menu">
+          <li data-nav-id="/step_5/d4-count-event/index.html" class=""><a class="padding" href="./step_5/d4-count-event/index.html">D4_count_events_windows</a></li>
+          <li data-nav-id="/step_5/d4-count-event-aggr/index.html" class=""><a class="padding" href="./step_5/d4-count-event-aggr/index.html">D4_count_events_windows_aggregated</a></li>
+          <li data-nav-id="/step_5/d4-pers-month/index.html" class=""><a class="padding" href="./step_5/d4-pers-month/index.html">D4_persontime_monthly</a></li>
+          <li data-nav-id="/step_5/d4-pers-month-aggr/index.html" class=""><a class="padding" href="./step_5/d4-pers-month-aggr/index.html">D4_persontime_monthly_aggregated</a></li>
+          <li data-nav-id="/step_5/d4-pers-back/index.html" class=""><a class="padding" href="./step_5/d4-pers-back/index.html">D4_persontime_background</a></li>
+          <li data-nav-id="/step_5/d4-pers-back-aggr/index.html" class=""><a class="padding" href="./step_5/d4-pers-back-aggr/index.html">D4_persontime_background_aggregated</a></li></ul></li>
+          <li data-nav-id="/step_6/index.html" class=""><input type="checkbox" id="section-b6ba68e1409e08fa874f4a4b5c624b13" aria-controls="subsections-b6ba68e1409e08fa874f4a4b5c624b13"><label for="section-b6ba68e1409e08fa874f4a4b5c624b13"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Step 6</span></label><a class="padding" href="./step_6/index.html"><b style="display: inline-block; font-weight: 200; padding-left: .3rem; text-align: left; width: 1.1rem;"></b> Step 6</a><ul id="subsections-b6ba68e1409e08fa874f4a4b5c624b13" class="morespace collapsible-menu">
+          <li data-nav-id="/step_6/d5-ir/index.html" class=""><a class="padding" href="./step_6/d5-ir/index.html">D5_IR_background</a></li>
+          <li data-nav-id="/step_6/d5-ir-std/index.html" class=""><a class="padding" href="./step_6/d5-ir-std/index.html">D5_IR_background_std</a></li></ul></li>
+          <li data-nav-id="/step_7/index.html" class=""><input type="checkbox" id="section-eb5b5789439798fa594961e9e1811108" aria-controls="subsections-eb5b5789439798fa594961e9e1811108"><label for="section-eb5b5789439798fa594961e9e1811108"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Step 7</span></label><a class="padding" href="./step_7/index.html"><b style="display: inline-block; font-weight: 200; padding-left: .3rem; text-align: left; width: 1.1rem;"></b> Step 7</a><ul id="subsections-eb5b5789439798fa594961e9e1811108" class="morespace collapsible-menu">
+          <li data-nav-id="/step_7/tab-1/index.html" class=""><a class="padding" href="./step_7/tab-1/index.html">Table 1</a></li>
+          <li data-nav-id="/step_7/tab-2/index.html" class=""><a class="padding" href="./step_7/tab-2/index.html">Table 2</a></li>
+          <li data-nav-id="/step_7/tab-3/index.html" class=""><a class="padding" href="./step_7/tab-3/index.html">Table 3</a></li>
+          <li data-nav-id="/step_7/tab-4/index.html" class=""><a class="padding" href="./step_7/tab-4/index.html">Table 4</a></li>
+          <li data-nav-id="/step_7/tab-5/index.html" class=""><a class="padding" href="./step_7/tab-5/index.html">Table 5</a></li>
+          <li data-nav-id="/step_7/tab-6/index.html" class=""><a class="padding" href="./step_7/tab-6/index.html">Table 6</a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title padding">More</div>
+          <ul class="space">
+            <li><a class="padding" href="./index.html"><i class='fas fa-project-diagram'></i> Diagram</a></li>
+            <li><a class="padding" href="https://github.com/VAC4EU/CVM"><i class='fab fa-fw fa-github'></i> GitHub repo</a></li>
+            <li><a class="padding" href="https://vac4eu.org/"><i class='fas fa-fw fa-syringe'></i> VAC4EU</a></li>
+            <li><a class="padding" href="./index.html"><i class='fas fa-fw fa-bullhorn'></i> Credits</a></li>
+            <li><a class="padding" href="./tags/index.html"><i class='fas fa-fw fa-tags'></i> Tags</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showFooter"></div>
+        <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showFooter">
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <div class="padding menu-control">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="select-language">Language</label>
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                    <option lang="en" id="en" value="/index.html" selected>English</option>
+                    <option lang="pir" id="pir" value="/pir/index.html">Arrr! ☠ Pirrrates ☠</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch showVariantSwitch">
+              <div class="padding menu-control">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="select-variant">Theme</label>
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                    <option id="auto" value="auto" selected>Auto</option>
+                    <option id="relearn-bright" value="relearn-bright">Relearn Bright</option>
+                    <option id="relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="zen-dark" value="zen-dark">Zen Dark</option>
+                    <option id="neon" value="neon">Neon</option>
+                    <option id="learn" value="learn">Learn</option>
+                    <option id="blue" value="blue">Blue</option>
+                    <option id="green" value="green">Green</option>
+                    <option id="red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.variants && variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks">
+              <div class="padding menu-control">
+                <i class="fas fa-history fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button onclick="clearHistory();">Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter">
+          <style>
+            #footer {
+              font-size: .8125rem;
+              height: 6.25rem;
+              margin-left: auto;
+              margin-right: auto;
+              padding: 1rem 1rem;
+              text-align: center;
+              min-width: 14.375rem;
+              max-width: 18.75rem;
+            }
+            #footer p {
+              margin: 0;
+            }
+          </style>
+          <span class="github-buttons">
+          </span>
+          <a href="https://zenodo.org/badge/latestdoi/418234390"><img src="https://zenodo.org/badge/418234390.svg" alt="DOI"></a>
+          <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          <script>
+            function githubButtonsScheme(){
+              var scheme = 'light';
+              var colorPropertyValue = window.getComputedStyle( document.querySelector( '#sidebar' ) ).getPropertyValue( 'background-color' );
+              var colorValues = colorPropertyValue.match( /\d+/g ).map( function( e ){ return parseInt(e,10); });
+              if( colorValues.length === 3 && ((0.2126 * colorValues[0]) + (0.7152 * colorValues[1]) + (0.0722 * colorValues[2]) < 165) ){
+                
+                scheme = 'dark';
+              }
+              return scheme;
+            }
+            document.addEventListener( 'themeVariantLoaded', function( e ){
+              
+              var scheme = githubButtonsScheme();
+              var githubButtonsHTML = `
+                <a class="github-button" href="https://github.com/VAC4EU/CVM/archive/main.zip" data-color-scheme="${scheme}" data-icon="octicon-cloud-download" aria-label="Download VAC4EU/CVM on GitHub">Download</a>
+                <a class="github-button" href="https://github.com/VAC4EU/CVM" data-color-scheme="${scheme}" data-icon="octicon-star" data-show-count="true" aria-label="Star VAC4EU/CVM on GitHub">Star</a>
+                <a class="github-button" href='https://github.com/VAC4EU/CVM/fork' data-color-scheme="${scheme}" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork VAC4EU/CVM on GitHub">Fork</a>
+               `;
+              document.querySelector( '.github-buttons' ).innerHTML = githubButtonsHTML;
+              if( window.githubButtons ){
+                setTimeout( function(){
+                  // we have to wait until the CSS class .default-animation has settled and recalculate the scheme again
+                  var scheme = githubButtonsScheme();
+                  document.querySelectorAll( '.github-button' ).forEach( function( anchor ){
+                    anchor.dataset.colorScheme = scheme;
+                    window.githubButtons.render( anchor, function( el ){
+                      anchor.parentNode.replaceChild( el, anchor );
+                    });
+                  });
+                }, 400 );
+              }
+            });
+          </script>
+          <script async src="./js/github-buttons.js?1692905448"></script>
+        </div>
+      </div>
+    </aside>
+    <script src="./js/clipboard.min.js?1692905448" defer></script>
+    <script src="./js/perfect-scrollbar.min.js?1692905448" defer></script>
+    <script src="./js/theme.js?1692905448" defer></script>
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+<script>
+  document.getElementById("defaultOpen").click();
+</script>
+
+  </body>
 </html>

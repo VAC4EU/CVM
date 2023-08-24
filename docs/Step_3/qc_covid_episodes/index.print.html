@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.95.0">
+    <meta name="generator" content="Relearn 5.19.0+tip">
+    <meta name="description" content="CVM Documentation">
+    <meta name="author" content="ARS Tuscany">
+    <title>QC_covid_episodes :: CVM Documentation</title>
+    <link href="../../step_3/qc_covid_episodes/index.html" rel="canonical" type="text/html" title="QC_covid_episodes :: CVM Documentation">
+    <link href="../../step_3/qc_covid_episodes/index.xml" rel="alternate" type="application/rss+xml" title="QC_covid_episodes :: CVM Documentation">
+    <link href="../../images/logo.svg?1692893776" rel="icon" type="image/svg+xml">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1692893778" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1692893778" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1692893778" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1692893778" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1692893778" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1692893778" rel="stylesheet">
+    <link href="../../css/fonts.css?1692893778" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1692893778" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1692893778" rel="stylesheet">
+    <link href="../../css/theme-auto.css?1692893778" rel="stylesheet" id="variant-style">
+    <link href="../../css/variant.css?1692893778" rel="stylesheet">
+    <link href="../../css/print.css?1692893778" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1692893778" rel="stylesheet">
+    <link href="../../css/ie.css?1692893778" rel="stylesheet">
+    <script src="../../js/url.js?1692893778"></script>
+    <script src="../../js/variant.js?1692893778"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='/';
+      window.variants && variants.init( [ 'auto', 'relearn-bright', 'relearn-light', 'relearn-dark', 'zen-dark', 'neon', 'learn', 'blue', 'green', 'red' ] );
+    </script><style>
+#body img.bg-white {
+        background-color: white;
+}
+      
+<!--
+div.main-container {
+  max-width: 1800px;
+}
+-->
+
+
+.tab {font-family: Arial;}
+
+ 
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+ 
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+ 
+.tab button:hover {
+  background-color: #ddd;
+}
+
+ 
+.tab button.active {
+  background-color: #ccc;
+}
+
+ 
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+@media screen and (min-width: 1300px) {
+   
+  #body .flex-block-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1300px;
+    width: 100%;
+  }
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../step_3/qc_covid_episodes/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" class="topbar-link" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Documentation for the CVM project</span></a><meta itemprop="position" content="1"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../step_3/index.html"><span itemprop="name">Step 3</span></a><meta itemprop="position" content="2"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">QC_covid_episodes</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="qc_covid_episodes">QC_covid_episodes</h1>
+
+<script src="../../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../../rmarkdown-libs/react/react.min.js"></script>
+<script src="../../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Example&#39;)">Example</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["QC_covid_episodes","Occurrence of components of covid, per  meaning, to all persons in the study population","list of meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"09fcca6b8f184edd6d3ddbefdb7e1be3"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["n","meanings","year","N",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":[null,"meanings where the outcome is observed",null,"frequency of the combination",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":[null,"binary",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":[null,"1= this component is observed \r\n0 = otherwise",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":[null,"meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"logical"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"a5c9c6fc5d3d95eccbd348969f0ff679"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":["meanings","meanings","meanings","meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":["covid_narrow_hosp_m_hospitalisation_primary","covid_narrow_hosp_m_hospitalisation_secondary","covid_registry","covid_test_positive",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"character"},{"id":"values","name":"values","type":"character"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"8c21ec2dbc783a0b05abb51638578909"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Example" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"n":[1,1,2,1,1,1,1,1,1,2,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"covid_narrow_hosp_m_hospitalisation_primary":[0,1,0,0,0,1,1,1,1,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"covid_narrow_hosp_m_hospitalisation_secondary":[0,0,0,0,1,1,1,0,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"covid_registry":[1,0,0,1,0,0,1,1,0,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"covid_test_positive":[0,1,1,0,0,0,0,0,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"year":[2021,2021,2021,2020,2021,2021,2021,2021,2021,2021,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"N":[133,1,1,114,3,4,3,3,6,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"]},"columns":[{"id":"n","name":"n","type":"numeric"},{"id":"covid_narrow_hosp_m_hospitalisation_primary","name":"covid_narrow_hosp_m_hospitalisation_primary","type":"numeric"},{"id":"covid_narrow_hosp_m_hospitalisation_secondary","name":"covid_narrow_hosp_m_hospitalisation_secondary","type":"numeric"},{"id":"covid_registry","name":"covid_registry","type":"numeric"},{"id":"covid_test_positive","name":"covid_test_positive","type":"numeric"},{"id":"year","name":"year","type":"numeric"},{"id":"N","name":"N","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"0dfa95ebe1abec3122ed8905903953bb"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1692893778" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1692893778" defer></script>
+    <script src="../../js/theme.js?1692893778" defer></script>
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+<script>
+  document.getElementById("defaultOpen").click();
+</script>
+
+  </body>
+</html>

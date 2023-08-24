@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.95.0">
+    <meta name="generator" content="Relearn 5.19.0+tip">
+    <meta name="description" content="CVM Documentation">
+    <meta name="author" content="ARS Tuscany">
+    <title>Step 3 :: CVM Documentation</title>
+    <link href="../step_3/index.html" rel="canonical" type="text/html" title="Step 3 :: CVM Documentation">
+    <link href="../step_3/index.xml" rel="alternate" type="application/rss+xml" title="Step 3 :: CVM Documentation">
+    <link href="../images/logo.svg?1692905445" rel="icon" type="image/svg+xml">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../css/fontawesome-all.min.css?1692905448" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1692905448" rel="stylesheet"></noscript>
+    <link href="../css/nucleus.css?1692905448" rel="stylesheet">
+    <link href="../css/auto-complete.css?1692905448" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1692905448" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1692905448" rel="stylesheet">
+    <link href="../css/fonts.css?1692905448" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1692905448" rel="stylesheet"></noscript>
+    <link href="../css/theme.css?1692905448" rel="stylesheet">
+    <link href="../css/theme-auto.css?1692905448" rel="stylesheet" id="variant-style">
+    <link href="../css/variant.css?1692905448" rel="stylesheet">
+    <link href="../css/print.css?1692905448" rel="stylesheet" media="print">
+    <link href="../css/format-print.css?1692905448" rel="stylesheet">
+    <link href="../css/ie.css?1692905448" rel="stylesheet">
+    <script src="../js/url.js?1692905448"></script>
+    <script src="../js/variant.js?1692905448"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../index.search.js";
+      var root_url="../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='/';
+      window.variants && variants.init( [ 'auto', 'relearn-bright', 'relearn-light', 'relearn-dark', 'zen-dark', 'neon', 'learn', 'blue', 'green', 'red' ] );
+    </script><style>
+#body img.bg-white {
+        background-color: white;
+}
+      
+<!--
+div.main-container {
+  max-width: 1800px;
+}
+-->
+
+
+.tab {font-family: Arial;}
+
+ 
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+ 
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+ 
+.tab button:hover {
+  background-color: #ddd;
+}
+
+ 
+.tab button.active {
+  background-color: #ccc;
+}
+
+ 
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+@media screen and (min-width: 1300px) {
+   
+  #body .flex-block-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1300px;
+    width: 100%;
+  }
+}
+
+</style>
+
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../step_3/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" class="topbar-link" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../index.html"><span itemprop="name">Documentation for the CVM project</span></a><meta itemprop="position" content="1"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Step 3</span><meta itemprop="position" content="2"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable chapter narrow" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="chapter">
+            <header class="headline">
+            </header>
+<div class="article-subheading">Chapter 8</div>
+<h1 id="step-3">Step 3</h1>
+
+<h2 id="step-3">Step 3</h2>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <section>
+            <h1 class="a11y-only">Subsections of Step 3</h1>
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="d3_events_outcomesim_simple">D3_events_OUTCOMESIM_simple</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Example&#39;)">Example</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_events_OUTCOMESIM_simple","contains the outcomes observed in the study population, including negative outcomes but excluding covid and complex algorithms","a person in the study population D4_study_population","D4_study_population","as many as the observed outcomes, starting 365 days before study_entry_date, >= 0","person_id",null,"OUTCOMESIM",null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"4ceff94bea90849f238988e967e7f6ea"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["person_id","date","end_date_record","codvar","event_record_vocabulary","text_linked_to_event_code","event_free_text","present_on_admission","laterality_of_event","meaning_renamed","origin_of_event","visit_occurrence_id","Col","Table_cdm","study_entry_date",null,null,null,null,null],"Description":["unique person identifier","date of the event","end date of the record carrying the event","code of the event","vocabulary of the event",null,null,null,null,null,null,null,null,null,"study entry date of person_id",null,null,null,null,null],"Format":["character","date","date","categorical","categorical","character","character","character","character","character","character","character","character","character","date",null,null,null,null,null],"Vocabulary":["from cdm persons",null,null,"belongs to one of the codelists concept_set_codes_our_study[[conceptset]], with conceptset belonging to the list variable_definition[[OUTCOMESIM]] assigned in 07_algorithms (as retrieved from the algorithm metadata table)","ICD9CM\r\nICD10\r\nSNOMED","from CDM EVENTS","from CDM EVENTS","from CDM EVENTS","from CDM EVENTS","meanings of the EVENTS table of the data source, vocabulary in the INSTANCE table","origin of the EVENTS table of the data source, vocabulary in the INSTANCE table","from CDM EVENTS",null,null,null,null,null,null,null,null],"Parameters":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,"yes","yes","yes","yes","yes","yes","yes","yes","yes","yes","yes","yes","yes",null,null,null,null,null],"Calculated":["yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":["records are selected from the conceptset datasets conceptset belonging to the list variable_definition[[OUTCOMESIM]] assigned in 07_algorithms (as retrieved from the algorithm metadata table); the list of person_id is further selected based on the  study population in D4_study_population","selected based on the following rule: conceptset/date >= D4_study_population/study_entry_date - 365",null,"selected from the conceptset datasets conceptset belonging to the list variable_definition[[OUTCOMESIM]] assigned in 07_algorithms",null,null,null,null,null,"only in some data sources, a list of meanings is discarded, the list is specified in the parameter select_meanings_AESI which is assigned in 07_algorithm",null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"logical"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"character"},{"id":"Calculated","name":"Calculated","type":"character"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"721cdcc984a490625ef3c203a09ce6db"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"logical"},{"id":"values","name":"values","type":"logical"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"f545894952d01490ab535e7af1d88bc2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Example" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"person_id":["P0079","P0869","P0983","P0983","P1668","P1668","P1818","P1818","P1818","P1852","P2032","P2368","P2445","P2573","P2915","P2915","P2948","P3335","P3491","P3491"],"date":["2019-06-11T00:00:00Z","2019-11-21T00:00:00Z","2020-03-29T00:00:00Z","2020-02-09T00:00:00Z","2019-09-15T00:00:00Z","2019-09-19T00:00:00Z","2019-06-20T00:00:00Z","2019-05-02T00:00:00Z","2019-04-28T00:00:00Z","2020-08-19T00:00:00Z","2020-08-19T00:00:00Z","2021-05-30T00:00:00Z","2021-04-18T00:00:00Z","2020-09-23T00:00:00Z","2019-12-01T00:00:00Z","2019-12-24T00:00:00Z","2020-11-29T00:00:00Z","2020-09-13T00:00:00Z","2020-06-10T00:00:00Z","2020-04-18T00:00:00Z"],"end_date_record":["2019-07-03T00:00:00Z","2019-11-21T00:00:00Z","2020-03-29T00:00:00Z","2020-04-16T00:00:00Z","2019-09-15T00:00:00Z","2019-09-28T00:00:00Z","2019-06-20T00:00:00Z","2019-08-13T00:00:00Z","2019-05-05T00:00:00Z","2020-06-14T00:00:00Z","2020-07-20T00:00:00Z","2021-05-30T00:00:00Z","2021-06-03T00:00:00Z","2020-10-12T00:00:00Z","2019-12-01T00:00:00Z","2019-12-05T00:00:00Z","2020-11-29T00:00:00Z","2020-10-08T00:00:00Z","2020-06-10T00:00:00Z","2020-05-30T00:00:00Z"],"codvar":[325,41519,43491,43401,41519,41519,43491,43401,43491,41050,431,41519,41001,43401,41519,41519,41519,431,431,431],"event_record_vocabulary":["ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM"],"text_linked_to_event_code":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"event_free_text":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"present_on_admission":["yes",null,null,"yes",null,"yes",null,"yes","yes","yes","yes",null,"yes","yes",null,"yes",null,"0",null,"yes"],"laterality_of_event":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"meaning_renamed":["hospitalisation_primary","emergency_room_diagnosis","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary"],"origin_of_event":["SDO","PS","PS","SDO","PS","SDO","PS","SDO","SDO","SDO","SDO","PS","SDO","SDO","PS","SDO","PS","SDO","PS","SDO"],"visit_occurrence_id":["SDO_18","PS_1161","PS_1279","SDO_247","PS_2201","SDO_434","PS_2343","SDO_471","SDO_472","SDO_493","SDO_538","PS_3165","SDO_626","SDO_674","PS_3921","SDO_770","PS_3989","SDO_898","PS_4683","SDO_947"],"Col":["event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code","event_code"],"Table_cdm":["EVENTS_SDO","EVENTS_PS","EVENTS_PS","EVENTS_SDO","EVENTS_PS","EVENTS_SDO","EVENTS_PS","EVENTS_SDO","EVENTS_SDO","EVENTS_SDO","EVENTS_SDO","EVENTS_PS","EVENTS_SDO","EVENTS_SDO","EVENTS_PS","EVENTS_SDO","EVENTS_PS","EVENTS_SDO","EVENTS_PS","EVENTS_SDO"],"study_entry_date":["2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-03-27T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z"]},"columns":[{"id":"person_id","name":"person_id","type":"character"},{"id":"date","name":"date","type":"Date"},{"id":"end_date_record","name":"end_date_record","type":"Date"},{"id":"codvar","name":"codvar","type":"numeric"},{"id":"event_record_vocabulary","name":"event_record_vocabulary","type":"character"},{"id":"text_linked_to_event_code","name":"text_linked_to_event_code","type":"logical"},{"id":"event_free_text","name":"event_free_text","type":"logical"},{"id":"present_on_admission","name":"present_on_admission","type":"character"},{"id":"laterality_of_event","name":"laterality_of_event","type":"logical"},{"id":"meaning_renamed","name":"meaning_renamed","type":"character"},{"id":"origin_of_event","name":"origin_of_event","type":"character"},{"id":"visit_occurrence_id","name":"visit_occurrence_id","type":"character"},{"id":"Col","name":"Col","type":"character"},{"id":"Table_cdm","name":"Table_cdm","type":"character"},{"id":"study_entry_date","name":"study_entry_date","type":"Date"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"13d9e0832b548077046a78535fb59183"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="d3_events_outcomecompl_complex">D3_events_OUTCOMECOMPL_complex</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Example&#39;)">Example</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_events_OUTCOMECOMPL_simple","contains the outcomes observed in the study population, including only complex algorithms","a person in the study population D4_study_population","D4_study_population","as many as the observed outcomes, starting 365 days before study_entry_date, >= 0","person_id",null,"OUTCOMECOMPL",null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"e6069bc01cce694afb4d0f470863f74a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["person_id","date","end_date_recordA","codvarA","event_record_vocabularyA","meaning_renamedA","conceptsetnameA","dateB","end_date_recordB","codvarB","event_record_vocabularyB","meaning_renamedB","conceptsetnameB","study_entry_date",null,null,null,null,null,null],"Description":["unique person identifier","date of the event",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["character","date","date","categorical","categorical","character","character","character","character","character","character","character","character","character",null,null,null,null,null,null],"Vocabulary":["from cdm persons",null,null,"belongs to the list of codes  concept_set_codes_our_study[[a]]\r\nwhere a is one of the conceptsets in\r\nconcept_set_seccomp[[OUTCOMECOMPL]][['A']]\r\nderived from the algorithm metadata table","ICD9CM\r\nICD10\r\nSNOMED","meanings of the EVENTS table of the data source, vocabulary in the INSTANCE table","the vocabulary is the list of conceptsets stored in\r\nconcept_set_seccomp[[OUTCOMECOMPL]][['A']]\r\nand derived from the algorithm metadata table",null,null,"belongs to the list of codes  concept_set_codes_our_study[[a]]\r\nwhere a is one of the conceptsets in\r\nconcept_set_seccomp[[OUTCOMECOMPL]][['B']]\r\nderived from the algorithm metadata table","ICD9CM\r\nICD10\r\nSNOMED","meanings of the EVENTS table of the data source, vocabulary in the INSTANCE table","the vocabulary is the list of conceptsets stored in\r\nconcept_set_seccomp[[OUTCOMECOMPL]][['B']]\r\nand derived from the algorithm metadata table",null,null,null,null,null,null,null],"Parameters":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,"yes","yes","yes","yes","yes","yes","yes","yes","yes","yes","yes","yes",null,null,null,null,null,null],"Calculated":["yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,"OUTCOMECOMPL",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":["selected based on the study population and on having a pair of records complying with the algorithm, described below","its' a date where a record of a conceptset dataset belonging to the list concept_set_seccomp[[OUTCOMECOMPL]][['A']] and a record a record of a conceptset dataset belonging to the list concept_set_seccomp[[OUTCOMECOMPL]][['B']] are found concurrently, within the correct interval stored in  distance_seccomp[[OUTCOMECOMPL]] as retrieved from the algorithm metadata table; all the parameters are assigned in 07_algorithms",null,null,null,"(only in some data sources): a list of meanings is discarded; the list is specified in the parameter select_meanings_AESI which is assigned in 07_algorithm",null,null,null,null,null,"(only in some data sources): a list of meanings is discarded; the list is specified in the parameter select_meanings_AESI which is assigned in 07_algorithm",null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"logical"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"character"},{"id":"Calculated","name":"Calculated","type":"character"},{"id":"Algorithm_id","name":"Algorithm_id","type":"character"},{"id":"Rule","name":"Rule","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"f40bf8b406fe3d4ac25be35596d193c6"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"logical"},{"id":"values","name":"values","type":"logical"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"f545894952d01490ab535e7af1d88bc2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Example" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"person_id":["P00079","P00869","P00983","P00983","P01668","P01668","P01668","P01668","P01818","P01818","P01818","P01818","P01818","P01852","P02368","P02445","P02573","P02915","P02915","P02948"],"date":["2019-06-11T00:00:00Z","2019-11-21T00:00:00Z","2020-02-09T00:00:00Z","2020-03-29T00:00:00Z","2019-09-15T00:00:00Z","2019-09-15T00:00:00Z","2019-09-19T00:00:00Z","2019-09-19T00:00:00Z","2019-04-28T00:00:00Z","2019-04-28T00:00:00Z","2019-05-02T00:00:00Z","2019-05-02T00:00:00Z","2019-06-20T00:00:00Z","2020-08-19T00:00:00Z","2021-05-30T00:00:00Z","2021-04-18T00:00:00Z","2020-09-23T00:00:00Z","2019-12-01T00:00:00Z","2019-12-24T00:00:00Z","2020-11-29T00:00:00Z"],"end_date_recordA":["2019-07-03T00:00:00Z","2019-11-21T00:00:00Z","2020-04-16T00:00:00Z","2020-03-29T00:00:00Z","2019-09-15T00:00:00Z","2019-09-15T00:00:00Z","2019-09-28T00:00:00Z","2019-09-28T00:00:00Z","2019-05-05T00:00:00Z","2019-05-05T00:00:00Z","2019-08-13T00:00:00Z","2019-08-13T00:00:00Z","2019-06-20T00:00:00Z","2020-06-14T00:00:00Z","2021-05-30T00:00:00Z","2021-06-03T00:00:00Z","2020-10-12T00:00:00Z","2019-12-01T00:00:00Z","2019-12-05T00:00:00Z","2020-11-29T00:00:00Z"],"codvarA":[325,41519,43401,43491,41519,41519,41519,41519,43491,43491,43401,43401,43491,41050,41519,41001,43401,41519,41519,41519],"event_record_vocabularyA":["ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM"],"meaning_renamedA":["hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis","emergency_room_diagnosis","emergency_room_diagnosis","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis"],"conceptsetnameA":["N_CVST_AESI_narrow","R_PE_AESI_narrow","N_STROKEISCH_AESI_narrow","N_STROKEISCH_AESI_narrow","R_PE_AESI_narrow","R_PE_AESI_narrow","R_PE_AESI_narrow","R_PE_AESI_narrow","N_STROKEISCH_AESI_narrow","N_STROKEISCH_AESI_narrow","N_STROKEISCH_AESI_narrow","N_STROKEISCH_AESI_narrow","N_STROKEISCH_AESI_narrow","C_AMI_AESI_narrow","R_PE_AESI_narrow","C_AMI_AESI_narrow","N_STROKEISCH_AESI_narrow","R_PE_AESI_narrow","R_PE_AESI_narrow","R_PE_AESI_narrow"],"dateB":["2019-06-11T00:00:00Z","2019-11-21T00:00:00Z","2020-02-09T00:00:00Z","2020-03-29T00:00:00Z","2019-09-15T00:00:00Z","2019-09-19T00:00:00Z","2019-09-15T00:00:00Z","2019-09-19T00:00:00Z","2019-05-02T00:00:00Z","2019-04-28T00:00:00Z","2019-05-02T00:00:00Z","2019-04-28T00:00:00Z","2019-06-20T00:00:00Z","2020-08-19T00:00:00Z","2021-05-30T00:00:00Z","2021-04-18T00:00:00Z","2020-09-23T00:00:00Z","2019-12-01T00:00:00Z","2019-12-24T00:00:00Z","2020-11-29T00:00:00Z"],"end_date_recordB":["2019-07-03T00:00:00Z","2019-11-21T00:00:00Z","2020-04-16T00:00:00Z","2020-03-29T00:00:00Z","2019-09-15T00:00:00Z","2019-09-28T00:00:00Z","2019-09-15T00:00:00Z","2019-09-28T00:00:00Z","2019-08-13T00:00:00Z","2019-05-05T00:00:00Z","2019-08-13T00:00:00Z","2019-05-05T00:00:00Z","2019-06-20T00:00:00Z","2020-06-14T00:00:00Z","2021-05-30T00:00:00Z","2021-06-03T00:00:00Z","2020-10-12T00:00:00Z","2019-12-01T00:00:00Z","2019-12-05T00:00:00Z","2020-11-29T00:00:00Z"],"codvarB":[325,41519,43401,43491,41519,41519,41519,41519,43401,43491,43401,43491,43491,41050,41519,41001,43401,41519,41519,41519],"event_record_vocabularyB":["ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM"],"meaning_renamedB":["hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","hospitalisation_primary","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis"],"conceptsetnameB":["N_CVST_AESI_narrow","R_PE_AESI_narrow","N_STROKEISCH_AESI_narrow","N_STROKEISCH_AESI_narrow","R_PE_AESI_narrow","R_PE_AESI_narrow","R_PE_AESI_narrow","R_PE_AESI_narrow","N_STROKEISCH_AESI_narrow","N_STROKEISCH_AESI_narrow","N_STROKEISCH_AESI_narrow","N_STROKEISCH_AESI_narrow","N_STROKEISCH_AESI_narrow","C_AMI_AESI_narrow","R_PE_AESI_narrow","C_AMI_AESI_narrow","N_STROKEISCH_AESI_narrow","R_PE_AESI_narrow","R_PE_AESI_narrow","R_PE_AESI_narrow"],"study_entry_date":["2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-03-27T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z","2019-01-01T00:00:00Z"]},"columns":[{"id":"person_id","name":"person_id","type":"character"},{"id":"date","name":"date","type":"Date"},{"id":"end_date_recordA","name":"end_date_recordA","type":"Date"},{"id":"codvarA","name":"codvarA","type":"numeric"},{"id":"event_record_vocabularyA","name":"event_record_vocabularyA","type":"character"},{"id":"meaning_renamedA","name":"meaning_renamedA","type":"character"},{"id":"conceptsetnameA","name":"conceptsetnameA","type":"character"},{"id":"dateB","name":"dateB","type":"Date"},{"id":"end_date_recordB","name":"end_date_recordB","type":"Date"},{"id":"codvarB","name":"codvarB","type":"numeric"},{"id":"event_record_vocabularyB","name":"event_record_vocabularyB","type":"character"},{"id":"meaning_renamedB","name":"meaning_renamedB","type":"character"},{"id":"conceptsetnameB","name":"conceptsetnameB","type":"character"},{"id":"study_entry_date","name":"study_entry_date","type":"Date"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"e5bbd4ce726fdec4be3c98609e000377"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="d3_events_all_outcomes">D3_events_ALL_OUTCOMES</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Example&#39;)">Example</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_events_ALL_outcomes","contains the outcomes observed in the study population, including negative outcomes but excluding covid","a person in the study population D4_study_population","D4_study_population","as many as the observed outcomes, starting 365 days before study_entry_date, >= 0","person_id",null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"c2fcf246d9b2d57bccc5ef841e2f95ca"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["person_id","date","type_outcome","meaning_renamed","codvar","event_record_vocabulary",null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["unique person identifier",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["character","date","categorical","categorical","categorical","categorical",null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["from cdm persons",null,"the vocabulary is the content of the list \r\nc(OUTCOME_variables, CONTROL_variables,\"DEATH\"), that is,\r\nB_COAGDIS_AESI B_DIC_AESI B_HAEMOPHAGOLYNPHOHISTIO_AESI B_ITP_AESI B_TTS_AESI C_ARRH_AESI C_CAD_AESI C_MYOCARD_AESI C_PERICARD_AESI D_LIVERACUTE_AESI D_PANCRACUTE_AESI E_DM1_AESI E_THYROIDAUTOIMM_AESI E_THYROIDSUBACUTE_AESI G_KIACUTE_AESI Im_ANAPHYLAXIS_AESI Im_KAWASAKI_AESI M_RHABDOMYOLISIS_AESI N_ADEM_AESI N_BELLP_AESI N_CONVULGEN_AESI N_CVST_AESI N_GBS_AESI N_HEARINGLOSS_AESI N_MENINGOENC_AESI N_MYELITISTRANSV_AESI N_NARCOLEPSY_AESI N_STROKEHEMO_AESI O_DEATHSUDDEN_AESI O_MIS_AESI R_ARDS_AESI Sk_ERYTHMULTI_AESI Sk_SCAR_AESI SO_ANOSMIAAGEUSIA_AESI V_CHILBLAIN_AESI V_MICROANGIO_AESI V_THROMBOSISARTERIALALGOR_AESI V_VASCULITISSINGLEORG_AESI V_VTEALGORITHM_AESI C_VALVULAR_AESI D_DIVERTICULITIS_AESI D_GALLSTONES_AESI D_LIVERCIRRHOSIS_AESI E_GOUT_AESI G_UTI_AESI I_CLOSTRIDIUMD_AESI I_INFLUENZA_AESI Im_SJOGRENS_AESI M_FRACTURES_AESI M_OSTEOARTHRITIS_AESI M_OSTEOMYELITIS_AESI M_REACTIVEARTHRITIS_AESI Ment_ORGPSYCHOSIS_AESI N_TRIGEMINALNEURALGIA_AESI SO_CONJUNCTIVITIS_AESI SO_OTITISEXT_AESI V_RENOVASCULAR_AESI,DEATH","meanings of the EVENTS table of the data source, vocabulary in the INSTANCE table","the vocabulary is the codelist stored in concept_set_codes_our_study[[type_outcome]]","ICD9CM\r\nICD10\r\nSNOMED",null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":[null,null,null,null,"if algorithm[type_outcome] == simple then: code in the record\r\notherwise: specified by the algorithm",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,"in some data sources, in the previous steps some meanings have been discarded, based on a list specified in the parameter select_meanings_AESI which is assigned in 07_algorithm",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":["yes","yes","yes","yes","yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"character"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"character"},{"id":"Calculated","name":"Calculated","type":"logical"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"60c702024e676cc30aa2778d001b43c2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"logical"},{"id":"values","name":"values","type":"logical"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"f545894952d01490ab535e7af1d88bc2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Example" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"person_id":["P00079","P00869","P00983","P00983","P00983","P01668","P01668","P01668","P01668","P01818","P01818","P01818","P01818","P01441","P01441","P01587","P02245","P07158","P07158","P07158"],"date":["2019-06-11T00:00:00Z","2019-11-21T00:00:00Z","2020-03-29T00:00:00Z","2020-02-09T00:00:00Z","2020-03-29T00:00:00Z","2019-09-15T00:00:00Z","2019-09-15T00:00:00Z","2019-09-19T00:00:00Z","2019-09-19T00:00:00Z","2019-04-28T00:00:00Z","2019-04-28T00:00:00Z","2019-05-02T00:00:00Z","2019-05-02T00:00:00Z","2018-07-30T00:00:00Z","2018-07-13T00:00:00Z","2020-01-09T00:00:00Z","2019-08-28T00:00:00Z","2021-05-14T00:00:00Z","2021-05-30T00:00:00Z","2021-05-05T00:00:00Z"],"type_outcome":["B_COAGDIS_AESI","B_COAGDIS_AESI","B_COAGDIS_AESI","B_TTS_AESI","B_TTS_AESI","B_TTS_AESI","B_TTS_AESI","B_TTS_AESI","B_TTS_AESI","B_TTS_AESI","B_TTS_AESI","B_TTS_AESI","B_TTS_AESI","C_ARRH_AESI","C_ARRH_AESI","C_ARRH_AESI","C_ARRH_AESI","C_CAD_AESI","C_CAD_AESI","C_CAD_AESI"],"meaning_renamed":["hospitalisation_primary","emergency_room_diagnosis","emergency_room_diagnosis","hospitalisation_primary","emergency_room_diagnosis","emergency_room_diagnosis","emergency_room_diagnosis","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","hospitalisation_primary","exemption","exemption","emergency_room_diagnosis","emergency_room_diagnosis","emergency_room_diagnosis","emergency_room_diagnosis","hospitalisation_primary"],"codvar":[325,41519,43491,43401,43491,41519,41519,41519,41519,43491,43491,43401,43401,427,427,42731,42731,41091,41091,41031],"event_record_vocabulary":["ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM","ICD9CM"]},"columns":[{"id":"person_id","name":"person_id","type":"character"},{"id":"date","name":"date","type":"Date"},{"id":"type_outcome","name":"type_outcome","type":"character"},{"id":"meaning_renamed","name":"meaning_renamed","type":"character"},{"id":"codvar","name":"codvar","type":"numeric"},{"id":"event_record_vocabulary","name":"event_record_vocabulary","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"8e942e7c85064104b5ad25c93c1302b3"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="d3_covid_episodes">D3_covid_episodes</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Examples&#39;)">Examples</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_covid_episodes","contains the episodes of COVID observed in all persons in the study population. Each episode is separated from the next by at least 60 days","a person in the study population D4_study_population","D4_study_population","as many as the observed episodes of COVID (>=0)","person_id","person_id date",null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"71742eaa6ff1b58cbcef869cab531549"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["person_id","date",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["unique person identifier",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["character","date",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["from CDM PERSONS",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":["yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":["selected from D4_study_population/person_id based on whether there is at least a covid episode, sources for episode are datasource-specific","# OVERALL STRATEGY \r\n# 1 rbind all files that imply covid\r\n# 2 remove recods closer than 60 days to a previous record\r\n# 3 filter only episodes occurring during the study period and save",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"logical"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"character"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"675eb78de847b765d3c7f92b1655ba2a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"logical"},{"id":"values","name":"values","type":"logical"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"f545894952d01490ab535e7af1d88bc2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Examples" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"person_id":["P00010","P00010","P00042","P00067","P00068","P00075","P00235","P00416","P00467","P00703","P00816","P00962","P00963","P01069","P01080","P01087","P01142","P01147","P01324","P01359"],"date":["2021-01-12T00:00:00Z","2021-05-12T00:00:00Z","2020-05-25T00:00:00Z","2021-01-17T00:00:00Z","2021-01-10T00:00:00Z","2021-02-10T00:00:00Z","2021-03-18T00:00:00Z","2020-11-27T00:00:00Z","2020-11-06T00:00:00Z","2021-03-04T00:00:00Z","2021-01-04T00:00:00Z","2020-12-12T00:00:00Z","2020-07-27T00:00:00Z","2021-01-16T00:00:00Z","2021-01-13T00:00:00Z","2020-11-28T00:00:00Z","2020-12-11T00:00:00Z","2020-11-27T00:00:00Z","2020-07-20T00:00:00Z","2021-04-27T00:00:00Z"]},"columns":[{"id":"person_id","name":"person_id","type":"character"},{"id":"date","name":"date","type":"Date"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"1b1b325ef3a0cbc799c3977f5f4faa51"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="d3_covid_episodes_description">D3_covid_episodes_description</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Examples&#39;)">Examples</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_covid_episodes_description","contains the description of the episodes of COVID observed in all persons in the study population. Each episode is separated from the next by at least 60 days","a person in the study population D4_study_population","D4_study_population","as many as the observed episodes of COVID (>=0)","person_id","person_id date",null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"762b1ba3809553072dc4c2aa0039f341"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["person_id","date","n","covid_narrow_hosp_m_hospitalisation_primary","covid_narrow_hosp_m_hospitalisation_secondary","covid_registry","covid_test_positive","year",null,null,null,null,null,null,null,null,null,null,null,null],"Description":["unique person identifier",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["character","date",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["from CDM PERSONS",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":["yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":["selected from D4_study_population/person_id based on whether there is at least a covid episode, sources for episode are datasource-specific","# OVERALL STRATEGY \r\n# 1 rbind all files that imply covid\r\n# 2 remove recods closer than 60 days to a previous record\r\n# 3 filter only episodes occurring during the study period and save",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"logical"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"character"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"b206840ce325daa831a2c1216092f47b"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"logical"},{"id":"values","name":"values","type":"logical"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"f545894952d01490ab535e7af1d88bc2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Examples" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"person_id":["ECVM210900001","ECVM210900008","ECVM210900010","ECVM210900010","ECVM210900034","ECVM210900038","ECVM210900042","ECVM210900049","ECVM210900054","ECVM210900067","ECVM210900068","ECVM210900075","ECVM210900107","ECVM210900129","ECVM210900184","ECVM210900235","ECVM210900236","ECVM210900366","ECVM210900371","ECVM210900416"],"date":["2021-01-01T00:00:00Z","2021-02-11T00:00:00Z","2021-01-12T00:00:00Z","2021-05-12T00:00:00Z","2021-01-16T00:00:00Z","2021-02-25T00:00:00Z","2020-05-25T00:00:00Z","2020-09-25T00:00:00Z","2021-02-28T00:00:00Z","2021-01-17T00:00:00Z","2021-01-10T00:00:00Z","2021-02-10T00:00:00Z","2021-05-05T00:00:00Z","2020-12-09T00:00:00Z","2021-03-17T00:00:00Z","2021-03-18T00:00:00Z","2020-11-26T00:00:00Z","2020-10-30T00:00:00Z","2021-04-27T00:00:00Z","2020-11-27T00:00:00Z"],"n":[1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"covid_narrow_hosp_m_hospitalisation_primary":[0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"covid_narrow_hosp_m_hospitalisation_secondary":[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],"covid_registry":[1,1,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1],"covid_test_positive":[0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"year":[2021,2021,2021,2021,2021,2021,2020,2020,2021,2021,2021,2021,2021,2020,2021,2021,2020,2020,2021,2020]},"columns":[{"id":"person_id","name":"person_id","type":"character"},{"id":"date","name":"date","type":"Date"},{"id":"n","name":"n","type":"numeric"},{"id":"covid_narrow_hosp_m_hospitalisation_primary","name":"covid_narrow_hosp_m_hospitalisation_primary","type":"numeric"},{"id":"covid_narrow_hosp_m_hospitalisation_secondary","name":"covid_narrow_hosp_m_hospitalisation_secondary","type":"numeric"},{"id":"covid_registry","name":"covid_registry","type":"numeric"},{"id":"covid_test_positive","name":"covid_test_positive","type":"numeric"},{"id":"year","name":"year","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"fd0e8d67ba1e666bc1b96b3a161e8da4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="qc_covid_episodes">QC_covid_episodes</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Example&#39;)">Example</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["QC_covid_episodes","Occurrence of components of covid, per  meaning, to all persons in the study population","list of meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"09fcca6b8f184edd6d3ddbefdb7e1be3"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["n","meanings","year","N",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":[null,"meanings where the outcome is observed",null,"frequency of the combination",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":[null,"binary",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":[null,"1= this component is observed \r\n0 = otherwise",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":[null,"meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"logical"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"a5c9c6fc5d3d95eccbd348969f0ff679"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":["meanings","meanings","meanings","meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":["covid_narrow_hosp_m_hospitalisation_primary","covid_narrow_hosp_m_hospitalisation_secondary","covid_registry","covid_test_positive",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"character"},{"id":"values","name":"values","type":"character"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"8c21ec2dbc783a0b05abb51638578909"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Example" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"n":[1,1,2,1,1,1,1,1,1,2,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"covid_narrow_hosp_m_hospitalisation_primary":[0,1,0,0,0,1,1,1,1,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"covid_narrow_hosp_m_hospitalisation_secondary":[0,0,0,0,1,1,1,0,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"covid_registry":[1,0,0,1,0,0,1,1,0,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"covid_test_positive":[0,1,1,0,0,0,0,0,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"year":[2021,2021,2021,2020,2021,2021,2021,2021,2021,2021,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"N":[133,1,1,114,3,4,3,3,6,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"]},"columns":[{"id":"n","name":"n","type":"numeric"},{"id":"covid_narrow_hosp_m_hospitalisation_primary","name":"covid_narrow_hosp_m_hospitalisation_primary","type":"numeric"},{"id":"covid_narrow_hosp_m_hospitalisation_secondary","name":"covid_narrow_hosp_m_hospitalisation_secondary","type":"numeric"},{"id":"covid_registry","name":"covid_registry","type":"numeric"},{"id":"covid_test_positive","name":"covid_test_positive","type":"numeric"},{"id":"year","name":"year","type":"numeric"},{"id":"N","name":"N","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"0dfa95ebe1abec3122ed8905903953bb"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="d3_covid_severity_components_hospitalisation">D3_covid_severity_components_hospitalisation</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Examples&#39;)">Examples</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_covid_severity_components_hospitalisation","contains the episodes of COVID in D3_covid_episodes that had level of severity \"hospitalised\"","a covid episode","D3_covid_episodes","1","person_id date","person_id date",null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"78f3b4a78f23c1a99ab840e276ee0055"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["person_id","date","component",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["unique person identifier",null,"whether the component component contributed to detect this case as hospitalised\r\nthere are 3 groups of components, and whether one coponent contributes or not depends on the choice of the DAP if the datasource\r\n1) covid_narrow_hosp_m_meaning, with meaning depending on which meanings are available in EVENTS: this means that the case was found in a hospitalisation with a covid diagnosis\r\n2 hospitalisation_after_COVID: in some data sources (eg, pediatric), any hospitalisation within 14 days after a covid diagnosis is detected as due to covid\r\n3) hospitalisation_from_covid_registry: in some data sources a covid registry is available that records whether the case is hospitalised",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["character","date","binary",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["from CDM PERSONS",null,"1 = this component contributed to detect the case as hospitalised\r\n0 = otherwise",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":[null,null,"component",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":["yes","yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":["selected from D3_covid_episodes based on the algorithm that identifies cases hospitalised, which is datasource-specific, , as specifid by the following parameters set in 07_algorithms\r\n\r\n# data sources including records of hospitalisations with a covid diagnosis\r\ndatasources_hosp_due_to_covid\r\n\r\n# data sources including records of hospitalizations irrespective of diagnosis\r\ndatasources_hosp_after_covid\r\n\r\n# data sources including hospitalization from covid registry (to be handled in a data source-tailored manner)\r\ndatasources_hosp_from_covid_registry","selected from D3_covid_episodes based on the algorithm that identifies cases hospitalised, which is datasource-specific, see above","strategy to define this variable (and the whole datasets):\r\n# 1 rbind all files that imply hospitalisation (based on a datasource-tailord list of files)\r\n# 2 associate each record to the corresponding episode (from the date of the episode until the date of the next episode)\r\n# 3 reshape the dataset to obtain one record per episode, labelled with each component indicating that the episode was hospitalised (the label is this variable)",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"character"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"333dfccbdc6cd8b38e35d16bb46d67e6"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":["component","component","component",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":["covid_narrow_hosp_m_meaning","hospitalisation_after_COVID","hospitalisation_from_covid_registry",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"character"},{"id":"values","name":"values","type":"character"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"ec8125dbb303fb1ec4632867b4628d35"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Examples" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"person_id":["P00010","P00042","P01069","P01359","P02423","P03855","P04030","P06575","P06637","P07238","P08503",null,null,null,null,null,null,null,null,null],"date":["2021-01-12T00:00:00Z","2020-05-25T00:00:00Z","2021-01-16T00:00:00Z","2021-04-27T00:00:00Z","2020-12-28T00:00:00Z","2021-02-06T00:00:00Z","2021-02-11T00:00:00Z","2020-05-30T00:00:00Z","2021-06-29T00:00:00Z","2021-05-07T00:00:00Z","2021-04-04T00:00:00Z",null,null,null,null,null,null,null,null,null],"covid_narrow_hosp_m_hospitalisation_primary":[1,0,0,1,0,1,1,0,1,1,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA"],"covid_narrow_hosp_m_hospitalisation_secondary":[0,0,0,0,0,0,0,0,1,0,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA"],"hospitalisation_after_COVID":[1,0,0,0,1,0,0,0,0,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA"],"hospitalisation_from_covid_registry":[0,1,1,0,0,0,0,1,0,0,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA"]},"columns":[{"id":"person_id","name":"person_id","type":"character"},{"id":"date","name":"date","type":"Date"},{"id":"covid_narrow_hosp_m_hospitalisation_primary","name":"covid_narrow_hosp_m_hospitalisation_primary","type":"numeric"},{"id":"covid_narrow_hosp_m_hospitalisation_secondary","name":"covid_narrow_hosp_m_hospitalisation_secondary","type":"numeric"},{"id":"hospitalisation_after_COVID","name":"hospitalisation_after_COVID","type":"numeric"},{"id":"hospitalisation_from_covid_registry","name":"hospitalisation_from_covid_registry","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"1a5f291983a9e4b88a31c481755b63a0"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="qc_covid_severity_components_hospitalisation">QC_covid_severity_components_hospitalisation</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Example&#39;)">Example</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["QC_covid_severity_components_hospitalisation","Occurrence of components of covid hospitalisation, per meaning, to all persons in the study population","list of meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"332107bc3974ead4ffd8c2422b68c097"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["meanings","year","N",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["meanings where the outcome is observed",null,"frequency of the combination",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["binary",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["1= this component is observed \r\n0 = otherwise",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":["meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"logical"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"54710855291908ee8762b5ae31b3d73a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":["meanings","meanings","meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":["covid_narrow_hosp_m_hospitalisation_primary","hospitalisation_after_COVID","hospitalisation_from_covid_registry",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"character"},{"id":"values","name":"values","type":"character"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"0dab0c596b8e794fafac6ea37ac52090"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Example" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"covid_narrow_hosp_m_hospitalisation_primary":[1,0,0,1,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"hospitalisation_after_COVID":[1,0,0,0,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"hospitalisation_from_covid_registry":[0,1,1,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"year":[2021,2020,2021,2021,2020,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"N":[1,3,2,16,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"]},"columns":[{"id":"covid_narrow_hosp_m_hospitalisation_primary","name":"covid_narrow_hosp_m_hospitalisation_primary","type":"numeric"},{"id":"hospitalisation_after_COVID","name":"hospitalisation_after_COVID","type":"numeric"},{"id":"hospitalisation_from_covid_registry","name":"hospitalisation_from_covid_registry","type":"numeric"},{"id":"year","name":"year","type":"numeric"},{"id":"N","name":"N","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"727e42bca4aff738edb635dee40dfa23"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="d3_covid_severity_components_icu">D3_covid_severity_components_ICU</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Examples&#39;)">Examples</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_covid_severity_components_ICU","contains the episodes of COVID in D3_covid_episodes that had level of severity \"intensive care unit (ICU)\"","a covid episode","D3_covid_episodes","1","person_id date","person_id date",null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"84af04abdbfe1e7d46a4a9095818cf7d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["person_id","date","component",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["unique person identifier",null,"whether the component component contributed to detect this case as needing intensive care unit (ICU)\r\nthere are 5 groups of components, and whether one coponent contributes or not depends on the choice of the DAP if the datasource\r\n1) dia_ARDS_m_narrow_meaning and dia_ARDS_m_possible_meaning, with meaning depending on which meanings are available in EVENTS: this means that the case was found with a acut respiratory distress diagnosis (narrow or possible) within 14 days after a covid episode\r\n2 mech_ventilation_m_meaning: in some data sources procedures of mechanical ventilation can be recorded; if this hapens within 14 days after a covid episode, the episode is labeled as with ICU\r\n3) covid_narrow_ICU_m_meaning: \r\n4) extracted_from_free_text:\r\n5) ICU_from_covid_registry: in some data sources a covid registry is available that records whether the case is treated in ICU",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["character","date","binary",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["from CDM PERSONS",null,"1 = this component contributed to detect the case as hospitalised\r\n0 = otherwise",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":[null,null,"component",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":["yes","yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":["selected from D3_covid_episodes based on the algorithm that identifies cases with ICU, which is datasource-specific, as specifid by the following parameters set in 07_algorithms\r\n# data sources including records of ARDS diagnosis (D3_ARDS_narrow and D3_ARDS possible)\r\ndatasources_ICU_from_ARDS\r\n\r\n# data sources including records of procedures of mechanical ventilation (conceptset ICU_VENTILATION)\r\ndatasources_proc_mechanical_ventilation\r\n\r\n# data sources including records of access to ICU from hospitalisation (meaning \"hospitalisation_ICU_unspecified\" in D3_covid_narrow)\r\ndatasources_access_ICU\r\n\r\n# data sources including records of access to ICU from free text in MEDICAL_OBSERVATIONS (itemset extracted_from_free_text)\r\ndatasources_ICU_free_text\r\n\r\n# data sources including access to ICU from covid registry (from various itemsets, to be handled in a data source-tailored manner)\r\ndatasources_ICU_from_covid_registry\r\n","selected from D3_covid_episodes based on the algorithm that identifies cases with ICU, which is datasource-specific","strategy to define this variable (and the whole datasets):\r\n# 1 rbind all files that imply ICU (based on a datasource-tailord list of files)\r\n# 2 associate each record to the corresponding episode (from the date of the episode until the date of the next episode)\r\n# 3 reshape the dataset to obtain one record per episode, labelled with each component indicating that the episode was with ICU (the label is this variable)",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"character"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"cd232996356416d5a8635ce84e2101b6"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":["component","component","component","component","component","component",null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":["dia_ARDS_m_narrow_meaning","dia_ARDS_m_possible_meaning","mech_ventilation_m_meaning","covid_narrow_ICU_m_meaning","extracted_from_free_text","ICU_from_covid_registry",null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"character"},{"id":"values","name":"values","type":"character"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"1e4d967e886480b43fcec8981920a55c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Examples" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"person_id":["P00010","P02423","P05559","P06123","P00233",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"date":["2021-01-12T00:00:00Z","2020-12-28T00:00:00Z","2020-05-26T00:00:00Z","2021-03-22T00:00:00Z","2021-05-13T00:00:00Z",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"dia_ARDS_m_narrow_hospitalisation_primary":[1,1,0,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"dia_ARDS_m_possible_emergency_room_diagnosis":[0,0,0,1,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"dia_ARDS_m_possible_hospitalisation_primary":[0,0,1,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"extracted_from_free_text":[0,1,0,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"]},"columns":[{"id":"person_id","name":"person_id","type":"character"},{"id":"date","name":"date","type":"Date"},{"id":"dia_ARDS_m_narrow_hospitalisation_primary","name":"dia_ARDS_m_narrow_hospitalisation_primary","type":"numeric"},{"id":"dia_ARDS_m_possible_emergency_room_diagnosis","name":"dia_ARDS_m_possible_emergency_room_diagnosis","type":"numeric"},{"id":"dia_ARDS_m_possible_hospitalisation_primary","name":"dia_ARDS_m_possible_hospitalisation_primary","type":"numeric"},{"id":"extracted_from_free_text","name":"extracted_from_free_text","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"5fae2dd119ebb3c52c1b0170bc24cc6a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="qc_covid_severity_components_icu">QC_covid_severity_components_ICU</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Example&#39;)">Example</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["QC_covid_severity_components_ICU","Occurrence of components of covid ICU, per meaning, to all persons in the study population","list of meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"e6eb43b0baf865d862bd04932ce95d66"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["meanings","year","N",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["meanings where the outcome is observed",null,"frequency of the combination",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["binary",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["1= this component is observed \r\n0 = otherwise",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":["meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"logical"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"54710855291908ee8762b5ae31b3d73a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":["meanings","meanings","meanings","meanings","meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":["ICU_from_covid_registry","dia_ARDS_m_narrow_hospitalisation_primary","dia_ARDS_m_possible_emergency_room_diagnosis","dia_ARDS_m_possible_hospitalisation_primary","extracted_from_free_text",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"character"},{"id":"values","name":"values","type":"character"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"31f63738244b7bf5858852d12b80c59a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Example" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"ICU_from_covid_registry":[0,0,0,1,0,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"dia_ARDS_m_narrow_hospitalisation_primary":[1,0,0,0,0,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"dia_ARDS_m_possible_emergency_room_diagnosis":[0,0,1,0,0,0,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"dia_ARDS_m_possible_hospitalisation_primary":[0,1,0,0,0,1,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"extracted_from_free_text":[0,0,0,0,1,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"year":[2021,2021,2020,2021,2020,2020,2021,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"N":[1,1,1,1,1,1,2,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"]},"columns":[{"id":"ICU_from_covid_registry","name":"ICU_from_covid_registry","type":"numeric"},{"id":"dia_ARDS_m_narrow_hospitalisation_primary","name":"dia_ARDS_m_narrow_hospitalisation_primary","type":"numeric"},{"id":"dia_ARDS_m_possible_emergency_room_diagnosis","name":"dia_ARDS_m_possible_emergency_room_diagnosis","type":"numeric"},{"id":"dia_ARDS_m_possible_hospitalisation_primary","name":"dia_ARDS_m_possible_hospitalisation_primary","type":"numeric"},{"id":"extracted_from_free_text","name":"extracted_from_free_text","type":"numeric"},{"id":"year","name":"year","type":"numeric"},{"id":"N","name":"N","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"a74760f55525468b297752b7dc985e50"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="d3_covid_severity_components_death">D3_covid_severity_components_death</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Examples&#39;)">Examples</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_covid_severity_components_death","contains the episodes of COVID in D3_covid_episodes that had level of severity \"death\"","a covid episode","D3_covid_episodes","1","person_id date","person_id date",null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"0ad759fe86ac5dc8a06e6d2888ae5c14"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["person_id","date","component",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["unique person identifier",null,"whether the component component contributed to detect this case as fatal\r\nhere are 2 components, and whether one coponent contributes or not depends on the choice of the DAP if the datasource\r\n1) death_within_56_days, this means that the person died within 56 after the case was detected\r\n2) death_from_covid_registry: in some data sources a covid registry is available that records whether the case was fatal",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["character","date","binary",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["from CDM PERSONS",null,"1 = this component contributed to detect the case as hospitalised\r\n0 = otherwise",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":[null,null,"component",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":["yes","yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":["selected from D3_covid_episodes based on the algorithm that identifies cases that died, which is datasource-specific, as specifid by the following parameters set in 07_algorithms\r\ndatasources_death_after_covid\r\ndatasources_death_from_covid_registry","selected from D3_covid_episodes based on the algorithm that identifies cases that died, which is datasource-specific","strategy to define this variable (and the whole datasets):\r\n# 1 rbind all files that imply death (based on a datasource-tailord list of files)\r\n# 2 associate each record to the corresponding episode (from the date of the episode until the date of the next episode)\r\n# 3 reshape the dataset to obtain one record per episode, labelled with each component indicating that the episode led to death (the label is this variable)",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"character"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"bcf151284d0b768898442b55040db319"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":["component","component",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":["death_within_56_days","death_from_covid_registry",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"character"},{"id":"values","name":"values","type":"character"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"81422911675ba70d5563f9b3f58ff247"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Examples" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"person_id":["P01278","P01359","P01668","P03491","P03855","P04030","P04593","P05963","P07703","P08408",null,null,null,null,null,null,null,null,null,null],"date":["2020-11-18T00:00:00Z","2021-04-27T00:00:00Z","2020-12-09T00:00:00Z","2020-04-28T00:00:00Z","2021-02-06T00:00:00Z","2021-02-11T00:00:00Z","2021-06-05T00:00:00Z","2020-09-21T00:00:00Z","2021-05-04T00:00:00Z","2020-04-23T00:00:00Z",null,null,null,null,null,null,null,null,null,null],"death_from_covid_registry":[1,0,1,1,1,1,0,1,0,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"death_within_56_days":[0,1,1,1,0,0,1,0,1,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"]},"columns":[{"id":"person_id","name":"person_id","type":"character"},{"id":"date","name":"date","type":"Date"},{"id":"death_from_covid_registry","name":"death_from_covid_registry","type":"numeric"},{"id":"death_within_56_days","name":"death_within_56_days","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"24cf2b848871fb09174e952f06e1991b"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="qc_covid_severity_components_death">QC_covid_severity_components_death</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Example&#39;)">Example</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["QC_covid_severity_components_death","Occurrence of components of covid death, per meaning, to all persons in the study population","list of meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"134f34d51e35be9b1d570d2d0b9de2f0"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["meanings","year","N",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["meanings where the outcome is observed",null,"frequency of the combination",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["binary",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["1= this component is observed \r\n0 = otherwise",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":["meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"logical"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"54710855291908ee8762b5ae31b3d73a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":["meanings","meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":["death_from_covid_registry","death_within_56_days",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"character"},{"id":"values","name":"values","type":"character"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"434644d5eb95d1338bec7963d667e59c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Example" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"death_from_covid_registry":[1,0,1,1,0,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"death_within_56_days":[0,1,1,0,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"year":[2020,2021,2020,2021,2020,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"N":[2,3,2,2,1,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"]},"columns":[{"id":"death_from_covid_registry","name":"death_from_covid_registry","type":"numeric"},{"id":"death_within_56_days","name":"death_within_56_days","type":"numeric"},{"id":"year","name":"year","type":"numeric"},{"id":"N","name":"N","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"c149e4ae780ed1424e6b875b7047c8c2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="d3_td_variable_covid">D3_TD_variable_COVID</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Examples&#39;)">Examples</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_TD_variable_COVID","contains the time-dependent evolution of the categorical variable COVID. Occurrences are recorde with their level of severity. The date is the date of the first information about the infection, infromation about seeviry may accrue across time","A covid episode","D3_covid_episodes","1","person_id","person_id date",null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"67a50f4e2028bce320ba24b9d14742a2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["person_id","date","value_of_variable",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["unique person identifier",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["character",null,"categorical",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":[null,null,"severity1 = not hospitalised, no ICU; no death\r\nseverity2 = hospitalised, no ICU, no death\r\nseverity3 = ICU, no death\r\nseverity4 = death",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":["yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":[null,null,"yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":[null,null,"if the episode is in D3_covid_severity_components_DEATH -> severity4\r\n\r\nelse, if the episode is in D3_covid_severity_components_ICU -> severity3\r\n\r\nelse, if the episode is in D3_covid_severity_components_hospitalisation -> severity2\r\n\r\nelse -> severity4\r\n\r\n\r\n",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"logical"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"character"},{"id":"Calculated","name":"Calculated","type":"character"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"4d79a0ec8402e5bf18d561bbd86697b6"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"values":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"logical"},{"id":"values","name":"values","type":"logical"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"f545894952d01490ab535e7af1d88bc2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Examples" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"person_id":["P00001","P00008","P00010","P00010","P00034","P00038","P00042","P00049","P00054","P00067","P00068","P00075","P00107","P00129","P00184","P00235","P00236","P00366","P00371","P00416"],"date":["2021-01-01T00:00:00Z","2021-02-11T00:00:00Z","2021-01-12T00:00:00Z","2021-05-12T00:00:00Z","2021-01-16T00:00:00Z","2021-02-25T00:00:00Z","2020-05-25T00:00:00Z","2020-09-25T00:00:00Z","2021-02-28T00:00:00Z","2021-01-17T00:00:00Z","2021-01-10T00:00:00Z","2021-02-10T00:00:00Z","2021-05-05T00:00:00Z","2020-12-09T00:00:00Z","2021-03-17T00:00:00Z","2021-03-18T00:00:00Z","2020-11-26T00:00:00Z","2020-10-30T00:00:00Z","2021-04-27T00:00:00Z","2020-11-27T00:00:00Z"],"value_of_variable":["severity1","severity3","severity3","severity1","severity1","severity3","severity2","severity2","severity2","severity1","severity1","severity1","severity3","severity1","severity1","severity1","severity1","severity1","severity1","severity1"]},"columns":[{"id":"person_id","name":"person_id","type":"character"},{"id":"date","name":"date","type":"Date"},{"id":"value_of_variable","name":"value_of_variable","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"f4e942564c4d5a5c93b8a275a8034cce"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="d3_covariates_all">D3_covariates_ALL</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Example&#39;)">Example</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_covariates_ALL","contains the covariates observed in the study populationin two points in time: at baseline, and at first vaccination (if any)","all persons in the study population D4_study_population","D4_study_population","<=2","person_id",null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"417e10f9d6509f817ddb408406f239a3"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["person_id","type_of_date","COMORBIDITY_in_365gg","DP_in_90gg","COVID","PREGNANCY","any_risk_factors",null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["unique person identifier",null,null,"covariate at type_of_date","any episode of covid before date type_of_date","pregnancy at type_of_date","any risk factor at type_of_date",null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["character","character",null,"binary","binary","binary","binary",null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["from cdm persons","baseline\r\nvax1",null,"1 = if yes\r\n0 = otherwise","1 = if yes\r\n0 = otherwise","1 = if yes\r\n0 = otherwise","1 = if yes\r\n0 = otherwise",null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":["from cdm persons",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":["yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":[null,null,null,"yes","yes","yes","yes",null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,"COMORBIDITY","DP",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"character"},{"id":"Calculated","name":"Calculated","type":"character"},{"id":"Algorithm_id","name":"Algorithm_id","type":"character"},{"id":"Rule","name":"Rule","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"89c2cbbb992832eedbc85083511284bb"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":["COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","COMORBIDITY","DP","DP","DP"],"values":["B_SICKLECELLALGORITHM_COV","C_CARDIOCEREBROVASCULARDESE_COV","D_LIVERCHRONIC_COV","E_DM12ALGORITHM_COV","G_KDCHRONIC_COV","I_COVID19HIST_COV","I_HIV_COV","Im_ALLERGY_COV","Im_ANAPHYLAXIS_COV","Im_HYPERSENS_AESI","Im_INMUNODEFALLALGORITHM_COV","L_OBESITYALGORITHM_COV","Ment_MENTHEALTHDISEASEALGOR_COV","O_DOWN_COV","Onc_ANYMALIGNANCYALGORITHM_COV","R_RESPCHRONICALGORITHM_COV","V_PRIORVTEALGORITHM_COV","DP_ANTIBIO","DP_ANTITHROMBOTIC","DP_ANTIVIR"],"name of macro":["COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","COV_variables","DP_variables","DP_variables","DP_variables"]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"character"},{"id":"values","name":"values","type":"character"},{"id":"name of macro","name":"name of macro","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"e0ce80f07e65e4ea5bf3bb559d8f8fe2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Example" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"person_id":["P00007","P00007","P00010","P00013","P00013","P00014","P00014","P00018","P00018","P00025","P00025","P00026","P00026","P00029","P00029","P00032","P00032","P00033","P00033","P00036"],"type_of_date":["baseline","vax1","baseline","baseline","vax1","baseline","vax1","baseline","vax1","baseline","vax1","baseline","vax1","baseline","vax1","baseline","vax1","baseline","vax1","baseline"],"B_SICKLECELLALGORITHM_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"C_CARDIOCEREBROVASCULARDESE_COV_in_365gg":[0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0],"D_LIVERCHRONIC_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"E_DM12ALGORITHM_COV_in_365gg":[0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],"G_KDCHRONIC_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"I_COVID19HIST_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"I_HIV_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"Im_ALLERGY_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"Im_ANAPHYLAXIS_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"Im_HYPERSENS_AESI_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"Im_INMUNODEFALLALGORITHM_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"L_OBESITYALGORITHM_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"Ment_MENTHEALTHDISEASEALGOR_COV_in_365gg":[0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],"O_DOWN_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"Onc_ANYMALIGNANCYALGORITHM_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"R_RESPCHRONICALGORITHM_COV_in_365gg":[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"V_PRIORVTEALGORITHM_COV_in_365gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0],"DP_ANTIBIO_in_90gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DP_ANTITHROMBOTIC_in_90gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0],"DP_ANTIVIR_in_90gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DP_IMMUNOSUPPR_in_90gg":[0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],"DP_LIPIDLOWER_in_90gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DP_SEXHORMONES_in_90gg":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DP_VACCINES_in_90gg":[0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],"COVID":[0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1],"PREGNANCY":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"any_risk_factors":[1,0,0,1,1,0,1,0,1,0,1,0,0,0,1,1,0,0,0,1]},"columns":[{"id":"person_id","name":"person_id","type":"character"},{"id":"type_of_date","name":"type_of_date","type":"character"},{"id":"B_SICKLECELLALGORITHM_COV_in_365gg","name":"B_SICKLECELLALGORITHM_COV_in_365gg","type":"numeric"},{"id":"C_CARDIOCEREBROVASCULARDESE_COV_in_365gg","name":"C_CARDIOCEREBROVASCULARDESE_COV_in_365gg","type":"numeric"},{"id":"D_LIVERCHRONIC_COV_in_365gg","name":"D_LIVERCHRONIC_COV_in_365gg","type":"numeric"},{"id":"E_DM12ALGORITHM_COV_in_365gg","name":"E_DM12ALGORITHM_COV_in_365gg","type":"numeric"},{"id":"G_KDCHRONIC_COV_in_365gg","name":"G_KDCHRONIC_COV_in_365gg","type":"numeric"},{"id":"I_COVID19HIST_COV_in_365gg","name":"I_COVID19HIST_COV_in_365gg","type":"numeric"},{"id":"I_HIV_COV_in_365gg","name":"I_HIV_COV_in_365gg","type":"numeric"},{"id":"Im_ALLERGY_COV_in_365gg","name":"Im_ALLERGY_COV_in_365gg","type":"numeric"},{"id":"Im_ANAPHYLAXIS_COV_in_365gg","name":"Im_ANAPHYLAXIS_COV_in_365gg","type":"numeric"},{"id":"Im_HYPERSENS_AESI_in_365gg","name":"Im_HYPERSENS_AESI_in_365gg","type":"numeric"},{"id":"Im_INMUNODEFALLALGORITHM_COV_in_365gg","name":"Im_INMUNODEFALLALGORITHM_COV_in_365gg","type":"numeric"},{"id":"L_OBESITYALGORITHM_COV_in_365gg","name":"L_OBESITYALGORITHM_COV_in_365gg","type":"numeric"},{"id":"Ment_MENTHEALTHDISEASEALGOR_COV_in_365gg","name":"Ment_MENTHEALTHDISEASEALGOR_COV_in_365gg","type":"numeric"},{"id":"O_DOWN_COV_in_365gg","name":"O_DOWN_COV_in_365gg","type":"numeric"},{"id":"Onc_ANYMALIGNANCYALGORITHM_COV_in_365gg","name":"Onc_ANYMALIGNANCYALGORITHM_COV_in_365gg","type":"numeric"},{"id":"R_RESPCHRONICALGORITHM_COV_in_365gg","name":"R_RESPCHRONICALGORITHM_COV_in_365gg","type":"numeric"},{"id":"V_PRIORVTEALGORITHM_COV_in_365gg","name":"V_PRIORVTEALGORITHM_COV_in_365gg","type":"numeric"},{"id":"DP_ANTIBIO_in_90gg","name":"DP_ANTIBIO_in_90gg","type":"numeric"},{"id":"DP_ANTITHROMBOTIC_in_90gg","name":"DP_ANTITHROMBOTIC_in_90gg","type":"numeric"},{"id":"DP_ANTIVIR_in_90gg","name":"DP_ANTIVIR_in_90gg","type":"numeric"},{"id":"DP_IMMUNOSUPPR_in_90gg","name":"DP_IMMUNOSUPPR_in_90gg","type":"numeric"},{"id":"DP_LIPIDLOWER_in_90gg","name":"DP_LIPIDLOWER_in_90gg","type":"numeric"},{"id":"DP_SEXHORMONES_in_90gg","name":"DP_SEXHORMONES_in_90gg","type":"numeric"},{"id":"DP_VACCINES_in_90gg","name":"DP_VACCINES_in_90gg","type":"numeric"},{"id":"COVID","name":"COVID","type":"numeric"},{"id":"PREGNANCY","name":"PREGNANCY","type":"numeric"},{"id":"any_risk_factors","name":"any_risk_factors","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"0b235a5da71e1abbad77741563d7cabf"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="qc_all_components_outcome">QC_all_components_OUTCOME</h1>
+
+<script src="../rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="../rmarkdown-libs/react/react.min.js"></script>
+<script src="../rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="../rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="../rmarkdown-libs/reactable/reactable.css" rel="stylesheet" />
+<script src="../rmarkdown-libs/reactable-binding/reactable.js"></script>
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, &#39;Metadata&#39;)" id="defaultOpen">Metadata</button>
+<button class="tablinks" onclick="openCity(event, &#39;Data Model&#39;)">Data Model</button>
+<button class="tablinks" onclick="openCity(event, &#39;Parameters&#39;)">Parameters</button>
+<button class="tablinks" onclick="openCity(event, &#39;Example&#39;)">Example</button>
+</div>
+<div id="Metadata" class="tabcontent">
+<div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["QC_all_components_OUTCOME","Occurrence of components of the outcome OUTCOME during 2019 (and. to be dropped, during one year of lookback), per  meaning, to all persons in the study population at 1/1/2019 or entering during 2019","list of meanings",null,null,null,null,"OUTCOME",null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"5b6b1ad0c5055a5c2e01366c5a73c79c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Data Model" class="tabcontent">
+<div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"VarName":["meanings","to_drop","N",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Description":["meanings where the outcome is observed","marks those observations that are observed during lookback, and are therefore to be dropped from the analysis","frequency of the combination",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Format":["binary",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Vocabulary":["1= this component is observed \r\n0 = otherwise","1 = observed during lookback\r\n0 = otherwise",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Parameters":["meanings",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Notes and examples":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Source tables and variables":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Retrieved":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Calculated":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Algorithm_id":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"Rule":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"VarName","name":"VarName","type":"character"},{"id":"Description","name":"Description","type":"character"},{"id":"Format","name":"Format","type":"character"},{"id":"Vocabulary","name":"Vocabulary","type":"character"},{"id":"Parameters","name":"Parameters","type":"character"},{"id":"Notes and examples","name":"Notes and examples","type":"logical"},{"id":"Source tables and variables","name":"Source tables and variables","type":"logical"},{"id":"Retrieved","name":"Retrieved","type":"logical"},{"id":"Calculated","name":"Calculated","type":"logical"},{"id":"Algorithm_id","name":"Algorithm_id","type":"logical"},{"id":"Rule","name":"Rule","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"57dc0f07a615c5d5894bb842767faa72"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Parameters" class="tabcontent">
+<div id="htmlwidget-3" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"parameter in the variable name":["meanings","meanings","meanings","meanings","meanings","meanings","meanings","meanings",null,null,null,null,null,null,null,null,null,null,null,null],"values":["narrow_emergency_room_diagnosis","narrow_evaluation_during_home_or_residential_care","narrow_hospitalisation_primary","narrow_hospitalisation_secondary","possible_emergency_room_diagnosis","possible_hospitalisation_primary","possible_hospitalisation_secondary","...",null,null,null,null,null,null,null,null,null,null,null,null],"name of macro":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"parameter in the variable name","name":"parameter in the variable name","type":"character"},{"id":"values","name":"values","type":"character"},{"id":"name of macro","name":"name of macro","type":"logical"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"74ff1642b31b1574b1be4a256543fb18"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="Example" class="tabcontent">
+<div id="htmlwidget-4" class="reactable html-widget " style="width:auto;height:600px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"narrow_emergency_room_diagnosis":["0","0","0","1","0","1","0","1","0","0","0","0","0","0","0","0","0","1",null,"the record shaded in gray will be discarded from the analysis because they count people who had the event during 2018"],"narrow_evaluation_during_home_or_residential_care":[0,1,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,"NA","NA"],"narrow_hospitalisation_primary":["0","0","1","1","0","0","0","0","0","1","0","0","0","0","1","0","1","1",null,"4 persons were observed in 2 meanings during 2019 (row 9)"],"narrow_hospitalisation_secondary":[0,0,0,0,1,0,0,1,1,1,0,0,0,0,0,1,1,0,"NA","NA"],"possible_emergency_room_diagnosis":[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,"NA","NA"],"possible_hospitalisation_primary":[0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,"NA","NA"],"possible_hospitalisation_secondary":[0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,"NA","NA"],"todrop":[0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,"NA","NA"],"N":[3527742,1491,115,53,47,45,8,4,1,1,1,1,1356,151,3,3,1,1,"NA","NA"]},"columns":[{"id":"narrow_emergency_room_diagnosis","name":"narrow_emergency_room_diagnosis","type":"character"},{"id":"narrow_evaluation_during_home_or_residential_care","name":"narrow_evaluation_during_home_or_residential_care","type":"numeric"},{"id":"narrow_hospitalisation_primary","name":"narrow_hospitalisation_primary","type":"character"},{"id":"narrow_hospitalisation_secondary","name":"narrow_hospitalisation_secondary","type":"numeric"},{"id":"possible_emergency_room_diagnosis","name":"possible_emergency_room_diagnosis","type":"numeric"},{"id":"possible_hospitalisation_primary","name":"possible_hospitalisation_primary","type":"numeric"},{"id":"possible_hospitalisation_secondary","name":"possible_hospitalisation_secondary","type":"numeric"},{"id":"todrop","name":"todrop","type":"numeric"},{"id":"N","name":"N","type":"numeric"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"a05427592fe09dd92d3befb0ea5ab94e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="../js/clipboard.min.js?1692905449" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1692905449" defer></script>
+    <script src="../js/theme.js?1692905449" defer></script>
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+<script>
+  document.getElementById("defaultOpen").click();
+</script>
+
+  </body>
+</html>

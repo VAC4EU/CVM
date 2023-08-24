@@ -1,46 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>D4 on ECVM documentation</title>
-    <link>/en/tags/d4/</link>
-    <description>Recent content in D4 on ECVM documentation</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language><atom:link href="/en/tags/d4/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Descriptives study population</title>
-      <link>/en/data-models/descriptives-study-population/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/en/data-models/descriptives-study-population/</guid>
-      <description>D4_descriptive_dataset_age_studystart Descriptive of age at January 1, 2020, from all the D3 study_population.{&#34;x&#34;:{&#34;tag&#34;:{&#34;name&#34;:&#34;Reactable&#34;,&#34;attribs&#34;:{&#34;data&#34;:{&#34;Name&#34;:[&#34;Datasource&#34;,&#34;Followup&#34;,&#34;Age_P25&#34;,&#34;Age_P50&#34;,&#34;Age_p75&#34;,&#34;Age_mean&#34;,&#34;Age_min&#34;,&#34;Age_max&#34;],&#34;Description&#34;:[null,&#34;Person days of follow-up summed across all subjects in the study population (study_exit-study_entry)&#34;,&#34;Age at January 1, 2020, 25th percentile of distribution&#34;,&#34;Age at January 1, 2020, 50th percentile of distribution&#34;,&#34;Age at January 1, 2020, 75th percentile of distribution&#34;,&#34;Age at January 1, 2020, mean of distribution&#34;,&#34;Age at January 1, 2020, minimum of distribution&#34;</description>
-    </item>
-    
-    <item>
-      <title>Descriptives study population at vaccination</title>
-      <link>/en/data-models/descriptives-study-population-at-vaccination/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/en/data-models/descriptives-study-population-at-vaccination/</guid>
-      <description>D4_descriptive_dataset_age_vax1 Descriptive of age at study_entry_date for all the D3_Vaccin_cohort.{&#34;x&#34;:{&#34;tag&#34;:{&#34;name&#34;:&#34;Reactable&#34;,&#34;attribs&#34;:{&#34;data&#34;:{&#34;Name&#34;:[&#34;Datasource&#34;,&#34;Vax_dose1&#34;,&#34;Month_vax1&#34;,&#34;Followup_vax1&#34;,&#34;Age_P25&#34;,&#34;Age_P50&#34;,&#34;Age_p75&#34;,&#34;Age_mean&#34;,&#34;Age_min&#34;,&#34;Age_max&#34;],&#34;Description&#34;:[null,&#34;Type vaccine dose 1&#34;,&#34;Month of date_vax1&#34;,&#34;Person days of follow-up summed across all subjects in the study population from date_vax1 UNTIL VAX2&#34;,&#34;Age at date_vax1 25th percentile of distribution&#34;,&#34;Age at date_vax1, 50th percentile of distribution&#34;,&#34;Age at date_vax175th percentile of distribution&#34;,&#34;Age at date_vax1, mean of distribution&#34;,&#34;Age at date_vax1, minimum of distribution&#34;,&#34;Age at date_vax1, maximum of distribution&#34;],&#34;Format/Vocabulary&#34;:[&#34;ARS BIFAP CPRD PHARMO&#34;</description>
-    </item>
-    
-    <item>
-      <title>Doses of vaccination</title>
-      <link>/en/data-models/doses-of-vaccination/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/en/data-models/doses-of-vaccination/</guid>
-      <description>table_QC_dose_derived Table comparing first and second doses, missing, discordant and concordant.{&#34;x&#34;:{&#34;tag&#34;:{&#34;name&#34;:&#34;Reactable&#34;,&#34;attribs&#34;:{&#34;data&#34;:{&#34;Name&#34;:[&#34;Datasource&#34;,&#34;N or %&#34;,&#34;Number of doses&#34;,&#34;Missing first doses&#34;,&#34;Missing second doses&#34;,&#34;Discordant first to second&#34;,&#34;Discordant second to first&#34;,&#34;Concordant first doses&#34;,&#34;Concordant second doses&#34;],&#34;Description&#34;:[&#34;Datasource of the data&#34;,&#34;Integer or percentage w.r.t. total&#34;,&#34;Total number of doses&#34;,&#34;Missing - Derived Dose 1&#34;,&#34;Missing - Derived Dose 2&#34;,&#34;Dose 1 - Derived Dose 2&#34;,&#34;Dose 2 - Derived Dose 1&#34;,&#34;Dose 1 - Derived Dose 1&#34;,&#34;Dose 2 - Derived Dose 2&#34;</description>
-    </item>
-    
-    <item>
-      <title>PersonTime benefits</title>
-      <link>/en/data-models/persontime-benefits/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/en/data-models/persontime-benefits/</guid>
-      <description>D4_persontime_benefit_week Stratified table by sex, birth cohort, dose, type vax, calendar week and risk factors. Contains the persontime and counts for each covid severity{&#34;x&#34;:{&#34;tag&#34;:{&#34;name&#34;:&#34;Reactable&#34;,&#34;attribs&#34;:{&#34;data&#34;:{&#34;Name&#34;:[&#34;sex&#34;,&#34;Birthcohort_persons&#34;,&#34;Dose&#34;,&#34;riskfactors&#34;,&#34;type_vax&#34;,&#34;week&#34;,&#34;Persontime&#34;,&#34;Persontime_COVID_L1plus&#34;,&#34;Persontime_COVID_L2plus&#34;,&#34;Persontime_COVID_L3plus&#34;,&#34;Persontime_COVID_L4plus&#34;,&#34;COVID_L1plus_b&#34;,&#34;COVID_L2plus_b&#34;,&#34;COVID_L3plus_b&#34;,&#34;COVID_L4plus_b&#34;],&#34;Description&#34;:[null,null,null,&#34;Cases in population for each risk factor&#34;,&#34;type of vaccine&#34;,null,null,null,null,null,null,null,null,null,null],&#34;Format/Vocabulary&#34;:[&#34;0 = Female, 1 = Male&#34;,&#34;D4_persontime_benefit_year Stratified table by sex, birth cohort, dose, type vax, week of followup and risk factors. Contains the persontime and counts for each covid severity{&#34;</description>
-    </item>
-    
-  </channel>
-</rss>
