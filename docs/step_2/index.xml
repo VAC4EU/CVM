@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Step 2 on CVM Documentation</title>
+    <link>/step_2/index.html</link>
+    <description>Recent content in Step 2 on CVM Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 23 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="/step_2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>D4_study_population</title>
+      <link>/step_2/d4-study-pop/index.html</link>
+      <pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>/step_2/d4-study-pop/index.html</guid>
+      <description>MetadataData ModelParametersExample{&#34;x&#34;:{&#34;tag&#34;:{&#34;name&#34;:&#34;Reactable&#34;,&#34;attribs&#34;:{&#34;data&#34;:{&#34;medatata_name&#34;:[&#34;Name of the dataset&#34;,&#34;Content of the dataset&#34;,&#34;Unit of observation&#34;,&#34;Dataset where the list of UoOs is fully listed and with 1 record per UoO&#34;,&#34;How many observations per UoO&#34;,&#34;Variables capturing the UoO&#34;,&#34;Primary key&#34;,&#34;Parameters&#34;,null,null,null,null,null,null,null,null,null,null,null,null],&#34;metadata_content&#34;:[&#34;D4_study_population&#34;,&#34;contains the list of persons in the study population, with study entry and exit dates&#34;,&#34;a person in the study population&#34;,null,&#34;1&#34;,&#34;person_id&#34;,&#34;person_id&#34;,null,null,null,null,null,null,null,null,null,null,null,null,null]},&#34;columns&#34;:[{&#34;id&#34;:&#34;medatata_name&#34;,&#34;name&#34;:&#34;medatata_name&#34;,&#34;type&#34;:&#34;character&#34;},{&#34;id&#34;:&#34;metadata_content&#34;,&#34;name&#34;:&#34;metadata_content&#34;,&#34;type&#34;:&#34;character&#34;}],&#34;sortable&#34;:false,&#34;searchable&#34;:true,&#34;pagination&#34;:false,&#34;highlight&#34;:true,&#34;bordered&#34;:true,&#34;striped&#34;:true,&#34;style&#34;:{&#34;maxWidth&#34;:1800},&#34;height&#34;:&#34;600px&#34;,&#34;dataKey&#34;:&#34;f037dd3167f47dbb024c25a289b43fee&#34;},&#34;children&#34;:[]},&#34;class&#34;:&#34;reactR_markup&#34;},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}{&#34;x&#34;:{&#34;tag&#34;:{&#34;name&#34;:&#34;Reactable&#34;,&#34;attribs&#34;:{&#34;data&#34;:{&#34;VarName&#34;:[&#34;person_id&#34;,&#34;spell_start_date&#34;,&#34;study_entry_date&#34;,&#34;study_exit_date&#34;,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],&#34;Description&#34;:[&#34;unique person identifier&#34;,&#34;date when the stdudy spell starts&#34;</description>
+    </item>
+    <item>
+      <title>Flowchart_exclusion_criteria</title>
+      <link>/step_2/flow-excl/index.html</link>
+      <pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>/step_2/flow-excl/index.html</guid>
+      <description>MetadataData ModelParametersExample{&#34;x&#34;:{&#34;tag&#34;:{&#34;name&#34;:&#34;Reactable&#34;,&#34;attribs&#34;:{&#34;data&#34;:{&#34;medatata_name&#34;:[&#34;Name of the dataset&#34;,&#34;Content of the dataset&#34;,&#34;Unit of observation&#34;,&#34;Dataset where the list of UoOs is fully listed and with 1 record per UoO&#34;,&#34;How many observations per UoO&#34;,&#34;Variables capturing the UoO&#34;,&#34;Primary key&#34;,&#34;Parameters&#34;,null,null,null,null,null,null,null,null,null,null,null,null],&#34;metadata_content&#34;:[&#34;Flowchart_exclusion_criteria&#34;,&#34;Flowchart of the exclusion of PERSONS from D3_PERSONS to the study population&#34;,&#34;criteria&#34;,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},&#34;columns&#34;:[{&#34;id&#34;:&#34;medatata_name&#34;,&#34;name&#34;:&#34;medatata_name&#34;,&#34;type&#34;:&#34;character&#34;},{&#34;id&#34;:&#34;metadata_content&#34;,&#34;name&#34;:&#34;metadata_content&#34;,&#34;type&#34;:&#34;character&#34;}],&#34;sortable&#34;:false,&#34;searchable&#34;:true,&#34;pagination&#34;:false,&#34;highlight&#34;:true,&#34;bordered&#34;:true,&#34;striped&#34;:true,&#34;style&#34;:{&#34;maxWidth&#34;:1800},&#34;height&#34;:&#34;600px&#34;,&#34;dataKey&#34;:&#34;af1dd3ae5a74421e708f0ba03ddf4524&#34;},&#34;children&#34;:[]},&#34;class&#34;:&#34;reactR_markup&#34;},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}{&#34;x&#34;:{&#34;tag&#34;:{&#34;name&#34;:&#34;Reactable&#34;,&#34;attribs&#34;:{&#34;data&#34;:{&#34;VarName&#34;:[&#34;criteria&#34;,&#34;N&#34;,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],&#34;Description&#34;:[null,&#34;frequency of the combination&#34;,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],&#34;Format&#34;:[&#34;binary&#34;,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],&#34;Vocabulary&#34;:[&#34;0 = if all the previous value on the same row are 1 then N refers to this column\r\n1= otherwise&#34;</description>
+    </item>
+  </channel>
+</rss>
