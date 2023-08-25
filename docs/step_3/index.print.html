@@ -10,21 +10,21 @@
     <title>Step 3 :: CVM Documentation</title>
     <link href="../step_3/index.html" rel="canonical" type="text/html" title="Step 3 :: CVM Documentation">
     <link href="../step_3/index.xml" rel="alternate" type="application/rss+xml" title="Step 3 :: CVM Documentation">
-    <link href="../images/logo.svg?1692916584" rel="icon" type="image/svg+xml">
+    <link href="../images/logo.svg?1692980342" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../css/fontawesome-all.min.css?1692916586" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1692916586" rel="stylesheet"></noscript>
-    <link href="../css/nucleus.css?1692916586" rel="stylesheet">
-    <link href="../css/auto-complete.css?1692916586" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1692916586" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1692916586" rel="stylesheet">
-    <link href="../css/fonts.css?1692916586" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1692916586" rel="stylesheet"></noscript>
-    <link href="../css/theme.css?1692916586" rel="stylesheet">
-    <link href="../css/theme-auto.css?1692916586" rel="stylesheet" id="variant-style">
-    <link href="../css/variant.css?1692916586" rel="stylesheet">
-    <link href="../css/print.css?1692916586" rel="stylesheet" media="print">
-    <link href="../css/format-print.css?1692916586" rel="stylesheet">
-    <link href="../css/ie.css?1692916586" rel="stylesheet">
-    <script src="../js/url.js?1692916586"></script>
-    <script src="../js/variant.js?1692916586"></script>
+    <link href="../css/fontawesome-all.min.css?1692980346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1692980346" rel="stylesheet"></noscript>
+    <link href="../css/nucleus.css?1692980346" rel="stylesheet">
+    <link href="../css/auto-complete.css?1692980346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1692980346" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1692980346" rel="stylesheet">
+    <link href="../css/fonts.css?1692980346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1692980346" rel="stylesheet"></noscript>
+    <link href="../css/theme.css?1692980346" rel="stylesheet">
+    <link href="../css/theme-auto.css?1692980346" rel="stylesheet" id="variant-style">
+    <link href="../css/variant.css?1692980346" rel="stylesheet">
+    <link href="../css/print.css?1692980346" rel="stylesheet" media="print">
+    <link href="../css/format-print.css?1692980346" rel="stylesheet">
+    <link href="../css/ie.css?1692980346" rel="stylesheet">
+    <script src="../js/url.js?1692980346"></script>
+    <script src="../js/variant.js?1692980346"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -131,6 +131,26 @@ div.main-container {
 <h1 id="step-3">Step 3</h1>
 
 <h2 id="step-3">Step 3</h2>
+<p>Create outcomes and covariate variables on the study population</p>
+
+<div class="children children-h2 children-sort-">
+	
+<h2><a href="../step_3/d3-out-sim/index.html">D3_events_OUTCOMESIM_simple</a></h2><p>Contains the outcomes observed in the study population, including negative outcomes but excluding covid and complex algorithms</p>
+<h2><a href="../step_3/d3-out-compl/index.html">D3_events_OUTCOMECOMPL_complex</a></h2><p>Contains the outcomes observed in the study population, including only complex algorithms</p>
+<h2><a href="../step_3/d3-all-out/index.html">D3_events_ALL_OUTCOMES</a></h2><p>Contains the outcomes observed in the study population, including negative outcomes but excluding covid</p>
+<h2><a href="../step_3/d3-cov-epi/index.html">D3_covid_episodes</a></h2><p>Contains the episodes of COVID observed in all persons in the study population. Each episode is separated from the next by at least 60 days</p>
+<h2><a href="../step_3/d3-cov-epi-desc/index.html">D3_covid_episodes_description</a></h2><p>Contains the description of the episodes of COVID observed in all persons in the study population. Each episode is separated from the next by at least 60 days</p>
+<h2><a href="../step_3/qc-cov-epi/index.html">QC_covid_episodes</a></h2><p>Occurrence of components of covid, per meaning, to all persons in the study population</p>
+<h2><a href="../step_3/d3-cov-sev-hosp/index.html">D3_covid_severity_components_hospitalisation</a></h2><p>Contains the episodes of COVID in D3_covid_episodes that had level of severity &#39;intensive care unit (ICU)&#39;</p>
+<h2><a href="../step_3/qc-cov-sev-hosp/index.html">QC_covid_severity_components_hospitalisation</a></h2><p>Occurrence of components of covid hospitalisation, per meaning, to all persons in the study population</p>
+<h2><a href="../step_3/d3-cov-sev-icu/index.html">D3_covid_severity_components_ICU</a></h2><p>Contains the episodes of COVID in D3_covid_episodes that had level of severity &#39;hospitalised&#39;</p>
+<h2><a href="../step_3/qc-cov-sev-icu/index.html">QC_covid_severity_components_ICU</a></h2><p>Occurrence of components of covid ICU, per meaning, to all persons in the study population</p>
+<h2><a href="../step_3/d3-cov-sev-death/index.html">D3_covid_severity_components_death</a></h2><p>Contains the episodes of COVID in D3_covid_episodes that had level of severity &#39;death&#39;</p>
+<h2><a href="../step_3/qc-cov-sev-death/index.html">QC_covid_severity_components_death</a></h2><p>Occurrence of components of covid death, per meaning, to all persons in the study population</p>
+<h2><a href="../step_3/d3-td-cov/index.html">D3_TD_variable_COVID</a></h2><p>Contains the time-dependent evolution of the categorical variable COVID. Occurrences are recorded with their level of severity. The date is the date of the first information about the infection, infromation about seeviry may accrue across time</p>
+<h2><a href="../step_3/d3-cov-all/index.html">D3_covariates_ALL</a></h2><p>Contains the covariates observed in the study populationin two points in time: at baseline, and at first vaccination (if any)</p>
+<h2><a href="../step_3/qc-comp-out/index.html">QC_all_components_OUTCOME</a></h2><p>Occurrence of components of the outcome OUTCOME during 2019 (and. to be dropped, during one year of lookback), per meaning, to all persons in the study population at 1/1/2019 or entering during 2019</p>
+</div>
 
             <footer class="footline">
 
@@ -743,9 +763,9 @@ div.main-container {
         </div>
       </main>
     </div>
-    <script src="../js/clipboard.min.js?1692916587" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1692916587" defer></script>
-    <script src="../js/theme.js?1692916587" defer></script>
+    <script src="../js/clipboard.min.js?1692980346" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1692980346" defer></script>
+    <script src="../js/theme.js?1692980346" defer></script>
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;

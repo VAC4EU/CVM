@@ -12,49 +12,75 @@
       <link>/step_1/index.html</link>
       <pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate>
       <guid>/step_1/index.html</guid>
-      <description>Step 1 </description>
+      <description>Step 1 Gather and label records from the CDM Curate birth and death dates, vaccine dose Create selection criteria for study population
+D3_PERSONSContains the cleaned version of PERSONS, where birth date and death date are reconstituted as dates
+D3_events_DEATHContains the deaths observed in the study population
+D3_output_spells_categoryContains the spells exited from CreateSpells, i.e., all the continuos spells of observation period of each person, stratified per op_meaning. op_meaning is by defult the same for all observation periods, and is set in 05_subpopulations_restricting_meanings for those data sources where the analysis is conducted on subpopulations having different sets of data banks</description>
     </item>
     <item>
       <title>Step 2</title>
       <link>/step_2/index.html</link>
       <pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate>
       <guid>/step_2/index.html</guid>
-      <description>Step 2 </description>
+      <description>Step 2 Apply selection criteria to obtain study population
+D4_study_populationContains the list of persons in the study population, with study entry and exit dates
+Flowchart_exclusion_criteriaFlowchart of the exclusion of PERSONS from D3_PERSONS to the study population
+ </description>
     </item>
     <item>
       <title>Step 3</title>
       <link>/step_3/index.html</link>
       <pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate>
       <guid>/step_3/index.html</guid>
-      <description>Step 3 </description>
+      <description>Step 3 Create outcomes and covariate variables on the study population
+D3_events_OUTCOMESIM_simpleContains the outcomes observed in the study population, including negative outcomes but excluding covid and complex algorithms
+D3_events_OUTCOMECOMPL_complexContains the outcomes observed in the study population, including only complex algorithms
+D3_events_ALL_OUTCOMESContains the outcomes observed in the study population, including negative outcomes but excluding covid
+D3_covid_episodesContains the episodes of COVID observed in all persons in the study population. Each episode is separated from the next by at least 60 days</description>
     </item>
     <item>
       <title>Step 4</title>
       <link>/step_4/index.html</link>
       <pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate>
       <guid>/step_4/index.html</guid>
-      <description>Step 4 </description>
+      <description>Step 4 Create time-dependent variables Create time windows of exposure
+D3_Total_study_populationStudy population with entry and exit dates, date of birth, gender, dates and type of vaccinations
+D3_study_population_by_doseThis is a time-dependent dataset, reporting status of vaccination in periods of time: each person is observed as many times as the vaccines they harve received &amp;#43; the time since baseline. Moreover, date of first covid infection ever is stored
+D3_study_population_by_window_and_doseTime period after each dose (each week, from 1 to 4)</description>
     </item>
     <item>
       <title>Step 5</title>
       <link>/step_5/index.html</link>
       <pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate>
       <guid>/step_5/index.html</guid>
-      <description>Step 5 </description>
+      <description>Step 5 Count persontime and events per exposure, age, sex, comorbidity, calendar time
+D4_count_events_windowsContains the counts of the AESIs observed within a specific time window (28 days) after each vaccine
+D4_count_events_windows_aggregatedContains the counts of the AESIs observed within a specific time window (28 days) after each vaccine
+D4_persontime_monthlyContains the persontime observed each month in all the strata of vaccination, per dose and brand, and per previous exposure to COVID, including non vaccinated, from start to end of study</description>
     </item>
     <item>
       <title>Step 6</title>
       <link>/step_6/index.html</link>
       <pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate>
       <guid>/step_6/index.html</guid>
-      <description>Step 6 </description>
+      <description>Step 6 Calculate incidence rates and confidence intervals per exposure, age, sex, comorbidity, calendar time
+D5_IR_backgroundContains the persontime observed each month in all the strata of vaccination, per dose and brand, and per previous exposure to COVID, including non vaccinated, from start to end of study
+D5_IR_background_stdBackground rates of AESIs, per presence or absence of history of COVID, age and sex, month and year
+ </description>
     </item>
     <item>
       <title>Step 7</title>
       <link>/step_7/index.html</link>
       <pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate>
       <guid>/step_7/index.html</guid>
-      <description>Step 7 </description>
+      <description>Step 7 Populate shell tables
+Table 1Flowchart
+Table 2Characteristics at baseline
+Table 3Classic table 1
+Table 4Characteristics at first vaccination
+Table 5Distance between vaccination doses
+Table 6Background rates
+ </description>
     </item>
   </channel>
 </rss>

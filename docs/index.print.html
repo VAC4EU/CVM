@@ -13,21 +13,21 @@
     <link href="./pir/index.html" rel="alternate" hreflang="pir">
     <link href="./index.html" rel="canonical" type="text/html" title="Documentation for the CVM project :: CVM Documentation">
     <link href="./index.xml" rel="alternate" type="application/rss+xml" title="Documentation for the CVM project :: CVM Documentation">
-    <link href="./images/logo.svg?1692916584" rel="icon" type="image/svg+xml">
+    <link href="./images/logo.svg?1692980342" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="./css/fontawesome-all.min.css?1692916586" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/fontawesome-all.min.css?1692916586" rel="stylesheet"></noscript>
-    <link href="./css/nucleus.css?1692916586" rel="stylesheet">
-    <link href="./css/auto-complete.css?1692916586" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/auto-complete.css?1692916586" rel="stylesheet"></noscript>
-    <link href="./css/perfect-scrollbar.min.css?1692916586" rel="stylesheet">
-    <link href="./css/fonts.css?1692916586" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/fonts.css?1692916586" rel="stylesheet"></noscript>
-    <link href="./css/theme.css?1692916586" rel="stylesheet">
-    <link href="./css/theme-auto.css?1692916586" rel="stylesheet" id="variant-style">
-    <link href="./css/variant.css?1692916586" rel="stylesheet">
-    <link href="./css/print.css?1692916586" rel="stylesheet" media="print">
-    <link href="./css/format-print.css?1692916586" rel="stylesheet">
-    <link href="./css/ie.css?1692916586" rel="stylesheet">
-    <script src="./js/url.js?1692916586"></script>
-    <script src="./js/variant.js?1692916586"></script>
+    <link href="./css/fontawesome-all.min.css?1692980346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/fontawesome-all.min.css?1692980346" rel="stylesheet"></noscript>
+    <link href="./css/nucleus.css?1692980346" rel="stylesheet">
+    <link href="./css/auto-complete.css?1692980346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/auto-complete.css?1692980346" rel="stylesheet"></noscript>
+    <link href="./css/perfect-scrollbar.min.css?1692980346" rel="stylesheet">
+    <link href="./css/fonts.css?1692980346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/fonts.css?1692980346" rel="stylesheet"></noscript>
+    <link href="./css/theme.css?1692980346" rel="stylesheet">
+    <link href="./css/theme-auto.css?1692980346" rel="stylesheet" id="variant-style">
+    <link href="./css/variant.css?1692980346" rel="stylesheet">
+    <link href="./css/print.css?1692980346" rel="stylesheet" media="print">
+    <link href="./css/format-print.css?1692980346" rel="stylesheet">
+    <link href="./css/ie.css?1692980346" rel="stylesheet">
+    <script src="./js/url.js?1692980346"></script>
+    <script src="./js/variant.js?1692980346"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -147,6 +147,22 @@ div.main-container {
 <h1 id="step-1">Step 1</h1>
 
 <h2 id="step-1">Step 1</h2>
+<p>Gather and label records from the CDM
+Curate birth and death dates, vaccine dose
+Create selection criteria for study population</p>
+
+<div class="children children-h2 children-sort-">
+	
+<h2><a href="./step_1/d3-person/index.html">D3_PERSONS</a></h2><p>Contains the cleaned version of PERSONS, where birth date and death date are reconstituted as dates</p>
+<h2><a href="./step_1/d3-death/index.html">D3_events_DEATH</a></h2><p>Contains the deaths observed in the study population</p>
+<h2><a href="./step_1/d3-spell-cat/index.html">D3_output_spells_category</a></h2><p>Contains the spells exited from CreateSpells, i.e., all the continuos spells of observation period of each person, stratified per op_meaning. op_meaning is by defult the same for all observation periods, and is set in 05_subpopulations_restricting_meanings for those data sources where the analysis is conducted on subpopulations having different sets of data banks</p>
+<h2><a href="./step_1/conceptset/index.html">conceptsetdataset</a></h2><p>These are multiple datasets, one per each conceptset, which is a value in the list c(conceptsets_exact_matching, conceptsets_children_matching), set in 07_algorithms. Each conceptset dataset is named after the conceptset. Each conceptset is associated to a list of codes. The dataset is obtsained by retrieving records from the CDM bearing a code that match one of the codes in the codelist. The matching can be exact (for the conceptsets in conceptsets_exact_matching) or per ascendant (for conceptsets in conceptsets_children_matching) . Recrods are retrieved from the EVENTS table, but also from other tables which may bear a recrod, such as PROCEDURES or VACCINES</p>
+<h2><a href="./step_1/d3-vaccine/index.html">D3_clean_vaccines</a></h2><p>This dataset contains all the records of a COVID vaccine, including their imputation and modifications and exclusion criteria. Exclusion criteria must be applied before using the variable in the next steps</p>
+<h2><a href="./step_1/d3-vaccine-cur/index.html">D3_vaccines_curated</a></h2><p>This dataset contains only the records of a COVID vaccine that enter the study</p>
+<h2><a href="./step_1/flow-dose/index.html">Flowchart_criteria_for_doses</a></h2><p>Flowchart of the exclusion of covid vaccines records</p>
+<h2><a href="./step_1/d3-spell/index.html">D3_clean_spells</a></h2><p>Contains the spells exited from CreateSpells plus their binary variables that are to be used for cleaning purposes version; spells that fall outside the interval between birth and death are cut, and op_start_date that start before the baby is 60 days are recasted to birth (to be checked with DAPs)</p>
+<h2><a href="./step_1/sel-cri-pop/index.html">D3_selection_criteria_from_PERSONS_to_study_population</a></h2><p>Contains the exclusion criteria to go from PERSONS to the study population</p>
+</div>
 
             <footer class="footline">
 
@@ -523,6 +539,13 @@ div.main-container {
 <h1 id="step-2">Step 2</h1>
 
 <h2 id="step-2">Step 2</h2>
+<p>Apply selection criteria to obtain study population</p>
+
+<div class="children children-h2 children-sort-">
+	
+<h2><a href="./step_2/d4-study-pop/index.html">D4_study_population</a></h2><p>Contains the list of persons in the study population, with study entry and exit dates</p>
+<h2><a href="./step_2/flow-excl/index.html">Flowchart_exclusion_criteria</a></h2><p>Flowchart of the exclusion of PERSONS from D3_PERSONS to the study population</p>
+</div>
 
             <footer class="footline">
 
@@ -619,6 +642,26 @@ div.main-container {
 <h1 id="step-3">Step 3</h1>
 
 <h2 id="step-3">Step 3</h2>
+<p>Create outcomes and covariate variables on the study population</p>
+
+<div class="children children-h2 children-sort-">
+	
+<h2><a href="./step_3/d3-out-sim/index.html">D3_events_OUTCOMESIM_simple</a></h2><p>Contains the outcomes observed in the study population, including negative outcomes but excluding covid and complex algorithms</p>
+<h2><a href="./step_3/d3-out-compl/index.html">D3_events_OUTCOMECOMPL_complex</a></h2><p>Contains the outcomes observed in the study population, including only complex algorithms</p>
+<h2><a href="./step_3/d3-all-out/index.html">D3_events_ALL_OUTCOMES</a></h2><p>Contains the outcomes observed in the study population, including negative outcomes but excluding covid</p>
+<h2><a href="./step_3/d3-cov-epi/index.html">D3_covid_episodes</a></h2><p>Contains the episodes of COVID observed in all persons in the study population. Each episode is separated from the next by at least 60 days</p>
+<h2><a href="./step_3/d3-cov-epi-desc/index.html">D3_covid_episodes_description</a></h2><p>Contains the description of the episodes of COVID observed in all persons in the study population. Each episode is separated from the next by at least 60 days</p>
+<h2><a href="./step_3/qc-cov-epi/index.html">QC_covid_episodes</a></h2><p>Occurrence of components of covid, per meaning, to all persons in the study population</p>
+<h2><a href="./step_3/d3-cov-sev-hosp/index.html">D3_covid_severity_components_hospitalisation</a></h2><p>Contains the episodes of COVID in D3_covid_episodes that had level of severity &#39;intensive care unit (ICU)&#39;</p>
+<h2><a href="./step_3/qc-cov-sev-hosp/index.html">QC_covid_severity_components_hospitalisation</a></h2><p>Occurrence of components of covid hospitalisation, per meaning, to all persons in the study population</p>
+<h2><a href="./step_3/d3-cov-sev-icu/index.html">D3_covid_severity_components_ICU</a></h2><p>Contains the episodes of COVID in D3_covid_episodes that had level of severity &#39;hospitalised&#39;</p>
+<h2><a href="./step_3/qc-cov-sev-icu/index.html">QC_covid_severity_components_ICU</a></h2><p>Occurrence of components of covid ICU, per meaning, to all persons in the study population</p>
+<h2><a href="./step_3/d3-cov-sev-death/index.html">D3_covid_severity_components_death</a></h2><p>Contains the episodes of COVID in D3_covid_episodes that had level of severity &#39;death&#39;</p>
+<h2><a href="./step_3/qc-cov-sev-death/index.html">QC_covid_severity_components_death</a></h2><p>Occurrence of components of covid death, per meaning, to all persons in the study population</p>
+<h2><a href="./step_3/d3-td-cov/index.html">D3_TD_variable_COVID</a></h2><p>Contains the time-dependent evolution of the categorical variable COVID. Occurrences are recorded with their level of severity. The date is the date of the first information about the infection, infromation about seeviry may accrue across time</p>
+<h2><a href="./step_3/d3-cov-all/index.html">D3_covariates_ALL</a></h2><p>Contains the covariates observed in the study populationin two points in time: at baseline, and at first vaccination (if any)</p>
+<h2><a href="./step_3/qc-comp-out/index.html">QC_all_components_OUTCOME</a></h2><p>Occurrence of components of the outcome OUTCOME during 2019 (and. to be dropped, during one year of lookback), per meaning, to all persons in the study population at 1/1/2019 or entering during 2019</p>
+</div>
 
             <footer class="footline">
 
@@ -1235,6 +1278,20 @@ div.main-container {
 <h1 id="step-4">Step 4</h1>
 
 <h2 id="step-4">Step 4</h2>
+<p>Create time-dependent variables
+Create time windows of exposure</p>
+
+<div class="children children-h2 children-sort-">
+	
+<h2><a href="./step_4/d3-stud-pop/index.html">D3_Total_study_population</a></h2><p>Study population with entry and exit dates, date of birth, gender, dates and type of vaccinations</p>
+<h2><a href="./step_4/d3-stud-pop-dose/index.html">D3_study_population_by_dose</a></h2><p>This is a time-dependent dataset, reporting status of vaccination in periods of time: each person is observed as many times as the vaccines they harve received &#43; the time since baseline. Moreover, date of first covid infection ever is stored</p>
+<h2><a href="./step_4/d3-stud-pop-win-dose/index.html">D3_study_population_by_window_and_dose</a></h2><p>Time period after each dose (each week, from 1 to 4)</p>
+<h2><a href="./step_4/d3-stud-pop-scri/index.html">D3_study_population_SCRI</a></h2><p>Contains the baseline characteristics of the study population, for the cohort study</p>
+<h2><a href="./step_4/d3-stud-pop-cohort/index.html">D3_study_population_cohort</a></h2><p>Contains the baseline characteristics of the study population, for the cohirt study</p>
+<h2><a href="./step_4/d3-td-condi/index.html">D3_TD_variable_condition</a></h2><p>Contains the time-dependent evolution of the binary variable condition. Only changes of status are recorded, with date of change. date when the condition changes; the components of the condition last 365 days if they are diagnosis, and 90 days if they are drug proxies; unique spells are created when the algorithm is 1 (if either a dianosis or a drug proxy is active), and the algorithm is reverted to values 0 whenever no component is active</p>
+<h2><a href="./step_4/d3-td-comedi/index.html">D3_TD_variable_comedication</a></h2><p>Contains the time-dependent evolution of the binary variable comedication. Only changes of status are recorded, with date of change. date when the condition changes; a recording of the medication lasts 90 days and the algorithm is reverted to values 0 whenever no drug records active</p>
+<h2><a href="./step_4/d3-td-num-condi/index.html">D3_TD_variable_NUMBER_CONDITIONS</a></h2><p>Contains the time-dependent evolution of the ordinal variable NUMBER_CONDITIONS, which counts the number of comorbidities in a list of 9 associated with covid severity (see specifications in the Data Model tab). Only changes of status are recorded, with date of change</p>
+</div>
 
             <footer class="footline">
 
@@ -1571,6 +1628,17 @@ div.main-container {
 <h1 id="step-5">Step 5</h1>
 
 <h2 id="step-5">Step 5</h2>
+<p>Count persontime and events per exposure, age, sex, comorbidity, calendar time</p>
+
+<div class="children children-h2 children-sort-">
+	
+<h2><a href="./step_5/d4-count-event/index.html">D4_count_events_windows</a></h2><p>Contains the counts of the AESIs observed within a specific time window (28 days) after each vaccine</p>
+<h2><a href="./step_5/d4-count-event-aggr/index.html">D4_count_events_windows_aggregated</a></h2><p>Contains the counts of the AESIs observed within a specific time window (28 days) after each vaccine</p>
+<h2><a href="./step_5/d4-pers-month/index.html">D4_persontime_monthly</a></h2><p>Contains the persontime observed each month in all the strata of vaccination, per dose and brand, and per previous exposure to COVID, including non vaccinated, from start to end of study</p>
+<h2><a href="./step_5/d4-pers-month-aggr/index.html">D4_persontime_monthly_aggregated</a></h2><p>Contains the persontime observed each month in all the strata of vaccination, per dose and brand, and per previous exposure to COVID, including non vaccinated, from start to end of study</p>
+<h2><a href="./step_5/d4-pers-back/index.html">D4_persontime_background</a></h2><p>Contains the persontime before vaccination, stratified per calendar month and past covid, and the occurrence of the AESIs</p>
+<h2><a href="./step_5/d4-pers-back-aggr/index.html">D4_persontime_background_aggregated</a></h2><p>Contains the persontime before vaccination, stratified per calendar month and past covid, and the occurrence of the AESIs</p>
+</div>
 
             <footer class="footline">
 
@@ -1827,6 +1895,13 @@ div.main-container {
 <h1 id="step-6">Step 6</h1>
 
 <h2 id="step-6">Step 6</h2>
+<p>Calculate incidence rates and confidence intervals per exposure, age, sex, comorbidity, calendar time</p>
+
+<div class="children children-h2 children-sort-">
+	
+<h2><a href="./step_6/d5-ir/index.html">D5_IR_background</a></h2><p>Contains the persontime observed each month in all the strata of vaccination, per dose and brand, and per previous exposure to COVID, including non vaccinated, from start to end of study</p>
+<h2><a href="./step_6/d5-ir-std/index.html">D5_IR_background_std</a></h2><p>Background rates of AESIs, per presence or absence of history of COVID, age and sex, month and year</p>
+</div>
 
             <footer class="footline">
 
@@ -1923,6 +1998,17 @@ div.main-container {
 <h1 id="step-7">Step 7</h1>
 
 <h2 id="step-7">Step 7</h2>
+<p>Populate shell tables</p>
+
+<div class="children children-h2 children-sort-">
+	
+<h2><a href="./step_7/tab-1/index.html">Table 1</a></h2><p>Flowchart</p>
+<h2><a href="./step_7/tab-2/index.html">Table 2</a></h2><p>Characteristics at baseline</p>
+<h2><a href="./step_7/tab-3/index.html">Table 3</a></h2><p>Classic table 1</p>
+<h2><a href="./step_7/tab-4/index.html">Table 4</a></h2><p>Characteristics at first vaccination</p>
+<h2><a href="./step_7/tab-5/index.html">Table 5</a></h2><p>Distance between vaccination doses</p>
+<h2><a href="./step_7/tab-6/index.html">Table 6</a></h2><p>Background rates</p>
+</div>
 
             <footer class="footline">
 
@@ -2176,9 +2262,9 @@ div.main-container {
         </div>
       </main>
     </div>
-    <script src="./js/clipboard.min.js?1692916587" defer></script>
-    <script src="./js/perfect-scrollbar.min.js?1692916587" defer></script>
-    <script src="./js/theme.js?1692916587" defer></script>
+    <script src="./js/clipboard.min.js?1692980346" defer></script>
+    <script src="./js/perfect-scrollbar.min.js?1692980346" defer></script>
+    <script src="./js/theme.js?1692980346" defer></script>
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
