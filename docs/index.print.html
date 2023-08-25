@@ -13,21 +13,21 @@
     <link href="./pir/index.html" rel="alternate" hreflang="pir">
     <link href="./index.html" rel="canonical" type="text/html" title="Documentation for the CVM project :: CVM Documentation">
     <link href="./index.xml" rel="alternate" type="application/rss+xml" title="Documentation for the CVM project :: CVM Documentation">
-    <link href="./images/logo.svg?1692980342" rel="icon" type="image/svg+xml">
+    <link href="./images/logo.svg?1692994236" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="./css/fontawesome-all.min.css?1692980346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/fontawesome-all.min.css?1692980346" rel="stylesheet"></noscript>
-    <link href="./css/nucleus.css?1692980346" rel="stylesheet">
-    <link href="./css/auto-complete.css?1692980346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/auto-complete.css?1692980346" rel="stylesheet"></noscript>
-    <link href="./css/perfect-scrollbar.min.css?1692980346" rel="stylesheet">
-    <link href="./css/fonts.css?1692980346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/fonts.css?1692980346" rel="stylesheet"></noscript>
-    <link href="./css/theme.css?1692980346" rel="stylesheet">
-    <link href="./css/theme-auto.css?1692980346" rel="stylesheet" id="variant-style">
-    <link href="./css/variant.css?1692980346" rel="stylesheet">
-    <link href="./css/print.css?1692980346" rel="stylesheet" media="print">
-    <link href="./css/format-print.css?1692980346" rel="stylesheet">
-    <link href="./css/ie.css?1692980346" rel="stylesheet">
-    <script src="./js/url.js?1692980346"></script>
-    <script src="./js/variant.js?1692980346"></script>
+    <link href="./css/fontawesome-all.min.css?1692994239" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/fontawesome-all.min.css?1692994239" rel="stylesheet"></noscript>
+    <link href="./css/nucleus.css?1692994239" rel="stylesheet">
+    <link href="./css/auto-complete.css?1692994239" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/auto-complete.css?1692994239" rel="stylesheet"></noscript>
+    <link href="./css/perfect-scrollbar.min.css?1692994239" rel="stylesheet">
+    <link href="./css/fonts.css?1692994239" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="./css/fonts.css?1692994239" rel="stylesheet"></noscript>
+    <link href="./css/theme.css?1692994239" rel="stylesheet">
+    <link href="./css/theme-auto.css?1692994239" rel="stylesheet" id="variant-style">
+    <link href="./css/variant.css?1692994239" rel="stylesheet">
+    <link href="./css/print.css?1692994239" rel="stylesheet" media="print">
+    <link href="./css/format-print.css?1692994239" rel="stylesheet">
+    <link href="./css/ie.css?1692994239" rel="stylesheet">
+    <script src="./js/url.js?1692994239"></script>
+    <script src="./js/variant.js?1692994239"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -133,6 +133,20 @@ div.main-container {
 
 <h2 id="documentation-for-the-cvm-project">Documentation for the CVM project</h2>
 
+<div class="children children-h2 children-sort-">
+	
+<h2><a href="./step_1/index.html">Step 1</a></h2><p>Gather and label records from the CDM |
+Curate birth and death dates, vaccine dose |
+Create selection criteria for study population
+</p>
+<h2><a href="./step_2/index.html">Step 2</a></h2><p>Apply selection criteria to obtain study population</p>
+<h2><a href="./step_3/index.html">Step 3</a></h2><p>Create outcomes and covariate variables on the study population</p>
+<h2><a href="./step_4/index.html">Step 4</a></h2><p>Create time-dependent variables | Create time windows of exposure</p>
+<h2><a href="./step_5/index.html">Step 5</a></h2><p>Count persontime and events per exposure, age, sex, comorbidity, calendar time</p>
+<h2><a href="./step_6/index.html">Step 6</a></h2><p>Calculate incidence rates and confidence intervals per exposure, age, sex, comorbidity, calendar time</p>
+<h2><a href="./step_7/index.html">Step 7</a></h2><p>Populate shell tables</p>
+</div>
+
             <footer class="footline">
 
             </footer>
@@ -156,7 +170,7 @@ Create selection criteria for study population</p>
 <h2><a href="./step_1/d3-person/index.html">D3_PERSONS</a></h2><p>Contains the cleaned version of PERSONS, where birth date and death date are reconstituted as dates</p>
 <h2><a href="./step_1/d3-death/index.html">D3_events_DEATH</a></h2><p>Contains the deaths observed in the study population</p>
 <h2><a href="./step_1/d3-spell-cat/index.html">D3_output_spells_category</a></h2><p>Contains the spells exited from CreateSpells, i.e., all the continuos spells of observation period of each person, stratified per op_meaning. op_meaning is by defult the same for all observation periods, and is set in 05_subpopulations_restricting_meanings for those data sources where the analysis is conducted on subpopulations having different sets of data banks</p>
-<h2><a href="./step_1/conceptset/index.html">conceptsetdataset</a></h2><p>These are multiple datasets, one per each conceptset, which is a value in the list c(conceptsets_exact_matching, conceptsets_children_matching), set in 07_algorithms. Each conceptset dataset is named after the conceptset. Each conceptset is associated to a list of codes. The dataset is obtsained by retrieving records from the CDM bearing a code that match one of the codes in the codelist. The matching can be exact (for the conceptsets in conceptsets_exact_matching) or per ascendant (for conceptsets in conceptsets_children_matching) . Recrods are retrieved from the EVENTS table, but also from other tables which may bear a recrod, such as PROCEDURES or VACCINES</p>
+<h2><a href="./step_1/conceptset/index.html">conceptsetdataset</a></h2><p>These are multiple datasets, one per each conceptset, which is a value in the list c(conceptsets_exact_matching, conceptsets_children_matching), set in 07_algorithms. Each conceptset dataset is named after the conceptset. Each conceptset is associated to a list of codes. The dataset is obtained by retrieving records from the CDM bearing a code that match one of the codes in the codelist. The matching can be exact (for the conceptsets in conceptsets_exact_matching) or per ascendant (for conceptsets in conceptsets_children_matching) . Recrods are retrieved from the EVENTS table, but also from other tables which may bear a recrod, such as PROCEDURES or VACCINES</p>
 <h2><a href="./step_1/d3-vaccine/index.html">D3_clean_vaccines</a></h2><p>This dataset contains all the records of a COVID vaccine, including their imputation and modifications and exclusion criteria. Exclusion criteria must be applied before using the variable in the next steps</p>
 <h2><a href="./step_1/d3-vaccine-cur/index.html">D3_vaccines_curated</a></h2><p>This dataset contains only the records of a COVID vaccine that enter the study</p>
 <h2><a href="./step_1/flow-dose/index.html">Flowchart_criteria_for_doses</a></h2><p>Flowchart of the exclusion of covid vaccines records</p>
@@ -2262,9 +2276,9 @@ Create time windows of exposure</p>
         </div>
       </main>
     </div>
-    <script src="./js/clipboard.min.js?1692980346" defer></script>
-    <script src="./js/perfect-scrollbar.min.js?1692980346" defer></script>
-    <script src="./js/theme.js?1692980346" defer></script>
+    <script src="./js/clipboard.min.js?1692994240" defer></script>
+    <script src="./js/perfect-scrollbar.min.js?1692994240" defer></script>
+    <script src="./js/theme.js?1692994240" defer></script>
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;

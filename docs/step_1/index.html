@@ -5,25 +5,28 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.95.0">
     <meta name="generator" content="Relearn 5.19.0+tip">
-    <meta name="description" content="CVM Documentation">
+    <meta name="description" content="Gather and label records from the CDM |
+Curate birth and death dates, vaccine dose |
+Create selection criteria for study population
+">
     <meta name="author" content="ARS Tuscany">
     <title>Step 1 :: CVM Documentation</title>
     <link href="../step_1/index.xml" rel="alternate" type="application/rss+xml" title="Step 1 :: CVM Documentation">
     <link href="../step_1/index.print.html" rel="alternate" type="text/html" title="Step 1 :: CVM Documentation">
-    <link href="../images/logo.svg?1692980342" rel="icon" type="image/svg+xml">
+    <link href="../images/logo.svg?1692994236" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../css/fontawesome-all.min.css?1692980342" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1692980342" rel="stylesheet"></noscript>
-    <link href="../css/nucleus.css?1692980342" rel="stylesheet">
-    <link href="../css/auto-complete.css?1692980342" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1692980342" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1692980342" rel="stylesheet">
-    <link href="../css/fonts.css?1692980342" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1692980342" rel="stylesheet"></noscript>
-    <link href="../css/theme.css?1692980342" rel="stylesheet">
-    <link href="../css/theme-auto.css?1692980342" rel="stylesheet" id="variant-style">
-    <link href="../css/variant.css?1692980342" rel="stylesheet">
-    <link href="../css/print.css?1692980342" rel="stylesheet" media="print">
-    <link href="../css/ie.css?1692980342" rel="stylesheet">
-    <script src="../js/url.js?1692980342"></script>
-    <script src="../js/variant.js?1692980342"></script>
+    <link href="../css/fontawesome-all.min.css?1692994236" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1692994236" rel="stylesheet"></noscript>
+    <link href="../css/nucleus.css?1692994236" rel="stylesheet">
+    <link href="../css/auto-complete.css?1692994236" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1692994236" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1692994236" rel="stylesheet">
+    <link href="../css/fonts.css?1692994236" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1692994236" rel="stylesheet"></noscript>
+    <link href="../css/theme.css?1692994236" rel="stylesheet">
+    <link href="../css/theme-auto.css?1692994236" rel="stylesheet" id="variant-style">
+    <link href="../css/variant.css?1692994236" rel="stylesheet">
+    <link href="../css/print.css?1692994236" rel="stylesheet" media="print">
+    <link href="../css/ie.css?1692994236" rel="stylesheet">
+    <script src="../js/url.js?1692994236"></script>
+    <script src="../js/variant.js?1692994236"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -160,7 +163,7 @@ Create selection criteria for study population</p>
 <h2><a href="../step_1/d3-person/index.html">D3_PERSONS</a></h2><p>Contains the cleaned version of PERSONS, where birth date and death date are reconstituted as dates</p>
 <h2><a href="../step_1/d3-death/index.html">D3_events_DEATH</a></h2><p>Contains the deaths observed in the study population</p>
 <h2><a href="../step_1/d3-spell-cat/index.html">D3_output_spells_category</a></h2><p>Contains the spells exited from CreateSpells, i.e., all the continuos spells of observation period of each person, stratified per op_meaning. op_meaning is by defult the same for all observation periods, and is set in 05_subpopulations_restricting_meanings for those data sources where the analysis is conducted on subpopulations having different sets of data banks</p>
-<h2><a href="../step_1/conceptset/index.html">conceptsetdataset</a></h2><p>These are multiple datasets, one per each conceptset, which is a value in the list c(conceptsets_exact_matching, conceptsets_children_matching), set in 07_algorithms. Each conceptset dataset is named after the conceptset. Each conceptset is associated to a list of codes. The dataset is obtsained by retrieving records from the CDM bearing a code that match one of the codes in the codelist. The matching can be exact (for the conceptsets in conceptsets_exact_matching) or per ascendant (for conceptsets in conceptsets_children_matching) . Recrods are retrieved from the EVENTS table, but also from other tables which may bear a recrod, such as PROCEDURES or VACCINES</p>
+<h2><a href="../step_1/conceptset/index.html">conceptsetdataset</a></h2><p>These are multiple datasets, one per each conceptset, which is a value in the list c(conceptsets_exact_matching, conceptsets_children_matching), set in 07_algorithms. Each conceptset dataset is named after the conceptset. Each conceptset is associated to a list of codes. The dataset is obtained by retrieving records from the CDM bearing a code that match one of the codes in the codelist. The matching can be exact (for the conceptsets in conceptsets_exact_matching) or per ascendant (for conceptsets in conceptsets_children_matching) . Recrods are retrieved from the EVENTS table, but also from other tables which may bear a recrod, such as PROCEDURES or VACCINES</p>
 <h2><a href="../step_1/d3-vaccine/index.html">D3_clean_vaccines</a></h2><p>This dataset contains all the records of a COVID vaccine, including their imputation and modifications and exclusion criteria. Exclusion criteria must be applied before using the variable in the next steps</p>
 <h2><a href="../step_1/d3-vaccine-cur/index.html">D3_vaccines_curated</a></h2><p>This dataset contains only the records of a COVID vaccine that enter the study</p>
 <h2><a href="../step_1/flow-dose/index.html">Flowchart_criteria_for_doses</a></h2><p>Flowchart of the exclusion of covid vaccines records</p>
@@ -191,12 +194,12 @@ Create selection criteria for study population</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../js/auto-complete.js?1692980345" defer></script>
-        <script src="../js/lunr/lunr.min.js?1692980345" defer></script>
-        <script src="../js/lunr/lunr.stemmer.support.min.js?1692980345" defer></script>
-        <script src="../js/lunr/lunr.multi.min.js?1692980345" defer></script>
-        <script src="../js/lunr/lunr.en.min.js?1692980345" defer></script>
-        <script src="../js/search.js?1692980345" defer></script>
+        <script src="../js/auto-complete.js?1692994238" defer></script>
+        <script src="../js/lunr/lunr.min.js?1692994238" defer></script>
+        <script src="../js/lunr/lunr.stemmer.support.min.js?1692994238" defer></script>
+        <script src="../js/lunr/lunr.multi.min.js?1692994238" defer></script>
+        <script src="../js/lunr/lunr.en.min.js?1692994238" defer></script>
+        <script src="../js/search.js?1692994238" defer></script>
       </div>
       <div id="homelinks" class="default-animation">
         <ul>
@@ -378,13 +381,13 @@ Create selection criteria for study population</p>
               }
             });
           </script>
-          <script async src="../js/github-buttons.js?1692980345"></script>
+          <script async src="../js/github-buttons.js?1692994238"></script>
         </div>
       </div>
     </aside>
-    <script src="../js/clipboard.min.js?1692980345" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1692980345" defer></script>
-    <script src="../js/theme.js?1692980345" defer></script>
+    <script src="../js/clipboard.min.js?1692994238" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1692994238" defer></script>
+    <script src="../js/theme.js?1692994238" defer></script>
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
