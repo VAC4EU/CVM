@@ -15,7 +15,7 @@
       <description>Step 1 Gather and label records from the CDM Curate birth and death dates, vaccine dose Create selection criteria for study population
 D3_PERSONSContains the cleaned version of PERSONS, where birth date and death date are reconstituted as dates
 D3_events_DEATHContains the deaths observed in the study population
-D3_output_spells_categoryContains the spells exited from CreateSpells, i.e., all the continuos spells of observation period of each person, stratified per op_meaning. op_meaning is by defult the same for all observation periods, and is set in 05_subpopulations_restricting_meanings for those data sources where the analysis is conducted on subpopulations having different sets of data banks</description>
+D3_output_spells_categoryContains the spells exited from CreateSpells, i.e., all the continuous spells of observation period of each person, stratified per op_meaning. op_meaning is by default the same for all observation periods, and is set in 05_subpopulations_restricting_meanings for those data sources where the analysis is conducted on subpopulations having different sets of data banks</description>
     </item>
     <item>
       <title>Step 2</title>
@@ -45,7 +45,7 @@ D3_covid_episodesContains the episodes of COVID observed in all persons in the s
       <guid>/step_4/index.html</guid>
       <description>Step 4 Create time-dependent variables Create time windows of exposure
 D3_Total_study_populationStudy population with entry and exit dates, date of birth, gender, dates and type of vaccinations
-D3_study_population_by_doseThis is a time-dependent dataset, reporting status of vaccination in periods of time: each person is observed as many times as the vaccines they harve received &amp;#43; the time since baseline. Moreover, date of first covid infection ever is stored
+D3_study_population_by_doseThis is a time-dependent dataset, reporting status of vaccination in periods of time: each person is observed as many times as the vaccines they have received &amp;#43; the time since baseline. Moreover, date of first covid infection ever is stored
 D3_study_population_by_window_and_doseTime period after each dose (each week, from 1 to 4)</description>
     </item>
     <item>
@@ -76,7 +76,7 @@ D5_IR_background_stdBackground rates of AESIs, per presence or absence of histor
       <description>Step 7 Populate shell tables
 Table 1Flowchart
 Table 2Characteristics at baseline
-Table 3Classic table 1
+Table 3Characteristics at baseline
 Table 4Characteristics at first vaccination
 Table 5Distance between vaccination doses
 Table 6Background rates

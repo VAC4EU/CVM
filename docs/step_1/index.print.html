@@ -13,21 +13,21 @@ Create selection criteria for study population
     <title>Step 1 :: CVM Documentation</title>
     <link href="../step_1/index.html" rel="canonical" type="text/html" title="Step 1 :: CVM Documentation">
     <link href="../step_1/index.xml" rel="alternate" type="application/rss+xml" title="Step 1 :: CVM Documentation">
-    <link href="../images/logo.svg?1692994644" rel="icon" type="image/svg+xml">
+    <link href="../images/logo.svg?1693045913" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../css/fontawesome-all.min.css?1692994648" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1692994648" rel="stylesheet"></noscript>
-    <link href="../css/nucleus.css?1692994648" rel="stylesheet">
-    <link href="../css/auto-complete.css?1692994648" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1692994648" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1692994648" rel="stylesheet">
-    <link href="../css/fonts.css?1692994648" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1692994648" rel="stylesheet"></noscript>
-    <link href="../css/theme.css?1692994648" rel="stylesheet">
-    <link href="../css/theme-auto.css?1692994648" rel="stylesheet" id="variant-style">
-    <link href="../css/variant.css?1692994648" rel="stylesheet">
-    <link href="../css/print.css?1692994648" rel="stylesheet" media="print">
-    <link href="../css/format-print.css?1692994648" rel="stylesheet">
-    <link href="../css/ie.css?1692994648" rel="stylesheet">
-    <script src="../js/url.js?1692994648"></script>
-    <script src="../js/variant.js?1692994648"></script>
+    <link href="../css/fontawesome-all.min.css?1693045917" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1693045917" rel="stylesheet"></noscript>
+    <link href="../css/nucleus.css?1693045917" rel="stylesheet">
+    <link href="../css/auto-complete.css?1693045917" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1693045917" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1693045917" rel="stylesheet">
+    <link href="../css/fonts.css?1693045917" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1693045917" rel="stylesheet"></noscript>
+    <link href="../css/theme.css?1693045917" rel="stylesheet">
+    <link href="../css/theme-auto.css?1693045917" rel="stylesheet" id="variant-style">
+    <link href="../css/variant.css?1693045917" rel="stylesheet">
+    <link href="../css/print.css?1693045917" rel="stylesheet" media="print">
+    <link href="../css/format-print.css?1693045917" rel="stylesheet">
+    <link href="../css/ie.css?1693045917" rel="stylesheet">
+    <script src="../js/url.js?1693045917"></script>
+    <script src="../js/variant.js?1693045917"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -142,8 +142,8 @@ Create selection criteria for study population</p>
 	
 <h2><a href="../step_1/d3-person/index.html">D3_PERSONS</a></h2><p>Contains the cleaned version of PERSONS, where birth date and death date are reconstituted as dates</p>
 <h2><a href="../step_1/d3-death/index.html">D3_events_DEATH</a></h2><p>Contains the deaths observed in the study population</p>
-<h2><a href="../step_1/d3-spell-cat/index.html">D3_output_spells_category</a></h2><p>Contains the spells exited from CreateSpells, i.e., all the continuos spells of observation period of each person, stratified per op_meaning. op_meaning is by defult the same for all observation periods, and is set in 05_subpopulations_restricting_meanings for those data sources where the analysis is conducted on subpopulations having different sets of data banks</p>
-<h2><a href="../step_1/conceptset/index.html">conceptsetdataset</a></h2><p>These are multiple datasets, one per each conceptset, which is a value in the list c(conceptsets_exact_matching, conceptsets_children_matching), set in 07_algorithms. Each conceptset dataset is named after the conceptset. Each conceptset is associated to a list of codes. The dataset is obtained by retrieving records from the CDM bearing a code that match one of the codes in the codelist. The matching can be exact (for the conceptsets in conceptsets_exact_matching) or per ascendant (for conceptsets in conceptsets_children_matching) . Recrods are retrieved from the EVENTS table, but also from other tables which may bear a recrod, such as PROCEDURES or VACCINES</p>
+<h2><a href="../step_1/d3-spell-cat/index.html">D3_output_spells_category</a></h2><p>Contains the spells exited from CreateSpells, i.e., all the continuous spells of observation period of each person, stratified per op_meaning. op_meaning is by default the same for all observation periods, and is set in 05_subpopulations_restricting_meanings for those data sources where the analysis is conducted on subpopulations having different sets of data banks</p>
+<h2><a href="../step_1/conceptset/index.html">conceptsetdataset</a></h2><p>These are multiple datasets, one per each conceptset, which is a value in the list c(conceptsets_exact_matching, conceptsets_children_matching), set in 07_algorithms. Each conceptset dataset is named after the conceptset. Each conceptset is associated to a list of codes. The dataset is obtained by retrieving records from the CDM bearing a code that match one of the codes in the codelist. The matching can be exact (for the conceptsets in conceptsets_exact_matching) or per ascendant (for conceptsets in conceptsets_children_matching) . Records are retrieved from the EVENTS table, but also from other tables which may bear a record, such as PROCEDURES or VACCINES</p>
 <h2><a href="../step_1/d3-vaccine/index.html">D3_clean_vaccines</a></h2><p>This dataset contains all the records of a COVID vaccine, including their imputation and modifications and exclusion criteria. Exclusion criteria must be applied before using the variable in the next steps</p>
 <h2><a href="../step_1/d3-vaccine-cur/index.html">D3_vaccines_curated</a></h2><p>This dataset contains only the records of a COVID vaccine that enter the study</p>
 <h2><a href="../step_1/flow-dose/index.html">Flowchart_criteria_for_doses</a></h2><p>Flowchart of the exclusion of covid vaccines records</p>
@@ -258,7 +258,7 @@ Create selection criteria for study population</p>
 </div>
 <div id="Metadata" class="tabcontent">
 <div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","NxUoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_output_spells_category","contains the spells exited from CreateSpells, i.e., all the continuos spells of observation period of each person, stratified per op_meaning. op_meaning is by defult the same for all observation periods, and is set in 05_subpopulations_restricting_meanings for those data sources where the analysis is conducted on subpopulations having different sets of data banks","a person in OBSERVATION_PERIODS","itself","as many as the spells of that person with that op_meaning",">=1","person_id","person_id op_meaning num_spell",null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"d16436ced35bbe6970f1d8a6e3eca48c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","NxUoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["D3_output_spells_category","contains the spells exited from CreateSpells, i.e., all the continuous spells of observation period of each person, stratified per op_meaning. op_meaning is by default the same for all observation periods, and is set in 05_subpopulations_restricting_meanings for those data sources where the analysis is conducted on subpopulations having different sets of data banks","a person in OBSERVATION_PERIODS","itself","as many as the spells of that person with that op_meaning",">=1","person_id","person_id op_meaning num_spell",null,null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"602462cb12c75f362eb8385fd726b8f4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="Data Model" class="tabcontent">
 <div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
@@ -298,7 +298,7 @@ Create selection criteria for study population</p>
 </div>
 <div id="Metadata" class="tabcontent">
 <div id="htmlwidget-1" class="reactable html-widget " style="width:auto;height:600px;"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","NxUoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["conceptsetdataset","these are multiple datasets, one per each conceptset, which is a value in the list c(conceptsets_exact_matching, conceptsets_children_matching), set in 07_algorithms. Each conceptset dataset is named after the conceptset. Each conceptset is associated to a list of codes. The dataset is obtsained by retrieving records from the CDM bearing a code that match one of the codes in the codelist. The matching can be exact (for the conceptsets in conceptsets_exact_matching) or per ascendant (for conceptsets in conceptsets_children_matching) . Recrods are retrieved from the EVENTS table, but also from other tables which may bear a recrod, such as PROCEDURES or VACCINES","a record in the CDM bearing a code that matches the codelist of the conceptset corresponding to the name conceptsetdataset","itself","unique","1","none",null,"conceptsetdataset",null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"645eea42b5f6fbd8e7d334cc640403e7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"medatata_name":["Name of the dataset","Content of the dataset","Unit of observation","Dataset where the list of UoOs is fully listed and with 1 record per UoO","How many observations per UoO","NxUoO","Variables capturing the UoO","Primary key","Parameters",null,null,null,null,null,null,null,null,null,null,null],"metadata_content":["conceptsetdataset","these are multiple datasets, one per each conceptset, which is a value in the list c(conceptsets_exact_matching, conceptsets_children_matching), set in 07_algorithms. Each conceptset dataset is named after the conceptset. Each conceptset is associated to a list of codes. The dataset is obtained by retrieving records from the CDM bearing a code that match one of the codes in the codelist. The matching can be exact (for the conceptsets in conceptsets_exact_matching) or per ascendant (for conceptsets in conceptsets_children_matching) . Records are retrieved from the EVENTS table, but also from other tables which may bear a record, such as PROCEDURES or VACCINES","a record in the CDM bearing a code that matches the codelist of the conceptset corresponding to the name conceptsetdataset","itself","unique","1","none",null,"conceptsetdataset",null,null,null,null,null,null,null,null,null,null,null]},"columns":[{"id":"medatata_name","name":"medatata_name","type":"character"},{"id":"metadata_content","name":"metadata_content","type":"character"}],"sortable":false,"searchable":true,"pagination":false,"highlight":true,"bordered":true,"striped":true,"style":{"maxWidth":1800},"height":"600px","dataKey":"3a14fb88afc0e42641425d482ab63e76"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="Data Model" class="tabcontent">
 <div id="htmlwidget-2" class="reactable html-widget " style="width:auto;height:600px;"></div>
@@ -522,9 +522,9 @@ Create selection criteria for study population</p>
         </div>
       </main>
     </div>
-    <script src="../js/clipboard.min.js?1692994649" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1692994649" defer></script>
-    <script src="../js/theme.js?1692994649" defer></script>
+    <script src="../js/clipboard.min.js?1693045917" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1693045917" defer></script>
+    <script src="../js/theme.js?1693045917" defer></script>
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
