@@ -8,16 +8,16 @@
 print("CREATE COVID EPISODES REPEATED")
 
 # data sources having registry
-# datasources_covid_registry 
+datasources_covid_registry <- c("TEST","ARS","BIFAP","CASERTA")
 
 # data sources having positive tests
-# datasources_positive_tests 
+datasources_positive_tests <- c("TEST","SIDIAP","PEDIANET","UOSL", "FISABIO")
 
 # data sources including all records with a covid diagnosis
-# datasources_covid_diagnosis_all 
+datasources_covid_diagnosis_all <- c("FISABIO","SIDIAP", "UOSL", "CPRD", "PHARMO")
 
 # data sources including only records of covid diagnosis from hospitals
-# datasources_covid_diagnosis_only_hosp 
+datasources_covid_diagnosis_only_hosp <- c("TEST","ARS","CASERTA")
 
 # load the subpopulation-independent input datasets
 load(paste0(dirconceptsets,"I_COVID19DX_AESI_narrow.RData"))
@@ -49,10 +49,7 @@ list_all_covid_notifications <- data.table()
 
 if (thisdatasource %in% datasources_positive_tests){
   load(paste0(diritemsets,"COVID_test.RData")) 
-  covid_test_positive <- COVID_test
-  if (thisdatasource != "UOSL"){
-    covid_test_positive <- covid_test_positive[,.(person_id,date, mo_source_value)][mo_source_value == "positive"]
-    }
+  covid_test_positive <- COVID_test[,.(person_id,date, mo_source_value)][mo_source_value == "positive"]
   rm(COVID_test)
   covid_test_positive <- covid_test_positive[,.(person_id,date)]
   covid_test_positive <- covid_test_positive[,origin_case := "covid_test_positive" ]

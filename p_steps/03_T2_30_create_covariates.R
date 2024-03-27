@@ -78,12 +78,12 @@ for (subpop in subpopulations_non_empty) {
     nameconceptset <- nameconceptset[nameconceptset %in% sub('\\.RData$', '', list.files(dirconceptsets))]
     
     if (COVARIATE %in% covid_variables) {
-      nameconceptset <- paste0("D3_covid_episodes", suffix[[subpop]])
+      nameconceptset <- paste0(dirtemp, "D3_covid_episodes", suffix[[subpop]], ".RData")
     } else if (COVARIATE %in% pregnancy_variables) {
       if (skip_pregnancy) {
         nameconceptset <- c()
       } else {
-        nameconceptset <- "D3_pregnancy_final"
+        nameconceptset <- paste0(dirpregnancy, "D3_pregnancy_final.RData")
       }
     }
     
@@ -151,22 +151,18 @@ for (subpop in subpopulations_non_empty) {
           }
         }
         
-        if (COVARIATE %in% covid_variables) {
-          conceptset_rdata <- paste0(dirtemp, conceptset, ".RData")
-        } else if (COVARIATE %in% pregnancy_variables) {
-          conceptset_rdata <- paste0(dirpregnancy, conceptset, ".RData")
-        } else {
+        if (COVARIATE %not in% c(covid_variables, pregnancy_variables)) {
           conceptset_rdata <- paste0(dirconceptsets, conceptset, ".RData")
         }
         
         # Che existence and recode person_id as character
         components <- MergeFilterAndCollapse(listdatasetL = list(as.data.table(get(load(conceptset_rdata)[[1]])
-        )[, person_id := as.character(person_id)]),
-        datasetS = study_population,
-        key = "person_id",
-        condition = selectionOUTCOME,
-        strata = c("person_id"),
-        summarystat = list(c("exist", "person_id", "date_exists")))
+                                                                               )[, person_id := as.character(person_id)]),
+                                             datasetS = study_population,
+                                             key = "person_id",
+                                             condition = selectionOUTCOME,
+                                             strata = c("person_id"),
+                                             summarystat = list(c("exist", "person_id", "date_exists")))
         
         if (COVARIATE %not in% c(covid_variables, pregnancy_variables)) {
           rm(list = conceptset)
@@ -174,7 +170,7 @@ for (subpop in subpopulations_non_empty) {
         full_components <- list(full_components, components)
         rm(components)
         full_components <- unique(rbindlist(full_components))
-        
+  
       }
       
       # add the variable name

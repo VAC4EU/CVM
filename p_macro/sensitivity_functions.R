@@ -385,14 +385,10 @@ fit_adjusted_scri <- function(data) {
 
 fit_unadjusted_standard_sccs <- function(data) {
   
-  ## print info about the call
-  vaccine_type <- unique(data$type_vax1)
-  message(paste("fitting unadjusted SCCS for", vaccine_type))
-  
   # stop execution if <5 individuals 
   if (nrow(data) < 5) {
     
-    message(paste("<5 people with", vaccine_type,", execution of script halted"))
+    message(paste("<5 people, execution of script halted"))
     
   } else {
 
@@ -471,14 +467,10 @@ fit_unadjusted_standard_sccs <- function(data) {
 
 fit_adjusted_standard_sccs <- function(data) {
   
-  ## print info about the call
-  vaccine_type <- unique(data$type_vax1)
-  message(paste("fitting adjusted SCCS for", vaccine_type))
-  
   # stop execution if <5 individuals 
   if (nrow(data) < 5) {
     
-    message(paste("<5 people with", vaccine_type,", execution of script halted"))
+    message(paste("<5 people, execution of script halted"))
     
   } else {
     # specify the reference level 
@@ -560,14 +552,10 @@ fit_adjusted_standard_sccs <- function(data) {
 
 fit_unadjusted_extended_sccs <- function(data) {
   
-  ## print info about the call
-  vaccine_type <- unique(data$type_vax1)
-  message(paste("fitting unadjusted extended SCCS for", vaccine_type))
-  
   # stop execution if <5 individuals 
   if (nrow(data) < 5) {
     
-    message(paste("<5 people with", vaccine_type,", execution of script halted"))
+    message(paste("<5 people, execution of script halted"))
     
   } else {
   
@@ -644,14 +632,10 @@ fit_unadjusted_extended_sccs <- function(data) {
 
 fit_adjusted_extended_sccs <- function(data) {
   
-  ## print info about the call
-  vaccine_type <- unique(data$type_vax1)
-  message(paste("fitting adjusted extended SCCS for", vaccine_type))
-  
   # stop execution if <5 individuals 
   if (nrow(data) < 5) {
     
-    message(paste("<5 people with", vaccine_type,", execution of script halted"))
+    message(paste("<5 people, execution of script halted"))
     
   } else {
      

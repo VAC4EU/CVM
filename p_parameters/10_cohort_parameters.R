@@ -27,7 +27,7 @@ SCRI_variables_vocabulary <- data.table(vac4eu = c("E_GOUT_AESI", "C_MYOCARD_AES
 #
 # events and outcome variables:
 #
-ae_events <-  c("myocarditis") #, "pericarditis", "myopericarditis", "otitis_externa", "valvular_heart_disease")
+ae_events <-  c("myocarditis", "pericarditis", "myopericarditis", "otitis_externa", "valvular_heart_disease")
 
 
 #############################
@@ -36,16 +36,5 @@ ae_events <-  c("myocarditis") #, "pericarditis", "myopericarditis", "otitis_ext
 #
 id_original <- "person_id"
 id          <- "pat_n"
-
-
-###########################
-#
-# define whether to sample and/or match again:
-#
-lnew_sampling <- F
-lnew_matching <- F
-
-
-
 
 

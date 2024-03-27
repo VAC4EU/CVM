@@ -3,65 +3,13 @@
 
 # authors Readiness: Rosa Gini, Davide Messina, Anna Schultze
 
-# v 3.3.1 - 19 July 2023
-# Patch for V_MICROANGIO_AESI
-
-# v 3.3.0 - 18 July 2023
-# Updated codelist
-# Fixed calculation of variables which are concepts too (V_MICROANGIO_AESI)
-# UOSL optimization regarding persontime calculation
-# Concepts in TD steps use only events with defined date before study_end
-
-# v 3.2.1 - 03 July 2023
-# Correct subpopulations for BIFAP
-
-# v 3.2.1 - 03 July 2023
-# Correct subpopulations for BIFAP
-
-# v 3.2.0 - 27 June 2023
-# E_DM1_AESI change in the parameter
-
-# v 3.1.1 - 26 June 2023
-# Fixed covariates
-# Exclude codes
-# New and updated codelists and variable metadata
-# New algo E_DM1_AESI
-# ICD10DA as different vocabulary than ICD10/ICD10CM
-
-# v 3.1.0 - 29 May 2023
-# sampling and matching testing
-
-# v 3.0.9 - 26 May 2023
-# Added V_THROMBOSISARTERIAL_AESI concept
-# Correction for TTS algorithm
-
-# v 3.0.8 - 12 May 2023
-# Fixed component B of B_TTS_AESI
-
-# v 3.0.7 - 05 May 2023
-# Fixed DEATH missing IRs (this time for real)
-
-# v 3.0.6 - 02 May 2023
-# SCRI bugfixes
-# Added vocabulary "free_text" as copy of "Free_text"
-# PERSONS will be imported with day, month and year columns forced to integer
-# Fixed DEATH missing IRs
-# Fix for UOSL itemset
-# Components for NCO
-
-# v 3.0.5 - 28 April 2023
-# Fix for COVID and pregnacy covariate
-
-# v 3.0.4 - 27 April 2023
-# Fixed additional error in SCRI script
-
-# v 3.0.2 - 26 April 2023
-# Added in to_run_short creation of event DEATH
+# WP4 SCCS sensitivity code for publication - 14 March 2024
+# SCCS additional analyses for publication
+# Based on Readiness v3.0.1
 
 # v 3.0.1 - 26 April 2023
 # Fixed parameter importation
 # Recreated datasources_SCRI_SCCS_COHORT
-# NOT recommended_end_date but we should use ONLY the study_end in SCRI
 
 # v 3.0.0 - 25 April 2023
 # Updated SCRI
@@ -133,6 +81,19 @@
 # v 1.1 - 27 May 2022
 # Completed covid severity and relative IR
 
+# v 2.0.2 - 23 January 2022
+# Bugfixes
+# New covid itemset specification for UOSL
+# Based on Readiness v 2.0.3
+
+# v 2.0.1 - 19 December 2022
+# Bugfix: some SCRI parameters where not calculated
+# Based on Readiness v 2.0.3.Beta
+
+# v 2.0 - 15 December 2022
+# Myocarditis
+# Based on Readiness v 2.0.3.Beta
+
 # v1.0.0 - 9 March 2022
 # First release of SCCS
 
@@ -197,11 +158,6 @@ launch_step("p_steps/03_T2_40_create_components.R")
 launch_step("p_steps/04_T2_10_create_total_study_population.R")
 launch_step("p_steps/04_T2_20_SCRI.R")
 
-### Calculation of Time Dependent variables
-launch_step("p_steps/04_T2_30_create_study_population_cohort.R")
-launch_step("p_steps/04_T2_40_create_TD_datasets.R")
-launch_step("p_steps/04_T2_41_create_TD_NUMBER_CONDITIONS.R")
-
 launch_step("p_steps/05_T3_10_count_events_windows.R")
 launch_step("p_steps/05_T3_11_aggregate_events_windows.R")
 launch_step("p_steps/05_T3_20_create_person_time_monthly.R")
@@ -213,3 +169,27 @@ launch_step("p_steps/06_T4_10_create_D5_IR_background.R")
 launch_step("p_steps/06_T4_20_create_D5_IR_background_std.R")
 
 launch_step("p_steps/07_T5_10_final_tables.R")
+
+### Calculation of Time Dependent variables
+launch_step("p_steps/04_T2_30_create_study_population_cohort.R")
+launch_step("p_steps/04_T2_40_create_TD_datasets.R")
+launch_step("p_steps/04_T2_41_create_TD_NUMBER_CONDITIONS.R")
+
+if (thisdatasource %in% datasources_SCRI_SCCS_COHORT) {
+  
+  # SCCS
+  launch_step("p_steps/08_T3_1_clean_data.R", print.eval = TRUE)
+  launch_step("p_steps/08_T3_2_select_population.R", print.eval = TRUE)
+  launch_step("p_steps/08_T4_3_describe_event_dependency.R", print.eval = TRUE)
+  launch_step("p_steps/08_T4_4a_scri_pre.R", print.eval = TRUE)
+  launch_step("p_steps/08_T4_4b_scri_post.R", print.eval = TRUE)
+  launch_step("p_steps/08_T4_4c_standard_sccs.R", print.eval = TRUE)
+  launch_step("p_steps/08_T4_4d_extended_sccs.R", print.eval = TRUE)
+  
+  # sensitivity analyses for peer review 
+  launch_step("p_steps/08_T3_5_clean_data_SENS.R", print.eval = TRUE)
+  launch_step("p_steps/08_T3_6_select_population_SENS.R", print.eval = TRUE)
+  launch_step("p_steps/08_T4_71_standard_sccs_SENS.R", print.eval = TRUE)
+  launch_step("p_steps/08_T4_7b_extended_sccs_SENS.R", print.eval = TRUE)
+
+}

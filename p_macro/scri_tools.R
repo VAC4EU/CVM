@@ -375,10 +375,8 @@ scri_fit <- function( formula="",
       }
       
       var_names0 <- sep_vars[[isep]]
-      if(length(time_seq)>0){
-        if(length(split_seq_name)>=isep) var_names0 <- c( var_names0, split_seq_name[isep] )   #& split_seq_name %in% dimnames(tb)[[2]])
-        else var_names0 <- c( var_names0, split_seq_name )   #& split_seq_name %in% dimnames(tb)[[2]])
-      }
+      if(length(time_seq)>0 & sep_time_vars_cond) var_names0 <- c( var_names0, split_seq_name[isep] )   #& split_seq_name %in% dimnames(tb)[[2]])
+
 	  
       # delete id's without events in the windows for this model:
       ids_with_events <- names((tb<-tapply(data_rws[,event],data_rws[,id], sum, na.rm=T))[tb>0])
@@ -651,11 +649,6 @@ scri_fit <- function( formula="",
   }
   
   
-  if(is.null(res_tab)) return( list( tab = NULL,
-                                     tab_full = NULL,
-                                     model = NULL,
-                                     call = list( match.call()) ))
- 
   
  
   
@@ -1814,7 +1807,7 @@ plot_res <- function(res, main="",
   # plot 1: all coefficients:
   #
   if(ncoef_max > ncoef){ 
-
+    
     plot( c(0,ncoef_max), ylim, type="n", main=main, xlab="effect number  |     time adjustment effects", ylab="RR", axes=F)
     axis(2); box()
     axis(1, at=1:ncoef )
@@ -1891,17 +1884,16 @@ plot_res <- function(res, main="",
               
               if(any(!is.na(model_time_adj))){
                 ref_models <- sort(unique( model_time_adj[!is.na(model_time_adj)] ))
-                x_ref_deltas <- 0 
+                x_ref_deltas <- 0
                 if(length(ref_models)>1) x_ref_deltas <- 0.2* (1/(length(ref_models)-1) * (0:(length(ref_models)-1)) - 0.5)
                 
-                for(ii in 1:length(ref_models) ){
-                  cond_ref_model <- !is.na(model_time_adj) & model_time_adj==ref_models[ii]
+                for(ii in ref_models ){
+                  cond_ref_model <- !is.na(model_time_adj) & model_time_adj==ii
                   # CI's:
                   if(CI & any(!is.na(CI_time_adj[cond_ref_model & !is.na(RR_time_adj),])))
                     matlines( rbind( xx_time_adj, xx_time_adj )[, cond_ref_model & !is.na(RR_time_adj) ]+x_ref_deltas[ii], 
                               t(CI_time_adj)[                   , cond_ref_model & !is.na(RR_time_adj) ],
                               lty=1, lwd=1, col=col_alpha(col[imod],0.15), type="o", pch="-", cex=2 )
-                  
                   # RR's:
                   if(any(!is.na(RR_time_adj[ cond_ref_model ])))
                     lines( xx_time_adj[ cond_ref_model ] + x_ref_deltas[ii], RR_time_adj[ cond_ref_model ], type="o", col=col[imod],
@@ -1954,7 +1946,7 @@ plot_res <- function(res, main="",
     
     if(i==3 & max(ylim)<=30) next
     if(i==3 & max(ylim)>30 ) ylim=c(0,20)
-
+    
     plot( c(0,ncoef), ylim, type="n", main=main, xlab="effect number", ylab=ifelse(i==2, "RR", "RR under 20") )
     plotted <- T
     
@@ -2116,7 +2108,7 @@ scri <- function(vax_def,
                  event_in_rw = T,                # if event in rw ==> this rw should not be deleted even if not completely observed
                  lplots      = T,
                  lplot_hist  = T, add_histplot=F,
-                 leventplot  = T, max_n_points = NA,  ngrid = c(500,300),  only_add_plot_to_file=F, eventplot_file_separate = F, path_cohort="", image_performance = F, warn_image_plots =-1, 
+                 leventplot  = T, max_n_points = NA,  ngrid = c(500,300), eventplot_file_separate = F, path_cohort="", image_performance = F, warn_image_plots =-1, 
                  lplot       = T, CI = T,
                  lforest     = T, forest_nrows = 50 ,forest_cex = 0.5, forest_cex_head = 0.5,
                  nvax,
@@ -2192,7 +2184,6 @@ scri <- function(vax_def,
     if( missing(lplot_hist             ) & "lplot_hist"              %in% names(extra_parameters) ) lplot_hist              <- extra_parameters[["lplot_hist"              ]]   
     if( missing(add_histplot           ) & "add_histplot"            %in% names(extra_parameters) ) add_histplot            <- extra_parameters[["add_histplot"            ]]   
     if( missing(leventplot             ) & "leventplot"              %in% names(extra_parameters) ) leventplot              <- extra_parameters[["leventplot"              ]]   
-    if( missing(only_add_plot_to_file )  & "only_add_plot_to_file"   %in% names(extra_parameters) ) only_add_plot_to_file   <- extra_parameters[["only_add_plot_to_file"   ]]   
     if( missing(max_n_points           ) & "max_n_points"            %in% names(extra_parameters) ) max_n_points            <- extra_parameters[["max_n_points"            ]]   
     if( missing(eventplot_file_separate) & "eventplot_file_separate" %in% names(extra_parameters) ) eventplot_file_separate <- extra_parameters[["eventplot_file_separate" ]] 
     
@@ -2327,7 +2318,7 @@ scri <- function(vax_def,
   plotted <- F
  
   # create leventplot (image) plots:
-  if(leventplot & ldata){ 
+  if(leventplot & ldata){  
     
     if(any( !( names(list(...)) %in% names(formals(pdf)) ) )) 
       stop(paste0("Argument[s] '", paste(names(list(...))[ !( names(list(...)) %in% names(formals(pdf)) )], collapse="', '" ),
@@ -2340,25 +2331,7 @@ scri <- function(vax_def,
                  tit=output_name, max_n_points=max_n_points, warn=warn_image_plots, performance=image_performance )
     plotted <- T
     dev.off()
-    
-    if(only_add_plot_to_file){
-      
-      if(plotted & file.exist( paste0(sdr_tabs,output_file_name,".pdf") )) {         
-        files_to_copy <- paste0(sdr_tabs,c(output_file_name,"eventplot_tmp"),".pdf")
-        for(iname in files_to_copy) if(!file.exists(iname)) files_to_copy <- files_to_copy[files_to_copy!=files_to_copy]
-        if(length(files_to_copy)>0) qpdf::pdf_combine( files_to_copy , paste0(sdr_tabs,output_file_name,".pdf")  )  
-      }
-      
-      if(file.exists(paste0(sdr_tabs,"eventplot_tmp.pdf" )))  suppressWarnings( file.remove(paste0(sdr_tabs, "eventplot_tmp.pdf"   )) )
-      if(!is.null(dev.list())) dev.off()
-      
-      if(performance) cat(paste0(": duration = ",format(difftime(Sys.time(),start_sys_time))," (till ",Sys.time(),")\n"))  
-      else            cat("\n")  
-      
-      return(NULL)
-    }
-    
-  }  # end if leventplot
+  }
  
   if(ldata){
 	
@@ -2621,14 +2594,8 @@ scri <- function(vax_def,
           if(missing(forest_nrows)) 
             forest_nrows <-  pmax(1, 58 - 4*length(tabs[[i1]]) + pmin(1,length(tabs[[i1]])%/%11)*(-2*10 + 2*length(tabs[[i1]]) ) + pmin(1,length(tabs[[i1]])%/%16)*( -15 + length(tabs[[i1]]) ) ) 
           par(mfrow=c(1,2))
-          for(i1 in 1:length(tabs)){
-            
-            forest_res <- try( forest_plots_tab( tabs[[i1]], nrows_forest_plot=forest_nrows,cex=forest_cex, cex_head=forest_cex_head, ltable=F, col=col ) )
-            
-            if(class(forest_res)[[1]] != "try-error")  plotted <- plotted | forest_res
-          }
-          
-          
+          for(i1 in 1:length(tabs))
+            plotted <- plotted | forest_plots_tab( tabs[[i1]], nrows_forest_plot=forest_nrows,cex=forest_cex, cex_head=forest_cex_head, ltable=F, col=col )
         }
         # create plots with coefficients:
         if(lplot){
@@ -3580,23 +3547,13 @@ forest_plots_tab <- function(tab_list, ndigits=2, nrows_forest_plot=40, cex=0.8,
         
         legend_names <- names(tab_list)
         for(itab in 1:length(tab_list) ){
-          
-          cond_group <- !is.na(tt[,var_RR[i_without_time]]) & tt$group == groups[igr]
-          
-          names_as_unadj <- tab_list[[itab]]$all_cat[ match( tt[cond_group,][group_part_start_row:group_part_end_row,"all_cat"] , tab_list[[itab]]$all_cat ) ]
-       
-          if(itab!=i_without_time & !identical( names_as_unadj , tt[cond_group,][group_part_start_row:group_part_end_row,"all_cat"] )  )  { 
-            warning(paste0("The main effect names of tables '",tt[cond_group,][group_part_start_row:group_part_end_row,"all_cat"]," and '",names_as_unadj,"' are not identical"))
-            #legend_names <- legend_names[-itab]
-            next
-          }
-    if(F) if(itab!=i_without_time & !identical( tab_list[[itab]]$all_cat[1:nrow_without_time] , tab_list[[i_without_time]]$all_cat ) ) { 
+          if(itab!=i_without_time & !identical( tab_list[[itab]]$all_cat[1:nrow_without_time] , tab_list[[i_without_time]]$all_cat ) ) {
             warning(paste0("The main effect names of tables '",names(tab_list)[i_without_time]," and '",names(tab_list)[itab],"' are not identical"))
             legend_names <- legend_names[-itab]
             next
           }
-          if(!no_RR & any(!is.na(tab_list[[itab]][match(names_as_unadj,tab_list[[itab]][,"all_cat"]),var_RR[itab]]))){
-            with(tab_list[[itab]][match(names_as_unadj,tab_list[[itab]][,"all_cat"]),], { 
+          if(!no_RR & any(!is.na(tab_list[[itab]][1:nrow_without_time,][cond_group,][group_part_start_row:group_part_end_row,var_RR[itab]]))){
+            with(tab_list[[itab]][1:nrow_without_time,][cond_group,][group_part_start_row:group_part_end_row,], { 
               forest.default(slab=rep("",length(all_cat)), x=get(var_RR[itab]), ci.lb=lci, ci.ub=uci,
                              header = F, annotate=F, cex=cex, refline=1, 
                              xlim=c(-(max(nchar(tt$all_cat))/40*max(1,RR_max)+max(1,RR_max)), max(1,RR_max)*1.6), 

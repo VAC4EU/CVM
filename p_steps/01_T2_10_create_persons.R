@@ -9,10 +9,7 @@ print('PRE-PROCESSING OF PERSONS')
 # import input datasets
 PERSONS <- data.table()
 for (file in files_ConcePTION_CDM_tables[["PERSONS"]]) {
-  temp <- fread(paste0(dirinput, file, ".csv"),
-                colClasses = list(character = "person_id",
-                                  integer = c("day_of_birth", "month_of_birth", "year_of_birth",
-                                              "day_of_death", "month_of_death", "year_of_death")))
+  temp <- fread(paste0(dirinput, file, ".csv"), colClasses = list(character = "person_id"))
   PERSONS <- rbind(PERSONS, temp, fill = T)
   rm(temp)
 }

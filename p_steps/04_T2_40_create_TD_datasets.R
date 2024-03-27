@@ -69,9 +69,6 @@ for (subpop in subpopulations_non_empty) {
       # remove study entry and create interval wrt the date of events using the lookback period 
       CONCEPT[, study_entry_date := NULL][, date_end := date + days(lookback)]
       
-      # Keep events until study_end
-      CONCEPT <- CONCEPT[!is.na(date) & date <= study_end, ]
-      
       # CONCEPT_end <- copy(CONCEPT)[, date := date + days(lookback + 1)]
       # 
       # CONCEPT <- rbindlist(list(CONCEPT[, type := "start"], CONCEPT_end[, type := "end"]))

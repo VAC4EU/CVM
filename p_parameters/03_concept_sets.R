@@ -26,15 +26,15 @@ CONCEPTSETS_to_be_split <- if(thisdatasource %in% datasource_needing_split_conce
 numbers_split <- c(15)
 
 # File_variables_ALG_DP_ROC20 is the name of the input file (also used in 06_variable_lists)
-File_variables_ALG_DP_ROC20 <- paste0(thisdir,"/p_parameters/archive_parameters/Variables_ALG_DP_ROC20_19Jun23.xlsx")
+File_variables_ALG_DP_ROC20 <- paste0(thisdir,"/p_parameters/archive_parameters/Variables_ALG_DP_ROC20_20Apr23.xlsx")
 
 #  OUT_codelist: it is the dataframe containing the codelist itself (temporary: it is removed later)
-OUT_codelist <- fread(paste0(thisdir,"/p_parameters/archive_parameters/20230406_V2_full_codelist_at_20230718.csv"))
+OUT_codelist <- fread(paste0(thisdir,"/p_parameters/archive_parameters/20230406_V2_full_codelist.csv"))
 OUT_codelist <- OUT_codelist[, .(coding_system, code, type, tags, event_abbreviation, system)]
 OUT_codelist <- OUT_codelist[, Varname := paste(system, event_abbreviation, type, sep = "_")]
 
 # VAR_list: it is the list of variable names
-VAR_list <- as.data.table(readxl::read_excel(File_variables_ALG_DP_ROC20, sheet = "Variables"))[!(Algorithm & !Algorithm_input), .(Varname)]
+VAR_list <- as.data.table(readxl::read_excel(File_variables_ALG_DP_ROC20, sheet = "Variables"))[!(Algorithm), .(Varname)]
 OUT_codelist <- merge(VAR_list, OUT_codelist, all.x = T, by = "Varname")
 rm(VAR_list)
 
@@ -43,57 +43,10 @@ OUT_codelist <- OUT_codelist[code != "" & !is.na(code), ][, event_abbreviation :
 OUT_codelist <- OUT_codelist[tags == "??", tags := "possible"]
 # OUT_codelist <- OUT_codelist[tags != ""][tags == "possbie", tags := "possible"]
 
-# Add vocabulary free_text
-OUT_codelist <- rbindlist(list(OUT_codelist, copy(OUT_codelist)[coding_system == "Free_text", coding_system := "free_text"]))
 
 # concept_set_codes_our_study: codelist in the format to be used by CreateConceptsetDatasets
-concept_set_codes_our_study <- df_to_list_of_list(OUT_codelist[tags != "exclude", ], codying_system_recode = "auto", type_col = "type")
-
-concept_set_codes_our_nar <- df_to_list_of_list(OUT_codelist[tags == "narrow", ], codying_system_recode = "auto", type_col = "type")
-concept_set_codes_our_pos_nar <- df_to_list_of_list(OUT_codelist[tags == "possible", ][, tags := "narrow"], codying_system_recode = "auto", type_col = "type")
-
-concept_set_codes_our_pos <- df_to_list_of_list(OUT_codelist[tags == "possible", ], codying_system_recode = "auto", type_col = "type")
-concept_set_codes_our_nar_pos <- df_to_list_of_list(OUT_codelist[tags == "narrow", ][, tags := "possible"], codying_system_recode = "auto", type_col = "type")
-
-concept_set_codes_our_excl <- df_to_list_of_list(OUT_codelist[tags == "exclude", ], codying_system_recode = "auto", type_col = "type")
-
-concept_set_codes_our_study_excl <- list()
-for (concept in names(concept_set_codes_our_nar)) {
-  for (vocabulary in names(concept_set_codes_our_nar[[concept]])) {
-    if (vocabulary == "SNOMED") {
-      child_possible <- intersect(concept_set_codes_our_pos_nar[[concept]][[vocabulary]],
-                                  concept_set_codes_our_nar[[concept]][[vocabulary]])
-    } else {
-      child_possible <- setdiff(setdiff(concept_set_codes_our_pos_nar[[concept]][[vocabulary]],
-                                        CompareListsOfCodes(concept_set_codes_our_nar[[concept]][[vocabulary]],
-                                                            concept_set_codes_our_pos_nar[[concept]][[vocabulary]])),
-                                concept_set_codes_our_nar[[concept]][[vocabulary]])
-    }
-    
-    
-    concept_set_codes_our_study_excl[[concept]][[vocabulary]] <- c(child_possible,
-                                                                   concept_set_codes_our_excl[[concept]][[vocabulary]])
-  }
-}
-
-for (concept in names(concept_set_codes_our_pos)) {
-  for (vocabulary in names(concept_set_codes_our_pos[[concept]])) {
-    
-    if (vocabulary == "SNOMED") {
-      next
-    } else {
-      child_narrow <- setdiff(concept_set_codes_our_nar_pos[[concept]][[vocabulary]],
-                              CompareListsOfCodes(concept_set_codes_our_nar_pos[[concept]][[vocabulary]],
-                                                  concept_set_codes_our_pos[[concept]][[vocabulary]]))
-      child_narrow <- c(child_narrow, intersect(concept_set_codes_our_nar_pos[[concept]][[vocabulary]],
-                                                concept_set_codes_our_pos[[concept]][[vocabulary]]))
-    }
-    
-    concept_set_codes_our_study_excl[[concept]][[vocabulary]] <- c(child_narrow, concept_set_codes_our_excl[[concept]][[vocabulary]])
-  }
-}
-
-# concept_set_codes_our_study_excl <- df_to_list_of_list(OUT_codelist[tags == "narrow", ][, tags := "possible"],codying_system_recode = "auto", type_col = "type")
+concept_set_codes_our_study <- df_to_list_of_list(OUT_codelist, codying_system_recode = "auto", type_col = "type")
+concept_set_codes_our_study_excl <- df_to_list_of_list(OUT_codelist[tags == "narrow", ][, tags := "possible"],codying_system_recode = "auto", type_col = "type")
 rm(OUT_codelist)
 
 # concept_set_domains: domain of each conceptset, to be used in CreateConceptsetDatasets

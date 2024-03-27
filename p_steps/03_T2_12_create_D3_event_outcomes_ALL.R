@@ -24,16 +24,13 @@ for (subpop in subpopulations_non_empty) {
                        codvar = character(),
                        event_record_vocabulary = character())
     } else {
-      if (x %in% SECCOMPONENTS) {
+      if (x == SECCOMPONENTS) {
         setnames(df, c("meaning_renamedA", "codvarA", "event_record_vocabularyA"),
                  c("meaning_renamed", "codvar", "event_record_vocabulary"))
       }
       if (x != "DEATH") {
         df <- df[, .(person_id, date, type_outcome = x, meaning_renamed,
                      codvar, event_record_vocabulary)]
-      }
-      if (x == "DEATH") {
-        df <- df[, .(person_id, date, type_outcome = x)]
       }
     }
     return(df)

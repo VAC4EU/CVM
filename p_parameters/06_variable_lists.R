@@ -1,7 +1,7 @@
 #---------------------------------------------------------------------------
 # create few lists, each containing names of variables of interest for different D3s
 
-# input: the list of variable names associated to the algorithms, created by the PI: the name of the file was stored in File_variables_ALG_DP_ROC20 in step 03_concept_sets
+# input: the list of variable names associated to the algorithms, created by carlos (File_variables_ALG_DP_ROC20)
 
 #output:
 # VAR_codelist - dataset with instructions (also used in step 07)

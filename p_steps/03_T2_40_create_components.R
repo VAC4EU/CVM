@@ -20,7 +20,7 @@ for (subpop in subpopulations_non_empty) {
   
   COHORT_TMP <- COHORT_TMP[year(study_entry_date) <= secondyear & year(study_exit_date) >= firstyear,]
   
-  for (OUTCOME in c(OUTCOME_variables, CONTROL_variables)) {
+  for (OUTCOME in OUTCOME_variables) {
     print(OUTCOME)
     OUTCOME_components <- vector(mode = 'list')
     

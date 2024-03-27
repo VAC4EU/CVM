@@ -377,7 +377,7 @@ for (subpop in subpopulations_non_empty) {
     
     table_6 <- tbl_stack(tbl_list, group_header = c("2019 before COVID-19 infection",
                                                     "2020 before COVID-19 infection",
-                                                    "2020 after COVID-19 infection before vaccination"))
+                                                    "2019/2020 after COVID-19 infection before vaccination"))
     
     table6_name <- paste0("Table 6.1-", which(list_AESI_NCO == current_var),
                           " - Background Incidence rates of ", current_var)

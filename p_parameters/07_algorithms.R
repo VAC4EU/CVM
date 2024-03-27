@@ -27,14 +27,11 @@
 
 #----------------------------------------------------
 # Diagnosis
-NoAlgo <- VAR_codelist[!(Algorithm & !Algorithm_input), ]
-OUTCOME_concepts_in_var <- sapply(NoAlgo[(AESI), Varname], paste0, c("_narrow"))
-OUTCOME_concepts_in_comp <- lapply(Map(identity, NoAlgo[(AESI), Varname]), paste0, c("_narrow", "_possible"))
-COV_concepts_in_var <- lapply(Map(identity, NoAlgo[(COV), Varname]), paste0, c("_narrow", "_possible"))
+NoAlgo <- VAR_codelist[!(Algorithm), ]
+OUTCOME_concepts_in_var <- sapply(NoAlgo[(AESI) | (NEG), Varname], paste0, c("_narrow"))
+OUTCOME_concepts_in_comp <- lapply(Map(identity, NoAlgo[(AESI) | (NEG), Varname]), paste0, c("_narrow", "_possible"))
+COV_concepts_in_var <- lapply(Map(identity, NoAlgo[(COV) | (Algorithm_input), Varname]), paste0, c("_narrow", "_possible"))
 rm(VAR_codelist)
-
-NEG_concepts_in_var <- sapply(NoAlgo[(NEG), Varname], paste0, c("_narrow"))
-NEG_concepts_in_comp <- lapply(Map(identity, NoAlgo[(NEG), Varname]), paste0, c("_narrow", "_possible"))
 
 # Divide the definition of algorithm input which are neither AESI, NEG or COV
 NoAlgo <- NoAlgo[(Algorithm_input) & !((AESI) | (NEG) | (COV))]
@@ -53,11 +50,9 @@ NoAlgo <- DRUG_codelist[!(Algorithm), ]
 DRUG_concepts_in_var <- sapply(NoAlgo[(AESI) | (COV) | (Algorithm_input), Varname], identity)
 rm(DRUG_codelist, NoAlgo)
 
-variable_definition <- c(OUTCOME_concepts_in_var, COV_concepts_in_var, DRUG_concepts_in_var, NEG_concepts_in_var)
-component_definition <- c(OUTCOME_concepts_in_comp, NEG_concepts_in_comp)
-outcome_definition <- OUTCOME_concepts_in_comp
-not_outcome_definition <- c(COV_concepts_in_var, DRUG_concepts_in_var, NEG_concepts_in_var)
-complete_definition <- c(OUTCOME_concepts_in_comp, COV_concepts_in_var, DRUG_concepts_in_var, NEG_concepts_in_var)
+variable_definition <- c(OUTCOME_concepts_in_var, COV_concepts_in_var, DRUG_concepts_in_var)
+component_definition <- OUTCOME_concepts_in_comp
+complete_definition <- c(OUTCOME_concepts_in_comp, COV_concepts_in_var, DRUG_concepts_in_var)
 rm(OUTCOME_concepts_in_var, COV_concepts_in_var, DRUG_concepts_in_var, OUTCOME_concepts_in_comp)
 
 for (var in names(variable_definition)) {
@@ -76,11 +71,11 @@ ALGO_codelist <- readxl::read_excel(File_variables_ALG_DP_ROC20, sheet = "ALG")
 ALGO_codelist <- as.data.table(ALGO_codelist)
 rm(File_variables_ALG_DP_ROC20)
 
-SECCOMPONENTS <- c("B_TTS_AESI","E_DM1_AESI")
+SECCOMPONENTS <- "B_TTS_AESI"
 
 # algortihms for outcomes
 
-ALGO_link <- ALGO_codelist[Algorithm %in% unique(ALGO_codelist[Algorithm %not in% SECCOMPONENTS, Algorithm]),
+ALGO_link <- ALGO_codelist[Algorithm %in% unique(ALGO_codelist[Algorithm != SECCOMPONENTS, Algorithm]),
                            .(Algorithm, VariableName)]
 
 ALGO_link_components <- copy(ALGO_link)[, test := complete_definition[VariableName]][, VariableName := NULL]
@@ -89,15 +84,11 @@ ALGO_link <- ALGO_link[, test := variable_definition[VariableName]][, VariableNa
 ALGO_link <- split(ALGO_link, by = "Algorithm", keep.by = F)
 ALGO_link <- lapply(ALGO_link, unlist, use.names = F)
 
-variable_definition <- variable_definition[names(variable_definition) %in% intersect(names(variable_definition), names(ALGO_link)) == FALSE]
-
 variable_definition <- c(variable_definition, ALGO_link)
 rm(ALGO_link)
 
 ALGO_link_components <- split(ALGO_link_components, by = "Algorithm", keep.by = F)
 ALGO_link_components <- lapply(ALGO_link_components, unlist, use.names = F)
-
-component_definition <- component_definition[names(component_definition) %in% intersect(names(component_definition), names(ALGO_link_components)) == FALSE]
 
 component_definition <- c(component_definition, ALGO_link_components)
 rm(ALGO_link_components, complete_definition)
@@ -182,21 +173,6 @@ select_meanings_AESI[["TEST"]] <- condmeaning[["HOSPsec"]]
 # VARIABLES FOR COVID SEVERITY
 #----------------------------
 
-# INCLUSION
-
-# data sources having registry
-datasources_covid_registry <- c("TEST","ARS","BIFAP","CASERTA")
-
-# data sources having positive tests
-datasources_positive_tests <- c("TEST","SIDIAP","PEDIANET","UOSL", "FISABIO")
-
-# data sources including all records with a covid diagnosis
-datasources_covid_diagnosis_all <- c("FISABIO","SIDIAP", "UOSL", "CPRD", "PHARMO")
-
-# data sources including only records of covid diagnosis from hospitals
-datasources_covid_diagnosis_only_hosp <- c("TEST","ARS","CASERTA")
-
-
 # HOSPITALISATIONS
 
 # data sources including records of hospitalisations with a covid diagnosis
@@ -248,55 +224,44 @@ concept_set_seccomp <- vector(mode="list")
 rule_seccomp <- vector(mode="list")
 distance_seccomp <- vector(mode="list")
 direction_seccomp <- vector(mode="list")
-upper_distance_seccomp <- vector(mode="list")
-lower_distance_seccomp <- vector(mode="list")
-selectionrule_direction_seccomp <- vector(mode="list")
-
 
 for (SECCOMP in SECCOMPONENTS) {
-  test <- ALGO_codelist[Algorithm == SECCOMP]
+  distance_seccomp[[SECCOMP]] = '10'
+  direction_seccomp[[SECCOMP]] = "Either direction"
   
-  upper <- as.numeric(test[, unique(upper)])
-  lower <- as.numeric(test[, unique(lower)])
-  
-  if (SECCOMP == "E_DM1_AESI") {
-    upper <- 99999
-    lower <- 99999
-  }
-  
-  upper_distance_seccomp[[SECCOMP]] = upper
-  lower_distance_seccomp[[SECCOMP]] = abs(lower)
-  
- # if (upper == abs(lower)) {
-  #  distance_seccomp[[SECCOMP]] = upper
-    direction_seccomp[[SECCOMP]] = "Either direction"
-  # }
-  
-  # distance_seccomp[[SECCOMP]] = '10'
-  # direction_seccomp[[SECCOMP]] = "Either direction"
-  
-  selectionrule_direction_seccomp[[SECCOMP]]["A before B"] <- paste0("dateA <= dateB  & dateB <= dateA + ", upper_distance_seccomp[[SECCOMP]])
-  selectionrule_direction_seccomp[[SECCOMP]]["B before A"] <- paste0("dateB <= dateA  & dateA <= dateB + ", lower_distance_seccomp[[SECCOMP]])
-  selectionrule_direction_seccomp[[SECCOMP]]["Either direction"] <- paste0('((',selectionrule_direction_seccomp[[SECCOMP]]["A before B"],') | (',selectionrule_direction_seccomp[[SECCOMP]]["B before A"],'))')
+  selectionrule_direction_seccomp <- vector(mode="list")
+  selectionrule_direction_seccomp["A before B"] <- paste0("dateA <= dateB  & dateB <= dateA + ", distance_seccomp[[SECCOMP]])
+  selectionrule_direction_seccomp["B before A"] <- paste0("dateB <= dateA  & dateA <= dateB + ", distance_seccomp[[SECCOMP]])
+  selectionrule_direction_seccomp["Either direction"] <- paste0('((',selectionrule_direction_seccomp["A before B"],') | (',selectionrule_direction_seccomp["B before A"],'))')
   
 }
-rm(distance_seccomp, SECCOMP, upper, lower)
+rm(distance_seccomp, SECCOMP)
 
-for (SECCOMP in SECCOMPONENTS) {
-  test <- ALGO_codelist[Algorithm == SECCOMP]
-  for (i in seq_len(test[, max(group)])) {
-    for (var in unlist(test[group == i, .(VariableName)])) {
-      concept_set_seccomp[[SECCOMP]][[LETTERS[i]]] <- c(concept_set_seccomp[[SECCOMP]][[LETTERS[i]]],
-                                                        variable_definition[[var]])
-      component_definition[[SECCOMP]] <- c(component_definition[[SECCOMP]], variable_definition[[var]])
-    }
-  }
-  
-  rule_seccomp[[SECCOMP]] <- test[, unique(between)]
-  
+test <- ALGO_codelist[Algorithm == "B_TTS_AESI"]
+rm(ALGO_codelist)
+
+test_vect <- c()
+for (a in unlist(test[group == 2, .(VariableName)])) {
+  test_vect <- c(test_vect, variable_definition[[a]])
+  component_definition[["B_TTS_AESI"]] <- c(component_definition[["B_TTS_AESI"]], variable_definition[[a]])
 }
 
-rm(ALGO_codelist, test, i, SECCOMP, var)
+test_vect_1 <- c()
+for (a in unlist(test[group == 1, .(VariableName)])) {
+  test_vect_1 <- c(test_vect_1, variable_definition[[a]])
+  component_definition[["B_TTS_AESI"]] <- c(component_definition[["B_TTS_AESI"]], variable_definition[[a]])
+}
+
+# ArterialNoTP
+concept_set_seccomp[["B_TTS_AESI"]][['A']] <- test_vect
+concept_set_seccomp[["B_TTS_AESI"]][['B']] <- test_vect_1
+rule_seccomp[["B_TTS_AESI"]] <- "AND"
+
+# ArterialNoTP
+concept_set_seccomp[["B_TTS_AESI"]][['B']] <- test_vect
+rule_seccomp[["B_TTS_AESI"]] <- "AND"
+
+rm(test, test_vect, test_vect_1)
 
 # concept sets specific for datasources
 
@@ -358,18 +323,10 @@ for (conceptset in concept_sets_of_our_study){
 
 # concept_set_codes_our_study <- concept_set_codes_our_study[names(concept_set_codes_our_study) %in% c(variable_definition, "COVID_VACCINES")]
 
-# concept_set_codes_our_study <- concept_set_codes_our_study[names(concept_set_codes_our_study) %in% c(variable_definition, "COVID_VACCINES", "I_COVID19DX_AESI_narrow", "I_COVID19DX_COV_narrow")]
+concept_set_codes_our_study <- concept_set_codes_our_study[names(concept_set_codes_our_study) %in% c(variable_definition, "COVID_VACCINES", "I_COVID19DX_AESI_narrow", "I_COVID19DX_COV_narrow")]
 
 
 save(concept_set_codes_our_study,file=paste0(direxp,"concept_set_codes_our_study.RData"))
-
-conceptsets_exact_matching <- intersect(concept_sets_of_our_study,
-                                        c(unlist(outcome_definition, use.names = F),
-                                          "Im_HYPERSENS_AESI_narrow", "Im_HYPERSENS_AESI_possible"))
-
-conceptsets_children_matching <- setdiff(concept_sets_of_our_study,
-                                         c(unlist(outcome_definition, use.names = F),
-                                           "Im_HYPERSENS_AESI_narrow", "Im_HYPERSENS_AESI_possible"))
 
 if (this_datasource_has_subpopulations == TRUE){
   for (subpop in subpopulations_non_empty){
@@ -379,5 +336,4 @@ if (this_datasource_has_subpopulations == TRUE){
   rm(subpop)
 }
 
-rm(conceptset, datasources_with_subpopulations)
-
+rm(a, conceptset, datasources_with_subpopulations)

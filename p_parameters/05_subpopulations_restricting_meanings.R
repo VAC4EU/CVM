@@ -48,10 +48,9 @@ exclude_itemset_of_so[["TEST"]][["HOSP"]] <- list(list("Covid19_UCI","Ingreso_uc
 
 
 # # BIFAP
-subpopulations[["BIFAP"]] = c("PC","PC_HOSP")
+subpopulations[["BIFAP"]] = c("PC","PC_HOSP","WITH_ICU")
 
-op_meaning_sets[["BIFAP"]] <- c("meaningsPC","meaningsHOSP")
-#op_meaning_sets[["BIFAP"]] <- c("meaningsPC","meaningsHOSP","meaningsWITH_ICU")
+op_meaning_sets[["BIFAP"]] <- c("meaningsPC","meaningsHOSP","meaningsWITH_ICU")
 op_meanings_list_per_set[["BIFAP"]][["meaningsPC"]] <- c("region2_PC","region3_PC","region7_PC","region13_PC","region14_PC")
 op_meanings_list_per_set[["BIFAP"]][["meaningsHOSP"]] <- c("region3_HOSP","region7_HOSP","region13_HOSP")
 op_meanings_list_per_set[["BIFAP"]][["meaningsWITH_ICU"]] <- c("region2_PC","region3_PC","region7_PC","region14_PC")

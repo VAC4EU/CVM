@@ -40,7 +40,7 @@ for (file in files_ConcePTION_CDM_tables[["MEDICAL_OBSERVATIONS"]]){
   # PEDIANET uses mo_origin and mo_meaning
   itemset_AVpair_our_study_meaning[["COVID_test"]][[file]][["PEDIANET"]] <- list(list("TAMPONI_COVID19","path_test"))
   # UOSL uses mo_origin and mo_meaning
-  itemset_AVpair_our_study_meaning[["COVID_test"]][[file]][["UOSL"]] <- list(list("MSIS","covid19_positive_test"))
+  itemset_AVpair_our_study_meaning[["COVID_test"]][[file]][["UOSL"]] <- list(list("MSIS","covid19_test"))
 }
 
 itemset_AVpair_our_study_this_datasource <- vector(mode="list")

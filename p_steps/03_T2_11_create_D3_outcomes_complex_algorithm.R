@@ -70,7 +70,7 @@ for (SECCOMP in SECCOMPONENTS) {
     }
     
     # select according to the rule of the component
-    selection <- paste0("!is.na(dateA) & !is.na(dateB) & ", selectionrule_direction_seccomp[[SECCOMP]][[direction_seccomp[[SECCOMP]]]])
+    selection <- paste0("!is.na(dateA) & !is.na(dateB) & ", selectionrule_direction_seccomp[[direction_seccomp[[SECCOMP]]]])
     
     # merge datasets A and B
     unique_A_AND_B_timeframe <- MergeFilterAndCollapse(

@@ -35,12 +35,6 @@ for (subpop in subpopulations_non_empty) {
   
   print("not recurrent")
   
-  if (thisdatasource %in% c("UOSL")) {
-    split_by = NULL
-  } else {
-    split_by = c("sex", "COVID19")
-  }
-  
   persontime_monthly_not_recurrent <- CountPersonTime(
     Dataset_events = events_ALL_OUTCOMES,
     Dataset = study_population,
@@ -60,7 +54,7 @@ for (subpop in subpopulations_non_empty) {
     include_remaning_ages = T,
     Aggregate = T,
     intermediate_folder = dirtemp,
-    split_by = split_by
+    split_by = c("sex", "COVID19")
     )
   
   print("recurrent")
@@ -85,7 +79,7 @@ for (subpop in subpopulations_non_empty) {
     Aggregate = T,
     Rec_period = c(rep(30, length(recurrent_OUTCOME_variables))),
     intermediate_folder = dirtemp,
-    split_by = split_by
+    split_by = c("sex", "COVID19")
   )
   
   persontime_monthly_not_recurrent <- persontime_monthly_not_recurrent[, .SD,

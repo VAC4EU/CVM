@@ -6,7 +6,7 @@ setwd("..")
 # dirinput <- paste0(dirbase,"/CDMInstances/PASS_COVIDVACCINES2205/")
 # dirpregnancy <- paste0(dirbase,"/StudyScripts/pregnancy_20221017/g_output/")
 
-dirinput <- paste0(thisdir,"/i_input/")
+# dirinput <- paste0(thisdir,"/i_input/")
 dirinput <- paste0(thisdir,"/i_input_subpop/")
 dirpregnancy <- ""
 
@@ -53,7 +53,7 @@ read_library <- function(...) {
 
 list.of.packages <- c("MASS", "haven", "tidyverse", "lubridate", "AdhereR", "stringr", "purrr", "readr", "dplyr",
                       "survival", "rmarkdown", "ggplot2", "data.table", "qpdf", "parallel", "readxl", "gtsummary",
-                      "labelled", "huxtable", "metafor", "markdown", "R.utils", "SCCS", "RcppAlgos")
+                      "labelled", "huxtable", "metafor", "markdown", "R.utils", "SCCS")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
 invisible(lapply(list.of.packages, require, character.only = T))
@@ -82,7 +82,6 @@ source(paste0(dirmacro,"dsr.R"))
 source(paste0(dirmacro,"launch_step.R"))
 source(paste0(dirmacro,"standardsccs2.R"))
 source(paste0(dirmacro,"sensitivity_functions.R"))
-source(paste0(dirmacro,"CompareListsOfCodes.R"))
 
 #other parameters
 # TODO remove this
