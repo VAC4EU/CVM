@@ -5,3 +5,5 @@ This repository contains the scripts of the Project "Rapid Safety Assessment of 
 In [this page](https://github.com/VAC4EU/CVM/wiki/Covid-Vaccine-Monitoring-final-scripts-repository) you can browse the releases that have generated reports or manuscripts for the project. 
 
 The data included in this repository are fictitious and included for illustration purposes only. 
+
+[This](https://ars-toscana.github.io/Documentation/DAG_ROC20_Readiness.html) is a link to a graphical represetation of the flow of the script
